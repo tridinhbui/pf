@@ -1400,9 +1400,15 @@ const setupAnimations = () => {
 }
 
 .directive-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  border-color: #000000;
+  transform: translateY(-8px) perspective(1000px) rotateX(15deg) rotateY(15deg) scale(1.08);
+  box-shadow: 
+    0 40px 80px rgba(100, 200, 255, 0.5),
+    0 25px 50px rgba(0, 255, 136, 0.4),
+    0 15px 30px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 1px rgba(100, 200, 255, 0.8);
+  border-color: rgba(100, 200, 255, 0.9);
+  background: rgba(0, 30, 60, 0.95);
+  filter: brightness(1.2) contrast(1.1);
 }
 
 /* MORPHING CARDS */
@@ -1430,11 +1436,16 @@ const setupAnimations = () => {
 }
 
 .morphing-card:hover {
-  transform: translateY(-12px) rotateX(8deg) rotateY(8deg) scale(1.02);
+  transform: translateY(-16px) perspective(1000px) rotateX(20deg) rotateY(20deg) scale(1.1) translateZ(80px);
   box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.15),
-    0 0 0 1px rgba(255, 255, 255, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    0 50px 100px rgba(100, 200, 255, 0.6),
+    0 30px 60px rgba(0, 255, 136, 0.5),
+    0 20px 40px rgba(0, 0, 0, 0.8),
+    inset 0 0 0 2px rgba(100, 200, 255, 0.9),
+    inset 0 2px 0 rgba(255, 255, 255, 0.3);
+  background: rgba(0, 20, 40, 0.95);
+  border-color: rgba(100, 200, 255, 1);
+  filter: brightness(1.3) contrast(1.2) saturate(1.2);
 }
 
 /* FLOATING NUMBERS */
@@ -3160,40 +3171,70 @@ const setupAnimations = () => {
 
 /* ===== ENTREPRENEURSHIP TRIANGLE SECTION ===== */
 .triangle-section {
-  background: #ffffff;
+  background: radial-gradient(circle at center, #0a0a1a, #000000);
   padding: 10rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.triangle-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 30%, rgba(100, 200, 255, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(0, 255, 136, 0.1) 0%, transparent 40%);
+  z-index: 1;
 }
 
 .triangle-container {
   max-width: 1000px;
   margin: 0 auto;
+  position: relative;
+  z-index: 10;
 }
 
 .entrepreneurship-triangle {
   position: relative;
   width: 100%;
-  max-width: 600px;
+  max-width: 700px;
   margin: 0 auto 6rem;
-  height: 400px;
+  height: 500px;
 }
 
 .triangle-svg {
   position: absolute;
-  top: 0;
+  top: 50px;
   left: 50%;
   transform: translateX(-50%);
-  width: 400px;
-  height: 346px;
-  z-index: 1;
+  width: 500px;
+  height: 433px;
+  z-index: 5;
+  filter: drop-shadow(0 0 20px rgba(100, 200, 255, 0.6));
 }
 
 .triangle-svg path {
-  animation: triangle-draw 3s ease-in-out infinite;
+  animation: triangle-draw 4s ease-in-out infinite;
+  stroke: #64c8ff;
+  stroke-width: 3;
+  fill: none;
+  filter: drop-shadow(0 0 10px rgba(100, 200, 255, 0.8));
 }
 
 @keyframes triangle-draw {
-  0%, 100% { stroke-opacity: 0.7; stroke-width: 2; }
-  50% { stroke-opacity: 1; stroke-width: 3; }
+  0%, 100% { 
+    stroke-opacity: 0.7; 
+    stroke-width: 3; 
+    stroke-dasharray: 0, 1000;
+  }
+  50% { 
+    stroke-opacity: 1; 
+    stroke-width: 4; 
+    stroke-dasharray: 500, 500;
+  }
 }
 
 /* Vertices */
