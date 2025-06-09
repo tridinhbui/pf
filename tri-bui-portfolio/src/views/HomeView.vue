@@ -3,6 +3,29 @@
     <!-- Animated Background -->
     <AnimatedBackground />
     
+    <!-- Mystical Overlay Effects -->
+    <div class="mystical-overlay">
+      <!-- Floating Magical Shapes -->
+      <div class="magical-shapes-layer">
+        <div class="magical-shape diamond-shape" v-for="n in 8" :key="`diamond-${n}`"></div>
+        <div class="magical-shape triangle-shape" v-for="n in 6" :key="`triangle-${n}`"></div>
+        <div class="magical-shape hexagon-shape" v-for="n in 5" :key="`hexagon-${n}`"></div>
+        <div class="magical-shape star-shape" v-for="n in 7" :key="`star-${n}`"></div>
+      </div>
+
+      <!-- Particle Trails -->
+      <div class="particle-trails-layer">
+        <div class="particle-trail" v-for="n in 12" :key="`trail-${n}`">
+          <div class="trail-dot" v-for="m in 8" :key="m"></div>
+        </div>
+      </div>
+
+      <!-- Energy Waves -->
+      <div class="energy-waves-layer">
+        <div class="energy-wave" v-for="n in 6" :key="`wave-${n}`"></div>
+      </div>
+    </div>
+    
     <!-- Navigation Bar -->
     <NavBar />
     
@@ -24,24 +47,28 @@
 
           <!-- Main Title -->
           <div class="hero-title-wrapper floating-element" ref="heroTitleRef">
-            <h1 class="hero-title professional-title">
-              <span class="title-main">I don't just build startups.</span>
+            <h1 class="hero-title professional-title cosmic-text">
+              <span class="title-main glitch-text" data-text="I don't just build startups.">I don't just build startups.</span>
               <br>
-              <span class="title-sub strong-emphasis">I build ecosystems.</span>
+              <span class="title-sub strong-emphasis typewriter-text">I build ecosystems.</span>
             </h1>
             <p class="hero-subtitle professional-subtitle">
               I'm a strategist and builder focused on empowering the next generation with platforms, tools, and meaningful mentorship.
             </p>
-          </div>
+                    </div>
 
-       
+          <!-- NEXBOT Robot Section -->
+          <div class="nexbot-section floating-element" ref="nexbotRef">
+            <SplineRobot />
+          </div>
 
           <!-- Launch Navigation -->
           <div class="hero-nav" ref="heroNavRef">
             <a href="#background" class="nav-link shimmer-effect">Background</a>
             <a href="#ventures" class="nav-link shimmer-effect">Ventures</a>
-            <a href="#experience" class="nav-link shimmer-effect">Experience</a>
-            <a href="#awards" class="nav-link shimmer-effect">Awards</a>
+            <a href="#triangle" class="nav-link shimmer-effect">Triangle</a>
+            <a href="#mindset" class="nav-link shimmer-effect">Mindset</a>
+            <a href="#blog" class="nav-link shimmer-effect">Blog</a>
             <a href="#contact" class="nav-link shimmer-effect">Contact</a>
           </div>
         </div>
@@ -50,6 +77,20 @@
 
     <!-- Origin Story Section -->
     <section class="section origin-section" id="background">
+      <!-- Section Planets -->
+      <div class="section-planets">
+        <div class="planet planet-1">
+          <div class="planet-ring"></div>
+          <div class="planet-moon"></div>
+        </div>
+        <div class="planet planet-2">
+          <div class="planet-atmosphere"></div>
+        </div>
+        <div class="orbital-path">
+          <div class="orbiting-object"></div>
+        </div>
+      </div>
+      
       <div class="container">
         <div class="section-header">
           <h2 class="section-title" ref="originTitleRef">Background</h2>
@@ -105,6 +146,20 @@
 
     <!-- Constellations Section -->
     <section class="section constellations-section" id="ventures">
+      <!-- Section Cosmic Elements -->
+      <div class="section-cosmos">
+        <div class="cosmic-nebula"></div>
+        <div class="planet planet-3">
+          <div class="planet-glow"></div>
+          <div class="asteroid-belt">
+            <div class="asteroid" v-for="n in 8" :key="n"></div>
+          </div>
+        </div>
+        <div class="space-station">
+          <div class="station-module" v-for="n in 4" :key="n"></div>
+        </div>
+      </div>
+      
       <div class="container">
         <div class="section-header">
           <h2 class="section-title" ref="constellationsTitleRef">Ventures</h2>
@@ -129,6 +184,166 @@
              </div>
            </div>
          </div>
+      </div>
+    </section>
+
+    <!-- Entrepreneurship Triangle Section -->
+    <section class="section triangle-section" id="triangle">
+      <!-- Section Cosmic Elements -->
+      <div class="section-cosmos">
+        <div class="cosmic-nebula"></div>
+        <div class="planet planet-4">
+          <div class="planet-glow"></div>
+        </div>
+      </div>
+      
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title" ref="triangleTitleRef">The Entrepreneurship Triangle</h2>
+          <p class="section-subtitle">Where Tech, Finance, and Marketing converge to create innovation</p>
+        </div>
+        
+        <div class="triangle-container" ref="triangleRef">
+          <!-- The Triangle -->
+          <div class="entrepreneurship-triangle">
+            <!-- Triangle Lines -->
+            <svg class="triangle-svg" viewBox="0 0 400 346" fill="none">
+              <path d="M200 50 L350 300 L50 300 Z" stroke="#000000" stroke-width="2" fill="none"/>
+              <path d="M200 50 L200 300" stroke="#000000" stroke-width="1" stroke-dasharray="5,5" opacity="0.5"/>
+              <path d="M125 175 L275 175" stroke="#000000" stroke-width="1" stroke-dasharray="5,5" opacity="0.5"/>
+              <path d="M162.5 237.5 L237.5 237.5" stroke="#000000" stroke-width="1" stroke-dasharray="5,5" opacity="0.5"/>
+            </svg>
+            
+            <!-- Vertices -->
+            <div class="vertex tech-vertex" data-skill="tech">
+              <div class="vertex-icon">💻</div>
+              <div class="vertex-label">TECH</div>
+              <div class="vertex-description">Full-stack development, AI/ML, System architecture</div>
+            </div>
+            
+            <div class="vertex finance-vertex" data-skill="finance">
+              <div class="vertex-icon">📊</div>
+              <div class="vertex-label">FINANCE</div>
+              <div class="vertex-description">Corporate finance, Investment analysis, Risk modeling</div>
+            </div>
+            
+            <div class="vertex marketing-vertex" data-skill="marketing">
+              <div class="vertex-icon">🎯</div>
+              <div class="vertex-label">MARKETING</div>
+              <div class="vertex-description">Growth hacking, Brand strategy, Customer acquisition</div>
+            </div>
+            
+            <!-- Center - Entrepreneurship -->
+            <div class="center-point" data-core="entrepreneurship">
+              <div class="center-icon">🚀</div>
+              <div class="center-label">ENTREPRENEURSHIP</div>
+              <div class="center-description">Building ecosystems that empower the next generation</div>
+              <div class="energy-pulse"></div>
+            </div>
+            
+            <!-- Connection Lines -->
+            <div class="connection-lines">
+              <div class="line tech-to-center"></div>
+              <div class="line finance-to-center"></div>
+              <div class="line marketing-to-center"></div>
+            </div>
+          </div>
+          
+          <!-- Skills Breakdown -->
+          <div class="skills-breakdown">
+            <div class="skill-category tech-skills">
+              <h3>Technology Stack</h3>
+              <ul>
+                <li>Vue.js, React, Node.js</li>
+                <li>Python, TensorFlow, AWS</li>
+                <li>Microservices Architecture</li>
+                <li>Database Design & Optimization</li>
+              </ul>
+            </div>
+            
+            <div class="skill-category finance-skills">
+              <h3>Financial Expertise</h3>
+              <ul>
+                <li>CAPEX Modeling & Analysis</li>
+                <li>Monte Carlo Simulations</li>
+                <li>Private Equity Valuation</li>
+                <li>Risk Management</li>
+              </ul>
+            </div>
+            
+            <div class="skill-category marketing-skills">
+              <h3>Growth & Marketing</h3>
+              <ul>
+                <li>User Acquisition Strategy</li>
+                <li>Product-Market Fit</li>
+                <li>Mentorship & Education</li>
+                <li>Community Building</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Business Mindset Section -->
+    <section class="section mindset-section" id="mindset">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title" ref="mindsetTitleRef">Business & Entrepreneurship Mindset</h2>
+          <p class="section-subtitle">Core principles that drive innovation and sustainable growth</p>
+        </div>
+        
+        <div class="mindset-grid" ref="mindsetRef">
+          <div class="mindset-card magnetic-target hover-lift morphing-card" v-for="mindset in businessMindset" :key="mindset.id">
+            <div class="mindset-icon">{{ mindset.icon }}</div>
+            <div class="mindset-content">
+              <h3 class="mindset-title">{{ mindset.title }}</h3>
+              <p class="mindset-description">{{ mindset.description }}</p>
+              <div class="mindset-example">
+                <strong>Applied:</strong> {{ mindset.example }}
+              </div>
+            </div>
+            <div class="card-glow"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="section blog-section" id="blog">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title" ref="blogTitleRef">Insights & Thoughts</h2>
+          <p class="section-subtitle">Sharing knowledge on entrepreneurship, technology, and building the future</p>
+        </div>
+        
+        <div class="blog-grid" ref="blogRef">
+          <div class="blog-card magnetic-target hover-lift morphing-card" v-for="post in blogPosts" :key="post.id">
+            <div class="blog-meta">
+              <span class="blog-category">{{ post.category }}</span>
+              <span class="blog-date">{{ post.date }}</span>
+            </div>
+            <div class="blog-content">
+              <h3 class="blog-title">{{ post.title }}</h3>
+              <p class="blog-excerpt">{{ post.excerpt }}</p>
+              <div class="blog-tags">
+                <span class="tag" v-for="tag in post.tags" :key="tag">{{ tag }}</span>
+              </div>
+            </div>
+            <div class="blog-footer">
+              <span class="read-time">{{ post.readTime }} min read</span>
+              <a href="#" class="read-more">Read More →</a>
+            </div>
+            <div class="card-glow"></div>
+          </div>
+        </div>
+        
+        <div class="blog-link">
+          <a href="/blog" class="elegant-link magnetic-target">
+            <span>View all articles</span>
+            <span class="link-arrow">→</span>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -247,6 +462,9 @@
       </div>
     </section>
 
+    <!-- Chatbot -->
+    <ChatBot />
+
     <!-- Footer Section -->
     <footer class="footer-section">
       <div class="container">
@@ -330,14 +548,17 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import MagneticCursor from '@/components/MagneticCursor.vue'
 import NavBar from '@/components/NavBar.vue'
 import AnimatedBackground from '@/components/AnimatedBackground.vue'
+import SplineRobot from '@/components/SplineRobot.vue'
+import ChatBot from '@/components/ChatBot.vue'
 
 gsap.registerPlugin(ScrollTrigger)
 
 // Refs for animations
 const statusRef = ref<HTMLElement>()
 const heroTitleRef = ref<HTMLElement>()
-const heroStatsRef = ref<HTMLElement>()
+
 const heroNavRef = ref<HTMLElement>()
+const nexbotRef = ref<HTMLElement>()
 const splineRef = ref<HTMLElement>()
 const particlesRef = ref<HTMLElement>()
 const originTitleRef = ref<HTMLElement>()
@@ -349,6 +570,12 @@ const directivesTitleRef = ref<HTMLElement>()
 const directivesRef = ref<HTMLElement>()
 const constellationsTitleRef = ref<HTMLElement>()
 const constellationsRef = ref<HTMLElement>()
+const triangleTitleRef = ref<HTMLElement>()
+const triangleRef = ref<HTMLElement>()
+const mindsetTitleRef = ref<HTMLElement>()
+const mindsetRef = ref<HTMLElement>()
+const blogTitleRef = ref<HTMLElement>()
+const blogRef = ref<HTMLElement>()
 const accoladesTitleRef = ref<HTMLElement>()
 const accoladesRef = ref<HTMLElement>()
 const orbitsTitleRef = ref<HTMLElement>()
@@ -494,6 +721,108 @@ const trajectory = ref([
   }
 ])
 
+const businessMindset = ref([
+  {
+    id: 1,
+    icon: "🎯",
+    title: "Customer-Centric Innovation",
+    description: "Every solution starts with understanding real customer pain points and market needs.",
+    example: "Built FinBud AI after discovering 87% of Gen Z struggle with financial literacy and planning."
+  },
+  {
+    id: 2,
+    icon: "🔄",
+    title: "Iterative Development",
+    description: "Fast prototyping, rapid feedback loops, and continuous improvement drive sustainable growth.",
+    example: "Pathwise achieved 71% success rate through constant curriculum refinement based on mentee feedback."
+  },
+  {
+    id: 3,
+    icon: "🌐",
+    title: "Ecosystem Thinking",
+    description: "Building interconnected platforms that create compound value for all stakeholders.",
+    example: "CF Hub connects students, mentors, and employers in a mutually beneficial learning ecosystem."
+  },
+  {
+    id: 4,
+    icon: "📊",
+    title: "Data-Driven Decisions",
+    description: "Quantitative analysis and metrics guide strategic choices and resource allocation.",
+    example: "Used Monte Carlo simulations to optimize $1B debt stack and reduce risk exposure at Smithfield."
+  },
+  {
+    id: 5,
+    icon: "🤝",
+    title: "Partnership & Collaboration",
+    description: "Sustainable success comes from building strong relationships and win-win partnerships.",
+    example: "Esmart Solution's profit-sharing model with 34 SMEs created 42% average revenue growth."
+  },
+  {
+    id: 6,
+    icon: "🚀",
+    title: "Scalable Infrastructure",
+    description: "Design systems and processes that can grow exponentially without proportional complexity.",
+    example: "FinBud's microservices architecture supports 12K users with minimal operational overhead."
+  }
+])
+
+const blogPosts = ref([
+  {
+    id: 1,
+    category: "Entrepreneurship",
+    date: "Dec 15, 2024",
+    title: "Building Ecosystems, Not Just Products",
+    excerpt: "Why the future of entrepreneurship lies in creating interconnected platforms that empower communities rather than isolated solutions.",
+    tags: ["Startup", "Ecosystem", "Strategy"],
+    readTime: 8
+  },
+  {
+    id: 2,
+    category: "Technology",
+    date: "Dec 10, 2024",
+    title: "The Rise of AI-First Fintech",
+    excerpt: "How artificial intelligence is revolutionizing personal finance and what it means for the next generation of financial services.",
+    tags: ["AI", "Fintech", "Innovation"],
+    readTime: 6
+  },
+  {
+    id: 3,
+    category: "Finance",
+    date: "Dec 5, 2024",
+    title: "Monte Carlo Methods in Modern Finance",
+    excerpt: "Practical applications of probabilistic modeling in corporate finance, from risk assessment to capital allocation decisions.",
+    tags: ["Finance", "Modeling", "Risk"],
+    readTime: 10
+  },
+  {
+    id: 4,
+    category: "Mentorship",
+    date: "Nov 28, 2024",
+    title: "Scaling Mentorship Through Technology",
+    excerpt: "Lessons learned from building Pathwise and how technology can democratize access to quality mentorship and career guidance.",
+    tags: ["Mentorship", "EdTech", "Impact"],
+    readTime: 7
+  },
+  {
+    id: 5,
+    category: "Strategy",
+    date: "Nov 20, 2024",
+    title: "The Three Pillars of Tech Entrepreneurship",
+    excerpt: "Breaking down the essential skills every tech entrepreneur needs: technical depth, financial acumen, and market understanding.",
+    tags: ["Strategy", "Skills", "Leadership"],
+    readTime: 9
+  },
+  {
+    id: 6,
+    category: "Innovation",
+    date: "Nov 15, 2024",
+    title: "From Idea to IPO: A Systems Approach",
+    excerpt: "How to think about startup growth as interconnected systems rather than linear progression through traditional stages.",
+    tags: ["Growth", "Systems", "Startup"],
+    readTime: 12
+  }
+])
+
 onMounted(() => {
   setupAnimations()
   setupAdvancedAnimations()
@@ -569,15 +898,7 @@ const setupAnimations = () => {
     }, "-=0.5")
   }
   
-  if (heroStatsRef.value) {
-    heroTl.from(heroStatsRef.value.children, {
-      opacity: 0,
-      y: 30,
-      duration: 0.8,
-      stagger: 0.15,
-      ease: "power3.out"
-    }, "-=0.3")
-  }
+
   
   if (heroNavRef.value) {
     heroTl.from(heroNavRef.value.children, {
@@ -588,12 +909,26 @@ const setupAnimations = () => {
       ease: "power3.out"
     }, "-=0.2")
   }
+  
+  // NEXBOT animation
+  if (nexbotRef.value) {
+    heroTl.from(nexbotRef.value, {
+      opacity: 0,
+      scale: 0.8,
+      y: 50,
+      duration: 1.2,
+      ease: "back.out(1.7)"
+    }, "-=0.8")
+  }
 
   // Section animations
   const sections = [
     { ref: originTitleRef, items: [originItem1, originItem2, originItem3, originItem4] },
     { ref: directivesTitleRef, selector: '.directives-grid' },
     { ref: constellationsTitleRef, selector: '.constellations-grid' },
+    { ref: triangleTitleRef, selector: '.triangle-container' },
+    { ref: mindsetTitleRef, selector: '.mindset-grid' },
+    { ref: blogTitleRef, selector: '.blog-grid' },
     { ref: accoladesTitleRef, selector: '.accolades-timeline' },
     { ref: orbitsTitleRef, selector: '.orbits-grid' },
     { ref: trajectoryTitleRef, selector: '.trajectory-grid' },
@@ -676,6 +1011,8 @@ const setupAnimations = () => {
   min-height: 100vh;
   font-family: var(--font-family-primary);
   line-height: 1.6;
+  position: relative;
+  z-index: 10;
 }
 
 .container {
@@ -687,6 +1024,7 @@ const setupAnimations = () => {
 .section {
   padding: 8rem 0;
   position: relative;
+  z-index: 50;
 }
 
 .section-header {
@@ -741,7 +1079,7 @@ const setupAnimations = () => {
 /* FLOATING ELEMENTS */
 .floating-element {
   position: relative;
-  z-index: 10;
+  z-index: 100;
 }
 
 .status-badge {
@@ -1071,10 +1409,32 @@ const setupAnimations = () => {
 .morphing-card {
   transform-style: preserve-3d;
   perspective: 1000px;
+  position: relative;
+  overflow: hidden;
+}
+
+.morphing-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s;
+  z-index: 1;
+}
+
+.morphing-card:hover::before {
+  left: 100%;
 }
 
 .morphing-card:hover {
-  transform: translateY(-8px) rotateX(5deg) rotateY(5deg);
+  transform: translateY(-12px) rotateX(8deg) rotateY(8deg) scale(1.02);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 /* FLOATING NUMBERS */
@@ -1087,33 +1447,40 @@ const setupAnimations = () => {
   50% { transform: translateY(-10px); }
 }
 
-/* CARD GLOW */
+/* ENHANCED CARD GLOW */
 .card-glow {
   position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, #000000, #333333, #666666, #000000);
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(45deg, 
+    #000000, #333333, #666666, #999999, 
+    #666666, #333333, #000000);
   border-radius: inherit;
   z-index: -1;
   opacity: 0;
-  transition: opacity 0.3s ease;
-  background-size: 400% 400%;
-  animation: gradient-shift 4s ease infinite;
+  transition: all 0.5s ease;
+  background-size: 600% 600%;
+  animation: gradient-shift 6s ease infinite;
+  filter: blur(8px);
 }
 
 @keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% { background-position: 0% 50%; transform: rotate(0deg); }
+  25% { background-position: 100% 0%; transform: rotate(90deg); }
+  50% { background-position: 100% 100%; transform: rotate(180deg); }
+  75% { background-position: 0% 100%; transform: rotate(270deg); }
+  100% { background-position: 0% 50%; transform: rotate(360deg); }
 }
 
 .directive-card:hover .card-glow {
-  opacity: 0.6;
+  opacity: 0.8;
+  filter: blur(12px);
+  animation-duration: 3s;
 }
 
-/* CARD PARTICLES */
+/* ENHANCED CARD PARTICLES */
 .card-particles {
   position: absolute;
   top: 0;
@@ -1127,28 +1494,57 @@ const setupAnimations = () => {
 
 .card-particle {
   position: absolute;
-  width: 2px;
-  height: 2px;
-  background: #333333;
+  width: 3px;
+  height: 3px;
+  background: radial-gradient(circle, #666666, transparent);
   border-radius: 50%;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: all 0.5s ease;
 }
 
-.card-particle:nth-child(1) { top: 20%; left: 20%; animation-delay: 0s; }
-.card-particle:nth-child(2) { top: 80%; left: 80%; animation-delay: 0.5s; }
-.card-particle:nth-child(3) { top: 60%; left: 30%; animation-delay: 1s; }
-.card-particle:nth-child(4) { top: 30%; left: 70%; animation-delay: 1.5s; }
-.card-particle:nth-child(5) { top: 70%; left: 50%; animation-delay: 2s; }
+.card-particle:nth-child(1) { 
+  top: 15%; left: 15%; animation-delay: 0s; 
+  background: radial-gradient(circle, #00ff88, transparent);
+}
+.card-particle:nth-child(2) { 
+  top: 85%; left: 85%; animation-delay: 0.3s; 
+  background: radial-gradient(circle, #ff4444, transparent);
+}
+.card-particle:nth-child(3) { 
+  top: 50%; left: 25%; animation-delay: 0.6s; 
+  background: radial-gradient(circle, #4488ff, transparent);
+}
+.card-particle:nth-child(4) { 
+  top: 25%; left: 75%; animation-delay: 0.9s; 
+  background: radial-gradient(circle, #ff8844, transparent);
+}
+.card-particle:nth-child(5) { 
+  top: 75%; left: 50%; animation-delay: 1.2s; 
+  background: radial-gradient(circle, #8844ff, transparent);
+}
 
 .directive-card:hover .card-particle {
-  opacity: 0.8;
-  animation: particle-float 2s ease-in-out infinite;
+  opacity: 1;
+  animation: enhanced-particle-dance 3s ease-in-out infinite;
 }
 
-@keyframes particle-float {
-  0%, 100% { transform: translateY(0px) scale(1); }
-  50% { transform: translateY(-15px) scale(1.2); }
+@keyframes enhanced-particle-dance {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px) scale(1) rotate(0deg); 
+    opacity: 1;
+  }
+  25% { 
+    transform: translateY(-20px) translateX(10px) scale(1.5) rotate(90deg); 
+    opacity: 0.8;
+  }
+  50% { 
+    transform: translateY(-10px) translateX(-15px) scale(1.2) rotate(180deg); 
+    opacity: 0.6;
+  }
+  75% { 
+    transform: translateY(-25px) translateX(20px) scale(1.8) rotate(270deg); 
+    opacity: 0.9;
+  }
 }
 
 /* SHIMMER EFFECTS */
@@ -1969,6 +2365,40 @@ const setupAnimations = () => {
   margin: 0;
 }
 
+/* NEXBOT SECTION */
+.nexbot-section {
+  margin: 6rem 0;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 5;
+}
+
+.nexbot-section::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  background: linear-gradient(45deg, transparent, rgba(0, 255, 136, 0.1), transparent);
+  border-radius: 30px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.nexbot-section:hover::before {
+  opacity: 1;
+  animation: nexbot-aura 3s ease-in-out infinite;
+}
+
+@keyframes nexbot-aura {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
 /* RESPONSIVE */
 @media (max-width: 768px) {
   .section {
@@ -2062,6 +2492,1192 @@ const setupAnimations = () => {
   .orbit-card,
   .trajectory-card {
     padding: 1.5rem;
+  }
+}
+
+/* ===== MYSTICAL OVERLAY EFFECTS ===== */
+.mystical-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Magical Floating Shapes */
+.magical-shapes-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.magical-shape {
+  position: absolute;
+  opacity: 0;
+  animation: magical-float 8s ease-in-out infinite;
+}
+
+.diamond-shape {
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(45deg, #ffffff, #cccccc);
+  transform: rotate(45deg);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+  animation-duration: 10s;
+}
+
+.triangle-shape {
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 20px solid #666666;
+  box-shadow: 0 0 12px rgba(102, 102, 102, 0.5);
+  animation-duration: 12s;
+}
+
+.hexagon-shape {
+  width: 24px;
+  height: 24px;
+  background: #888888;
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  box-shadow: 0 0 18px rgba(136, 136, 136, 0.7);
+  animation-duration: 14s;
+}
+
+.star-shape {
+  width: 18px;
+  height: 18px;
+  background: #aaaaaa;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  box-shadow: 0 0 20px rgba(170, 170, 170, 0.8);
+  animation-duration: 16s;
+}
+
+/* Dynamic positioning for shapes */
+.diamond-shape:nth-child(1) { left: 15%; top: 20%; animation-delay: 0s; }
+.diamond-shape:nth-child(2) { left: 75%; top: 35%; animation-delay: 2s; }
+.diamond-shape:nth-child(3) { left: 45%; top: 70%; animation-delay: 4s; }
+.diamond-shape:nth-child(4) { left: 85%; top: 15%; animation-delay: 6s; }
+.diamond-shape:nth-child(5) { left: 25%; top: 60%; animation-delay: 1s; }
+.diamond-shape:nth-child(6) { left: 65%; top: 80%; animation-delay: 3s; }
+.diamond-shape:nth-child(7) { left: 35%; top: 25%; animation-delay: 5s; }
+.diamond-shape:nth-child(8) { left: 55%; top: 45%; animation-delay: 7s; }
+
+.triangle-shape:nth-child(1) { left: 20%; top: 30%; animation-delay: 1s; }
+.triangle-shape:nth-child(2) { left: 70%; top: 55%; animation-delay: 3s; }
+.triangle-shape:nth-child(3) { left: 40%; top: 15%; animation-delay: 5s; }
+.triangle-shape:nth-child(4) { left: 80%; top: 75%; animation-delay: 2s; }
+.triangle-shape:nth-child(5) { left: 30%; top: 85%; animation-delay: 4s; }
+.triangle-shape:nth-child(6) { left: 60%; top: 10%; animation-delay: 6s; }
+
+.hexagon-shape:nth-child(1) { left: 25%; top: 40%; animation-delay: 2s; }
+.hexagon-shape:nth-child(2) { left: 65%; top: 65%; animation-delay: 4s; }
+.hexagon-shape:nth-child(3) { left: 85%; top: 25%; animation-delay: 6s; }
+.hexagon-shape:nth-child(4) { left: 45%; top: 85%; animation-delay: 1s; }
+.hexagon-shape:nth-child(5) { left: 15%; top: 65%; animation-delay: 3s; }
+
+.star-shape:nth-child(1) { left: 35%; top: 50%; animation-delay: 3s; }
+.star-shape:nth-child(2) { left: 75%; top: 20%; animation-delay: 5s; }
+.star-shape:nth-child(3) { left: 55%; top: 75%; animation-delay: 1s; }
+.star-shape:nth-child(4) { left: 95%; top: 45%; animation-delay: 7s; }
+.star-shape:nth-child(5) { left: 25%; top: 75%; animation-delay: 2s; }
+.star-shape:nth-child(6) { left: 65%; top: 35%; animation-delay: 4s; }
+.star-shape:nth-child(7) { left: 45%; top: 5%; animation-delay: 6s; }
+
+@keyframes magical-float {
+  0%, 100% { 
+    opacity: 0; 
+    transform: translateY(0) translateX(0) scale(1) rotate(0deg); 
+  }
+  15% { 
+    opacity: 0.8; 
+    transform: translateY(-30px) translateX(20px) scale(1.2) rotate(45deg); 
+  }
+  30% { 
+    opacity: 1; 
+    transform: translateY(-60px) translateX(-15px) scale(1.5) rotate(90deg); 
+  }
+  45% { 
+    opacity: 0.7; 
+    transform: translateY(-45px) translateX(35px) scale(1.3) rotate(135deg); 
+  }
+  60% { 
+    opacity: 1; 
+    transform: translateY(-80px) translateX(-25px) scale(1.8) rotate(180deg); 
+  }
+  75% { 
+    opacity: 0.6; 
+    transform: translateY(-55px) translateX(40px) scale(1.4) rotate(225deg); 
+  }
+  90% { 
+    opacity: 0.9; 
+    transform: translateY(-90px) translateX(-10px) scale(2) rotate(270deg); 
+  }
+}
+
+/* Particle Trails */
+.particle-trails-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.particle-trail {
+  position: absolute;
+  animation: trail-movement 6s linear infinite;
+}
+
+.particle-trail:nth-child(1) { left: 10%; top: 25%; animation-delay: 0s; }
+.particle-trail:nth-child(2) { left: 70%; top: 45%; animation-delay: 0.5s; }
+.particle-trail:nth-child(3) { left: 30%; top: 65%; animation-delay: 1s; }
+.particle-trail:nth-child(4) { left: 90%; top: 15%; animation-delay: 1.5s; }
+.particle-trail:nth-child(5) { left: 50%; top: 85%; animation-delay: 2s; }
+.particle-trail:nth-child(6) { left: 80%; top: 55%; animation-delay: 2.5s; }
+.particle-trail:nth-child(7) { left: 20%; top: 75%; animation-delay: 3s; }
+.particle-trail:nth-child(8) { left: 60%; top: 35%; animation-delay: 3.5s; }
+.particle-trail:nth-child(9) { left: 40%; top: 5%; animation-delay: 4s; }
+.particle-trail:nth-child(10) { left: 95%; top: 85%; animation-delay: 4.5s; }
+.particle-trail:nth-child(11) { left: 15%; top: 55%; animation-delay: 5s; }
+.particle-trail:nth-child(12) { left: 75%; top: 95%; animation-delay: 5.5s; }
+
+.trail-dot {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: radial-gradient(circle, #777777, transparent);
+  border-radius: 50%;
+  opacity: 0;
+  animation: dot-trail 2s ease-in-out infinite;
+}
+
+.trail-dot:nth-child(1) { left: 0; animation-delay: 0s; }
+.trail-dot:nth-child(2) { left: 15px; animation-delay: 0.25s; }
+.trail-dot:nth-child(3) { left: 30px; animation-delay: 0.5s; }
+.trail-dot:nth-child(4) { left: 45px; animation-delay: 0.75s; }
+.trail-dot:nth-child(5) { left: 60px; animation-delay: 1s; }
+.trail-dot:nth-child(6) { left: 75px; animation-delay: 1.25s; }
+.trail-dot:nth-child(7) { left: 90px; animation-delay: 1.5s; }
+.trail-dot:nth-child(8) { left: 105px; animation-delay: 1.75s; }
+
+@keyframes trail-movement {
+  0% { transform: translateY(100vh) translateX(-50px); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100px) translateX(50px); opacity: 0; }
+}
+
+@keyframes dot-trail {
+  0%, 100% { 
+    opacity: 0; 
+    transform: translateY(0) scale(1); 
+    box-shadow: 0 0 5px #777777;
+  }
+  50% { 
+    opacity: 1; 
+    transform: translateY(-20px) scale(1.5); 
+    box-shadow: 0 0 15px #777777;
+  }
+}
+
+/* Energy Waves */
+.energy-waves-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.energy-wave {
+  position: absolute;
+  width: 200px;
+  height: 40px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.1) 25%, 
+    rgba(255, 255, 255, 0.3) 50%, 
+    rgba(255, 255, 255, 0.1) 75%, 
+    transparent 100%);
+  border-radius: 20px;
+  opacity: 0;
+  animation: energy-pulse 4s ease-in-out infinite;
+  filter: blur(2px);
+}
+
+.energy-wave:nth-child(1) { 
+  left: 20%; top: 30%; 
+  animation-delay: 0s; 
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.3), transparent);
+}
+.energy-wave:nth-child(2) { 
+  left: 60%; top: 50%; 
+  animation-delay: 1s; 
+  background: linear-gradient(90deg, transparent, rgba(255, 68, 68, 0.3), transparent);
+}
+.energy-wave:nth-child(3) { 
+  left: 40%; top: 70%; 
+  animation-delay: 2s; 
+  background: linear-gradient(90deg, transparent, rgba(68, 136, 255, 0.3), transparent);
+}
+.energy-wave:nth-child(4) { 
+  left: 80%; top: 20%; 
+  animation-delay: 3s; 
+  background: linear-gradient(90deg, transparent, rgba(136, 68, 255, 0.3), transparent);
+}
+.energy-wave:nth-child(5) { 
+  left: 10%; top: 60%; 
+  animation-delay: 0.5s; 
+  background: linear-gradient(90deg, transparent, rgba(255, 170, 68, 0.3), transparent);
+}
+.energy-wave:nth-child(6) { 
+  left: 70%; top: 80%; 
+  animation-delay: 1.5s; 
+  background: linear-gradient(90deg, transparent, rgba(170, 255, 68, 0.3), transparent);
+}
+
+@keyframes energy-pulse {
+  0%, 100% { 
+    opacity: 0; 
+    transform: scaleX(0.5) scaleY(1) translateY(0); 
+  }
+  25% { 
+    opacity: 0.7; 
+    transform: scaleX(1.2) scaleY(1.5) translateY(-10px); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: scaleX(2) scaleY(2) translateY(-20px); 
+  }
+  75% { 
+    opacity: 0.8; 
+    transform: scaleX(1.5) scaleY(1.8) translateY(-15px); 
+  }
+}
+
+/* Responsive Mystical Adjustments */
+@media (max-width: 768px) {
+  .magical-shape {
+    width: 15px !important;
+    height: 15px !important;
+  }
+  
+  .diamond-shape { width: 12px; height: 12px; }
+  .triangle-shape { 
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 14px solid #ff4444;
+  }
+  .hexagon-shape { width: 16px; height: 16px; }
+  .star-shape { width: 12px; height: 12px; }
+  
+  .trail-dot { width: 2px; height: 2px; }
+  .energy-wave { width: 120px; height: 25px; }
+}
+
+/* ===== COSMIC TEXT EFFECTS ===== */
+.cosmic-text {
+  position: relative;
+}
+
+.glitch-text {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.glitch-text::before {
+  color: #ffffff;
+  z-index: -1;
+  animation: glitch-1 2s infinite;
+}
+
+.glitch-text::after {
+  color: #666666;
+  z-index: -2;
+  animation: glitch-2 2s infinite;
+}
+
+@keyframes glitch-1 {
+  0%, 90%, 100% { opacity: 0; }
+  5% { opacity: 1; transform: translate(-2px, -2px); }
+  10% { opacity: 0; }
+  15% { opacity: 1; transform: translate(2px, 2px); }
+  20% { opacity: 0; }
+}
+
+@keyframes glitch-2 {
+  0%, 90%, 100% { opacity: 0; }
+  10% { opacity: 1; transform: translate(2px, -2px); }
+  15% { opacity: 0; }
+  20% { opacity: 1; transform: translate(-2px, 2px); }
+  25% { opacity: 0; }
+}
+
+.typewriter-text {
+  overflow: hidden;
+  border-right: 3px solid #000000;
+  white-space: nowrap;
+  animation: typewriter 4s steps(40, end) 2s 1 normal both,
+             blink-caret 0.75s step-end infinite 2s;
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: #000000; }
+}
+
+/* ===== SECTION PLANETS ===== */
+.section-planets {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.planet {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #ffffff, #666666, #333333);
+}
+
+.planet-1 {
+  width: 80px;
+  height: 80px;
+  top: 15%;
+  right: 10%;
+  animation: planet-float 20s linear infinite;
+}
+
+.planet-2 {
+  width: 60px;
+  height: 60px;
+  bottom: 20%;
+  left: 8%;
+  animation: planet-drift 25s linear infinite reverse;
+}
+
+.planet-3 {
+  width: 100px;
+  height: 100px;
+  top: 30%;
+  right: 15%;
+  animation: planet-rotate 30s linear infinite;
+}
+
+.planet-ring {
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  right: -15px;
+  bottom: -15px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  animation: ring-rotate 15s linear infinite;
+}
+
+.planet-moon {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: #cccccc;
+  border-radius: 50%;
+  top: -30px;
+  left: 50%;
+  margin-left: -7.5px;
+  animation: moon-orbit 8s linear infinite;
+}
+
+.planet-atmosphere {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: radial-gradient(circle, transparent 60%, rgba(255, 255, 255, 0.1) 80%, transparent 100%);
+  border-radius: 50%;
+  animation: atmosphere-pulse 4s ease-in-out infinite;
+}
+
+.planet-glow {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+@keyframes planet-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-20px) rotate(90deg); }
+  50% { transform: translateY(-10px) rotate(180deg); }
+  75% { transform: translateY(-30px) rotate(270deg); }
+}
+
+@keyframes planet-drift {
+  0% { transform: translateX(0) rotate(0deg); }
+  100% { transform: translateX(50px) rotate(360deg); }
+}
+
+@keyframes planet-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes ring-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes moon-orbit {
+  0% { transform: rotate(0deg) translateY(-40px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateY(-40px) rotate(-360deg); }
+}
+
+@keyframes atmosphere-pulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.1); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Orbital Paths */
+.orbital-path {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  margin: -100px 0 0 -100px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  animation: orbital-path-rotate 40s linear infinite;
+}
+
+.orbiting-object {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #ffffff;
+  border-radius: 50%;
+  top: 0;
+  left: 50%;
+  margin-left: -4px;
+  animation: object-orbit 10s linear infinite;
+}
+
+@keyframes orbital-path-rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes object-orbit {
+  0% { transform: rotate(0deg) translateY(-100px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateY(-100px) rotate(-360deg); }
+}
+
+/* Section Cosmos */
+.section-cosmos {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.cosmic-nebula {
+  position: absolute;
+  top: 20%;
+  left: 20%;
+  width: 300px;
+  height: 200px;
+  background: radial-gradient(ellipse at center, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    rgba(200, 200, 200, 0.05) 40%, 
+    transparent 70%);
+  border-radius: 50%;
+  animation: nebula-drift 60s linear infinite;
+  filter: blur(2px);
+}
+
+@keyframes nebula-drift {
+  0% { transform: translateX(0) rotate(0deg); opacity: 0.3; }
+  50% { transform: translateX(100px) rotate(180deg); opacity: 0.6; }
+  100% { transform: translateX(0) rotate(360deg); opacity: 0.3; }
+}
+
+/* Asteroid Belt */
+.asteroid-belt {
+  position: absolute;
+  top: -50px;
+  left: -50px;
+  right: -50px;
+  bottom: -50px;
+}
+
+.asteroid {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #888888;
+  border-radius: 50%;
+  animation: asteroid-orbit 20s linear infinite;
+}
+
+.asteroid:nth-child(1) { 
+  top: 20%; left: 50%; 
+  animation-delay: 0s; 
+  animation-duration: 18s;
+}
+.asteroid:nth-child(2) { 
+  top: 35%; left: 80%; 
+  animation-delay: -2s; 
+  animation-duration: 22s;
+}
+.asteroid:nth-child(3) { 
+  top: 65%; left: 80%; 
+  animation-delay: -4s; 
+  animation-duration: 19s;
+}
+.asteroid:nth-child(4) { 
+  top: 80%; left: 50%; 
+  animation-delay: -6s; 
+  animation-duration: 21s;
+}
+.asteroid:nth-child(5) { 
+  top: 65%; left: 20%; 
+  animation-delay: -8s; 
+  animation-duration: 20s;
+}
+.asteroid:nth-child(6) { 
+  top: 35%; left: 20%; 
+  animation-delay: -10s; 
+  animation-duration: 23s;
+}
+.asteroid:nth-child(7) { 
+  top: 50%; left: 90%; 
+  animation-delay: -12s; 
+  animation-duration: 17s;
+}
+.asteroid:nth-child(8) { 
+  top: 50%; left: 10%; 
+  animation-delay: -14s; 
+  animation-duration: 24s;
+}
+
+@keyframes asteroid-orbit {
+  0% { transform: rotate(0deg) translateX(80px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(80px) rotate(-360deg); }
+}
+
+/* Space Station */
+.space-station {
+  position: absolute;
+  top: 40%;
+  left: 5%;
+  width: 60px;
+  height: 60px;
+  animation: station-rotate 50s linear infinite;
+}
+
+.station-module {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #999999;
+  border: 1px solid #666666;
+}
+
+.station-module:nth-child(1) { top: 0; left: 24px; }
+.station-module:nth-child(2) { top: 24px; left: 48px; }
+.station-module:nth-child(3) { top: 48px; left: 24px; }
+.station-module:nth-child(4) { top: 24px; left: 0; }
+
+@keyframes station-rotate {
+  0% { transform: rotate(0deg) translateX(100px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(100px) rotate(-360deg); }
+}
+
+/* Responsive Cosmic Adjustments */
+@media (max-width: 768px) {
+  .planet-1, .planet-2, .planet-3 {
+    width: 50px !important;
+    height: 50px !important;
+  }
+  
+  .cosmic-nebula {
+    width: 200px;
+    height: 120px;
+  }
+  
+  .orbital-path {
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+  }
+  
+  .space-station {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .station-module {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+/* ===== ENTREPRENEURSHIP TRIANGLE SECTION ===== */
+.triangle-section {
+  background: #ffffff;
+  padding: 10rem 0;
+}
+
+.triangle-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.entrepreneurship-triangle {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 6rem;
+  height: 400px;
+}
+
+.triangle-svg {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 346px;
+  z-index: 1;
+}
+
+.triangle-svg path {
+  animation: triangle-draw 3s ease-in-out infinite;
+}
+
+@keyframes triangle-draw {
+  0%, 100% { stroke-opacity: 0.7; stroke-width: 2; }
+  50% { stroke-opacity: 1; stroke-width: 3; }
+}
+
+/* Vertices */
+.vertex {
+  position: absolute;
+  background: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 15px;
+  padding: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  min-width: 120px;
+}
+
+.vertex:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  border-color: #333333;
+}
+
+.tech-vertex {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.finance-vertex {
+  bottom: 0;
+  left: 0;
+}
+
+.marketing-vertex {
+  bottom: 0;
+  right: 0;
+}
+
+.vertex-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.vertex-label {
+  font-weight: var(--font-weight-bold);
+  font-size: 0.875rem;
+  color: #000000;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.1em;
+}
+
+.vertex-description {
+  font-size: 0.75rem;
+  color: #666666;
+  line-height: 1.4;
+}
+
+/* Center Point */
+.center-point {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #000000;
+  color: #ffffff;
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 15;
+  min-width: 180px;
+}
+
+.center-point:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.center-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+  animation: rocket-pulse 2s ease-in-out infinite;
+}
+
+@keyframes rocket-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.center-label {
+  font-weight: var(--font-weight-bold);
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.05em;
+}
+
+.center-description {
+  font-size: 0.875rem;
+  color: #cccccc;
+  line-height: 1.4;
+}
+
+.energy-pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #ffffff;
+  border-radius: 20px;
+  transform: translate(-50%, -50%);
+  animation: energy-pulse-animation 3s ease-in-out infinite;
+  opacity: 0.3;
+}
+
+@keyframes energy-pulse-animation {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+  50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.1; }
+}
+
+/* Connection Lines */
+.connection-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+}
+
+.line {
+  position: absolute;
+  background: linear-gradient(45deg, transparent, #000000, transparent);
+  opacity: 0;
+  animation: connection-pulse 4s ease-in-out infinite;
+}
+
+.tech-to-center {
+  top: 25%;
+  left: 50%;
+  width: 2px;
+  height: 25%;
+  transform: translateX(-50%);
+  animation-delay: 0s;
+}
+
+.finance-to-center {
+  bottom: 25%;
+  left: 25%;
+  width: 25%;
+  height: 2px;
+  transform: rotate(60deg);
+  transform-origin: left center;
+  animation-delay: 1s;
+}
+
+.marketing-to-center {
+  bottom: 25%;
+  right: 25%;
+  width: 25%;
+  height: 2px;
+  transform: rotate(-60deg);
+  transform-origin: right center;
+  animation-delay: 2s;
+}
+
+@keyframes connection-pulse {
+  0%, 70%, 100% { opacity: 0; }
+  35% { opacity: 0.6; }
+}
+
+/* Skills Breakdown */
+.skills-breakdown {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.skill-category {
+  background: #fafafa;
+  border: 1px solid #e9ecef;
+  border-radius: 15px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.skill-category:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border-color: #000000;
+}
+
+.skill-category h3 {
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 1.5rem;
+  color: #000000;
+}
+
+.skill-category ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.skill-category li {
+  padding: 0.5rem 0;
+  color: #666666;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 0.875rem;
+}
+
+.skill-category li:last-child {
+  border-bottom: none;
+}
+
+.skill-category li:before {
+  content: "▶";
+  color: #000000;
+  margin-right: 0.75rem;
+  font-size: 0.75rem;
+}
+
+/* ===== BUSINESS MINDSET SECTION ===== */
+.mindset-section {
+  background: #fafafa;
+  padding: 8rem 0;
+}
+
+.mindset-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.mindset-card {
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 20px;
+  padding: 2.5rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.mindset-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  border-color: #000000;
+}
+
+.mindset-icon {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+
+.mindset-content {
+  position: relative;
+  z-index: 2;
+}
+
+.mindset-title {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 1rem;
+  color: #000000;
+}
+
+.mindset-description {
+  color: #666666;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.mindset-example {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  color: #495057;
+  border-left: 4px solid #000000;
+}
+
+/* ===== BLOG SECTION ===== */
+.blog-section {
+  background: #ffffff;
+  padding: 8rem 0;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.blog-card {
+  background: #fafafa;
+  border: 1px solid #e9ecef;
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  border-color: #000000;
+}
+
+.blog-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.blog-category {
+  background: #000000;
+  color: #ffffff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 15px;
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-semibold);
+}
+
+.blog-date {
+  color: #666666;
+  font-size: 0.875rem;
+  font-family: var(--font-family-mono);
+}
+
+.blog-content {
+  flex: 1;
+  margin-bottom: 1.5rem;
+}
+
+.blog-title {
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 1rem;
+  color: #000000;
+  line-height: 1.3;
+}
+
+.blog-excerpt {
+  color: #666666;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.blog-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.tag {
+  background: #f0f0f0;
+  color: #666666;
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.blog-card:hover .tag {
+  background: #e0e0e0;
+}
+
+.blog-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  border-top: 1px solid #e9ecef;
+}
+
+.read-time {
+  color: #999999;
+  font-size: 0.875rem;
+  font-family: var(--font-family-mono);
+}
+
+.read-more {
+  color: #000000;
+  text-decoration: none;
+  font-weight: var(--font-weight-semibold);
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+}
+
+.read-more:hover {
+  color: #333333;
+  transform: translateX(3px);
+}
+
+.blog-link {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .triangle-section {
+    padding: 6rem 0;
+  }
+  
+  .entrepreneurship-triangle {
+    height: 300px;
+    margin-bottom: 4rem;
+  }
+  
+  .triangle-svg {
+    width: 300px;
+    height: 260px;
+  }
+  
+  .vertex {
+    padding: 1rem;
+    min-width: 100px;
+  }
+  
+  .center-point {
+    padding: 1.5rem;
+    min-width: 140px;
+  }
+  
+  .vertex-icon {
+    font-size: 1.5rem;
+  }
+  
+  .center-icon {
+    font-size: 2rem;
+  }
+  
+  .vertex-label {
+    font-size: 0.75rem;
+  }
+  
+  .vertex-description {
+    font-size: 0.7rem;
+  }
+  
+  .skills-breakdown {
+    grid-template-columns: 1fr;
+    margin-top: 3rem;
+  }
+  
+  .mindset-grid,
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .mindset-card,
+  .blog-card {
+    padding: 1.5rem;
+  }
+}
+
+/* Reduce motion for cosmic effects */
+@media (prefers-reduced-motion: reduce) {
+  .magical-shape, .particle-trail, .trail-dot, .energy-wave,
+  .planet, .orbital-path, .orbiting-object, .cosmic-nebula,
+  .asteroid, .space-station, .glitch-text, .typewriter-text,
+  .triangle-svg, .center-icon, .energy-pulse, .line {
+    animation: none !important;
+    opacity: 0.3 !important;
+  }
+  
+  .typewriter-text {
+    border-right: none !important;
+    width: auto !important;
   }
 }
 </style> 
