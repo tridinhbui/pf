@@ -122,7 +122,7 @@ a {
   transition: var(--transition-base);
 }
 
-a:hover {
+  a:hover {
   color: var(--color-text-secondary);
 }
 
@@ -134,7 +134,7 @@ a:hover {
 
 .magnetic-target:hover {
   transform: translateY(-2px);
-}
+  }
 
 /* Scrollbar */
 ::-webkit-scrollbar {

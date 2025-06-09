@@ -3,34 +3,10 @@
     <!-- Animated Background -->
     <AnimatedBackground />
     
-    <!-- Galaxy Background -->
-    <div class="galaxy-background">
-      <div class="cosmic-nebula">
-        <div class="nebula-cloud" v-for="n in 8" :key="`nebula-${n}`"></div>
-      </div>
-      <div class="stellar-field">
-        <div class="star-layer">
-          <div class="star" v-for="n in 200" :key="`star-${n}`"></div>
-        </div>
-        <div class="constellation-lines">
-          <svg class="constellation-svg" viewBox="0 0 1920 1080">
-            <g class="constellation-group" v-for="n in 5" :key="`constellation-${n}`">
-              <line class="constellation-line" x1="100" y1="100" x2="200" y2="150" />
-              <line class="constellation-line" x1="200" y1="150" x2="300" y2="120" />
-              <line class="constellation-line" x1="300" y1="120" x2="380" y2="180" />
-              <circle class="constellation-star" cx="100" cy="100" r="2" />
-              <circle class="constellation-star" cx="200" cy="150" r="3" />
-              <circle class="constellation-star" cx="300" cy="120" r="2" />
-              <circle class="constellation-star" cx="380" cy="180" r="4" />
-            </g>
-          </svg>
-        </div>
-      </div>
-      <div class="cosmic-dust">
-        <div class="dust-particle" v-for="n in 100" :key="`dust-${n}`"></div>
-      </div>
-      <div class="quantum-field">
-        <div class="quantum-dot" v-for="n in 50" :key="`quantum-${n}`"></div>
+    <!-- Minimal Background -->
+    <div class="minimal-background">
+      <div class="subtle-grid">
+        <div class="grid-dot" v-for="n in 50" :key="`dot-${n}`"></div>
       </div>
     </div>
     
@@ -905,32 +881,32 @@ const directives = ref([
 const ventures = ref([
   {
     name: "Pathwise",
-    year: "2021",
-    role: "Founder",
+    year: "2024",
+    role: "Co-founder since 2024",
     impact: "A mentorship platform helping students land top tech & consulting jobs through 1-on-1 coaching and guided curriculum. 118 mentees with 71% internship success rate."
   },
   {
     name: "CF Hub", 
-    year: "2021",
-    role: "Founder",
+    year: "2025",
+    role: "Co-founder since 2025",
     impact: "A finance bootcamp and network for Gen Z to master investment, financial modeling, and market intuition. Generated significant impact in financial literacy."
   },
   {
     name: "YoungPreneur Academy",
-    year: "2021", 
-    role: "Founder",
+    year: "2024", 
+    role: "Founder since 2024",
     impact: "Entrepreneurship education program that trained 220 students, produced 46 national competition finalists, and secured $35K in prize pools."
   },
   {
     name: "FinBud AI",
-    year: "2022",
-    role: "Co-founder",
+    year: "2023",
+    role: "Since 2023",
     impact: "Personal finance AI assistant with 12K beta users, 87% Day-30 retention, and average 3.7 daily chat sessions per user."
   },
   {
     name: "Esmart Solution",
-    year: "2020",
-    role: "Founder", 
+    year: "2022",
+    role: "Since 2022", 
     impact: "Digital transformation consultancy for SMEs, serving 34 businesses with average 42% year-over-year online revenue growth."
   }
 ])
@@ -1548,19 +1524,12 @@ function generateShootingStarStyle() {
   z-index: 50;
   transition: all 0.3s ease;
   will-change: transform;
-  background: rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(135, 206, 235, 0.1);
-  border-bottom: 1px solid rgba(138, 43, 226, 0.1);
+  background: #ffffff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .section:hover {
-  transform: scale3d(1.01, 1.01, 1);
-  box-shadow: 
-    0 20px 40px rgba(138, 43, 226, 0.2),
-    0 0 60px rgba(135, 206, 235, 0.1),
-    inset 0 0 30px rgba(255, 255, 255, 0.05);
-  background: rgba(10, 10, 46, 0.15);
+  background: rgba(0, 0, 0, 0.02);
 }
 
 .section-header {
@@ -1574,12 +1543,7 @@ function generateShootingStarStyle() {
   margin-bottom: 1.5rem;
   letter-spacing: -0.02em;
   line-height: 1.1;
-  background: linear-gradient(45deg, #87ceeb 0%, #dda0dd 50%, #ffd700 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 0 0 30px rgba(135, 206, 235, 0.5);
-  animation: cosmic-glow 3s ease-in-out infinite;
+  color: #000000;
 }
 
 @keyframes cosmic-glow {
@@ -1589,41 +1553,16 @@ function generateShootingStarStyle() {
 
 /* Galaxy Title Styling */
 .galaxy-title {
-  color: #ffffff;
-  text-shadow: 
-    0 0 20px rgba(135, 206, 235, 0.6),
-    0 0 40px rgba(138, 43, 226, 0.4),
-    0 0 60px rgba(255, 215, 0, 0.3);
+  color: #000000;
 }
 
 .visionary-text {
-  background: linear-gradient(45deg, #87ceeb 0%, #dda0dd 30%, #ffd700 60%, #87ceeb 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-size: 200% 200%;
-  animation: visionary-flow 4s ease-in-out infinite;
-}
-
-@keyframes visionary-flow {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  color: #000000;
 }
 
 .galactic-emphasis {
-  background: linear-gradient(135deg, #ff00ff 0%, #00ffff 50%, #ffff00 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: 
-    0 0 30px rgba(255, 0, 255, 0.5),
-    0 0 50px rgba(0, 255, 255, 0.3);
-  animation: galactic-pulse 2s ease-in-out infinite;
-}
-
-@keyframes galactic-pulse {
-  0%, 100% { transform: scale(1); filter: brightness(1); }
-  50% { transform: scale(1.05); filter: brightness(1.3); }
+  color: #000000;
+  font-weight: 900;
 }
 
 .section-subtitle {
@@ -1944,16 +1883,16 @@ function generateShootingStarStyle() {
 .hero-section {
   padding: 12rem 0 8rem;
   text-align: center;
-  background: radial-gradient(ellipse at center, rgba(10, 10, 46, 0.95) 0%, rgba(22, 33, 62, 0.9) 25%, rgba(15, 52, 96, 0.85) 50%, rgba(0, 0, 0, 0.95) 100%);
-  border-bottom: 1px solid rgba(135, 206, 235, 0.3);
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
   position: relative;
   overflow: hidden;
   min-height: 100vh;
 }
 
 .galaxy-section {
-  background: radial-gradient(ellipse at center, rgba(10, 10, 46, 0.95) 0%, rgba(22, 33, 62, 0.9) 25%, rgba(15, 52, 96, 0.85) 50%, rgba(0, 0, 0, 0.95) 100%);
-  color: #ffffff;
+  background: #ffffff;
+  color: #000000;
   position: relative;
 }
 
