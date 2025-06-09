@@ -1,24 +1,18 @@
 <template>
-  <div class="portfolio">
+  <div class="portfolio" :class="{ 'no-scroll': showWelcomePopup }">
     <!-- Animated Background -->
     <AnimatedBackground />
     
     <!-- Minimal Background -->
     <div class="minimal-background">
       <div class="subtle-grid">
-        <div class="grid-dot" v-for="n in 50" :key="`dot-${n}`"></div>
+                    <div class="grid-dot" v-for="n in 20" :key="`dot-${n}`"></div>
       </div>
     </div>
     
     <!-- Mystical Overlay Effects -->
     <div class="mystical-overlay">
-      <!-- Floating Magical Shapes -->
-      <div class="magical-shapes-layer">
-        <div class="magical-shape diamond-shape" v-for="n in 8" :key="`diamond-${n}`"></div>
-        <div class="magical-shape triangle-shape" v-for="n in 6" :key="`triangle-${n}`"></div>
-        <div class="magical-shape hexagon-shape" v-for="n in 5" :key="`hexagon-${n}`"></div>
-        <div class="magical-shape star-shape" v-for="n in 7" :key="`star-${n}`"></div>
-      </div>
+
 
       <!-- Particle Trails -->
       <div class="particle-trails-layer">
@@ -34,53 +28,43 @@
     </div>
 
     <!-- Welcome Popup -->
-    <div class="welcome-popup" v-if="showWelcomePopup" @click="closeWelcomePopup">
-      <div class="popup-overlay"></div>
-      <div class="popup-content" @click.stop>
-        <div class="popup-header">
-          <div class="hologram-effect">
-            <div class="hologram-text">WELCOME TO THE ECOSYSTEM</div>
-            <div class="hologram-scan"></div>
-          </div>
+    <div class="welcome-popup-container" v-if="showWelcomePopup">
+      <div class="popup-overlay elegant-overlay"></div>
+      <div class="popup-content elegant-content">
+        <div class="popup-header elegant-header">
+          <div class="welcome-divider"></div>
+          <h1 class="elegant-title">TRI BUI</h1>
+          <p class="elegant-subtitle">Ecosystem Builder • Strategic Innovator • Future Creator</p>
+          <div class="welcome-divider"></div>
         </div>
         
-        <div class="popup-body">
-          <div class="matrix-rain">
-            <div class="rain-column" v-for="n in 20" :key="n">
-              <span v-for="char in matrixChars" :key="char">{{ char }}</span>
-            </div>
-          </div>
-          
-          <div class="welcome-message">
-            <h2 class="cosmic-title">
-              <span class="glitch-effect" data-text="TRI BUI">TRI BUI</span>
-            </h2>
-            <p class="subtitle">Ecosystem Builder • Strategic Innovator • Future Creator</p>
-            <div class="tech-specs">
-              <div class="spec-line">
-                <span class="label">STATUS:</span>
-                <span class="value typing-effect">ONLINE</span>
+        <div class="popup-body elegant-body">
+          <div class="elegant-message">
+            <p class="welcome-text">
+              Welcome to a carefully crafted portfolio showcasing the intersection of finance, technology, and entrepreneurship.
+            </p>
+            <div class="credentials">
+              <div class="credential-item">
+                <span class="credential-label">Current Role</span>
+                <span class="credential-value">Corporate Finance Analyst, Smithfield Foods</span>
               </div>
-              <div class="spec-line">
-                <span class="label">MODE:</span>
-                <span class="value typing-effect">INNOVATION</span>
+              <div class="credential-item">
+                <span class="credential-label">Education</span>
+                <span class="credential-value">Macalester College • $230K Kofi Annan Scholar</span>
               </div>
-              <div class="spec-line">
-                <span class="label">MISSION:</span>
-                <span class="value typing-effect">TRANSFORMING FUTURES</span>
+              <div class="credential-item">
+                <span class="credential-label">Focus</span>
+                <span class="credential-value">Building sustainable ecosystems for the next generation</span>
               </div>
             </div>
           </div>
         </div>
         
-        <div class="popup-footer">
-          <button class="enter-btn" @click="closeWelcomePopup">
-            <span>ENTER THE ECOSYSTEM</span>
-            <div class="btn-glow"></div>
+        <div class="popup-footer elegant-footer">
+          <button class="elegant-enter-btn" @click="closeWelcomePopup">
+            <span>Enter Portfolio</span>
           </button>
         </div>
-        
-        <button class="close-btn" @click="closeWelcomePopup">×</button>
       </div>
     </div>
     
@@ -90,12 +74,24 @@
     <!-- Magnetic Cursor -->
     <MagneticCursor />
     
+    <!-- Back to Top Button -->
+    <button 
+      class="back-to-top-btn" 
+      :class="{ 'visible': showBackToTop }"
+      @click="scrollToTop"
+      aria-label="Back to top"
+    >
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M18 15l-6-6-6 6"/>
+      </svg>
+    </button>
+    
     <!-- Hero Section -->
-    <section class="section hero-section galaxy-section">
+    <section class="section hero-section galaxy-section solid-background">
       <div class="visionary-overlay">
         <div class="holographic-grid">
-          <div class="grid-line" v-for="n in 20" :key="`h-grid-${n}`"></div>
-          <div class="grid-line vertical" v-for="n in 20" :key="`v-grid-${n}`"></div>
+                      <div class="grid-line" v-for="n in 10" :key="`h-grid-${n}`"></div>
+            <div class="grid-line vertical" v-for="n in 10" :key="`v-grid-${n}`"></div>
         </div>
         <div class="data-streams">
           <div class="data-stream" v-for="n in 6" :key="`stream-${n}`">
@@ -115,13 +111,13 @@
           <div class="background-pattern" ref="backgroundRef"></div>
 
           <!-- Status Badge -->
-          <div class="status-badge floating-element" ref="statusRef">
+          <div class="status-badge" ref="statusRef">
             <div class="status-dot"></div>
             <span>Available for opportunities</span>
           </div>
 
           <!-- Main Title -->
-          <div class="hero-title-wrapper floating-element" ref="heroTitleRef">
+          <div class="hero-title-wrapper" ref="heroTitleRef">
             <!-- Professional Profile Image -->
             <div class="profile-image-container">
               <img src="@/assets/tri1.png" alt="Tri Bui - Entrepreneur & Builder" class="profile-image" />
@@ -129,9 +125,9 @@
             </div>
             
             <h1 class="hero-title professional-title cosmic-text galaxy-title">
-              <span class="title-main glitch-text shake-interval visionary-text" data-text="I don't just build startups.">I don't just build startups.</span>
+              <span class="title-main">I don't just build startups.</span>
               <br>
-              <span class="title-sub strong-emphasis typewriter-text galactic-emphasis">I build ecosystems.</span>
+              <span class="title-sub typewriter-text">I build ecosystems.</span>
             </h1>
             <p class="hero-subtitle professional-subtitle">
               I'm a strategist and builder focused on creating everlasting impact through innovative platforms that reshape how the next generation thinks, builds, and conquers.
@@ -139,7 +135,7 @@
                     </div>
 
           <!-- NEXBOT Robot Section -->
-          <div class="nexbot-section floating-element" ref="nexbotRef">
+          <div class="nexbot-section" ref="nexbotRef">
             <SplineRobot />
           </div>
 
@@ -157,7 +153,7 @@
     </section>
 
     <!-- Origin Story Section -->
-    <section class="section origin-section" id="background">
+    <section class="section origin-section transparent-background" id="background">
       <!-- Section Planets -->
       <div class="section-planets">
         <div class="planet planet-1">
@@ -210,7 +206,7 @@
     </section>
 
     <!-- Prime Directives Section -->
-    <section class="section directives-section" id="directives">
+    <section class="section directives-section solid-background" id="directives">
       <div class="container">
         <div class="section-header">
           <h2 class="section-title" ref="directivesTitleRef">Core Principles</h2>
@@ -234,12 +230,12 @@
     </section>
 
     <!-- INSANE BUSINESS TRANSFORMATION SECTION -->
-    <section class="section transformation-chaos-section">
+    <section class="section transformation-chaos-section black-background">
       <div class="transformation-container">
         <!-- Chaotic Background Effects -->
         <div class="chaos-bg">
           <div class="lightning-bolts">
-            <div class="lightning" v-for="n in 12" :key="`lightning-${n}`"></div>
+            <div class="lightning" v-for="n in 6" :key="`lightning-${n}`"></div>
           </div>
           <div class="data-explosions">
             <div class="explosion" v-for="n in 8" :key="`explosion-${n}`">
@@ -282,13 +278,15 @@
               <div class="energy-pulse" v-for="n in 3" :key="n"></div>
             </div>
             <div class="pillar-content">
-              <div class="pillar-icon">{{ pillar.icon }}</div>
+              <div class="pillar-icon">
+                <component :is="pillar.icon" class="icon" />
+              </div>
               <h3 class="pillar-title">{{ pillar.title }}</h3>
               <p class="pillar-description">{{ pillar.description }}</p>
               <div class="pillar-impact">{{ pillar.impact }}</div>
             </div>
             <div class="pillar-chaos-overlay">
-              <div class="chaos-particle" v-for="n in 15" :key="n"></div>
+              <div class="chaos-particle" v-for="n in 8" :key="n"></div>
             </div>
           </div>
         </div>
@@ -305,19 +303,7 @@
             <div class="grid-chaos-line vertical" v-for="n in 20" :key="`chaos-v-${n}`"></div>
           </div>
           
-          <!-- Flying Objects -->
-          <div class="flying-objects">
-            <div class="flying-cube" v-for="n in 15" :key="`cube-${n}`">
-              <div class="cube-face" v-for="face in 6" :key="face"></div>
-            </div>
-            <div class="flying-sphere" v-for="n in 10" :key="`sphere-${n}`">
-              <div class="sphere-core"></div>
-              <div class="sphere-ring" v-for="ring in 3" :key="ring"></div>
-            </div>
-            <div class="flying-pyramid" v-for="n in 8" :key="`pyramid-${n}`">
-              <div class="pyramid-face" v-for="face in 4" :key="face"></div>
-            </div>
-          </div>
+
           
           <!-- Wormholes -->
           <div class="wormholes">
@@ -360,7 +346,7 @@
     </section>
 
     <!-- Constellations Section -->
-    <section class="section constellations-section" id="ventures">
+    <section class="section constellations-section transparent-background" id="ventures">
       <!-- Section Cosmic Elements -->
       <div class="section-cosmos">
         <div class="cosmic-nebula"></div>
@@ -401,20 +387,16 @@
         </div>
         
                  <div class="constellations-grid" ref="constellationsRef">
-           <div class="constellation-card magnetic-target hover-lift morphing-card stellar-card ripple-effect magnetic-field" v-for="venture in ventures" :key="venture.name">
+           <div class="constellation-card" v-for="venture in ventures" :key="venture.name">
              <div class="card-header">
-               <h3 class="venture-name glowing-text">{{ venture.name }}</h3>
+               <h3 class="venture-name">{{ venture.name }}</h3>
                <div class="venture-meta">
-                 <span class="venture-year pulse-badge">{{ venture.year }}</span>
+                 <span class="venture-year">{{ venture.year }}</span>
                  <span class="venture-role">{{ venture.role }}</span>
                </div>
              </div>
              <div class="card-body">
-               <div class="impact-metric animated-metric">{{ venture.impact }}</div>
-             </div>
-             <div class="stellar-glow"></div>
-             <div class="constellation-lines">
-               <div class="line" v-for="n in 3" :key="n"></div>
+               <div class="impact-metric">{{ venture.impact }}</div>
              </div>
            </div>
          </div>
@@ -422,7 +404,7 @@
     </section>
 
     <!-- Entrepreneurship Triangle Section -->
-    <section class="section triangle-section" id="triangle">
+    <section class="section triangle-section solid-background" id="triangle">
       <!-- Section Cosmic Elements -->
       <div class="section-cosmos">
         <div class="cosmic-nebula"></div>
@@ -450,26 +432,22 @@
             
             <!-- Vertices -->
             <div class="vertex tech-vertex" data-skill="tech">
-              <div class="vertex-icon">💻</div>
               <div class="vertex-label">TECH</div>
               <div class="vertex-description">Full-stack development, AI/ML, System architecture</div>
             </div>
             
             <div class="vertex finance-vertex" data-skill="finance">
-              <div class="vertex-icon">📊</div>
               <div class="vertex-label">FINANCE</div>
               <div class="vertex-description">Corporate finance, Investment analysis, Risk modeling</div>
             </div>
             
             <div class="vertex marketing-vertex" data-skill="marketing">
-              <div class="vertex-icon">🎯</div>
               <div class="vertex-label">MARKETING</div>
               <div class="vertex-description">Growth hacking, Brand strategy, Customer acquisition</div>
             </div>
             
             <!-- Center - Entrepreneurship -->
             <div class="center-point" data-core="entrepreneurship">
-              <div class="center-icon">🚀</div>
               <div class="center-label">ENTREPRENEURSHIP</div>
               <div class="center-description">Building ecosystems that empower the next generation</div>
               <div class="energy-pulse"></div>
@@ -486,12 +464,13 @@
           <!-- Skills Breakdown -->
           <div class="skills-breakdown">
             <div class="skill-category tech-skills">
-              <h3>Technology Stack</h3>
+              <h3>Technology & AI/ML</h3>
               <ul>
-                <li>Vue.js, React, Node.js</li>
-                <li>Python, TensorFlow, AWS</li>
-                <li>Microservices Architecture</li>
-                <li>Database Design & Optimization</li>
+                <li><strong>Languages:</strong> Python, JavaScript/TypeScript, SQL, R</li>
+                <li><strong>Frameworks:</strong> Vue.js, React, Node.js, TensorFlow, PyTorch</li>
+                <li><strong>Infrastructure:</strong> AWS (Lambda, S3, EC2), Docker, CI/CD</li>
+                <li><strong>AI/ML:</strong> NLP, Time-Series Forecasting, LLM Fine-tuning, Computer Vision (Object Detection)</li>
+                <li><strong>Databases:</strong> PostgreSQL, MongoDB, Vector Databases</li>
               </ul>
             </div>
             
@@ -524,7 +503,7 @@
       <div class="container">
         <div class="power-quote-container" ref="powerQuoteRef">
           <div class="quote-background-stars">
-            <div class="star" v-for="n in 50" :key="`quote-star-${n}`"></div>
+            <div class="star" v-for="n in 20" :key="`quote-star-${n}`"></div>
           </div>
           <blockquote class="power-quote">
             <span class="quote-highlight">"Finance and Technology"</span> are the disciplined foundations I've forged through relentless training, 
@@ -536,19 +515,21 @@
     </section>
 
     <!-- Business Mindset Section -->
-    <section class="section mindset-section" id="mindset">
+    <section class="section mindset-section solid-background" id="mindset">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title mindset-title-white" ref="mindsetTitleRef">Business & Entrepreneurship Mindset</h2>
+          <h2 class="section-title mindset-title-standout" ref="mindsetTitleRef">Business & Entrepreneurship Mindset</h2>
           <p class="section-subtitle">Core principles that drive innovation and sustainable growth</p>
           <div class="mindset-stars-background">
-            <div class="mindset-star" v-for="n in 30" :key="`mindset-star-${n}`"></div>
+            <div class="mindset-star" v-for="n in 15" :key="`mindset-star-${n}`"></div>
           </div>
         </div>
         
         <div class="mindset-grid" ref="mindsetRef">
-          <div class="mindset-card magnetic-target hover-lift morphing-card" v-for="mindset in businessMindset" :key="mindset.id">
-            <div class="mindset-icon">{{ mindset.icon }}</div>
+          <div class="mindset-card" v-for="mindset in businessMindset" :key="mindset.id">
+            <div class="mindset-icon">
+              <component :is="mindset.icon" :size="32" />
+            </div>
             <div class="mindset-content">
               <h3 class="mindset-title">{{ mindset.title }}</h3>
               <p class="mindset-description">{{ mindset.description }}</p>
@@ -563,7 +544,7 @@
     </section>
 
     <!-- Blog Section -->
-    <section class="section blog-section" id="blog">
+    <section class="section blog-section transparent-background" id="blog">
       <div class="container">
         <div class="section-header">
           <h2 class="section-title" ref="blogTitleRef">Insights & Thoughts</h2>
@@ -571,7 +552,7 @@
         </div>
         
         <div class="blog-grid" ref="blogRef">
-          <div class="blog-card magnetic-target hover-lift morphing-card" v-for="post in blogPosts" :key="post.id">
+          <div class="blog-card" v-for="post in blogPosts" :key="post.id">
             <div class="blog-meta">
               <span class="blog-category">{{ post.category }}</span>
               <span class="blog-date">{{ post.date }}</span>
@@ -601,7 +582,7 @@
     </section>
 
     <!-- Accolades Section -->
-    <section class="section accolades-section" id="awards">
+    <section class="section accolades-section solid-background" id="awards">
       <div class="container">
         <div class="section-header">
           <h2 class="section-title" ref="accoladesTitleRef">Awards & Recognition</h2>
@@ -628,7 +609,7 @@
     </section>
 
     <!-- Professional Orbits Section -->
-    <section class="section orbits-section" id="experience">
+    <section class="section orbits-section transparent-background" id="experience">
       <div class="container">
         <div class="section-header">
           <h2 class="section-title" ref="orbitsTitleRef">Professional Experience</h2>
@@ -654,7 +635,7 @@
     </section>
 
     <!-- Future Trajectory Section -->
-    <section class="section trajectory-section" id="trajectory">
+    <section class="section trajectory-section solid-background" id="trajectory">
       <div class="container">
         <div class="section-header">
           <h2 class="section-title" ref="trajectoryTitleRef">What's Next</h2>
@@ -663,7 +644,10 @@
         
         <div class="trajectory-grid" ref="trajectoryRef">
           <div class="trajectory-card magnetic-target" v-for="item in trajectory" :key="item.num">
-            <div class="trajectory-number">{{ item.num }}</div>
+            <div class="trajectory-icon">
+              <component :is="item.icon" class="icon" />
+              <span class="trajectory-number">{{ item.num }}</span>
+            </div>
             <div class="trajectory-content">
               <h3 class="trajectory-title">{{ item.title }}</h3>
               <p class="trajectory-description">{{ item.description }}</p>
@@ -681,7 +665,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="section contact-section" id="contact">
+    <section class="section contact-section transparent-background" id="contact">
       <div class="container">
         <div class="contact-content">
           <h2 class="section-title" ref="contactTitleRef">Get In Touch</h2>
@@ -716,10 +700,10 @@
     </section>
 
     <!-- Chatbot -->
-    <ChatBot />
+    <ChatBot :auto-open="showChatbot" />
 
     <!-- Footer Section -->
-    <footer class="footer-section">
+    <footer class="footer-section galaxy-footer">
       <div class="container">
         <div class="footer-content">
           <div class="footer-grid">
@@ -795,24 +779,60 @@
     <!-- Enhanced Starry Background with Multiple Particle Effects -->
     <div class="starry-background">
       <!-- Main stars -->
-      <div class="star" v-for="n in 80" :key="`star-${n}`" :style="generateStarStyle()"></div>
+      <div class="star" v-for="n in 15" :key="`star-${n}`" :style="generateStarStyle()"></div>
       
       <!-- Floating particles -->
-      <div class="floating-particle" v-for="n in 30" :key="`particle-${n}`" :style="generateParticleStyle()"></div>
+      <div class="floating-particle" v-for="n in 8" :key="`particle-${n}`" :style="generateParticleStyle()"></div>
       
       <!-- Nebula clouds -->
-      <div class="nebula-cloud" v-for="n in 5" :key="`nebula-${n}`" :style="generateNebulaStyle()"></div>
+      <div class="nebula-cloud" v-for="n in 2" :key="`nebula-${n}`" :style="generateNebulaStyle()"></div>
       
       <!-- Shooting stars -->
-      <div class="shooting-star" v-for="n in 3" :key="`shooting-${n}`" :style="generateShootingStarStyle()"></div>
+      <div class="shooting-star" v-for="n in 1" :key="`shooting-${n}`" :style="generateShootingStarStyle()"></div>
     </div>
+
+    <!-- Technical Deep Dive Section -->
+    <section class="section tech-deep-dive-section" id="tech">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Technical Deep Dive</h2>
+          <p class="section-subtitle">A closer look at my engineering skills and AI/ML project experience</p>
+        </div>
+        <div class="tech-grid">
+          <!-- Core Competencies -->
+          <div class="tech-card core-card">
+            <h3 class="tech-card-title">Core Competencies</h3>
+            <ul class="competency-list">
+              <li><span class="competency-area">AI/ML Engineering:</span> End-to-end model development, from data preprocessing and feature engineering to deployment and MLOps.</li>
+              <li><span class="competency-area">Full-Stack Development:</span> Building scalable web applications with modern frontend frameworks and robust backend services.</li>
+              <li><span class="competency-area">Financial Modeling:</span> Translating complex financial scenarios into quantitative models to drive strategic decisions.</li>
+              <li><span class="competency-area">System Architecture:</span> Designing and implementing microservices-based architectures for scalability and resilience.</li>
+            </ul>
+          </div>
+          <!-- AI Project Case Study -->
+          <div class="tech-card project-card">
+            <h3 class="tech-card-title">AI Project Highlight: FinBud AI</h3>
+            <p class="project-description">
+              FinBud AI is a personal finance assistant leveraging LLMs to provide users with actionable insights. This project involved:
+            </p>
+            <ul class="project-details">
+              <li>Fine-tuning a Llama-2 model on a custom dataset of financial documents for domain-specific NLP tasks.</li>
+              <li>Implementing a RAG (Retrieval-Augmented Generation) pipeline to reduce hallucinations and provide source-traceable answers.</li>
+              <li>Developing a time-series forecasting model using Prophet to predict user spending patterns.</li>
+              <li>Deploying the inference API on AWS Lambda for a scalable, serverless backend.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { Target, RotateCcw, Network, TrendingUp, Handshake, Rocket, RefreshCw, Sprout, Users, GraduationCap, Brain, Globe, Zap, Flame, Diamond } from 'lucide-vue-next'
 import MagneticCursor from '@/components/MagneticCursor.vue'
 import NavBar from '@/components/NavBar.vue'
 import AnimatedBackground from '@/components/AnimatedBackground.vue'
@@ -820,6 +840,20 @@ import SplineRobot from '@/components/SplineRobot.vue'
 import ChatBot from '@/components/ChatBot.vue'
 
 gsap.registerPlugin(ScrollTrigger)
+
+// Back to Top functionality
+const showBackToTop = ref(false)
+
+const scrollToTop = () => {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  })
+}
+
+const handleScroll = () => {
+  showBackToTop.value = window.scrollY > 300
+}
 
 // Refs for animations
 const statusRef = ref<HTMLElement>()
@@ -946,10 +980,16 @@ const accolades = ref([
 
 const orbits = ref([
   {
+    org: "Smithfield Foods",
+    year: "Current",
+    contribution: "Corporate Finance Analyst responsible for multi-million dollar CAPEX modeling and strategic financial analysis to support executive decision-making.",
+    tech: "Excel, Power BI, SAP"
+  },
+  {
     org: "Blackstone → Revantage",
     year: "2024", 
-    contribution: "Valuated 15 CRE assets ($350M) · built Monte‑Carlo rent stress‑test · mitigated $1.5M downside",
-    tech: "Python (pandas, NumPy), Argus, Power BI"
+    contribution: "Valuated 15 CRE assets ($350M). Built a Monte Carlo rent stress-test model in Python that identified and mitigated potential downside risk.",
+    tech: "Python (pandas, NumPy, scikit-learn), Argus, Power BI"
   },
   {
     org: "Deloitte SEA",
@@ -966,24 +1006,27 @@ const orbits = ref([
   {
     org: "Daikin NA / DetectAuto / Newwave",
     year: "2021‑22",
-    contribution: "Deployed computer‑vision POCs, set up CI/CD pipelines", 
-    tech: "Python, TensorFlow, AWS Lambda"
+    contribution: "Deployed computer vision PoCs for quality control, reducing defect rates by 12%. Set up CI/CD pipelines for automated model retraining and deployment.", 
+    tech: "Python, TensorFlow, OpenCV, AWS Lambda, Docker"
   }
 ])
 
 const trajectory = ref([
   {
-    num: "1️⃣",
+    num: "01",
+    icon: "Brain",
     title: "AI × Finance OS",
     description: "democratise robo‑advice for ASEAN Gen Z"
   },
   {
-    num: "2️⃣", 
+    num: "02", 
+    icon: "Globe",
     title: "Emerging‑Market Launchpad",
     description: "bridge US capital → SEA founders"
   },
   {
-    num: "3️⃣",
+    num: "03",
+    icon: "Network",
     title: "Knowledge Hyper‑Lanes",
     description: "tokenised mentor credits across borders"
   }
@@ -992,70 +1035,70 @@ const trajectory = ref([
 const businessMindset = ref([
   {
     id: 1,
-    icon: "🎯",
+    icon: "Target",
     title: "Customer-Centric Innovation",
     description: "Every solution starts with understanding real customer pain points and market needs.",
     example: "Built FinBud AI after discovering 87% of Gen Z struggle with financial literacy and planning."
   },
   {
     id: 2,
-    icon: "🔄",
+    icon: "RotateCcw",
     title: "Iterative Development",
     description: "Fast prototyping, rapid feedback loops, and continuous improvement drive sustainable growth.",
     example: "Pathwise achieved 71% success rate through constant curriculum refinement based on mentee feedback."
   },
   {
     id: 3,
-    icon: "🌐",
+    icon: "Network",
     title: "Ecosystem Thinking",
     description: "Building interconnected platforms that create compound value for all stakeholders.",
     example: "CF Hub connects students, mentors, and employers in a mutually beneficial learning ecosystem."
   },
   {
     id: 4,
-    icon: "📊",
+    icon: "TrendingUp",
     title: "Data-Driven Decisions",
     description: "Quantitative analysis and metrics guide strategic choices and resource allocation.",
     example: "Used Monte Carlo simulations to optimize $1B debt stack and reduce risk exposure at Smithfield."
   },
   {
     id: 5,
-    icon: "🤝",
+    icon: "Handshake",
     title: "Partnership & Collaboration",
     description: "Sustainable success comes from building strong relationships and win-win partnerships.",
     example: "Esmart Solution's profit-sharing model with 34 SMEs created 42% average revenue growth."
   },
   {
     id: 6,
-    icon: "🚀",
+    icon: "Rocket",
     title: "Scalable Infrastructure",
     description: "Design systems and processes that can grow exponentially without proportional complexity.",
     example: "FinBud's microservices architecture supports 12K users with minimal operational overhead."
   },
   {
     id: 7,
-    icon: "🔄",
+    icon: "RefreshCw",
     title: "Business Transformation",
     description: "Leading organizational change through digital innovation and process optimization.",
     example: "Transformed traditional SME operations with Esmart Solution's data-driven approach."
   },
   {
     id: 8,
-    icon: "🌱",
+    icon: "Sprout",
     title: "Sustainable Startup Building",
     description: "Creating ventures that balance profit with social impact and environmental responsibility.",
     example: "CF Hub's mentorship model ensures 78% job placement rate while maintaining ethical practices."
   },
   {
     id: 9,
-    icon: "👥",
+    icon: "Users",
     title: "Team Leadership & Development",
     description: "Building high-performing teams through mentorship, clear vision, and continuous learning.",
     example: "Developed 25+ mentors across 3 continents, creating a distributed leadership network."
   },
   {
     id: 10,
-    icon: "🎓",
+    icon: "GraduationCap",
     title: "Sustainable Human Development",
     description: "Investing in long-term talent development and creating pathways for continuous growth.",
     example: "Pathwise alumni have 92% career advancement rate within 2 years of program completion."
@@ -1072,28 +1115,28 @@ const matrixChars = ['0', '1', 'T', 'R', 'I', 'B', 'U', 'I', '█', '▓', '░'
 const transformationPillars = ref([
   {
     id: 1,
-    icon: '⚡',
+    icon: 'Zap',
     title: 'Digital Disruption',
     description: 'Shattering traditional business models with AI-driven innovation',
     impact: '300% efficiency gains achieved'
   },
   {
     id: 2,
-    icon: '🔥',
+    icon: 'Flame',
     title: 'Ecosystem Revolution',
     description: 'Building interconnected platforms that create exponential value',
     impact: '1000+ stakeholders connected'
   },
   {
     id: 3,
-    icon: '💎',
+    icon: 'Diamond',
     title: 'Strategic Metamorphosis',
     description: 'Transforming companies into future-ready powerhouses',
     impact: '$50M+ value unlocked'
   },
   {
     id: 4,
-    icon: '🚀',
+    icon: 'Rocket',
     title: 'Growth Acceleration',
     description: 'Scaling startups from 0 to unicorn status',
     impact: '10x growth multiplier'
@@ -1103,6 +1146,8 @@ const transformationPillars = ref([
 // Functions for popup
 const closeWelcomePopup = () => {
   showWelcomePopup.value = false
+  // Enable scrolling
+  document.body.style.overflow = ''
 }
 
 // Define a type for the characters in the matrix effect
@@ -1210,6 +1255,19 @@ onMounted(() => {
   }
   
   document.addEventListener('mousemove', handleMouseMove)
+  
+  // Add scroll event listener for back-to-top button
+  window.addEventListener('scroll', handleScroll)
+
+  // Automatically open chatbot after a delay
+  setTimeout(() => {
+    showChatbot.value = true
+  }, 3000) // 3-second delay after welcome screen closes
+})
+
+// Add onUnmounted to clean up event listeners
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
 })
 
 const setupGalaxyEffects = () => {
@@ -1498,6 +1556,9 @@ function generateShootingStarStyle() {
     '--trail-length': `${trailLength}px`
   };
 }
+
+// Chatbot auto-popup
+const showChatbot = ref(false)
 </script>
 
 <style scoped>
@@ -1510,6 +1571,11 @@ function generateShootingStarStyle() {
   line-height: 1.6;
   position: relative;
   z-index: 10;
+}
+
+.portfolio.no-scroll {
+  overflow: hidden;
+  height: 100vh;
 }
 
 .container {
@@ -1532,6 +1598,403 @@ function generateShootingStarStyle() {
   background: rgba(0, 0, 0, 0.02);
 }
 
+/* Alternating Section Backgrounds */
+.solid-background {
+  background: #ffffff !important;
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.hero-section.solid-background {
+  background: #ffffff !important;
+  position: relative;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.hero-section.solid-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #ffffff;
+  z-index: -1;
+}
+
+.transparent-background {
+  background: transparent !important;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.solid-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #ffffff;
+  z-index: -1;
+}
+
+.transparent-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  z-index: -1;
+}
+
+.solid-background:hover {
+  background: rgba(250, 250, 250, 0.98) !important;
+}
+
+.transparent-background:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+.solid-background .container,
+.solid-background .section-content {
+  position: relative;
+  z-index: 1;
+}
+
+.transparent-background .container,
+.transparent-background .section-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Black Background Class */
+.black-background {
+  background: #000000 !important;
+  color: #ffffff !important;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.black-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #000000;
+  z-index: -1;
+}
+
+.black-background .container,
+.black-background .section-content {
+  position: relative;
+  z-index: 1;
+}
+
+.black-background h2,
+.black-background h3,
+.black-background p,
+.black-background span,
+.black-background .transformation-manifesto,
+.black-background .pillar-title,
+.black-background .pillar-description {
+  color: #ffffff !important;
+}
+
+/* Back to Top Button */
+.back-to-top-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  background: #000000;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+}
+
+.back-to-top-btn.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.back-to-top-btn:hover {
+  background: #ffffff;
+  color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-top-btn:active {
+  transform: translateY(0);
+}
+
+/* Galaxy Footer Effects */
+.galaxy-footer {
+  position: relative;
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+  overflow: hidden;
+}
+
+.galaxy-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 40% 20%, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    radial-gradient(circle at 60% 80%, rgba(255, 255, 255, 0.08) 2px, transparent 2px),
+    radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    radial-gradient(circle at 90% 70%, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 200px 200px, 150px 150px, 300px 300px, 180px 180px, 220px 220px;
+  animation: galaxy-drift 60s linear infinite;
+  pointer-events: none;
+}
+
+.galaxy-footer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(ellipse at center, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+@keyframes galaxy-drift {
+  0% { transform: translateX(0) translateY(0); }
+  25% { transform: translateX(-20px) translateY(-10px); }
+  50% { transform: translateX(-40px) translateY(0); }
+  75% { transform: translateX(-20px) translateY(10px); }
+  100% { transform: translateX(0) translateY(0); }
+}
+
+.galaxy-footer .footer-content {
+  position: relative;
+  z-index: 2;
+}
+
+.galaxy-footer .footer-logo,
+.galaxy-footer .footer-heading,
+.galaxy-footer .footer-description,
+.galaxy-footer .footer-link,
+.galaxy-footer .contact-link,
+.galaxy-footer .contact-text,
+.galaxy-footer .contact-label,
+.galaxy-footer .footer-copyright,
+.galaxy-footer .footer-quote {
+  color: #ffffff;
+}
+
+/* Elegant Welcome Popup */
+.elegant-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.welcome-popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(5px);
+}
+
+.elegant-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+.elegant-content {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #000000;
+  max-width: 600px;
+  width: 90%;
+  text-align: center;
+  padding: 3rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+  animation: elegant-entrance 0.6s ease-out;
+}
+
+@keyframes elegant-entrance {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.elegant-header {
+  padding: 3rem 3rem 2rem;
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.welcome-divider {
+  width: 60px;
+  height: 1px;
+  background: #000000;
+  margin: 0 auto 2rem;
+}
+
+.elegant-title {
+  font-size: 2.5rem;
+  font-weight: var(--font-weight-bold);
+  color: #000000;
+  margin: 0 0 1rem;
+  letter-spacing: -0.02em;
+}
+
+.elegant-subtitle {
+  font-size: 1rem;
+  color: #666666;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.elegant-body {
+  padding: 2.5rem 3rem;
+}
+
+.welcome-text {
+  font-size: 1.1rem;
+  color: #333333;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  text-align: center;
+  font-weight: 400;
+}
+
+.credentials {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.credential-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.credential-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.credential-label {
+  font-size: 0.85rem;
+  color: #888888;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.credential-value {
+  font-size: 1rem;
+  color: #333333;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.elegant-footer {
+  padding: 2rem 3rem 3rem;
+  text-align: center;
+  border-top: 1px solid #e5e5e5;
+}
+
+.elegant-enter-btn {
+  background: #000000;
+  color: #ffffff;
+  border: none;
+  padding: 1rem 2.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+}
+
+.elegant-enter-btn:hover {
+  background: #333333;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.elegant-close-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #666666;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.elegant-close-btn:hover {
+  color: #000000;
+  transform: scale(1.1);
+}
+
 .section-header {
   text-align: center;
   margin-bottom: 6rem;
@@ -1547,8 +2010,8 @@ function generateShootingStarStyle() {
 }
 
 @keyframes cosmic-glow {
-  0%, 100% { filter: brightness(1) drop-shadow(0 0 10px rgba(135, 206, 235, 0.3)); }
-  50% { filter: brightness(1.3) drop-shadow(0 0 25px rgba(221, 160, 221, 0.5)); }
+  0%, 100% { filter: brightness(1); }
+50% { filter: brightness(1.1); }
 }
 
 /* Galaxy Title Styling */
@@ -1596,10 +2059,9 @@ function generateShootingStarStyle() {
   position: absolute;
   border-radius: 50%;
   background: radial-gradient(circle, 
-    rgba(138, 43, 226, 0.3) 0%, 
-    rgba(75, 0, 130, 0.2) 30%, 
-    rgba(25, 25, 112, 0.1) 60%, 
-    transparent 100%);
+    rgba(0, 0, 0, 0.1) 0%, 
+    rgba(0, 0, 0, 0.05) 30%, 
+    transparent 60%);
   animation: nebula-drift 20s ease-in-out infinite;
 }
 
@@ -1639,15 +2101,15 @@ function generateShootingStarStyle() {
 }
 
 .star:nth-child(odd) {
-  background: radial-gradient(circle, #87ceeb 0%, transparent 70%);
+  background: radial-gradient(circle, #ffffff 0%, transparent 70%);
 }
 
 .star:nth-child(3n) {
-  background: radial-gradient(circle, #dda0dd 0%, transparent 70%);
+  background: radial-gradient(circle, #ffffff 0%, transparent 70%);
 }
 
 .star:nth-child(5n) {
-  background: radial-gradient(circle, #ffd700 0%, transparent 70%);
+  background: radial-gradient(circle, #000000 0%, transparent 70%);
 }
 
 @keyframes stellar-twinkle {
@@ -1673,9 +2135,9 @@ function generateShootingStarStyle() {
 }
 
 .constellation-line {
-  stroke: #87ceeb;
+  stroke: #000000;
   stroke-width: 1;
-  opacity: 0.6;
+  opacity: 0.3;
   animation: constellation-glow 4s ease-in-out infinite;
 }
 
@@ -1733,7 +2195,7 @@ function generateShootingStarStyle() {
   position: absolute;
   width: 2px;
   height: 2px;
-  background: radial-gradient(circle, #00ffff 0%, transparent 70%);
+  background: radial-gradient(circle, #000000 0%, transparent 70%);
   border-radius: 50%;
   animation: quantum-fluctuation 2s ease-in-out infinite;
 }
@@ -1764,7 +2226,7 @@ function generateShootingStarStyle() {
 
 .holographic-grid .grid-line {
   position: absolute;
-  background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.3), transparent);
+  background: linear-gradient(90deg, transparent, #000000, #333333, #000000, transparent);
   height: 1px;
   width: 100%;
   animation: hologram-scan 4s linear infinite;
@@ -1773,7 +2235,7 @@ function generateShootingStarStyle() {
 .holographic-grid .grid-line.vertical {
   width: 1px;
   height: 100%;
-  background: linear-gradient(0deg, transparent, rgba(0, 255, 255, 0.3), transparent);
+  background: linear-gradient(0deg, transparent, #000000, #333333, #000000, transparent);
 }
 
 .holographic-grid .grid-line:nth-child(1) { top: 5%; animation-delay: 0s; }
@@ -1811,7 +2273,7 @@ function generateShootingStarStyle() {
 .data-packet {
   width: 4px;
   height: 8px;
-  background: linear-gradient(to bottom, #00ffff, #ff00ff);
+  background: linear-gradient(to bottom, #666666, #333333);
   margin-bottom: 20px;
   border-radius: 2px;
   animation: packet-travel 2s ease-in-out infinite;
@@ -1823,8 +2285,8 @@ function generateShootingStarStyle() {
 }
 
 @keyframes packet-travel {
-  0%, 100% { opacity: 0.3; box-shadow: 0 0 5px #00ffff; }
-  50% { opacity: 1; box-shadow: 0 0 15px #ff00ff, 0 0 25px #00ffff; }
+  0%, 100% { opacity: 0.3; box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); }
+  50% { opacity: 1; box-shadow: 0 0 15px rgba(0, 0, 0, 0.4), 0 0 25px rgba(0, 0, 0, 0.2); }
 }
 
 /* Cosmic Portals */
@@ -1863,7 +2325,7 @@ function generateShootingStarStyle() {
   left: 50%;
   width: 20px;
   height: 20px;
-  background: radial-gradient(circle, #ff00ff 0%, #8a2be2 50%, transparent 100%);
+  background: radial-gradient(circle, #666666 0%, #333333 50%, transparent 100%);
   border-radius: 50%;
   transform: translate(-50%, -50%);
   animation: portal-core-pulse 2s ease-in-out infinite;
@@ -1922,29 +2384,24 @@ function generateShootingStarStyle() {
 .status-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1.5rem;
-  background: #f8f9fa;
-  border: 1px solid #e9ecef;
-  border-radius: 2rem;
-  margin-bottom: 3rem;
-  font-size: 0.875rem;
-  font-weight: var(--font-weight-medium);
-  color: #495057;
+  gap: 0.5rem;
+  padding: 0.5rem 1.2rem;
+  background: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 0;
+  margin-bottom: 2.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #000000;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .status-dot {
-  width: 8px;
-  height: 8px;
-  background: #28a745;
+  width: 6px;
+  height: 6px;
+  background: #000000;
   border-radius: 50%;
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.4); }
-  70% { box-shadow: 0 0 0 10px rgba(40, 167, 69, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); }
 }
 
 /* ADVANCED ANIMATIONS */
@@ -2152,22 +2609,21 @@ function generateShootingStarStyle() {
 .nav-link {
   color: #000000;
   text-decoration: none;
-  font-weight: var(--font-weight-medium);
-  padding: 1rem 2rem;
-  border: 1px solid #dee2e6;
-  border-radius: 0.5rem;
+  font-weight: 400;
+  padding: 0.8rem 1.8rem;
+  border: 1px solid #000000;
+  border-radius: 0;
   transition: all 0.3s ease;
-  font-size: 0.875rem;
-  letter-spacing: 0.025em;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
   background: #ffffff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
 }
 
 .nav-link:hover {
   background: #000000;
   color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
 }
 
 /* ORIGIN SECTION */
@@ -2237,15 +2693,10 @@ function generateShootingStarStyle() {
 }
 
 .directive-card:hover {
-  transform: translateY(-8px) perspective(1000px) rotateX(15deg) rotateY(15deg) scale(1.08);
-  box-shadow: 
-    0 40px 80px rgba(100, 200, 255, 0.5),
-    0 25px 50px rgba(0, 255, 136, 0.4),
-    0 15px 30px rgba(0, 0, 0, 0.6),
-    inset 0 0 0 1px rgba(100, 200, 255, 0.8);
-  border-color: rgba(100, 200, 255, 0.9);
-  background: rgba(0, 30, 60, 0.95);
-  filter: brightness(1.2) contrast(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: #000000;
+  background: #ffffff;
 }
 
 /* MORPHING CARDS */
@@ -2273,16 +2724,10 @@ function generateShootingStarStyle() {
 }
 
 .morphing-card:hover {
-  transform: translateY(-16px) perspective(1000px) rotateX(20deg) rotateY(20deg) scale(1.1) translateZ(80px);
-  box-shadow: 
-    0 50px 100px rgba(100, 200, 255, 0.6),
-    0 30px 60px rgba(0, 255, 136, 0.5),
-    0 20px 40px rgba(0, 0, 0, 0.8),
-    inset 0 0 0 2px rgba(100, 200, 255, 0.9),
-    inset 0 2px 0 rgba(255, 255, 255, 0.3);
-  background: rgba(0, 20, 40, 0.95);
-  border-color: rgba(100, 200, 255, 1);
-  filter: brightness(1.3) contrast(1.2) saturate(1.2);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  border-color: #000000;
 }
 
 /* FLOATING NUMBERS */
@@ -2352,23 +2797,23 @@ function generateShootingStarStyle() {
 
 .card-particle:nth-child(1) { 
   top: 15%; left: 15%; animation-delay: 0s; 
-  background: radial-gradient(circle, #00ff88, transparent);
+  background: radial-gradient(circle, #000000, transparent);
 }
 .card-particle:nth-child(2) { 
   top: 85%; left: 85%; animation-delay: 0.3s; 
-  background: radial-gradient(circle, #ff4444, transparent);
+  background: radial-gradient(circle, #000000, transparent);
 }
 .card-particle:nth-child(3) { 
   top: 50%; left: 25%; animation-delay: 0.6s; 
-  background: radial-gradient(circle, #4488ff, transparent);
+  background: radial-gradient(circle, #000000, transparent);
 }
 .card-particle:nth-child(4) { 
   top: 25%; left: 75%; animation-delay: 0.9s; 
-  background: radial-gradient(circle, #ff8844, transparent);
+  background: radial-gradient(circle, #000000, transparent);
 }
 .card-particle:nth-child(5) { 
   top: 75%; left: 50%; animation-delay: 1.2s; 
-  background: radial-gradient(circle, #8844ff, transparent);
+  background: radial-gradient(circle, #000000, transparent);
 }
 
 .directive-card:hover .card-particle {
@@ -2557,120 +3002,28 @@ function generateShootingStarStyle() {
 /* STELLAR CARD EFFECTS */
 .stellar-card {
   position: relative;
-  overflow: hidden;
 }
 
 .glowing-text {
   position: relative;
-  transition: all 0.3s ease;
-}
-
-.stellar-card:hover .glowing-text {
-  text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 .pulse-badge {
   position: relative;
-  overflow: hidden;
-}
-
-.pulse-badge::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-  transition: left 0.5s;
-}
-
-.stellar-card:hover .pulse-badge::before {
-  left: 100%;
 }
 
 .animated-metric {
   position: relative;
-  transition: all 0.3s ease;
-}
-
-.stellar-card:hover .animated-metric {
-  transform: scale(1.02);
 }
 
 /* STELLAR GLOW */
 .stellar-glow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: radial-gradient(circle, rgba(0, 0, 0, 0.1) 0%, transparent 70%);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: all 0.5s ease;
-  z-index: -1;
-}
-
-.stellar-card:hover .stellar-glow {
-  width: 120%;
-  height: 120%;
+  display: none;
 }
 
 /* CONSTELLATION LINES */
 .constellation-lines {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.constellation-lines .line {
-  position: absolute;
-  background: #000000;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.constellation-lines .line:nth-child(1) {
-  top: 20%;
-  left: 10%;
-  width: 30px;
-  height: 1px;
-  transform: rotate(45deg);
-}
-
-.constellation-lines .line:nth-child(2) {
-  top: 60%;
-  right: 10%;
-  width: 25px;
-  height: 1px;
-  transform: rotate(-30deg);
-}
-
-.constellation-lines .line:nth-child(3) {
-  bottom: 20%;
-  left: 30%;
-  width: 20px;
-  height: 1px;
-  transform: rotate(15deg);
-}
-
-.stellar-card:hover .constellation-lines .line {
-  opacity: 0.3;
-  animation: line-draw 1s ease-out;
-}
-
-@keyframes line-draw {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 30px;
-  }
+  display: none;
 }
 
 .card-header {
@@ -2905,9 +3258,26 @@ function generateShootingStarStyle() {
   border-color: #000000;
 }
 
+.trajectory-icon {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+}
+
+.trajectory-icon .icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #000000;
+  stroke-width: 1.5;
+}
+
 .trajectory-number {
-  font-size: 2.5rem;
-  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #000000;
+  font-family: 'Courier New', monospace;
 }
 
 .trajectory-title {
@@ -3227,7 +3597,7 @@ function generateShootingStarStyle() {
   height: 200px;
   border-radius: 50%;
   object-fit: cover;
-  border: 4px solid #64c8ff;
+  border: 4px solid #000000;
   box-shadow: 
     0 0 30px rgba(100, 200, 255, 0.5),
     0 0 60px rgba(0, 255, 136, 0.3),
@@ -3242,7 +3612,7 @@ function generateShootingStarStyle() {
     0 0 50px rgba(100, 200, 255, 0.8),
     0 0 100px rgba(0, 255, 136, 0.6),
     0 20px 60px rgba(0, 0, 0, 0.4);
-  border-color: #00ff88;
+  border-color: #000000;
 }
 
 .profile-glow {
@@ -3251,7 +3621,7 @@ function generateShootingStarStyle() {
   left: 50%;
   width: 220px;
   height: 220px;
-  background: radial-gradient(circle, rgba(100, 200, 255, 0.2) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.1) 0%, transparent 70%);
   border-radius: 50%;
   transform: translate(-50%, -50%);
   animation: profile-glow-pulse 4s ease-in-out infinite;
@@ -3385,7 +3755,7 @@ function generateShootingStarStyle() {
   font-size: 1.5rem;
   font-weight: var(--font-weight-bold);
   font-family: var(--font-family-mono);
-  color: #64c8ff;
+  color: #000000;
   margin-bottom: 0.25rem;
 }
 
@@ -3398,7 +3768,7 @@ function generateShootingStarStyle() {
 
 /* POWER QUOTE SECTION */
 .quote-power-section {
-  background: radial-gradient(circle at center, #000000, #0a0a1a);
+  background: #ffffff;
   padding: 8rem 0;
   position: relative;
   overflow: hidden;
@@ -3425,18 +3795,18 @@ function generateShootingStarStyle() {
   position: absolute;
   width: 2px;
   height: 2px;
-  background: #64c8ff;
+  background: #000000;
   border-radius: 50%;
   animation: star-twinkle 3s ease-in-out infinite;
 }
 
 .quote-background-stars .star:nth-child(odd) {
-  background: #00ff88;
+  background: #666666;
   animation-duration: 4s;
 }
 
 .quote-background-stars .star:nth-child(3n) {
-  background: #ffffff;
+  background: #333333;
   animation-duration: 2s;
 }
 
@@ -3447,26 +3817,26 @@ function generateShootingStarStyle() {
 
 .power-quote {
   font-size: clamp(1.5rem, 4vw, 2.5rem);
-  color: #ffffff;
+  color: #000000;
   font-style: italic;
   line-height: 1.4;
   margin: 0 0 2rem;
-  text-shadow: 0 0 20px rgba(100, 200, 255, 0.5);
-  animation: quote-glow 6s ease-in-out infinite;
+  text-shadow: none;
+  animation: none;
 }
 
 .quote-highlight {
-  color: #64c8ff;
+  color: #000000;
   font-weight: var(--font-weight-bold);
-  text-shadow: 0 0 30px rgba(100, 200, 255, 0.8);
-  animation: highlight-pulse 3s ease-in-out infinite;
+  text-shadow: none;
+  animation: none;
 }
 
 .quote-author {
-  color: #00ff88;
+  color: #000000;
   font-size: 1.25rem;
   font-weight: var(--font-weight-semibold);
-  text-shadow: 0 0 15px rgba(0, 255, 136, 0.6);
+  text-shadow: none;
 }
 
 @keyframes quote-glow {
@@ -3501,16 +3871,37 @@ function generateShootingStarStyle() {
 .quote-background-stars .star:nth-child(19) { top: 20%; left: 60%; }
 .quote-background-stars .star:nth-child(20) { top: 95%; left: 45%; }
 
-/* MINDSET SECTION WHITE TITLE */
-.mindset-title-white {
-  color: #ffffff !important;
-  text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
-  animation: title-float 4s ease-in-out infinite;
+/* MINDSET SECTION STANDOUT TITLE */
+.mindset-title-standout {
+  color: #000000 !important;
+  font-weight: 900;
+  font-size: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  animation: title-pulse 4s ease-in-out infinite;
 }
 
-@keyframes title-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+.mindset-title-standout::before {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #000000, transparent);
+  animation: underline-expand 2s ease-in-out infinite;
+}
+
+@keyframes title-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+@keyframes underline-expand {
+  0%, 100% { width: 100px; opacity: 0.7; }
+  50% { width: 200px; opacity: 1; }
 }
 
 .mindset-stars-background {
@@ -3525,39 +3916,32 @@ function generateShootingStarStyle() {
 
 .mindset-star {
   position: absolute;
-  width: 3px;
-  height: 3px;
-  background: #ffffff;
+  width: 2px;
+  height: 2px;
+  background: #000000;
   border-radius: 50%;
-  animation: mindset-star-dance 5s ease-in-out infinite;
+  animation: mindset-star-float 4s ease-in-out infinite;
+  opacity: 0.3;
 }
 
 .mindset-star:nth-child(odd) {
-  background: #64c8ff;
-  animation-duration: 6s;
+  background: #666666;
+  animation-duration: 5s;
 }
 
 .mindset-star:nth-child(3n) {
-  background: #00ff88;
-  animation-duration: 4s;
+  background: #333333;
+  animation-duration: 6s;
 }
 
-@keyframes mindset-star-dance {
+@keyframes mindset-star-float {
   0%, 100% { 
-    opacity: 0.5; 
-    transform: translateY(0) rotate(0deg) scale(1); 
-  }
-  25% { 
-    opacity: 1; 
-    transform: translateY(-20px) rotate(90deg) scale(1.5); 
+    opacity: 0.2; 
+    transform: translateY(0) scale(1); 
   }
   50% { 
-    opacity: 0.8; 
-    transform: translateY(-10px) rotate(180deg) scale(1.2); 
-  }
-  75% { 
-    opacity: 1; 
-    transform: translateY(-30px) rotate(270deg) scale(1.8); 
+    opacity: 0.6; 
+    transform: translateY(-15px) scale(1.3); 
   }
 }
 
@@ -3577,13 +3961,13 @@ function generateShootingStarStyle() {
 .directive-card:hover {
   transform: translateY(-20px) perspective(1000px) rotateX(25deg) rotateY(25deg) scale(1.15) translateZ(100px);
   box-shadow: 
-    0 60px 120px rgba(100, 200, 255, 0.7),
-    0 40px 80px rgba(0, 255, 136, 0.6),
+    0 60px 120px rgba(0, 0, 0, 0.4),
+    0 40px 80px rgba(0, 0, 0, 0.3),
     0 25px 50px rgba(0, 0, 0, 0.8),
-    inset 0 0 0 3px rgba(100, 200, 255, 1),
+    inset 0 0 0 3px rgba(0, 0, 0, 0.5),
     inset 0 3px 0 rgba(255, 255, 255, 0.4);
-  border-color: rgba(100, 200, 255, 1);
-  background: rgba(0, 10, 30, 0.98);
+  border-color: rgba(0, 0, 0, 1);
+  background: rgba(245, 245, 245, 0.98);
   filter: brightness(1.4) contrast(1.3) saturate(1.5);
   animation: crazy-wobble 0.5s ease-in-out;
 }
@@ -3598,10 +3982,10 @@ function generateShootingStarStyle() {
 .constellation-card:hover {
   transform: translateY(-25px) perspective(1200px) rotateX(30deg) rotateY(30deg) scale(1.2) translateZ(120px);
   box-shadow: 
-    0 70px 140px rgba(100, 200, 255, 0.8),
-    0 50px 100px rgba(0, 255, 136, 0.7),
+    0 70px 140px rgba(0, 0, 0, 0.4),
+    0 50px 100px rgba(0, 0, 0, 0.3),
     0 30px 60px rgba(0, 0, 0, 0.9),
-    inset 0 0 0 4px rgba(0, 255, 136, 1);
+    inset 0 0 0 4px rgba(0, 0, 0, 0.5);
   animation: constellation-spin 0.8s ease-in-out;
 }
 
@@ -3611,29 +3995,16 @@ function generateShootingStarStyle() {
   100% { transform: translateY(-25px) perspective(1200px) rotateX(30deg) rotateY(30deg) scale(1.2) translateZ(120px); }
 }
 
-.mindset-card:hover {
-  transform: translateY(-30px) perspective(1500px) rotateX(35deg) rotateY(35deg) scale(1.25) translateZ(150px);
-  box-shadow: 
-    0 80px 160px rgba(100, 200, 255, 0.9),
-    0 60px 120px rgba(0, 255, 136, 0.8),
-    0 40px 80px rgba(0, 0, 0, 1),
-    inset 0 0 0 5px rgba(255, 255, 255, 0.8);
-  animation: mindset-explosion 0.6s ease-in-out;
-}
-
-@keyframes mindset-explosion {
-  0%, 100% { transform: translateY(-30px) perspective(1500px) rotateX(35deg) rotateY(35deg) scale(1.25) translateZ(150px); }
-  50% { transform: translateY(-40px) perspective(1500px) rotateX(45deg) rotateY(45deg) scale(1.3) translateZ(200px) rotateZ(10deg); }
-}
+/* Simplified mindset card hover - already defined above */
 
 /* PROFILE IMAGE ENHANCEMENTS */
 .profile-image:hover {
   transform: scale(1.2) rotateY(15deg) rotateX(10deg);
   box-shadow: 
-    0 0 80px rgba(100, 200, 255, 1),
-    0 0 160px rgba(0, 255, 136, 0.8),
+    0 0 80px rgba(0, 0, 0, 0.3),
+    0 0 160px rgba(0, 0, 0, 0.2),
     0 30px 80px rgba(0, 0, 0, 0.6);
-  border-color: #00ff88;
+  border-color: #000000;
   animation: profile-crazy-spin 1s ease-in-out;
 }
 
@@ -3645,23 +4016,7 @@ function generateShootingStarStyle() {
   100% { transform: scale(1.2) rotateY(15deg) rotateX(10deg); }
 }
 
-/* CRAZY MOVING ELEMENTS */
-.floating-element {
-  animation: crazy-float 8s ease-in-out infinite;
-}
-
-@keyframes crazy-float {
-  0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
-  10% { transform: translateY(-15px) translateX(5px) rotate(2deg); }
-  20% { transform: translateY(-10px) translateX(-3px) rotate(-1deg); }
-  30% { transform: translateY(-20px) translateX(8px) rotate(3deg); }
-  40% { transform: translateY(-5px) translateX(-6px) rotate(-2deg); }
-  50% { transform: translateY(-25px) translateX(10px) rotate(4deg); }
-  60% { transform: translateY(-8px) translateX(-8px) rotate(-3deg); }
-  70% { transform: translateY(-18px) translateX(12px) rotate(5deg); }
-  80% { transform: translateY(-12px) translateX(-10px) rotate(-4deg); }
-  90% { transform: translateY(-22px) translateX(6px) rotate(2deg); }
-}
+/* SIMPLIFIED FLOATING ELEMENTS - Removed excessive animations */
 
 /* NEXBOT SECTION */
 .nexbot-section {
@@ -3688,7 +4043,7 @@ function generateShootingStarStyle() {
   left: -20px;
   right: -20px;
   bottom: -20px;
-  background: linear-gradient(45deg, transparent, rgba(0, 255, 136, 0.1), transparent);
+  background: linear-gradient(45deg, transparent, rgba(0, 0, 0, 0.05), transparent);
   border-radius: 30px;
   z-index: -1;
   opacity: 0;
@@ -4063,32 +4418,32 @@ function generateShootingStarStyle() {
 .energy-wave:nth-child(1) { 
   left: 20%; top: 30%; 
   animation-delay: 0s; 
-  background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
 }
 .energy-wave:nth-child(2) { 
   left: 60%; top: 50%; 
   animation-delay: 1s; 
-  background: linear-gradient(90deg, transparent, rgba(255, 68, 68, 0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
 }
 .energy-wave:nth-child(3) { 
   left: 40%; top: 70%; 
   animation-delay: 2s; 
-  background: linear-gradient(90deg, transparent, rgba(68, 136, 255, 0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
 }
 .energy-wave:nth-child(4) { 
   left: 80%; top: 20%; 
   animation-delay: 3s; 
-  background: linear-gradient(90deg, transparent, rgba(136, 68, 255, 0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
 }
 .energy-wave:nth-child(5) { 
   left: 10%; top: 60%; 
   animation-delay: 0.5s; 
-  background: linear-gradient(90deg, transparent, rgba(255, 170, 68, 0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
 }
 .energy-wave:nth-child(6) { 
   left: 70%; top: 80%; 
   animation-delay: 1.5s; 
-  background: linear-gradient(90deg, transparent, rgba(170, 255, 68, 0.3), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
 }
 
 @keyframes energy-pulse {
@@ -4561,7 +4916,7 @@ function generateShootingStarStyle() {
 
 .triangle-svg path {
   animation: triangle-draw 4s ease-in-out infinite;
-  stroke: #64c8ff;
+  stroke: #000000;
   stroke-width: 3;
   fill: none;
   filter: drop-shadow(0 0 10px rgba(100, 200, 255, 0.8));
@@ -4864,15 +5219,15 @@ function generateShootingStarStyle() {
 .hologram-text {
   font-family: 'Courier New', monospace;
   font-size: 1.2rem;
-  color: #00ff88;
+  color: #000000;
   text-align: center;
   letter-spacing: 3px;
   animation: hologram-flicker 2s ease-in-out infinite;
 }
 
 @keyframes hologram-flicker {
-  0%, 100% { opacity: 1; text-shadow: 0 0 10px #00ff88; }
-  50% { opacity: 0.8; text-shadow: 0 0 20px #00ff88, 0 0 30px #00ff88; }
+  0%, 100% { opacity: 1; text-shadow: none; }
+  50% { opacity: 0.8; text-shadow: none; }
 }
 
 .hologram-scan {
@@ -4881,7 +5236,7 @@ function generateShootingStarStyle() {
   left: 0;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #00ff88, transparent);
+  background: linear-gradient(90deg, transparent, #000000, transparent);
   animation: scan-line 3s linear infinite;
 }
 
@@ -5032,7 +5387,7 @@ function generateShootingStarStyle() {
 
 .enter-btn {
   position: relative;
-  background: linear-gradient(45deg, #00ff88, #004e92);
+  background: linear-gradient(45deg, #000000, #333333);
   color: white;
   border: none;
   padding: 1rem 2rem;
@@ -5046,7 +5401,7 @@ function generateShootingStarStyle() {
 
 .enter-btn:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
 }
 
 .btn-glow {
@@ -5088,7 +5443,7 @@ function generateShootingStarStyle() {
 
 /* ===== BUSINESS TRANSFORMATION SECTION ===== */
 .transformation-chaos-section {
-  background: linear-gradient(135deg, #000000 0%, #1a0000 50%, #000000 100%);
+  background: #000000;
   padding: 10rem 0;
   position: relative;
   overflow: hidden;
@@ -5120,7 +5475,7 @@ function generateShootingStarStyle() {
   position: absolute;
   width: 2px;
   height: 100%;
-  background: linear-gradient(to bottom, transparent, #ff0040, #ffffff, #ff0040, transparent);
+  background: linear-gradient(to bottom, transparent, #000000, #333333, #000000, transparent);
   animation: lightning-strike 3s ease-in-out infinite;
 }
 
@@ -5183,7 +5538,7 @@ function generateShootingStarStyle() {
 
 .chaos-text {
   display: block;
-  background: linear-gradient(45deg, #ff0040, #ffffff, #ff0040);
+  background: linear-gradient(45deg, #000000, #333333, #666666, #000000);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -5227,8 +5582,8 @@ function generateShootingStarStyle() {
 }
 
 .pillar {
-  background: linear-gradient(135deg, #1a0000 0%, #330000 50%, #1a0000 100%);
-  border: 2px solid #ff0040;
+  background: #000000;
+  border: 2px solid #ffffff;
   border-radius: 20px;
   padding: 2rem;
   position: relative;
@@ -5237,8 +5592,8 @@ function generateShootingStarStyle() {
 }
 
 .pillar:hover {
-  transform: scale(1.05) rotateY(5deg);
-  box-shadow: 0 0 50px rgba(255, 0, 64, 0.5);
+  transform: scale(1.02);
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
 }
 
 .pillar-energy {
@@ -5252,7 +5607,7 @@ function generateShootingStarStyle() {
 .energy-core {
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle, #ff0040, #ffffff);
+  background: radial-gradient(circle, #ffffff, #000000);
   border-radius: 50%;
   animation: energy-rotation 3s linear infinite;
 }
@@ -5268,7 +5623,7 @@ function generateShootingStarStyle() {
   left: 0;
   width: 100%;
   height: 100%;
-  border: 2px solid #ff0040;
+  border: 2px solid #ffffff;
   border-radius: 50%;
   animation: energy-pulse-anim 2s ease-out infinite;
 }
@@ -5305,7 +5660,7 @@ function generateShootingStarStyle() {
 }
 
 .pillar-impact {
-  color: #ff0040;
+  color: #ffffff;
   font-weight: bold;
   font-size: 0.9rem;
   text-transform: uppercase;
@@ -5325,7 +5680,7 @@ function generateShootingStarStyle() {
   position: absolute;
   width: 4px;
   height: 4px;
-  background: #ff0040;
+  background: #ffffff;
   border-radius: 50%;
   animation: chaos-float 5s ease-in-out infinite;
 }
@@ -5348,37 +5703,93 @@ function generateShootingStarStyle() {
 
 /* ===== BUSINESS MINDSET SECTION ===== */
 .mindset-section {
-  background: #fafafa;
+  background: #ffffff;
   padding: 8rem 0;
+  position: relative;
 }
 
 .mindset-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2rem;
+  position: relative;
+  z-index: 2;
 }
 
 .mindset-card {
   background: #ffffff;
-  border: 1px solid #e9ecef;
+  border: 2px solid #f0f0f0;
   border-radius: 20px;
   padding: 2.5rem;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  animation: card-float 4s ease-in-out infinite;
+}
+
+.mindset-card:nth-child(odd) {
+  animation-delay: -2s;
+}
+
+.mindset-card:nth-child(3n) {
+  animation-delay: -4s;
+}
+
+@keyframes card-float {
+  0%, 100% { 
+    transform: translateY(0); 
+  }
+  50% { 
+    transform: translateY(-5px); 
+  }
 }
 
 .mindset-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  transform: translateY(-15px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   border-color: #000000;
+  animation-play-state: paused;
+}
+
+.mindset-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.03), transparent);
+  transition: left 0.5s ease;
+}
+
+.mindset-card:hover::before {
+  left: 100%;
 }
 
 .mindset-icon {
-  font-size: 3rem;
   margin-bottom: 1.5rem;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: #f8f8f8;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  animation: icon-pulse 2s ease-in-out infinite;
+}
+
+@keyframes icon-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.mindset-card:hover .mindset-icon {
+  background: #000000;
+  color: #ffffff;
+  transform: rotateY(180deg);
+  animation-play-state: paused;
 }
 
 .mindset-content {
@@ -5388,24 +5799,42 @@ function generateShootingStarStyle() {
 
 .mindset-title {
   font-size: 1.5rem;
-  font-weight: var(--font-weight-bold);
+  font-weight: 800;
   margin-bottom: 1rem;
   color: #000000;
+  transition: all 0.3s ease;
+}
+
+.mindset-card:hover .mindset-title {
+  transform: translateX(5px);
 }
 
 .mindset-description {
   color: #666666;
   line-height: 1.6;
   margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.mindset-card:hover .mindset-description {
+  color: #333333;
 }
 
 .mindset-example {
-  background: #f8f9fa;
+  background: #f8f8f8;
   padding: 1rem;
   border-radius: 10px;
   font-size: 0.875rem;
-  color: #495057;
+  color: #555555;
   border-left: 4px solid #000000;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.mindset-card:hover .mindset-example {
+  background: #f0f0f0;
+  transform: translateX(3px);
 }
 
 /* ===== BLOG SECTION ===== */
@@ -5609,9 +6038,7 @@ function generateShootingStarStyle() {
 
 /* CHAOS SECTION - INSANE EFFECTS */
 .chaos-section {
-  background: radial-gradient(circle at 30% 70%, #ff0080, #000000 30%), 
-              radial-gradient(circle at 70% 30%, #0080ff, transparent 50%),
-              linear-gradient(45deg, #000000, #1a001a, #001a1a, #000000);
+  background: #000000;
   padding: 10rem 0;
   position: relative;
   overflow: hidden;
@@ -5647,7 +6074,7 @@ function generateShootingStarStyle() {
 
 .grid-chaos-line {
   position: absolute;
-  background: linear-gradient(90deg, transparent, #64c8ff, transparent);
+  background: linear-gradient(90deg, transparent, #000000, transparent);
   height: 1px;
   width: 100%;
   animation: grid-chaos-horizontal 4s linear infinite;
@@ -5657,17 +6084,17 @@ function generateShootingStarStyle() {
 .grid-chaos-line.vertical {
   width: 1px;
   height: 100%;
-  background: linear-gradient(0deg, transparent, #00ff88, transparent);
+  background: linear-gradient(0deg, transparent, #000000, transparent);
   animation: grid-chaos-vertical 6s linear infinite;
 }
 
 .grid-chaos-line:nth-child(odd) {
   animation-delay: calc(var(--n, 0) * 0.2s);
-  background: linear-gradient(90deg, transparent, #ff0080, transparent);
+  background: linear-gradient(90deg, transparent, #000000, transparent);
 }
 
 .grid-chaos-line.vertical:nth-child(odd) {
-  background: linear-gradient(0deg, transparent, #ff8000, transparent);
+  background: linear-gradient(0deg, transparent, #000000, transparent);
 }
 
 @keyframes grid-chaos-horizontal {
@@ -5710,7 +6137,7 @@ function generateShootingStarStyle() {
   position: absolute;
   width: 40px;
   height: 40px;
-  background: linear-gradient(45deg, #64c8ff, #00ff88);
+  background: linear-gradient(45deg, #000000, #333333);
   border: 1px solid rgba(255, 255, 255, 0.3);
   opacity: 0.8;
 }
@@ -5865,8 +6292,8 @@ function generateShootingStarStyle() {
 .beam-core {
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, #00ff88, #64c8ff, #00ff88, transparent);
-  box-shadow: 0 0 20px rgba(0, 255, 136, 0.8);
+  background: linear-gradient(90deg, transparent, #000000, #333333, #000000, transparent);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
   animation: beam-intensity 2s ease-in-out infinite;
 }
 
@@ -5882,7 +6309,7 @@ function generateShootingStarStyle() {
   position: absolute;
   width: 4px;
   height: 4px;
-  background: #64c8ff;
+  background: #000000;
   border-radius: 50%;
   animation: particle-flow 1s linear infinite;
 }
@@ -5926,7 +6353,7 @@ function generateShootingStarStyle() {
 .chaos-word {
   display: inline-block;
   margin: 0 1rem;
-  background: linear-gradient(45deg, #64c8ff, #00ff88, #ff0080, #64c8ff);
+  background: linear-gradient(45deg, #000000, #333333, #666666, #000000);
   background-size: 400% 400%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -5993,7 +6420,7 @@ function generateShootingStarStyle() {
 
 .code-char {
   display: block;
-  text-shadow: 0 0 5px #00ff88;
+  text-shadow: none;
   animation: char-flicker 0.5s ease-in-out infinite;
 }
 
@@ -6009,7 +6436,7 @@ function generateShootingStarStyle() {
   position: fixed;
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, #000428, #004e92);
+  background: linear-gradient(45deg, #000000, #333333);
   overflow: hidden;
   z-index: -1;
   will-change: transform;
@@ -6026,7 +6453,7 @@ function generateShootingStarStyle() {
 
 .floating-particle {
   position: absolute;
-  background: radial-gradient(circle, #00ff88, rgba(0, 255, 136, 0.3), transparent);
+  background: radial-gradient(circle, #000000, rgba(0, 0, 0, 0.3), transparent);
   border-radius: 50%;
   animation: floatParticle 20s ease-in-out infinite;
   will-change: transform;
@@ -6137,5 +6564,73 @@ function generateShootingStarStyle() {
   75% { transform: translateX(-1px); }
   76% { transform: translateX(1px); }
   77%, 100% { transform: translateX(0); }
+}
+
+/* Tech Deep Dive Section */
+.tech-deep-dive-section {
+  background-color: #f8f9fa; /* A light, techy grey */
+  color: #212529;
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.tech-card {
+  background-color: #ffffff;
+  border: 1px solid #dee2e6;
+  border-radius: 12px;
+  padding: 2.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tech-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+}
+
+.tech-card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.competency-list, .project-details {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.competency-list li, .project-details li {
+  line-height: 1.6;
+  position: relative;
+  padding-left: 25px;
+}
+
+.competency-list li::before, .project-details li::before {
+  content: '✓'; /* Checkmark icon */
+  position: absolute;
+  left: 0;
+  top: 4px;
+  color: #007bff; /* A nice blue for tech */
+  font-weight: bold;
+}
+
+.competency-area {
+  font-weight: 600;
+  color: #343a40;
+}
+
+.project-description {
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
 }
 </style> 

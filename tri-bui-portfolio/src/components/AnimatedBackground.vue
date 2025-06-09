@@ -71,10 +71,10 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 
-// Galaxy Stars - More quantity and variety
+// Galaxy Stars - Further reduced quantity
 const galaxyStars = computed(() => {
   const stars = []
-  for (let i = 0; i < 200; i++) {
+  for (let i = 0; i < 20; i++) {
     const size = Math.random() * 3 + 1
     const twinkleSpeed = Math.random() * 3 + 2
     const opacity = Math.random() * 0.8 + 0.2
@@ -96,10 +96,10 @@ const galaxyStars = computed(() => {
   return stars
 })
 
-// Cosmic Particles - Enhanced movement
+// Cosmic Particles - Further reduced quantity
 const cosmicParticles = computed(() => {
   const particles = []
-  for (let i = 0; i < 150; i++) {
+  for (let i = 0; i < 10; i++) {
     const size = Math.random() * 2 + 0.5
     const speed = Math.random() * 20 + 10
     const direction = Math.random() * 360
@@ -121,10 +121,10 @@ const cosmicParticles = computed(() => {
   return particles
 })
 
-// Planets with enhanced variety
+// Planets - Further reduced quantity
 const planets = computed(() => {
   const planetData = []
-  for (let i = 0; i < 12; i++) {
+  for (let i = 0; i < 2; i++) {
     const size = Math.random() * 60 + 30
     const orbitSpeed = Math.random() * 30 + 20
     
@@ -147,10 +147,10 @@ const planets = computed(() => {
   return planetData
 })
 
-// Orbital Paths
+// Orbital Paths - Reduced quantity
 const orbitalPaths = computed(() => {
   const paths = []
-  for (let i = 0; i < 8; i++) {
+  for (let i = 0; i < 3; i++) {
     const size = Math.random() * 300 + 200
     const rotationSpeed = Math.random() * 40 + 30
     
@@ -170,10 +170,10 @@ const orbitalPaths = computed(() => {
   return paths
 })
 
-// Nebulas
+// Nebulas - Reduced quantity
 const nebulas = computed(() => {
   const nebulaData = []
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < 2; i++) {
     const width = Math.random() * 400 + 200
     const height = Math.random() * 300 + 150
     const driftSpeed = Math.random() * 50 + 40
@@ -225,8 +225,9 @@ const getNebulaClass = (index: number) => {
   height: 100%;
   z-index: 1;
   pointer-events: none;
-  background: radial-gradient(circle at 30% 70%, rgba(20, 20, 40, 0.8) 0%, rgba(0, 0, 0, 0.9) 100%);
+  background: #ffffff;
   overflow: hidden;
+  opacity: 0.6;
 }
 
 /* ===== ENHANCED GALAXY STARS ===== */
@@ -238,9 +239,9 @@ const getNebulaClass = (index: number) => {
 
 .galaxy-star {
   position: absolute;
-  background: #ffffff;
+  background: #000000;
   border-radius: 50%;
-  box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+  box-shadow: none;
 }
 
 .normal-star {
@@ -249,17 +250,17 @@ const getNebulaClass = (index: number) => {
 
 .pulse-star {
   animation: star-pulse infinite ease-in-out;
-  box-shadow: 0 0 8px rgba(100, 200, 255, 0.9);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
 }
 
 .bright-star {
   animation: star-bright infinite ease-in-out;
-  box-shadow: 0 0 12px rgba(255, 255, 255, 1);
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
 }
 
 .dim-star {
   animation: star-dim infinite ease-in-out;
-  opacity: 0.4;
+  opacity: 0.2;
 }
 
 @keyframes star-twinkle {
@@ -268,8 +269,8 @@ const getNebulaClass = (index: number) => {
 }
 
 @keyframes star-pulse {
-  0%, 100% { opacity: 0.5; transform: scale(1); box-shadow: 0 0 8px rgba(100, 200, 255, 0.9); }
-  50% { opacity: 1; transform: scale(2); box-shadow: 0 0 20px rgba(100, 200, 255, 1); }
+  0%, 100% { opacity: 0.5; transform: scale(1); box-shadow: 0 0 8px rgba(0, 0, 0, 0.4); }
+  50% { opacity: 1; transform: scale(2); box-shadow: 0 0 20px rgba(0, 0, 0, 0.6); }
 }
 
 @keyframes star-bright {
@@ -291,7 +292,7 @@ const getNebulaClass = (index: number) => {
 
 .cosmic-particle {
   position: absolute;
-  background: radial-gradient(circle, rgba(100, 200, 255, 0.8), rgba(100, 200, 255, 0.2));
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.1));
   border-radius: 50%;
 }
 
@@ -364,25 +365,13 @@ const getNebulaClass = (index: number) => {
   animation: planet-orbit infinite linear;
 }
 
-.gas-giant {
-  background: radial-gradient(circle at 30% 30%, #4a90e2, #2c5f8a, #1a3a5c);
-  box-shadow: 0 0 30px rgba(74, 144, 226, 0.5);
-}
-
-.rocky-planet {
-  background: radial-gradient(circle at 30% 30%, #8b4513, #654321, #3e2723);
-  box-shadow: 0 0 20px rgba(139, 69, 19, 0.4);
-}
-
-.ice-planet {
-  background: radial-gradient(circle at 30% 30%, #87ceeb, #4682b4, #2f4f4f);
-  box-shadow: 0 0 25px rgba(135, 206, 235, 0.6);
-}
-
+.gas-giant,
+.rocky-planet,
+.ice-planet,
 .lava-planet {
-  background: radial-gradient(circle at 30% 30%, #ff4500, #dc143c, #8b0000);
-  box-shadow: 0 0 35px rgba(255, 69, 0, 0.7);
-  animation: lava-pulse infinite ease-in-out;
+  background: #000000;
+  box-shadow: none;
+  border: 1px solid #cccccc;
 }
 
 .planet-core {
@@ -402,7 +391,7 @@ const getNebulaClass = (index: number) => {
   left: -15%;
   width: 130%;
   height: 130%;
-  border: 2px solid rgba(200, 200, 200, 0.4);
+  border: 2px solid rgba(0, 0, 0, 0.3);
   border-radius: 50%;
   animation: ring-rotate 20s linear infinite;
 }
@@ -411,7 +400,7 @@ const getNebulaClass = (index: number) => {
   position: absolute;
   width: 20%;
   height: 20%;
-  background: radial-gradient(circle, #c0c0c0, #808080);
+  background: radial-gradient(circle, #888888, #444444);
   border-radius: 50%;
   top: -10%;
   left: 50%;
@@ -424,7 +413,7 @@ const getNebulaClass = (index: number) => {
   left: -20%;
   width: 140%;
   height: 140%;
-  background: conic-gradient(from 0deg, transparent, rgba(0, 255, 136, 0.3), transparent, rgba(100, 200, 255, 0.3), transparent);
+  background: conic-gradient(from 0deg, transparent, rgba(0, 0, 0, 0.1), transparent, rgba(0, 0, 0, 0.1), transparent);
   border-radius: 50%;
   animation: aurora-dance 8s ease-in-out infinite;
 }
@@ -435,8 +424,8 @@ const getNebulaClass = (index: number) => {
 }
 
 @keyframes lava-pulse {
-  0%, 100% { box-shadow: 0 0 35px rgba(255, 69, 0, 0.7); }
-  50% { box-shadow: 0 0 50px rgba(255, 69, 0, 1), 0 0 70px rgba(255, 69, 0, 0.5); }
+  0%, 100% { box-shadow: 0 0 35px rgba(0, 0, 0, 0.4); }
+  50% { box-shadow: 0 0 50px rgba(0, 0, 0, 0.6), 0 0 70px rgba(0, 0, 0, 0.3); }
 }
 
 @keyframes core-glow {
@@ -468,7 +457,7 @@ const getNebulaClass = (index: number) => {
 
 .orbital-path {
   position: absolute;
-  border: 1px solid rgba(100, 200, 255, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
   animation: orbital-rotation infinite linear;
 }
@@ -477,12 +466,12 @@ const getNebulaClass = (index: number) => {
   position: absolute;
   width: 4px;
   height: 4px;
-  background: radial-gradient(circle, #ffffff, rgba(100, 200, 255, 0.8));
+  background: radial-gradient(circle, #000000, rgba(0, 0, 0, 0.6));
   border-radius: 50%;
   top: 0;
   left: 50%;
   margin-left: -2px;
-  box-shadow: 0 0 8px rgba(100, 200, 255, 0.8);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
   animation: star-orbit 10s linear infinite;
 }
 
@@ -526,32 +515,12 @@ const getNebulaClass = (index: number) => {
   animation: nebula-drift infinite ease-in-out;
 }
 
-.purple-nebula {
-  background: radial-gradient(ellipse at center, 
-    rgba(128, 0, 128, 0.3) 0%, 
-    rgba(75, 0, 130, 0.2) 40%, 
-    transparent 70%);
-}
-
-.blue-nebula {
-  background: radial-gradient(ellipse at center, 
-    rgba(0, 100, 255, 0.3) 0%, 
-    rgba(0, 50, 150, 0.2) 40%, 
-    transparent 70%);
-}
-
-.green-nebula {
-  background: radial-gradient(ellipse at center, 
-    rgba(0, 255, 100, 0.3) 0%, 
-    rgba(0, 150, 50, 0.2) 40%, 
-    transparent 70%);
-}
-
+.purple-nebula,
+.blue-nebula,
+.green-nebula,
 .red-nebula {
-  background: radial-gradient(ellipse at center, 
-    rgba(255, 50, 50, 0.3) 0%, 
-    rgba(150, 25, 25, 0.2) 40%, 
-    transparent 70%);
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
 }
 
 @keyframes nebula-drift {
@@ -572,8 +541,8 @@ const getNebulaClass = (index: number) => {
   width: 100%;
   height: 100%;
   background-image: 
-    linear-gradient(rgba(100, 200, 255, 0.3) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(100, 200, 255, 0.3) 1px, transparent 1px);
+    linear-gradient(rgba(0, 0, 0, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
   background-size: 50px 50px;
   animation: grid-pulse 30s ease-in-out infinite;
 }

@@ -195,7 +195,25 @@
       </div>
       <div class="info-item">
         <span class="label">MODE:</span>
-        <span class="value">ASSISTANT</span>
+        <span class="value">{{ robotMode }}</span>
+      </div>
+    </div>
+
+    <!-- Robot Dialogue System -->
+    <div class="robot-dialogue" v-if="isActive">
+      <div class="dialogue-bubble" :class="{ 'visible': currentMessage }">
+        <div class="message-text">{{ currentMessage }}</div>
+        <div class="typing-indicator" v-if="isTyping">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <div class="metrics-display">
+        <div class="metric" v-for="metric in currentMetrics" :key="metric.label">
+          <span class="metric-label">{{ metric.label }}:</span>
+          <span class="metric-value">{{ metric.value }}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -207,16 +225,107 @@ import { ref, onMounted } from 'vue'
 const isActive = ref(false)
 const power = ref(100)
 const robotMode = ref('STANDBY')
+const currentMessage = ref('')
+const isTyping = ref(false)
+const currentMetrics = ref([])
 
 const modes = ['STANDBY', 'SCANNING', 'PROCESSING', 'ASSISTANT', 'PATROL']
+
+const meaningfulMessages = [
+  {
+    text: "Hello! I'm NEXBOT. Tri has built 5 ventures that impacted 350+ lives and reached 12K+ users.",
+    metrics: [
+      { label: "Ventures Founded", value: "5" },
+      { label: "Lives Impacted", value: "350+" },
+      { label: "Total Users", value: "12K+" }
+    ]
+  },
+  {
+    text: "Analyzing Tri's financial expertise: Successfully managed $350M in real estate assets and mitigated $1.5M downside risk.",
+    metrics: [
+      { label: "Assets Managed", value: "$350M" },
+      { label: "Risk Mitigated", value: "$1.5M" },
+      { label: "Sharpe Ratio", value: "3.1" }
+    ]
+  },
+  {
+    text: "Educational impact report: Pathwise achieved 71% internship success rate. YoungPreneur Academy trained 220 students.",
+    metrics: [
+      { label: "Success Rate", value: "71%" },
+      { label: "Students Trained", value: "220" },
+      { label: "Prize Pools", value: "$35K" }
+    ]
+  },
+  {
+    text: "FinBud AI performance: 12,000 beta users with 87% Day-30 retention and 3.7 daily sessions per user.",
+    metrics: [
+      { label: "Beta Users", value: "12K" },
+      { label: "Day-30 Retention", value: "87%" },
+      { label: "Daily Sessions", value: "3.7" }
+    ]
+  },
+  {
+    text: "Corporate experience: $230K scholarship recipient, worked at Deloitte, Blackstone, reduced operational risk by 20%.",
+    metrics: [
+      { label: "Scholarship Value", value: "$230K" },
+      { label: "Op Risk Reduction", value: "20%" },
+      { label: "Dean's List", value: "6/6 semesters" }
+    ]
+  },
+  {
+    text: "Innovation mindset: Built microservices with 9 modular lambdas, mentored 300+ hours, placed alumni at top firms.",
+    metrics: [
+      { label: "Mentoring Hours", value: "300+" },
+      { label: "Microservices", value: "9 modules" },
+      { label: "Top Firm Placements", value: "Multiple" }
+    ]
+  }
+]
 
 const toggleRobot = () => {
   isActive.value = !isActive.value
   if (isActive.value) {
     animateRobotBehavior()
+    startDialogueSystem()
   } else {
     robotMode.value = 'STANDBY'
+    currentMessage.value = ''
+    currentMetrics.value = []
   }
+}
+
+const typeMessage = async (message: string) => {
+  isTyping.value = true
+  currentMessage.value = ''
+  
+  await new Promise(resolve => setTimeout(resolve, 1000))
+  
+  isTyping.value = false
+  
+  for (let i = 0; i <= message.length; i++) {
+    currentMessage.value = message.slice(0, i)
+    await new Promise(resolve => setTimeout(resolve, 50))
+  }
+}
+
+const startDialogueSystem = () => {
+  // Show first message immediately
+  setTimeout(async () => {
+    const firstMessage = meaningfulMessages[0]
+    await typeMessage(firstMessage.text)
+    currentMetrics.value = firstMessage.metrics
+  }, 2000)
+  
+  // Cycle through messages
+  let messageIndex = 1
+  setInterval(async () => {
+    if (isActive.value && messageIndex < meaningfulMessages.length) {
+      const message = meaningfulMessages[messageIndex]
+      await typeMessage(message.text)
+      currentMetrics.value = message.metrics
+      messageIndex = (messageIndex + 1) % meaningfulMessages.length
+    }
+  }, 8000)
 }
 
 const animateRobotBehavior = () => {
@@ -1192,6 +1301,96 @@ onMounted(() => {
   font-weight: bold;
 }
 
+/* Robot Dialogue Styles */
+.robot-dialogue {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+}
+
+.dialogue-bubble {
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 4px solid #ffffff;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.dialogue-bubble.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.message-text {
+  color: #ffffff;
+  font-family: 'Arial', sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.typing-indicator {
+  display: flex;
+  gap: 4px;
+  margin-top: 0.5rem;
+}
+
+.typing-indicator span {
+  width: 6px;
+  height: 6px;
+  background: #ffffff;
+  border-radius: 50%;
+  animation: typing-bounce 1.4s infinite ease-in-out;
+}
+
+.typing-indicator span:nth-child(1) { animation-delay: 0s; }
+.typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+.typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes typing-bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.3; }
+  30% { transform: translateY(-8px); opacity: 1; }
+}
+
+.metrics-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.metric {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.metric-label {
+  display: block;
+  color: #cccccc;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.metric-value {
+  display: block;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .robot-container {
@@ -1210,6 +1409,19 @@ onMounted(() => {
   .activate-btn {
     padding: 0.75rem 1.5rem;
     font-size: 0.75rem;
+  }
+  
+  .robot-dialogue {
+    padding: 1rem;
+  }
+  
+  .metrics-display {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  .message-text {
+    font-size: 0.8rem;
   }
 }
 </style> 

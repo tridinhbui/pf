@@ -42,8 +42,7 @@
           >
             <div class="message-avatar" v-if="message.sender === 'bot'">🤖</div>
             <div class="message-content">
-              <div class="message-bubble">
-                {{ message.text }}
+              <div class="message-bubble" v-html="message.text.replace(/\\n/g, '<br>')">
               </div>
               <div class="message-time">{{ message.time }}</div>
             </div>
@@ -64,15 +63,19 @@
         </div>
 
         <!-- Quick Actions -->
-        <div class="quick-actions">
-          <button 
-            v-for="action in quickActions" 
-            :key="action.id"
-            class="quick-action-btn"
-            @click="sendQuickMessage(action.text)"
-          >
-            {{ action.text }}
-          </button>
+        <div class="quick-actions-container">
+          <div class="quick-actions-scroll">
+            <div class="quick-actions-grid">
+              <button 
+                v-for="action in quickActions" 
+                :key="action.query"
+                class="quick-action"
+                @click="sendQuickMessage(action.query)"
+              >
+                {{ action.text }}
+              </button>
+            </div>
+          </div>
         </div>
 
         <!-- Input -->
@@ -102,7 +105,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, nextTick } from 'vue'
+import { ref, onMounted, nextTick, watch } from 'vue'
+
+const props = defineProps({
+  autoOpen: {
+    type: Boolean,
+    default: false
+  }
+})
 
 interface Message {
   id: number;
@@ -114,6 +124,7 @@ interface Message {
 interface QuickAction {
   id: number;
   text: string;
+  query: string;
 }
 
 const isOpen = ref(false)
@@ -124,33 +135,88 @@ const messagesContainer = ref<HTMLElement>()
 const messages = ref<Message[]>([
   {
     id: 1,
-    text: "Hi! I'm Tri's AI assistant. How can I help you today?",
+    text: "Chào bạn! Tôi là trợ lý AI của Trí. Tôi có thể giúp gì cho bạn về các lĩnh vực như tài chính, công nghệ, và khởi nghiệp không?",
     sender: 'bot',
-    time: '10:30 AM'
+    time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
   }
 ])
 
 const quickActions = ref<QuickAction[]>([
-  { id: 1, text: "About Tri's experience" },
-  { id: 2, text: "View projects" },
-  { id: 3, text: "Contact information" },
-  { id: 4, text: "Schedule a meeting" }
+  { id: 1, text: "Tell me about his experience.", query: "experience" },
+  { id: 2, text: "What are his technical skills?", query: "technical skills" },
+  { id: 3, text: "Describe his AI/ML projects.", query: "projects" },
+  { id: 4, text: "What did he do at Blackstone?", query: "blackstone" },
+  { id: 5, text: "What's his primary programming language?", query: "python" },
+  { id: 6, text: "How can I contact him?", query: "contact" },
 ])
 
-const botResponses = [
-  "Thanks for your interest! Tri has extensive experience in entrepreneurship and finance.",
-  "Tri has founded multiple successful ventures including Pathwise, CF Hub, and FinBud AI.",
-  "You can reach Tri at tbui@macalester.edu or connect on LinkedIn.",
-  "I'd be happy to help you schedule a meeting with Tri. Please provide your preferred time.",
-  "Tri specializes in fintech, mentorship platforms, and strategic consulting.",
-  "Would you like to know more about any specific project or achievement?",
-  "Tri is currently working as a Corporate Finance Analyst at Smithfield Foods.",
-  "Feel free to ask me anything about Tri's background, projects, or how to get in touch!"
-]
+const knowledgeBase = {
+  // Greetings
+  "hello": "Hello! I'm Tri's AI assistant. How can I help you today? You can ask me about his experience, technical skills, or projects.",
+  "hi": "Hi there! I'm an AI assistant representing Tri. Feel free to ask me anything about his professional background.",
+  "hey": "Hey! I'm here to answer your questions about Tri Bui. What would you like to know?",
+
+  // Professional Experience & Finance
+  "experience": "Tri has a background in corporate finance and investment analysis, with experience at Smithfield Foods and Blackstone (Revantage). He's skilled in financial modeling, valuation, and data analysis. Would you like to know more about a specific role?",
+  "finance": "Tri's finance skills include multi-million dollar CAPEX modeling, asset valuation, and risk analysis using Python for Monte Carlo simulations. He's proficient with tools like Excel, Power BI, and SAP.",
+  "blackstone": "At Blackstone (Revantage), Tri valuated a portfolio of 15 Commercial Real Estate assets worth over $350M. He also developed a Python-based Monte Carlo simulation to stress-test rent rolls, identifying and mitigating potential downside risk.",
+  
+  // Technical & AI/ML Skills
+  "technical skills": "Tri is a full-stack developer with deep expertise in AI/ML engineering. His core competencies include Python, JavaScript (Vue.js), and system architecture. He is experienced in building end-to-end AI models. What specific area interests you?",
+  "ai": "Tri has hands-on experience in AI/ML, particularly with Large Language Models (LLMs) and predictive modeling. He has fine-tuned models like Llama-2, implemented RAG pipelines for accuracy, and deployed models on cloud services like AWS. Are you interested in his 'FinBud AI' project?",
+  "ml": "His Machine Learning experience includes building time-series forecasting models (Prophet), NLP tasks, and using libraries like scikit-learn, pandas, and NumPy for data analysis and modeling. He's also familiar with MLOps principles for model lifecycle management.",
+  "projects": "A key project is 'FinBud AI', a personal finance assistant. It uses a fine-tuned LLM and a RAG pipeline to provide actionable insights. The backend is a serverless API on AWS Lambda. He's also built various other full-stack applications.",
+  "python": "Python is one of Tri's main languages. He uses it for financial modeling (pandas, NumPy), machine learning (scikit-learn, PyTorch), and building backend services.",
+  
+  // Personal & Contact
+  "contact": "You can reach out to Tri via the contact form on this website or connect with him on LinkedIn. The links are in the footer.",
+  "about": "Tri Bui is a professional with a unique blend of finance and technology expertise. He is passionate about using AI and software development to solve complex problems. This portfolio was designed and coded by him from scratch!",
+  
+  // Default/Fallback
+  "default": "That's an interesting question. I don't have a specific answer for that right now, but I'm constantly learning. Try asking me about Tri's experience, AI projects, or technical skills."
+};
+
+const getBotResponse = (userMessage: string): string => {
+  const lowerCaseMessage = userMessage.toLowerCase();
+  let bestMatch = 'default';
+  let highestMatchCount = 0;
+
+  // Simple keyword matching logic
+  for (const key in knowledgeBase) {
+    if (key !== 'default') {
+      const keywords = key.split(' ');
+      let currentMatchCount = 0;
+      keywords.forEach(keyword => {
+        if (lowerCaseMessage.includes(keyword)) {
+          currentMatchCount++;
+        }
+      });
+      if (currentMatchCount > highestMatchCount) {
+        highestMatchCount = currentMatchCount;
+        bestMatch = key;
+      }
+    }
+  }
+
+  // A few hardcoded checks for better accuracy
+  if (lowerCaseMessage.includes('hello') || lowerCaseMessage.includes('hi') || lowerCaseMessage.includes('hey')) bestMatch = 'hello';
+  if (lowerCaseMessage.includes('blackstone')) bestMatch = 'blackstone';
+  if (lowerCaseMessage.includes('ai') || lowerCaseMessage.includes('ml')) bestMatch = 'ai';
+
+  return knowledgeBase[bestMatch];
+}
 
 const toggleChat = () => {
   isOpen.value = !isOpen.value
 }
+
+watch(() => props.autoOpen, (newValue) => {
+  if (newValue) {
+    setTimeout(() => {
+      isOpen.value = true;
+    }, 500)
+  }
+});
 
 const sendMessage = async () => {
   if (!currentMessage.value.trim() || isTyping.value) return
@@ -163,6 +229,7 @@ const sendMessage = async () => {
   }
   
   messages.value.push(userMessage)
+  const messageToSend = currentMessage.value;
   currentMessage.value = ''
   
   await nextTick()
@@ -171,9 +238,10 @@ const sendMessage = async () => {
   // Simulate bot response
   isTyping.value = true
   setTimeout(() => {
+    const botResponseText = getBotResponse(messageToSend);
     const botResponse: Message = {
       id: Date.now(),
-      text: botResponses[Math.floor(Math.random() * botResponses.length)],
+      text: botResponseText,
       sender: 'bot',
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
@@ -199,17 +267,11 @@ const scrollToBottom = () => {
 }
 
 onMounted(() => {
-  // Auto-show chat after 3 seconds
-  setTimeout(() => {
-    if (!isOpen.value) {
-      // Add a subtle pulse to draw attention
-      const button = document.querySelector('.chat-button')
-      button?.classList.add('attention-pulse')
-      setTimeout(() => {
-        button?.classList.remove('attention-pulse')
-      }, 2000)
-    }
-  }, 3000)
+  if (props.autoOpen) {
+    setTimeout(() => {
+      isOpen.value = true;
+    }, 500)
+  }
 })
 </script>
 
@@ -248,45 +310,37 @@ onMounted(() => {
 }
 
 .button-icon {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   color: #ffffff;
   transition: transform 0.3s ease;
 }
 
-.chat-button:hover .button-icon {
-  transform: rotate(10deg);
-}
-
 .pulse-ring {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  border: 2px solid #ffffff;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid #000000;
   border-radius: 50%;
+  animation: pulse-animation 2s infinite;
   opacity: 0;
-  transform: scale(1);
-  animation: pulse-ring 2s infinite;
 }
 
-@keyframes pulse-ring {
+@keyframes pulse-animation {
   0% {
-    transform: scale(1);
-    opacity: 0.8;
+    transform: scale(0.95);
+    opacity: 0.7;
   }
-  100% {
-    transform: scale(1.3);
+  70% {
+    transform: scale(1.4);
     opacity: 0;
   }
-}
-
-.attention-pulse {
-  animation: attention-pulse 0.5s ease-in-out 4;
-}
-
-@keyframes attention-pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.15); }
+  100% {
+    transform: scale(0.95);
+    opacity: 0;
+  }
 }
 
 /* Chat Interface */
@@ -294,33 +348,48 @@ onMounted(() => {
   position: absolute;
   bottom: 80px;
   right: 0;
-  width: 350px;
-  height: 500px;
-  background: #ffffff;
-  border-radius: 20px;
+  width: 370px;
+  max-width: 90vw;
+  height: 600px;
+  max-height: 80vh;
+  background-color: #ffffff;
+  border-radius: 16px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  border: 1px solid #e0e0e0;
+  border: 1px solid #e5e5e5;
 }
 
-/* Header */
+.chat-slide-enter-active, .chat-slide-leave-active {
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+}
+
+.chat-slide-enter-from, .chat-slide-leave-to {
+  transform: translateY(20px) scale(0.95);
+  opacity: 0;
+}
+
+/* Chat Header */
 .chat-header {
-  background: linear-gradient(135deg, #000000, #333333);
-  color: #ffffff;
-  padding: 20px;
   display: flex;
   align-items: center;
-  gap: 15px;
+  padding: 16px 20px;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #e5e5e5;
+  flex-shrink: 0;
 }
 
 .bot-avatar {
   position: relative;
-  width: 40px;
-  height: 40px;
-  background: #ffffff;
+  margin-right: 12px;
+}
+
+.avatar-icon {
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
+  background: #e9ecef;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -329,64 +398,62 @@ onMounted(() => {
 
 .status-indicator {
   position: absolute;
-  bottom: 2px;
-  right: 2px;
-  width: 10px;
-  height: 10px;
-  background: #00ff00;
-  border-radius: 50%;
+  bottom: 1px;
+  right: 1px;
+  width: 12px;
+  height: 12px;
+  background-color: #28a745;
   border: 2px solid #ffffff;
+  border-radius: 50%;
 }
 
 .bot-info h3 {
   margin: 0;
   font-size: 16px;
   font-weight: 600;
+  color: #333333;
 }
 
 .bot-info p {
   margin: 0;
-  font-size: 12px;
-  opacity: 0.8;
+  font-size: 13px;
+  color: #666666;
 }
 
 /* Messages */
 .chat-messages {
-  flex: 1;
+  flex-grow: 1;
   padding: 20px;
   overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
 }
 
 .message {
   display: flex;
-  gap: 10px;
-  align-items: flex-end;
+  margin-bottom: 16px;
+  max-width: 85%;
 }
 
 .message.user {
+  margin-left: auto;
   flex-direction: row-reverse;
 }
 
 .message-avatar {
-  width: 30px;
-  height: 30px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
+  background: #e9ecef;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
-  background: #f0f0f0;
+  font-size: 18px;
   flex-shrink: 0;
+  margin: 0 10px;
 }
 
 .message-content {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 5px;
 }
 
 .message.user .message-content {
@@ -394,124 +461,159 @@ onMounted(() => {
 }
 
 .message-bubble {
-  background: #f0f0f0;
   padding: 12px 16px;
   border-radius: 18px;
-  max-width: 250px;
+  font-size: 15px;
+  line-height: 1.5;
   word-wrap: break-word;
-  line-height: 1.4;
+}
+
+.message.bot .message-bubble {
+  background-color: #f1f3f5;
+  color: #333333;
+  border-bottom-left-radius: 4px;
 }
 
 .message.user .message-bubble {
-  background: #000000;
+  background-color: #000000;
   color: #ffffff;
+  border-bottom-right-radius: 4px;
 }
 
 .message-time {
+  margin-top: 4px;
   font-size: 11px;
   color: #999999;
-  padding: 0 5px;
+  padding: 0 8px;
 }
 
 /* Typing Indicator */
 .typing-indicator {
-  background: #f0f0f0;
-  padding: 12px 16px;
-  border-radius: 18px;
   display: flex;
-  gap: 4px;
   align-items: center;
+  padding: 12px 16px;
 }
 
 .typing-dot {
-  width: 6px;
-  height: 6px;
-  background: #999999;
+  width: 8px;
+  height: 8px;
+  background-color: #ced4da;
   border-radius: 50%;
-  animation: typing-bounce 1.4s infinite ease-in-out;
+  margin: 0 2px;
+  animation: typing-animation 1.2s infinite ease-in-out;
 }
 
-.typing-dot:nth-child(1) { animation-delay: 0ms; }
-.typing-dot:nth-child(2) { animation-delay: 200ms; }
-.typing-dot:nth-child(3) { animation-delay: 400ms; }
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
 
-@keyframes typing-bounce {
-  0%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-8px); }
+@keyframes typing-animation {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
 }
 
 /* Quick Actions */
-.quick-actions {
-  padding: 15px 20px;
-  border-top: 1px solid #e0e0e0;
+.quick-actions-container {
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+}
+
+.quick-actions-scroll {
+  display: flex;
+  overflow-x: auto;
+  padding-bottom: 1rem; /* for scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: #4f4f4f #2c2c2c;
+  -webkit-overflow-scrolling: touch;
+}
+
+.quick-actions-scroll::-webkit-scrollbar {
+  height: 5px;
+}
+
+.quick-actions-scroll::-webkit-scrollbar-track {
+  background: #2c2c2c;
+  border-radius: 10px;
+}
+
+.quick-actions-scroll::-webkit-scrollbar-thumb {
+  background-color: #4f4f4f;
+  border-radius: 10px;
+}
+
+.quick-actions-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  flex-direction: column;
+  height: 90px; /* Two rows of ~40px buttons + gap */
+  gap: 0.5rem;
 }
 
-.quick-action-btn {
-  background: #f8f8f8;
-  border: 1px solid #e0e0e0;
+.quick-action {
+  padding: 0.5rem 1rem;
+  background-color: #3a3a3a;
+  color: #e0e0e0;
+  border: 1px solid #555;
   border-radius: 20px;
-  padding: 8px 12px;
-  font-size: 12px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  font-size: 0.85rem;
+  text-align: center;
+  white-space: nowrap; /* Prevent line breaks */
 }
 
-.quick-action-btn:hover {
-  background: #000000;
-  color: #ffffff;
-  border-color: #000000;
+.quick-action:hover {
+  background-color: #4a4a4a;
+  border-color: #777;
 }
 
-/* Input */
+/* Chat Input */
 .chat-input {
-  padding: 20px;
-  border-top: 1px solid #e0e0e0;
+  padding: 12px 20px;
+  background-color: #f9f9f9;
+  border-top: 1px solid #e5e5e5;
+  flex-shrink: 0;
 }
 
 .input-container {
   display: flex;
   align-items: center;
-  gap: 10px;
-  background: #f8f8f8;
-  border-radius: 25px;
-  padding: 5px;
+  background-color: #ffffff;
+  border-radius: 22px;
+  border: 1px solid #e5e5e5;
+  transition: border-color 0.2s ease;
+}
+
+.input-container:focus-within {
+  border-color: #000000;
 }
 
 .message-input {
-  flex: 1;
+  flex-grow: 1;
   border: none;
-  background: transparent;
-  padding: 12px 15px;
-  font-size: 14px;
   outline: none;
+  padding: 10px 16px;
+  font-size: 15px;
+  background: transparent;
+  color: #333333;
 }
 
 .send-button {
-  width: 40px;
-  height: 40px;
-  background: #000000;
-  border: none;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
+  background: #000000;
   color: #ffffff;
+  border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
-}
-
-.send-button:hover:not(:disabled) {
-  background: #333333;
-  transform: scale(1.1);
-}
-
-.send-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  transform: none;
+  margin: 4px;
+  transition: background-color 0.2s ease;
 }
 
 .send-button svg {
@@ -519,42 +621,11 @@ onMounted(() => {
   height: 18px;
 }
 
-/* Transitions */
-.chat-slide-enter-active,
-.chat-slide-leave-active {
-  transition: all 0.3s ease;
+.send-button:disabled {
+  background-color: #ced4da;
+  cursor: not-allowed;
 }
 
-.chat-slide-enter-from,
-.chat-slide-leave-to {
-  opacity: 0;
-  transform: translateY(20px) scale(0.95);
-}
-
-/* Responsive */
-@media (max-width: 480px) {
-  .chatbot-container {
-    bottom: 15px;
-    right: 15px;
-  }
-  
-  .chat-interface {
-    width: 320px;
-    height: 450px;
-    bottom: 70px;
-    right: -10px;
-  }
-  
-  .chat-button {
-    width: 50px;
-    height: 50px;
-  }
-  
-  .button-icon {
-    width: 20px;
-    height: 20px;
-  }
-}
 </style>
 
 
