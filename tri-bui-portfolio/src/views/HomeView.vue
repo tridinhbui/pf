@@ -883,7 +883,15 @@ const businessMindset = ref([
 ])
 
 const chaosWords = ref(['CHAOS', 'INNOVATION', 'DISRUPTION', 'REVOLUTION', 'TRANSFORMATION'])
-const randomChars = ref([])
+
+// Define a type for the characters in the matrix effect
+interface MatrixChar {
+  id: number;
+  value: string;
+}
+
+// Initialize randomChars with the correct type
+const randomChars = ref<MatrixChar[]>([]);
 
 // Generate random characters for matrix effect
 const generateRandomChars = () => {
