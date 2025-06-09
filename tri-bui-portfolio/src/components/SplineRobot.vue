@@ -24,43 +24,89 @@
         <div class="energy-ring" v-for="n in 4" :key="`ring-${n}`" :style="{ animationDelay: `${n * 0.5}s` }"></div>
       </div>
 
-      <!-- CSS Robot -->
+      <!-- Enhanced 3D Robot -->
       <div class="css-robot" :class="{ 'active': isActive }">
         <!-- Robot Head -->
         <div class="robot-head">
-          <div class="head-core"></div>
-          <div class="head-depth-layer"></div>
-          <div class="head-side-panel left-side"></div>
-          <div class="head-side-panel right-side"></div>
-          
-          <div class="antenna">
-            <div class="antenna-base"></div>
-            <div class="antenna-segment"></div>
-            <div class="antenna-tip"></div>
-            <div class="signal-pulse"></div>
+          <!-- Multi-layer 3D Head Structure -->
+          <div class="head-shell">
+            <div class="head-front"></div>
+            <div class="head-back"></div>
+            <div class="head-left"></div>
+            <div class="head-right"></div>
+            <div class="head-top"></div>
+            <div class="head-bottom"></div>
           </div>
           
-          <!-- Eyes -->
-          <div class="eyes">
-            <div class="eye left-eye">
-              <div class="eye-socket"></div>
-              <div class="pupil"></div>
-              <div class="eye-reflection"></div>
-              <div class="eye-glow"></div>
+          <!-- Advanced Head Details -->
+          <div class="head-visor">
+            <div class="visor-reflection"></div>
+            <div class="visor-scanner"></div>
+          </div>
+          
+          <div class="head-panels">
+            <div class="panel panel-left">
+              <div class="panel-line" v-for="n in 3" :key="n"></div>
             </div>
-            <div class="eye right-eye">
-              <div class="eye-socket"></div>
-              <div class="pupil"></div>
-              <div class="eye-reflection"></div>
-              <div class="eye-glow"></div>
+            <div class="panel panel-right">
+              <div class="panel-line" v-for="n in 3" :key="n"></div>
             </div>
           </div>
           
-          <!-- Mouth -->
-          <div class="mouth">
-            <div class="mouth-cavity"></div>
-            <div class="mouth-line" v-for="n in 3" :key="n"></div>
-            <div class="voice-wave" v-for="n in 5" :key="n"></div>
+          <!-- Enhanced Antenna System -->
+          <div class="antenna-system">
+            <div class="antenna-mount"></div>
+            <div class="antenna-main">
+              <div class="antenna-segment" v-for="n in 4" :key="n" :style="{ '--delay': n * 0.2 + 's' }"></div>
+            </div>
+            <div class="signal-array">
+              <div class="signal-ring" v-for="n in 5" :key="n" :style="{ '--ring-delay': n * 0.4 + 's' }"></div>
+            </div>
+            <div class="energy-orb"></div>
+          </div>
+          
+          <!-- Advanced Eyes -->
+          <div class="eye-system">
+            <div class="eye-assembly left-eye">
+              <div class="eye-housing"></div>
+              <div class="eye-lens">
+                <div class="lens-layer" v-for="n in 3" :key="n"></div>
+              </div>
+              <div class="pupil-core">
+                <div class="pupil-inner"></div>
+                <div class="scanning-beam"></div>
+              </div>
+              <div class="eye-glow-outer"></div>
+              <div class="focus-ring"></div>
+            </div>
+            <div class="eye-assembly right-eye">
+              <div class="eye-housing"></div>
+              <div class="eye-lens">
+                <div class="lens-layer" v-for="n in 3" :key="n"></div>
+              </div>
+              <div class="pupil-core">
+                <div class="pupil-inner"></div>
+                <div class="scanning-beam"></div>
+              </div>
+              <div class="eye-glow-outer"></div>
+              <div class="focus-ring"></div>
+            </div>
+          </div>
+          
+          <!-- Advanced Mouth System -->
+          <div class="mouth-system">
+            <div class="mouth-housing"></div>
+            <div class="voice-processor">
+              <div class="voice-bar" v-for="n in 7" :key="n" :style="{ '--bar-delay': n * 0.1 + 's' }"></div>
+            </div>
+            <div class="sound-waves">
+              <div class="wave-ring" v-for="n in 4" :key="n"></div>
+            </div>
+          </div>
+          
+          <!-- Head Status Lights -->
+          <div class="status-lights">
+            <div class="status-light" v-for="n in 6" :key="n" :class="['light-' + n]"></div>
           </div>
         </div>
 
@@ -370,14 +416,149 @@ onMounted(() => {
   50% { transform: translate(-50%, -50%) translateY(-10px); }
 }
 
-/* Robot Head */
+/* Enhanced 3D Robot Head */
 .robot-head {
   position: relative;
-  width: 80px;
-  height: 70px;
-  margin: 0 auto 10px;
+  width: 120px;
+  height: 100px;
+  margin: 0 auto 15px;
   transform-style: preserve-3d;
-  animation: head-3d-rotate 8s linear infinite;
+  animation: head-ultra-rotate 12s linear infinite;
+  perspective: 1000px;
+}
+
+@keyframes head-ultra-rotate {
+  0% { transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg); }
+  20% { transform: rotateY(72deg) rotateX(10deg) rotateZ(5deg); }
+  40% { transform: rotateY(144deg) rotateX(-5deg) rotateZ(-3deg); }
+  60% { transform: rotateY(216deg) rotateX(15deg) rotateZ(8deg); }
+  80% { transform: rotateY(288deg) rotateX(-10deg) rotateZ(-5deg); }
+  100% { transform: rotateY(360deg) rotateX(0deg) rotateZ(0deg); }
+}
+
+/* Multi-Layer Head Shell */
+.head-shell {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.head-front {
+  position: absolute;
+  width: 100px;
+  height: 80px;
+  background: linear-gradient(135deg, #aaaaaa, #dddddd, #888888);
+  border-radius: 20px;
+  border: 3px solid #666666;
+  transform: translateZ(25px);
+  box-shadow: 
+    inset 0 0 30px rgba(0, 0, 0, 0.3),
+    0 10px 30px rgba(0, 0, 0, 0.5),
+    0 0 50px rgba(100, 200, 255, 0.4);
+}
+
+.head-back {
+  position: absolute;
+  width: 95px;
+  height: 75px;
+  background: linear-gradient(135deg, #666666, #888888);
+  border-radius: 18px;
+  transform: translateZ(-25px);
+  left: 2.5px;
+  top: 2.5px;
+  opacity: 0.8;
+}
+
+.head-left, .head-right {
+  position: absolute;
+  width: 50px;
+  height: 80px;
+  background: linear-gradient(90deg, #777777, #999999);
+  border-radius: 15px;
+  top: 0;
+}
+
+.head-left {
+  left: -15px;
+  transform: rotateY(-90deg) translateZ(25px);
+}
+
+.head-right {
+  right: -15px;
+  transform: rotateY(90deg) translateZ(25px);
+}
+
+.head-top {
+  position: absolute;
+  width: 100px;
+  height: 50px;
+  background: linear-gradient(0deg, #999999, #bbbbbb);
+  border-radius: 20px 20px 10px 10px;
+  transform: rotateX(90deg) translateZ(25px);
+  top: -15px;
+}
+
+.head-bottom {
+  position: absolute;
+  width: 100px;
+  height: 50px;
+  background: linear-gradient(0deg, #666666, #888888);
+  border-radius: 10px 10px 20px 20px;
+  transform: rotateX(-90deg) translateZ(25px);
+  bottom: -15px;
+}
+
+/* Advanced Head Visor */
+.head-visor {
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  width: 80px;
+  height: 30px;
+  background: linear-gradient(45deg, rgba(100, 200, 255, 0.3), rgba(0, 255, 136, 0.3));
+  border-radius: 15px;
+  transform: translateZ(30px);
+  backdrop-filter: blur(2px);
+  border: 1px solid rgba(100, 200, 255, 0.5);
+  animation: visor-scan 3s ease-in-out infinite;
+}
+
+@keyframes visor-scan {
+  0%, 100% { box-shadow: 0 0 15px rgba(100, 200, 255, 0.5); }
+  50% { box-shadow: 0 0 30px rgba(0, 255, 136, 0.8); }
+}
+
+.visor-reflection {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 76px;
+  height: 10px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  border-radius: 10px;
+  animation: reflection-sweep 4s ease-in-out infinite;
+}
+
+@keyframes reflection-sweep {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.visor-scanner {
+  position: absolute;
+  bottom: 5px;
+  left: 20px;
+  width: 40px;
+  height: 2px;
+  background: #00ff88;
+  box-shadow: 0 0 10px #00ff88;
+  animation: scanner-move 2s ease-in-out infinite alternate;
+}
+
+@keyframes scanner-move {
+  0% { transform: translateX(-20px); }
+  100% { transform: translateX(20px); }
 }
 
 @keyframes head-3d-rotate {

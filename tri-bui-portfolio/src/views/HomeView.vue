@@ -158,6 +158,70 @@
       </div>
     </section>
 
+    <!-- INSANE CHAOS SECTION -->
+    <section class="section chaos-section">
+      <div class="chaos-container">
+        <!-- Chaos Background -->
+        <div class="chaos-background">
+          <div class="chaos-grid">
+            <div class="grid-chaos-line" v-for="n in 20" :key="`chaos-h-${n}`"></div>
+            <div class="grid-chaos-line vertical" v-for="n in 20" :key="`chaos-v-${n}`"></div>
+          </div>
+          
+          <!-- Flying Objects -->
+          <div class="flying-objects">
+            <div class="flying-cube" v-for="n in 15" :key="`cube-${n}`">
+              <div class="cube-face" v-for="face in 6" :key="face"></div>
+            </div>
+            <div class="flying-sphere" v-for="n in 10" :key="`sphere-${n}`">
+              <div class="sphere-core"></div>
+              <div class="sphere-ring" v-for="ring in 3" :key="ring"></div>
+            </div>
+            <div class="flying-pyramid" v-for="n in 8" :key="`pyramid-${n}`">
+              <div class="pyramid-face" v-for="face in 4" :key="face"></div>
+            </div>
+          </div>
+          
+          <!-- Wormholes -->
+          <div class="wormholes">
+            <div class="wormhole" v-for="n in 4" :key="`wormhole-${n}`">
+              <div class="wormhole-ring" v-for="ring in 8" :key="ring"></div>
+              <div class="wormhole-core"></div>
+            </div>
+          </div>
+          
+          <!-- Energy Beams -->
+          <div class="energy-beams">
+            <div class="energy-beam" v-for="n in 6" :key="`beam-${n}`">
+              <div class="beam-core"></div>
+              <div class="beam-particles">
+                <div class="beam-particle" v-for="p in 20" :key="p"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Central Chaos Message -->
+        <div class="chaos-message">
+          <div class="chaos-title">
+            <span class="chaos-word" v-for="(word, index) in chaosWords" :key="word" :style="{ '--word-delay': index * 0.2 + 's' }">
+              {{ word }}
+            </span>
+          </div>
+          <div class="chaos-subtitle">
+            Where innovation meets absolute madness
+          </div>
+        </div>
+        
+        <!-- Floating Code Matrix -->
+        <div class="code-matrix">
+          <div class="code-stream" v-for="n in 12" :key="`stream-${n}`">
+            <div class="code-char" v-for="char in randomChars" :key="char.id">{{ char.value }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Constellations Section -->
     <section class="section constellations-section" id="ventures">
       <!-- Section Cosmic Elements -->
@@ -818,6 +882,22 @@ const businessMindset = ref([
   }
 ])
 
+const chaosWords = ref(['CHAOS', 'INNOVATION', 'DISRUPTION', 'REVOLUTION', 'TRANSFORMATION'])
+const randomChars = ref([])
+
+// Generate random characters for matrix effect
+const generateRandomChars = () => {
+  const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン'
+  const result = []
+  for (let i = 0; i < 200; i++) {
+    result.push({
+      id: i,
+      value: chars[Math.floor(Math.random() * chars.length)]
+    })
+  }
+  return result
+}
+
 const blogPosts = ref([
   {
     id: 1,
@@ -878,6 +958,12 @@ const blogPosts = ref([
 onMounted(() => {
   setupAnimations()
   setupAdvancedAnimations()
+  randomChars.value = generateRandomChars()
+  
+  // Update random chars every 200ms for matrix effect
+  setInterval(() => {
+    randomChars.value = generateRandomChars()
+  }, 200)
 })
 
 const setupAdvancedAnimations = () => {
@@ -4278,5 +4364,402 @@ const setupAnimations = () => {
     border-right: none !important;
     width: auto !important;
   }
+}
+
+/* CHAOS SECTION - INSANE EFFECTS */
+.chaos-section {
+  background: radial-gradient(circle at 30% 70%, #ff0080, #000000 30%), 
+              radial-gradient(circle at 70% 30%, #0080ff, transparent 50%),
+              linear-gradient(45deg, #000000, #1a001a, #001a1a, #000000);
+  padding: 10rem 0;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  perspective: 2000px;
+}
+
+.chaos-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.chaos-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Chaos Grid */
+.chaos-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+}
+
+.grid-chaos-line {
+  position: absolute;
+  background: linear-gradient(90deg, transparent, #64c8ff, transparent);
+  height: 1px;
+  width: 100%;
+  animation: grid-chaos-horizontal 4s linear infinite;
+  filter: blur(0.5px);
+}
+
+.grid-chaos-line.vertical {
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(0deg, transparent, #00ff88, transparent);
+  animation: grid-chaos-vertical 6s linear infinite;
+}
+
+.grid-chaos-line:nth-child(odd) {
+  animation-delay: calc(var(--n, 0) * 0.2s);
+  background: linear-gradient(90deg, transparent, #ff0080, transparent);
+}
+
+.grid-chaos-line.vertical:nth-child(odd) {
+  background: linear-gradient(0deg, transparent, #ff8000, transparent);
+}
+
+@keyframes grid-chaos-horizontal {
+  0% { transform: translateY(-100vh) skewX(0deg); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateY(100vh) skewX(15deg); opacity: 0; }
+}
+
+@keyframes grid-chaos-vertical {
+  0% { transform: translateX(-100vw) skewY(0deg); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateX(100vw) skewY(-15deg); opacity: 0; }
+}
+
+/* Flying Objects */
+.flying-objects {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.flying-cube {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  transform-style: preserve-3d;
+  animation: cube-chaos 8s linear infinite;
+}
+
+.flying-cube:nth-child(odd) {
+  animation-duration: 12s;
+  animation-direction: reverse;
+}
+
+.cube-face {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(45deg, #64c8ff, #00ff88);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  opacity: 0.8;
+}
+
+.cube-face:nth-child(1) { transform: rotateY(0deg) translateZ(20px); }
+.cube-face:nth-child(2) { transform: rotateY(90deg) translateZ(20px); }
+.cube-face:nth-child(3) { transform: rotateY(180deg) translateZ(20px); }
+.cube-face:nth-child(4) { transform: rotateY(-90deg) translateZ(20px); }
+.cube-face:nth-child(5) { transform: rotateX(90deg) translateZ(20px); }
+.cube-face:nth-child(6) { transform: rotateX(-90deg) translateZ(20px); }
+
+@keyframes cube-chaos {
+  0% { 
+    transform: translate3d(-100px, 100vh, -200px) rotateX(0deg) rotateY(0deg) rotateZ(0deg); 
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { 
+    transform: translate3d(100vw, -100px, 200px) rotateX(720deg) rotateY(1080deg) rotateZ(360deg); 
+    opacity: 0;
+  }
+}
+
+.flying-sphere {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  animation: sphere-chaos 10s ease-in-out infinite;
+}
+
+.sphere-core {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 30% 30%, #ffffff, #64c8ff, #0080ff);
+  border-radius: 50%;
+  box-shadow: 0 0 30px rgba(100, 200, 255, 0.8);
+  animation: sphere-pulse 2s ease-in-out infinite;
+}
+
+.sphere-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 2px solid #00ff88;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: ring-spin 3s linear infinite;
+}
+
+.sphere-ring:nth-child(2) { width: 80px; height: 80px; margin: -40px 0 0 -40px; }
+.sphere-ring:nth-child(3) { width: 100px; height: 100px; margin: -50px 0 0 -50px; animation-direction: reverse; }
+.sphere-ring:nth-child(4) { width: 120px; height: 120px; margin: -60px 0 0 -60px; animation-duration: 4s; }
+
+@keyframes sphere-chaos {
+  0% { transform: translate3d(100vw, -50px, 0) scale(0.5); }
+  25% { transform: translate3d(75vw, 25vh, 100px) scale(1.2); }
+  50% { transform: translate3d(50vw, 75vh, -100px) scale(0.8); }
+  75% { transform: translate3d(25vw, 25vh, 150px) scale(1.5); }
+  100% { transform: translate3d(-100px, 100vh, 0) scale(0.3); }
+}
+
+@keyframes sphere-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+}
+
+@keyframes ring-spin {
+  0% { transform: rotateX(0deg) rotateY(0deg); }
+  100% { transform: rotateX(360deg) rotateY(720deg); }
+}
+
+/* Wormholes */
+.wormholes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.wormhole {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  animation: wormhole-drift 15s linear infinite;
+}
+
+.wormhole-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 3px solid rgba(100, 200, 255, 0.4);
+  border-radius: 50%;
+  animation: wormhole-spin 2s linear infinite;
+}
+
+.wormhole-ring:nth-child(1) { width: 200px; height: 200px; margin: -100px 0 0 -100px; }
+.wormhole-ring:nth-child(2) { width: 180px; height: 180px; margin: -90px 0 0 -90px; animation-delay: 0.25s; }
+.wormhole-ring:nth-child(3) { width: 160px; height: 160px; margin: -80px 0 0 -80px; animation-delay: 0.5s; }
+.wormhole-ring:nth-child(4) { width: 140px; height: 140px; margin: -70px 0 0 -70px; animation-delay: 0.75s; }
+.wormhole-ring:nth-child(5) { width: 120px; height: 120px; margin: -60px 0 0 -60px; animation-delay: 1s; }
+.wormhole-ring:nth-child(6) { width: 100px; height: 100px; margin: -50px 0 0 -50px; animation-delay: 1.25s; }
+.wormhole-ring:nth-child(7) { width: 80px; height: 80px; margin: -40px 0 0 -40px; animation-delay: 1.5s; }
+.wormhole-ring:nth-child(8) { width: 60px; height: 60px; margin: -30px 0 0 -30px; animation-delay: 1.75s; }
+
+.wormhole-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  background: radial-gradient(circle, #ffffff, #64c8ff, #000000);
+  border-radius: 50%;
+  animation: core-pulse 3s ease-in-out infinite;
+  box-shadow: 0 0 50px rgba(100, 200, 255, 1);
+}
+
+@keyframes wormhole-drift {
+  0% { transform: translate3d(-200px, 100vh, 0) rotateZ(0deg); }
+  100% { transform: translate3d(100vw, -200px, 0) rotateZ(360deg); }
+}
+
+@keyframes wormhole-spin {
+  0% { transform: rotateX(0deg) scale(1); opacity: 1; }
+  50% { transform: rotateX(180deg) scale(0.5); opacity: 0.3; }
+  100% { transform: rotateX(360deg) scale(1); opacity: 1; }
+}
+
+@keyframes core-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(2); }
+}
+
+/* Energy Beams */
+.energy-beams {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.energy-beam {
+  position: absolute;
+  width: 400px;
+  height: 8px;
+  animation: beam-sweep 6s linear infinite;
+}
+
+.beam-core {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, #00ff88, #64c8ff, #00ff88, transparent);
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.8);
+  animation: beam-intensity 2s ease-in-out infinite;
+}
+
+.beam-particles {
+  position: absolute;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  height: 28px;
+}
+
+.beam-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #64c8ff;
+  border-radius: 50%;
+  animation: particle-flow 1s linear infinite;
+}
+
+@keyframes beam-sweep {
+  0% { transform: translate3d(-100vw, 50vh, 0) rotateZ(45deg); }
+  100% { transform: translate3d(200vw, 25vh, 0) rotateZ(45deg); }
+}
+
+@keyframes beam-intensity {
+  0%, 100% { opacity: 0.6; transform: scaleY(1); }
+  50% { opacity: 1; transform: scaleY(2); }
+}
+
+@keyframes particle-flow {
+  0% { transform: translateX(0) scale(0); opacity: 0; }
+  20% { opacity: 1; transform: scale(1); }
+  80% { opacity: 1; }
+  100% { transform: translateX(400px) scale(0); opacity: 0; }
+}
+
+/* Chaos Message */
+.chaos-message {
+  position: relative;
+  z-index: 100;
+  text-align: center;
+  padding: 4rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  top: 30vh;
+}
+
+.chaos-title {
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+  perspective: 1000px;
+}
+
+.chaos-word {
+  display: inline-block;
+  margin: 0 1rem;
+  background: linear-gradient(45deg, #64c8ff, #00ff88, #ff0080, #64c8ff);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: 
+    chaos-gradient 3s ease-in-out infinite,
+    chaos-float calc(2s + var(--word-delay, 0s)) ease-in-out infinite,
+    chaos-rotate calc(4s + var(--word-delay, 0s)) linear infinite;
+  text-shadow: 
+    0 0 30px rgba(100, 200, 255, 0.5),
+    0 0 60px rgba(0, 255, 136, 0.3);
+  transform-style: preserve-3d;
+}
+
+@keyframes chaos-gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes chaos-float {
+  0%, 100% { transform: translateY(0) translateZ(0); }
+  33% { transform: translateY(-20px) translateZ(30px); }
+  66% { transform: translateY(10px) translateZ(-20px); }
+}
+
+@keyframes chaos-rotate {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+.chaos-subtitle {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 300;
+  letter-spacing: 2px;
+  animation: subtitle-glow 4s ease-in-out infinite;
+}
+
+@keyframes subtitle-glow {
+  0%, 100% { text-shadow: 0 0 20px rgba(100, 200, 255, 0.5); }
+  50% { text-shadow: 0 0 40px rgba(0, 255, 136, 0.8); }
+}
+
+/* Code Matrix */
+.code-matrix {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 50;
+}
+
+.code-stream {
+  position: absolute;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  color: #00ff88;
+  writing-mode: vertical-lr;
+  animation: matrix-fall 4s linear infinite;
+  opacity: 0.7;
+}
+
+.code-char {
+  display: block;
+  text-shadow: 0 0 5px #00ff88;
+  animation: char-flicker 0.5s ease-in-out infinite;
+}
+
+@keyframes matrix-fall {
+  0% { transform: translateY(-100vh); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
 }
 </style> 
