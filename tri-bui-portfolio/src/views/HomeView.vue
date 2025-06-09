@@ -1,262 +1,2067 @@
-<script setup lang="ts">
-import { onMounted } from 'vue'
-</script>
-
 <template>
-  <div class="home">
+  <div class="portfolio">
+    <!-- Animated Background -->
+    <AnimatedBackground />
+    
+    <!-- Navigation Bar -->
+    <NavBar />
+    
+    <!-- Magnetic Cursor -->
+    <MagneticCursor />
+    
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-950 via-gray-900 to-black">
-      <!-- Background Effects -->
-      <div class="absolute inset-0">
-        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl animate-float"></div>
-        <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-600/10 rounded-full blur-3xl animate-float" style="animation-delay: 2s;"></div>
-        <div class="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.02"%3E%3Ccircle cx="3" cy="3" r="1"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
-      </div>
+    <section class="section hero-section">
+      <div class="container">
+        <div class="hero-content">
+          <!-- Professional Background Pattern -->
+          <div class="background-pattern" ref="backgroundRef"></div>
 
-      <!-- Hero Content -->
-      <div class="relative z-10 text-center max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="animate-fade-in">
-          <h1 class="text-5xl md:text-7xl font-bold mb-6 gradient-text">
-            Bùi Đình Trí
-          </h1>
-          <p class="text-xl md:text-2xl text-gray-300 mb-4 font-light">
-            Nhà lãnh đạo trẻ • Chiến lược gia • Người kiến tạo tương lai
-          </p>
-          <p class="text-lg text-gray-400 mb-8 max-w-3xl mx-auto">
-            22 tuổi, khát vọng tạo nên những giá trị trường tồn thông qua công nghệ, tài chính, và giáo dục. 
-            Hiện tại là Corporate Finance Analyst tại Smithfield (Mỹ) và Founder của FinBud AI.
-          </p>
-          
-          <!-- Quote -->
-          <blockquote class="text-xl md:text-2xl font-medium text-white/90 mb-12 italic">
-            "Ẩn nhu tàng cương – Dĩ tĩnh chế động"
-          </blockquote>
-          
-          <!-- CTA Buttons -->
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <router-link 
-              to="/about" 
-              class="bg-white text-black px-8 py-3 rounded-lg font-medium hover:bg-gray-200 transition-all duration-300 inline-flex items-center justify-center group"
-            >
-              Khám phá hành trình
-              <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-              </svg>
-            </router-link>
-            <router-link 
-              to="/contact" 
-              class="border border-white text-white px-8 py-3 rounded-lg font-medium hover:bg-white hover:text-black transition-all duration-300"
-            >
-              Kết nối hợp tác
-            </router-link>
-          </div>
-        </div>
-      </div>
-
-      <!-- Scroll Indicator -->
-      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
-        </svg>
-      </div>
-    </section>
-
-    <!-- Vision Section -->
-    <section class="section-padding bg-gray-900">
-      <div class="container-responsive">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-5xl font-bold mb-6">Tầm nhìn & Sứ mệnh</h2>
-          <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-            Trở thành người kiến tạo hệ sinh thái tri thức – tài chính – giáo dục dành cho thế hệ trẻ Đông Nam Á
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          <div class="text-center p-8 rounded-2xl bg-gray-800/50 backdrop-blur card-hover">
-            <div class="w-16 h-16 bg-blue-600/20 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg class="w-8 h-8 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
-              </svg>
-            </div>
-            <h3 class="text-xl font-semibold mb-4">Đổi mới</h3>
-            <p class="text-gray-300">Kết hợp công nghệ AI, Machine Learning với tài chính và giáo dục để tạo ra những giải pháp tiên tiến.</p>
+          <!-- Status Badge -->
+          <div class="status-badge floating-element" ref="statusRef">
+            <div class="status-dot"></div>
+            <span>Available for opportunities</span>
           </div>
 
-          <div class="text-center p-8 rounded-2xl bg-gray-800/50 backdrop-blur card-hover">
-            <div class="w-16 h-16 bg-green-600/20 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg class="w-8 h-8 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-              </svg>
-            </div>
-            <h3 class="text-xl font-semibold mb-4">Lãnh đạo</h3>
-            <p class="text-gray-300">Xây dựng và dẫn dắt các đội nhóm đa quốc gia, tạo ra những sản phẩm có tác động xã hội tích cực.</p>
+          <!-- Main Title -->
+          <div class="hero-title-wrapper floating-element" ref="heroTitleRef">
+            <h1 class="hero-title professional-title">
+              <span class="title-main">I don't just build startups.</span>
+              <br>
+              <span class="title-sub strong-emphasis">I build ecosystems.</span>
+            </h1>
+            <p class="hero-subtitle professional-subtitle">
+              I'm a strategist and builder focused on empowering the next generation with platforms, tools, and meaningful mentorship.
+            </p>
           </div>
 
-          <div class="text-center p-8 rounded-2xl bg-gray-800/50 backdrop-blur card-hover">
-            <div class="w-16 h-16 bg-purple-600/20 rounded-full flex items-center justify-center mx-auto mb-6">
-              <svg class="w-8 h-8 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-              </svg>
-            </div>
-            <h3 class="text-xl font-semibold mb-4">Tận tâm</h3>
-            <p class="text-gray-300">Cam kết phục vụ cộng đồng và tạo ra những giá trị bền vững cho thế hệ trẻ Việt Nam và Đông Nam Á.</p>
+       
+
+          <!-- Launch Navigation -->
+          <div class="hero-nav" ref="heroNavRef">
+            <a href="#background" class="nav-link shimmer-effect">Background</a>
+            <a href="#ventures" class="nav-link shimmer-effect">Ventures</a>
+            <a href="#experience" class="nav-link shimmer-effect">Experience</a>
+            <a href="#awards" class="nav-link shimmer-effect">Awards</a>
+            <a href="#contact" class="nav-link shimmer-effect">Contact</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Achievements Highlight -->
-    <section class="section-padding bg-black">
-      <div class="container-responsive">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-5xl font-bold mb-6">Thành tựu nổi bật</h2>
-          <p class="text-xl text-gray-300">Những cột mốc quan trọng trong hành trình 22 tuổi</p>
+    <!-- Origin Story Section -->
+    <section class="section origin-section" id="background">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title" ref="originTitleRef">Background</h2>
+          <p class="section-subtitle">The foundation that shaped my entrepreneurial journey</p>
         </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div class="text-center">
-            <div class="text-4xl font-bold text-blue-400 mb-2">$225K</div>
-            <div class="text-gray-300">Học bổng tại Macalester College</div>
-          </div>
-          <div class="text-center">
-            <div class="text-4xl font-bold text-green-400 mb-2">#1</div>
-            <div class="text-gray-300">Quán quân NestQuant</div>
-          </div>
-          <div class="text-center">
-            <div class="text-4xl font-bold text-purple-400 mb-2">3+</div>
-            <div class="text-gray-300">Startup đồng sáng lập</div>
-          </div>
-          <div class="text-center">
-            <div class="text-4xl font-bold text-yellow-400 mb-2">22</div>
-            <div class="text-gray-300">Tuổi với tầm nhìn lớn</div>
+        
+        <div class="origin-content">
+          <div class="origin-grid">
+            <div class="origin-item" ref="originItem1">
+              <div class="origin-label">Launch vector</div>
+              <div class="origin-value">Hanoi ➜ Singapore (NTU exchange) ➜ Minnesota (Macalester) ➜ Virginia (Smithfield HQ)</div>
+            </div>
+            <div class="origin-item" ref="originItem2">
+              <div class="origin-label">Thrusters</div>
+              <div class="origin-value">Dual‑core B.A. in Computer Science + Quantitative Economics</div>
+            </div>
+            <div class="origin-item" ref="originItem3">
+              <div class="origin-label">Fuel</div>
+              <div class="origin-value"><strong>$230K Kofi Annan Scholarship</strong> · Dean's List 6/6 semesters</div>
+            </div>
+            <div class="origin-item" ref="originItem4">
+              <div class="origin-label">Current orbit</div>
+              <div class="origin-value">Corporate Finance Analyst, <strong>Smithfield Foods</strong> – modelling CAPEX, optimizing $1B debt stack, and steering scenario sims.</div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Featured Projects -->
-    <section class="section-padding bg-gray-900">
-      <div class="container-responsive">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-5xl font-bold mb-6">Dự án tiêu biểu</h2>
-          <p class="text-xl text-gray-300">Những sản phẩm tạo nên tác động tích cực</p>
+    <!-- Prime Directives Section -->
+    <section class="section directives-section" id="directives">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title" ref="directivesTitleRef">Core Principles</h2>
+          <p class="section-subtitle">The values that drive everything I build</p>
         </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          <div class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-900/20 to-blue-800/20 p-8 card-hover">
-            <div class="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <div class="relative z-10">
-              <h3 class="text-2xl font-bold mb-4">FinBud AI</h3>
-              <p class="text-gray-300 mb-6">Nền tảng tài chính cá nhân thông minh dành cho Gen Z, tích hợp AI để tư vấn đầu tư và quản lý tài chính.</p>
-              <div class="flex items-center text-blue-400 font-medium">
-                Tìm hiểu thêm
-                <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                </svg>
-              </div>
-            </div>
-          </div>
-
-          <div class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-900/20 to-green-800/20 p-8 card-hover">
-            <div class="absolute inset-0 bg-gradient-to-br from-green-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <div class="relative z-10">
-              <h3 class="text-2xl font-bold mb-4">YoungPreneur Academy</h3>
-              <p class="text-gray-300 mb-6">Chương trình đào tạo kỹ năng khởi nghiệp và lãnh đạo cho thế hệ trẻ Việt Nam.</p>
-              <div class="flex items-center text-green-400 font-medium">
-                Tìm hiểu thêm
-                <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                </svg>
-              </div>
-            </div>
-          </div>
-
-          <div class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-purple-900/20 to-purple-800/20 p-8 card-hover">
-            <div class="absolute inset-0 bg-gradient-to-br from-purple-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-            <div class="relative z-10">
-              <h3 class="text-2xl font-bold mb-4">Pathwise Mentorship</h3>
-              <p class="text-gray-300 mb-6">Nền tảng kết nối mentor và mentee, giúp định hướng nghề nghiệp cho sinh viên.</p>
-              <div class="flex items-center text-purple-400 font-medium">
-                Tìm hiểu thêm
-                <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="text-center mt-12">
-          <router-link 
-            to="/projects" 
-            class="inline-flex items-center bg-white text-black px-8 py-3 rounded-lg font-medium hover:bg-gray-200 transition-all duration-300 group"
-          >
-            Xem tất cả dự án
-            <svg class="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-            </svg>
-          </router-link>
-        </div>
+        
+                 <div class="directives-grid" ref="directivesRef">
+           <div class="directive-card magnetic-target hover-lift morphing-card glow-on-hover breathing-animation" v-for="directive in directives" :key="directive.num">
+             <div class="directive-number floating-number">{{ directive.num }}</div>
+             <div class="directive-content">
+               <h3 class="directive-title">{{ directive.title }}</h3>
+               <p class="directive-description">{{ directive.manifestation }}</p>
+             </div>
+             <div class="card-glow"></div>
+             <div class="card-particles">
+               <div class="card-particle" v-for="n in 5" :key="n"></div>
+             </div>
+           </div>
+         </div>
       </div>
     </section>
 
-    <!-- Call to Action -->
-    <section class="section-padding bg-gradient-to-r from-blue-900/20 to-purple-900/20">
-      <div class="container-responsive text-center">
-        <h2 class="text-4xl md:text-5xl font-bold mb-6">Kết nối & Hợp tác</h2>
-        <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-          Nếu bạn là nhà đầu tư, cố vấn, hoặc đối tác tiềm năng muốn cùng kiến tạo tương lai, 
-          hãy kết nối để chúng ta có thể tạo ra những giá trị ý nghĩa cùng nhau.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <router-link 
-            to="/contact" 
-            class="bg-white text-black px-8 py-3 rounded-lg font-medium hover:bg-gray-200 transition-all duration-300"
-          >
-            Liên hệ hợp tác
-          </router-link>
-          <a 
-            href="mailto:contact@example.com" 
-            class="border border-white text-white px-8 py-3 rounded-lg font-medium hover:bg-white hover:text-black transition-all duration-300"
-          >
-            Gửi email
+    <!-- Constellations Section -->
+    <section class="section constellations-section" id="ventures">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title" ref="constellationsTitleRef">Ventures</h2>
+          <p class="section-subtitle">Companies and platforms I've founded to empower the next generation</p>
+        </div>
+        
+                 <div class="constellations-grid" ref="constellationsRef">
+           <div class="constellation-card magnetic-target hover-lift morphing-card stellar-card ripple-effect magnetic-field" v-for="venture in ventures" :key="venture.name">
+             <div class="card-header">
+               <h3 class="venture-name glowing-text">{{ venture.name }}</h3>
+               <div class="venture-meta">
+                 <span class="venture-year pulse-badge">{{ venture.year }}</span>
+                 <span class="venture-role">{{ venture.role }}</span>
+               </div>
+             </div>
+             <div class="card-body">
+               <div class="impact-metric animated-metric">{{ venture.impact }}</div>
+             </div>
+             <div class="stellar-glow"></div>
+             <div class="constellation-lines">
+               <div class="line" v-for="n in 3" :key="n"></div>
+             </div>
+           </div>
+         </div>
+      </div>
+    </section>
+
+    <!-- Accolades Section -->
+    <section class="section accolades-section" id="awards">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title" ref="accoladesTitleRef">Awards & Recognition</h2>
+          <p class="section-subtitle">Recognition for entrepreneurial impact and academic excellence</p>
+        </div>
+        
+        <div class="accolades-timeline" ref="accoladesRef">
+          <div class="timeline-item magnetic-target" v-for="accolade in accolades" :key="accolade.title">
+            <div class="timeline-year">{{ accolade.year }}</div>
+            <div class="timeline-content">
+              <h3 class="accolade-title">{{ accolade.title }}</h3>
+              <div class="accolade-achievement">{{ accolade.achievement }}</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="trophy-link">
+          <a href="/trophies" class="elegant-link magnetic-target">
+            <span>Full trophy cabinet</span>
+            <span class="link-arrow">→</span>
           </a>
         </div>
       </div>
     </section>
+
+    <!-- Professional Orbits Section -->
+    <section class="section orbits-section" id="experience">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title" ref="orbitsTitleRef">Professional Experience</h2>
+          <p class="section-subtitle">Corporate roles building expertise in finance, strategy, and technology</p>
+        </div>
+        
+        <div class="orbits-grid" ref="orbitsRef">
+          <div class="orbit-card magnetic-target" v-for="orbit in orbits" :key="orbit.org">
+            <div class="orbit-header">
+              <h3 class="orbit-org">{{ orbit.org }}</h3>
+              <span class="orbit-year">{{ orbit.year }}</span>
+            </div>
+            <div class="orbit-content">
+              <p class="orbit-contribution">{{ orbit.contribution }}</p>
+              <div class="orbit-tech">
+                <span class="tech-label">Tech Stack:</span>
+                <span class="tech-list">{{ orbit.tech }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Future Trajectory Section -->
+    <section class="section trajectory-section" id="trajectory">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title" ref="trajectoryTitleRef">What's Next</h2>
+          <p class="section-subtitle">Upcoming ventures and initiatives in development</p>
+        </div>
+        
+        <div class="trajectory-grid" ref="trajectoryRef">
+          <div class="trajectory-card magnetic-target" v-for="item in trajectory" :key="item.num">
+            <div class="trajectory-number">{{ item.num }}</div>
+            <div class="trajectory-content">
+              <h3 class="trajectory-title">{{ item.title }}</h3>
+              <p class="trajectory-description">{{ item.description }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="roadmap-link">
+          <a href="/stellarchart" class="elegant-link magnetic-target">
+            <span>Detailed roadmap</span>
+            <span class="link-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <div class="contact-content">
+          <h2 class="section-title" ref="contactTitleRef">Get In Touch</h2>
+          
+          <div class="contact-cta">
+            <p class="contact-description">
+              Ready to build something amazing together? Let's connect and explore opportunities to create meaningful impact.
+            </p>
+            <div class="contact-buttons">
+              <a href="mailto:tbui@macalester.edu" class="contact-btn primary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+                Send Email
+              </a>
+              <a href="https://linkedin.com/in/tribuidinh" class="contact-btn secondary" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+                Connect on LinkedIn
+              </a>
+            </div>
+          </div>
+
+          <div class="quote-section" ref="quoteRef">
+            <blockquote class="elegant-quote">
+              "Don't just scale products. Scale possibility."
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer-section">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-grid">
+            <!-- Brand Column -->
+            <div class="footer-brand">
+              <h3 class="footer-logo">TRI BUI</h3>
+              <p class="footer-description">
+                Building ecosystems, empowering entrepreneurs, scaling possibility.
+              </p>
+                             <div class="footer-social">
+                 <a href="https://linkedin.com/in/tribuidinh" class="social-link" target="_blank" rel="noopener noreferrer">
+                   <svg viewBox="0 0 24 24" fill="currentColor">
+                     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                   </svg>
+                 </a>
+                 <a href="mailto:tbui@macalester.edu" class="social-link" rel="noopener noreferrer">
+                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                   </svg>
+                 </a>
+                 <a href="https://github.com/tribuidinh" class="social-link" target="_blank" rel="noopener noreferrer">
+                   <svg viewBox="0 0 24 24" fill="currentColor">
+                     <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                   </svg>
+                 </a>
+               </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="footer-links">
+              <h4 class="footer-heading">Quick Links</h4>
+              <ul class="footer-list">
+                <li><a href="#background" class="footer-link">Background</a></li>
+                <li><a href="#ventures" class="footer-link">Ventures</a></li>
+                <li><a href="#experience" class="footer-link">Experience</a></li>
+                <li><a href="#awards" class="footer-link">Awards</a></li>
+              </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="footer-contact">
+              <h4 class="footer-heading">Get In Touch</h4>
+              <div class="contact-item">
+                <span class="contact-label">Email:</span>
+                <a href="mailto:tbui@macalester.edu" class="contact-link">tbui@macalester.edu</a>
+              </div>
+              <div class="contact-item">
+                <span class="contact-label">Location:</span>
+                <span class="contact-text">Virginia, USA</span>
+              </div>
+              <div class="contact-item">
+                <span class="contact-label">Status:</span>
+                <span class="contact-text">Available for opportunities</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="footer-bottom">
+            <div class="footer-divider"></div>
+            <div class="footer-bottom-content">
+              <p class="footer-copyright">
+                © {{ new Date().getFullYear() }} Tri Bui. All rights reserved.
+              </p>
+              <p class="footer-quote">
+                "Building the future, one ecosystem at a time."
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import MagneticCursor from '@/components/MagneticCursor.vue'
+import NavBar from '@/components/NavBar.vue'
+import AnimatedBackground from '@/components/AnimatedBackground.vue'
+
+gsap.registerPlugin(ScrollTrigger)
+
+// Refs for animations
+const statusRef = ref<HTMLElement>()
+const heroTitleRef = ref<HTMLElement>()
+const heroStatsRef = ref<HTMLElement>()
+const heroNavRef = ref<HTMLElement>()
+const splineRef = ref<HTMLElement>()
+const particlesRef = ref<HTMLElement>()
+const originTitleRef = ref<HTMLElement>()
+const originItem1 = ref<HTMLElement>()
+const originItem2 = ref<HTMLElement>()
+const originItem3 = ref<HTMLElement>()
+const originItem4 = ref<HTMLElement>()
+const directivesTitleRef = ref<HTMLElement>()
+const directivesRef = ref<HTMLElement>()
+const constellationsTitleRef = ref<HTMLElement>()
+const constellationsRef = ref<HTMLElement>()
+const accoladesTitleRef = ref<HTMLElement>()
+const accoladesRef = ref<HTMLElement>()
+const orbitsTitleRef = ref<HTMLElement>()
+const orbitsRef = ref<HTMLElement>()
+const trajectoryTitleRef = ref<HTMLElement>()
+const trajectoryRef = ref<HTMLElement>()
+const contactTitleRef = ref<HTMLElement>()
+const contactRef = ref<HTMLElement>()
+const quoteRef = ref<HTMLElement>()
+
+// Data
+const directives = ref([
+  {
+    num: "01",
+    title: "Learn fast → teach faster",
+    manifestation: "300+ hours mentoring, guest‑lecturing at 4 Vietnamese HS incubators"
+  },
+  {
+    num: "02", 
+    title: "Build systems → not silos",
+    manifestation: "Architected FinBud.microservices (Node+Python, 9 modular lambdas)"
+  },
+  {
+    num: "03",
+    title: "Ambition → with empathy", 
+    manifestation: "Bootstrapped Esmart Solution, profit‑sharing 20 % w/ partner SMEs"
+  },
+  {
+    num: "04",
+    title: "Lift others → while you climb",
+    manifestation: "Pathwise alumni placed at Amazon, Deloitte, Credit Suisse"
+  }
+])
+
+const ventures = ref([
+  {
+    name: "Pathwise",
+    year: "2021",
+    role: "Founder",
+    impact: "A mentorship platform helping students land top tech & consulting jobs through 1-on-1 coaching and guided curriculum. 118 mentees with 71% internship success rate."
+  },
+  {
+    name: "CF Hub", 
+    year: "2021",
+    role: "Founder",
+    impact: "A finance bootcamp and network for Gen Z to master investment, financial modeling, and market intuition. Generated significant impact in financial literacy."
+  },
+  {
+    name: "YoungPreneur Academy",
+    year: "2021", 
+    role: "Founder",
+    impact: "Entrepreneurship education program that trained 220 students, produced 46 national competition finalists, and secured $35K in prize pools."
+  },
+  {
+    name: "FinBud AI",
+    year: "2022",
+    role: "Co-founder",
+    impact: "Personal finance AI assistant with 12K beta users, 87% Day-30 retention, and average 3.7 daily chat sessions per user."
+  },
+  {
+    name: "Esmart Solution",
+    year: "2020",
+    role: "Founder", 
+    impact: "Digital transformation consultancy for SMEs, serving 34 businesses with average 42% year-over-year online revenue growth."
+  }
+])
+
+const accolades = ref([
+  {
+    year: "2024",
+    title: "TEC National Startup Competition",
+    achievement: "🏆 Grand Champion - Unanimous decision from all 14 judges"
+  },
+  {
+    year: "2023", 
+    title: "NestQuant Quantitative Finance Tournament",
+    achievement: "🥇 Winner - Developed trading strategy with 3.1 Sharpe ratio"
+  },
+  {
+    year: "2022",
+    title: "Nielsen IQ Business Case Competition",
+    achievement: "🥈 Runner-up - Designed DTC transformation strategy for CPG brands"
+  },
+  {
+    year: "2022",
+    title: "Battle of Minds Business Hackathon",
+    achievement: "🥈 Runner-up - Innovative fintech solution development"
+  },
+  {
+    year: "2021",
+    title: "MacStartup Grant",
+    achievement: "💡 $7,000 funding for student entrepreneurship initiatives"
+  },
+  {
+    year: "2017",
+    title: "World Mathematics Team Championship",
+    achievement: "🥇 Gold Medal - International mathematics competition"
+  }
+])
+
+const orbits = ref([
+  {
+    org: "Blackstone → Revantage",
+    year: "2024", 
+    contribution: "Valuated 15 CRE assets ($350M) · built Monte‑Carlo rent stress‑test · mitigated $1.5M downside",
+    tech: "Python (pandas, NumPy), Argus, Power BI"
+  },
+  {
+    org: "Deloitte SEA",
+    year: "2023",
+    contribution: "Led COSO/ Basel III gap‑analysis for 2 banks · cut op‑risk events 20%",
+    tech: "SQL, Tableau, Oracle GRC"
+  },
+  {
+    org: "Caprae Private Equity", 
+    year: "2022",
+    contribution: "Diligenced 7 climate‑tech targets (< Series B) · 2 term‑sheets issued",
+    tech: "PitchBook, VCIO, DCF in Excel"
+  },
+  {
+    org: "Daikin NA / DetectAuto / Newwave",
+    year: "2021‑22",
+    contribution: "Deployed computer‑vision POCs, set up CI/CD pipelines", 
+    tech: "Python, TensorFlow, AWS Lambda"
+  }
+])
+
+const trajectory = ref([
+  {
+    num: "1️⃣",
+    title: "AI × Finance OS",
+    description: "democratise robo‑advice for ASEAN Gen Z"
+  },
+  {
+    num: "2️⃣", 
+    title: "Emerging‑Market Launchpad",
+    description: "bridge US capital → SEA founders"
+  },
+  {
+    num: "3️⃣",
+    title: "Knowledge Hyper‑Lanes",
+    description: "tokenised mentor credits across borders"
+  }
+])
 
 onMounted(() => {
-  // Add any initialization logic here
+  setupAnimations()
+  setupAdvancedAnimations()
 })
+
+const setupAdvancedAnimations = () => {
+  // Particles animation
+  if (particlesRef.value) {
+    const particles = particlesRef.value.querySelectorAll('.particle')
+    particles.forEach((particle: Element, index: number) => {
+      gsap.set(particle, {
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        scale: Math.random() * 0.5 + 0.5,
+        opacity: Math.random() * 0.5 + 0.3
+      })
+      
+      gsap.to(particle, {
+        y: '-=20',
+        duration: 2 + Math.random() * 2,
+        repeat: -1,
+        yoyo: true,
+        ease: 'power2.inOut',
+        delay: index * 0.1
+      })
+    })
+  }
+
+  // Enhanced hover effects
+  document.querySelectorAll('.hover-lift').forEach(element => {
+    element.addEventListener('mouseenter', () => {
+      gsap.to(element, { y: -10, scale: 1.05, duration: 0.3, ease: 'power2.out' })
+    })
+    
+    element.addEventListener('mouseleave', () => {
+      gsap.to(element, { y: 0, scale: 1, duration: 0.3, ease: 'power2.out' })
+    })
+  })
+
+  // Floating elements parallax
+  gsap.utils.toArray('.floating-element').forEach((element: any) => {
+    gsap.to(element, {
+      y: -30,
+      scrollTrigger: {
+        trigger: element,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 1
+      }
+    })
+  })
+}
+
+const setupAnimations = () => {
+  // Hero animation timeline
+  const heroTl = gsap.timeline()
+  
+  if (statusRef.value) {
+    heroTl.from(statusRef.value, {
+      opacity: 0,
+      y: 30,
+      duration: 0.8,
+      ease: "power3.out"
+    })
+  }
+  
+  if (heroTitleRef.value) {
+    heroTl.from(heroTitleRef.value, {
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: "power3.out"
+    }, "-=0.5")
+  }
+  
+  if (heroStatsRef.value) {
+    heroTl.from(heroStatsRef.value.children, {
+      opacity: 0,
+      y: 30,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: "power3.out"
+    }, "-=0.3")
+  }
+  
+  if (heroNavRef.value) {
+    heroTl.from(heroNavRef.value.children, {
+      opacity: 0,
+      y: 20,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: "power3.out"
+    }, "-=0.2")
+  }
+
+  // Section animations
+  const sections = [
+    { ref: originTitleRef, items: [originItem1, originItem2, originItem3, originItem4] },
+    { ref: directivesTitleRef, selector: '.directives-grid' },
+    { ref: constellationsTitleRef, selector: '.constellations-grid' },
+    { ref: accoladesTitleRef, selector: '.accolades-timeline' },
+    { ref: orbitsTitleRef, selector: '.orbits-grid' },
+    { ref: trajectoryTitleRef, selector: '.trajectory-grid' },
+    { ref: contactTitleRef, selector: '.contact-grid' }
+  ]
+
+  sections.forEach(section => {
+    if (section.ref.value) {
+      // Animate section title
+      ScrollTrigger.create({
+        trigger: section.ref.value,
+        start: "top 80%",
+        animation: gsap.from(section.ref.value, {
+          opacity: 0,
+          y: 30,
+          duration: 0.8,
+          ease: "power3.out"
+        })
+      })
+
+      // Animate content
+      if (section.items) {
+        // For origin items
+        section.items.forEach((item, index) => {
+          if (item.value) {
+            ScrollTrigger.create({
+              trigger: item.value,
+              start: "top 85%",
+              animation: gsap.from(item.value, {
+                opacity: 0,
+                x: -30,
+                duration: 0.6,
+                delay: index * 0.1,
+                ease: "power3.out"
+              })
+            })
+          }
+        })
+      } else if (section.selector) {
+        // For other sections
+        const content = section.ref.value.parentElement?.querySelector(section.selector)
+        if (content) {
+          ScrollTrigger.create({
+            trigger: content,
+            start: "top 80%",
+            animation: gsap.from(content.children, {
+              opacity: 0,
+              y: 20,
+              duration: 0.6,
+              stagger: 0.1,
+              ease: "power3.out"
+            })
+          })
+        }
+      }
+    }
+  })
+
+  // Quote animation
+  if (quoteRef.value) {
+    ScrollTrigger.create({
+      trigger: quoteRef.value,
+      start: "top 80%",
+      animation: gsap.from(quoteRef.value, {
+        opacity: 0,
+        scale: 0.95,
+        duration: 1,
+        ease: "back.out(1.7)"
+      })
+    })
+  }
+}
 </script>
 
 <style scoped>
-.home {
+/* BASE STYLES */
+.portfolio {
+  background: #ffffff;
+  color: #000000;
+  min-height: 100vh;
+  font-family: var(--font-family-primary);
   line-height: 1.6;
 }
 
-.gradient-text {
-  background: linear-gradient(135deg, #ffffff 0%, #a8a8a8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section {
+  padding: 8rem 0;
+  position: relative;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 6rem;
+}
+
+.section-title {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.section-subtitle {
+  font-size: 1.25rem;
+  color: #666666;
+  font-style: italic;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* HERO SECTION */
+.hero-section {
+  padding: 12rem 0 8rem;
+  text-align: center;
+  background: linear-gradient(135deg, #fafafa 0%, #ffffff 100%);
+  border-bottom: 1px solid #e5e5e5;
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+/* PROFESSIONAL BACKGROUND */
+.background-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0.05;
+  pointer-events: none;
+  background-image: 
+    radial-gradient(circle at 25% 25%, #000000 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, #000000 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: 0 0, 25px 25px;
+}
+
+/* FLOATING ELEMENTS */
+.floating-element {
+  position: relative;
+  z-index: 10;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 2rem;
+  margin-bottom: 3rem;
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+  color: #495057;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background: #28a745;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(40, 167, 69, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); }
+}
+
+/* ADVANCED ANIMATIONS */
+.rotating {
+  animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.typewriter {
+  overflow: hidden;
+  border-right: 3px solid #000000;
+  white-space: nowrap;
+  animation: typewriter 4s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: #000000; }
+}
+
+.glitch-text {
+  position: relative;
+}
+
+.glitch-text:before,
+.glitch-text:after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+.pulse {
+  animation: pulse-scale 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulse-scale {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
+}
+
+.fade-in {
+  animation: fadeInUp 1s ease-out 1s both;
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-up {
+  animation: slideUp 1s ease-out 1.5s both;
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* HOVER EFFECTS */
+.hover-lift {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* COUNTER ANIMATIONS */
+.counter-animation {
+  font-variant-numeric: tabular-nums;
+}
+
+/* STAT GLOW EFFECTS */
+.stat-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.3s ease;
+  pointer-events: none;
+}
+
+.stat-item:hover .stat-glow {
+  transform: translate(-50%, -50%) scale(1.2);
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: var(--font-weight-bold);
+  margin: 0 0 2rem;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.professional-title .title-main {
+  display: block;
+  font-weight: var(--font-weight-medium);
+  color: #333333;
+}
+
+.professional-title .strong-emphasis {
+  display: block;
+  font-weight: var(--font-weight-bold);
+  color: #000000;
+  margin-top: 0.5rem;
+}
+
+.galaxy-icon {
+  font-size: 0.8em;
+}
+
+.title-separator {
+  color: #666666;
+  font-weight: var(--font-weight-regular);
+}
+
+.title-sub {
+  color: #333333;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+  color: #666666;
+  font-style: italic;
+  margin-bottom: 4rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  max-width: 600px;
+  margin: 0 auto 4rem;
+  padding: 3rem 0;
+  border-top: 1px solid #e9ecef;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.stat-item {
+  text-align: center;
+  position: relative;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-family-mono);
+  color: #000000;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: #666666;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.hero-nav {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+}
+
+.nav-link {
+  color: #000000;
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  padding: 1rem 2rem;
+  border: 1px solid #dee2e6;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  font-size: 0.875rem;
+  letter-spacing: 0.025em;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link:hover {
+  background: #000000;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ORIGIN SECTION */
+.origin-section {
+  background: #fafafa;
+}
+
+.origin-grid {
+  display: grid;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.origin-item {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 3rem;
+  padding: 2.5rem;
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.origin-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.origin-label {
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-family-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.875rem;
+  color: #495057;
+}
+
+.origin-value {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: #212529;
+}
+
+/* DIRECTIVES SECTION */
+.directives-section {
+  background: #ffffff;
+}
+
+.directives-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.directive-card {
+  background: #fafafa;
+  border: 1px solid #e9ecef;
+  border-radius: 1rem;
+  padding: 2.5rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.directive-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-color: #000000;
+}
+
+/* MORPHING CARDS */
+.morphing-card {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.morphing-card:hover {
+  transform: translateY(-8px) rotateX(5deg) rotateY(5deg);
+}
+
+/* FLOATING NUMBERS */
+.floating-number {
+  animation: float 3s ease-in-out infinite;
 }
 
 @keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* CARD GLOW */
+.card-glow {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, #000000, #333333, #666666, #000000);
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background-size: 400% 400%;
+  animation: gradient-shift 4s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.directive-card:hover .card-glow {
+  opacity: 0.6;
+}
+
+/* CARD PARTICLES */
+.card-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.card-particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #333333;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card-particle:nth-child(1) { top: 20%; left: 20%; animation-delay: 0s; }
+.card-particle:nth-child(2) { top: 80%; left: 80%; animation-delay: 0.5s; }
+.card-particle:nth-child(3) { top: 60%; left: 30%; animation-delay: 1s; }
+.card-particle:nth-child(4) { top: 30%; left: 70%; animation-delay: 1.5s; }
+.card-particle:nth-child(5) { top: 70%; left: 50%; animation-delay: 2s; }
+
+.directive-card:hover .card-particle {
+  opacity: 0.8;
+  animation: particle-float 2s ease-in-out infinite;
+}
+
+@keyframes particle-float {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-15px) scale(1.2); }
+}
+
+/* SHIMMER EFFECTS */
+.shimmer-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-effect::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s;
+}
+
+.shimmer-effect:hover::before {
+  left: 100%;
+}
+
+/* GLOW EFFECTS */
+.glow-on-hover {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.glow-on-hover:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+/* RIPPLE EFFECT */
+.ripple-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-effect::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.1);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.ripple-effect:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* BREATHING ANIMATION */
+.breathing-animation {
+  animation: breathe 3s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+/* MAGNETIC FIELD EFFECT */
+.magnetic-field {
+  position: relative;
+}
+
+.magnetic-field::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: linear-gradient(45deg, transparent, rgba(0, 0, 0, 0.05), transparent);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.magnetic-field:hover::before {
+  opacity: 1;
+  animation: rotate 2s linear infinite;
+}
+
+/* HOLOGRAPHIC EFFECT */
+.holographic {
+  position: relative;
+  background: linear-gradient(45deg, #ffffff 25%, transparent 25%, transparent 75%, #ffffff 75%);
+  background-size: 4px 4px;
+  background-position: 0 0, 2px 2px;
+  animation: hologram 2s linear infinite;
+}
+
+@keyframes hologram {
+  0% { background-position: 0 0, 2px 2px; }
+  100% { background-position: 4px 4px, 6px 6px; }
+}
+
+.directive-number {
+  font-size: 3rem;
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-family-mono);
+  color: #e9ecef;
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  line-height: 1;
+}
+
+.directive-content {
+  position: relative;
+  z-index: 2;
+}
+
+.directive-title {
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 1rem;
+  color: #212529;
+}
+
+.directive-description {
+  color: #495057;
+  line-height: 1.6;
+}
+
+/* CONSTELLATIONS SECTION */
+.constellations-section {
+  background: #fafafa;
+}
+
+.constellations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.constellation-card {
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 1rem;
+  padding: 2.5rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.constellation-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: #000000;
+}
+
+/* STELLAR CARD EFFECTS */
+.stellar-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.glowing-text {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.stellar-card:hover .glowing-text {
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.pulse-badge {
+  position: relative;
+  overflow: hidden;
+}
+
+.pulse-badge::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.5s;
+}
+
+.stellar-card:hover .pulse-badge::before {
+  left: 100%;
+}
+
+.animated-metric {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.stellar-card:hover .animated-metric {
+  transform: scale(1.02);
+}
+
+/* STELLAR GLOW */
+.stellar-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.5s ease;
+  z-index: -1;
+}
+
+.stellar-card:hover .stellar-glow {
+  width: 120%;
+  height: 120%;
+}
+
+/* CONSTELLATION LINES */
+.constellation-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.constellation-lines .line {
+  position: absolute;
+  background: #000000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.constellation-lines .line:nth-child(1) {
+  top: 20%;
+  left: 10%;
+  width: 30px;
+  height: 1px;
+  transform: rotate(45deg);
+}
+
+.constellation-lines .line:nth-child(2) {
+  top: 60%;
+  right: 10%;
+  width: 25px;
+  height: 1px;
+  transform: rotate(-30deg);
+}
+
+.constellation-lines .line:nth-child(3) {
+  bottom: 20%;
+  left: 30%;
+  width: 20px;
+  height: 1px;
+  transform: rotate(15deg);
+}
+
+.stellar-card:hover .constellation-lines .line {
+  opacity: 0.3;
+  animation: line-draw 1s ease-out;
+}
+
+@keyframes line-draw {
+  0% {
+    width: 0;
   }
-  50% {
-    transform: translateY(-20px);
+  100% {
+    width: 30px;
   }
 }
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
+.card-header {
+  margin-bottom: 1.5rem;
 }
-</style>
+
+.venture-name {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 0.75rem;
+  color: #212529;
+}
+
+.venture-meta {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.venture-year {
+  background: #000000;
+  color: #ffffff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-family-mono);
+}
+
+.venture-role {
+  color: #666666;
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-medium);
+}
+
+.impact-metric {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #495057;
+  border-left: 4px solid #000000;
+}
+
+/* ACCOLADES SECTION */
+.accolades-section {
+  background: #ffffff;
+}
+
+.accolades-timeline {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.accolades-timeline::before {
+  content: '';
+  position: absolute;
+  left: 60px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #e9ecef;
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.timeline-item:hover {
+  transform: translateX(10px);
+}
+
+.timeline-year {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-family-mono);
+  color: #000000;
+  text-align: center;
+  position: relative;
+}
+
+.timeline-year::after {
+  content: '';
+  position: absolute;
+  right: -1.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  background: #000000;
+  border-radius: 50%;
+  border: 3px solid #ffffff;
+  box-shadow: 0 0 0 2px #e9ecef;
+}
+
+.timeline-content {
+  background: #fafafa;
+  padding: 2rem;
+  border-radius: 1rem;
+  border: 1px solid #e9ecef;
+  transition: all 0.3s ease;
+}
+
+.timeline-item:hover .timeline-content {
+  border-color: #000000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.accolade-title {
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 0.75rem;
+  color: #212529;
+}
+
+.accolade-achievement {
+  font-size: 1.125rem;
+  color: #495057;
+}
+
+/* ORBITS SECTION */
+.orbits-section {
+  background: #fafafa;
+}
+
+.orbits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.orbit-card {
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 1rem;
+  padding: 2.5rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.orbit-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: #000000;
+}
+
+.orbit-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.orbit-org {
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-bold);
+  color: #212529;
+}
+
+.orbit-year {
+  background: #f8f9fa;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-family-mono);
+  color: #495057;
+}
+
+.orbit-contribution {
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  color: #495057;
+}
+
+.orbit-tech {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border-left: 3px solid #000000;
+}
+
+.tech-label {
+  font-weight: var(--font-weight-semibold);
+  color: #212529;
+  margin-right: 0.5rem;
+}
+
+.tech-list {
+  color: #495057;
+  font-family: var(--font-family-mono);
+  font-size: 0.875rem;
+}
+
+/* TRAJECTORY SECTION */
+.trajectory-section {
+  background: #ffffff;
+}
+
+.trajectory-grid {
+  display: grid;
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.trajectory-card {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  align-items: center;
+  background: #fafafa;
+  padding: 2.5rem;
+  border-radius: 1rem;
+  border: 1px solid #e9ecef;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.trajectory-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: #000000;
+}
+
+.trajectory-number {
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+.trajectory-title {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 0.5rem;
+  color: #212529;
+}
+
+.trajectory-description {
+  color: #666666;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* CONTACT SECTION */
+.contact-section {
+  background: #fafafa;
+  text-align: center;
+}
+
+.contact-cta {
+  max-width: 700px;
+  margin: 4rem auto;
+}
+
+.contact-description {
+  font-size: 1.25rem;
+  color: #666666;
+  line-height: 1.6;
+  margin-bottom: 3rem;
+  font-style: italic;
+}
+
+.contact-buttons {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  font-weight: var(--font-weight-semibold);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.contact-btn.primary {
+  background: #000000;
+  color: #ffffff;
+  border-color: #000000;
+}
+
+.contact-btn.primary:hover {
+  background: #333333;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.contact-btn.secondary {
+  background: #ffffff;
+  color: #000000;
+  border-color: #e9ecef;
+}
+
+.contact-btn.secondary:hover {
+  background: #000000;
+  color: #ffffff;
+  border-color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.quote-section {
+  margin-top: 6rem;
+  padding: 4rem 0;
+  border-top: 1px solid #e9ecef;
+}
+
+.elegant-quote {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-style: italic;
+  font-weight: var(--font-weight-medium);
+  color: #212529;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.4;
+  quotes: """ """ "'" "'";
+}
+
+.elegant-quote:before {
+  content: open-quote;
+  color: #dee2e6;
+  font-size: 1.5em;
+  margin-right: 0.1em;
+}
+
+.elegant-quote:after {
+  content: close-quote;
+  color: #dee2e6;
+  font-size: 1.5em;
+  margin-left: 0.1em;
+}
+
+/* ELEGANT LINKS */
+.elegant-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #000000;
+  text-decoration: none;
+  font-weight: var(--font-weight-medium);
+  padding: 1rem 2rem;
+  border: 1px solid #dee2e6;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.elegant-link:hover {
+  background: #000000;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.link-arrow {
+  transition: transform 0.3s ease;
+}
+
+.elegant-link:hover .link-arrow {
+  transform: translateX(4px);
+}
+
+.trophy-link,
+.roadmap-link {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+/* FOOTER SECTION */
+.footer-section {
+  background: #000000;
+  color: #ffffff;
+  padding: 4rem 0 2rem;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 4rem;
+  margin-bottom: 3rem;
+}
+
+.footer-brand {
+  max-width: 400px;
+}
+
+.footer-logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.footer-description {
+  color: #cccccc;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.footer-social {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: #cccccc;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  background: #ffffff;
+  color: #000000;
+  transform: translateY(-2px);
+}
+
+.social-link svg {
+  width: 20px;
+  height: 20px;
+}
+
+.footer-heading {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+}
+
+.footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-list li {
+  margin-bottom: 0.75rem;
+}
+
+.footer-link {
+  color: #cccccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+  color: #ffffff;
+}
+
+.contact-item {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.contact-label {
+  font-size: 0.875rem;
+  color: #999999;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.contact-link {
+  color: #cccccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+  color: #ffffff;
+}
+
+.contact-text {
+  color: #cccccc;
+}
+
+.footer-bottom {
+  margin-top: 3rem;
+}
+
+.footer-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin-bottom: 2rem;
+}
+
+.footer-bottom-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-copyright {
+  color: #999999;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.footer-quote {
+  color: #cccccc;
+  font-style: italic;
+  margin: 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .section {
+    padding: 4rem 0;
+  }
+  
+  .hero-section {
+    padding: 6rem 0 4rem;
+  }
+  
+  .hero-title {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .hero-stats {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 300px;
+  }
+  
+  .hero-nav {
+    gap: 1rem;
+  }
+  
+  .nav-link {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.75rem;
+  }
+  
+  .origin-item,
+  .timeline-item {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .timeline-year::after {
+    display: none;
+  }
+  
+  .accolades-timeline::before {
+    display: none;
+  }
+  
+  .directives-grid,
+  .constellations-grid,
+  .orbits-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .trajectory-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .contact-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .contact-btn {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .footer-bottom-content {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 1rem;
+  }
+  
+  .section-header {
+    margin-bottom: 4rem;
+  }
+  
+  .origin-item,
+  .directive-card,
+  .constellation-card,
+  .orbit-card,
+  .trajectory-card {
+    padding: 1.5rem;
+  }
+}
+</style> 

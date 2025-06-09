@@ -461,6 +461,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
+@reference 'tailwindcss';
 .experience {
   line-height: 1.6;
 }

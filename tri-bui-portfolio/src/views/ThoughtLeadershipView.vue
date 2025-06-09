@@ -188,6 +188,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
+@reference 'tailwindcss';
 .thought-leadership {
   line-height: 1.6;
 }

@@ -13,6 +13,7 @@
 </template>
 
 <style scoped>
+@reference 'tailwindcss';
 .item {
   margin-top: 2rem;
   display: flex;

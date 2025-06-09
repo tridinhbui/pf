@@ -256,6 +256,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
+@reference 'tailwindcss';
 .contact {
   line-height: 1.6;
 }
