@@ -3,6 +3,37 @@
     <!-- Animated Background -->
     <AnimatedBackground />
     
+    <!-- Galaxy Background -->
+    <div class="galaxy-background">
+      <div class="cosmic-nebula">
+        <div class="nebula-cloud" v-for="n in 8" :key="`nebula-${n}`"></div>
+      </div>
+      <div class="stellar-field">
+        <div class="star-layer">
+          <div class="star" v-for="n in 200" :key="`star-${n}`"></div>
+        </div>
+        <div class="constellation-lines">
+          <svg class="constellation-svg" viewBox="0 0 1920 1080">
+            <g class="constellation-group" v-for="n in 5" :key="`constellation-${n}`">
+              <line class="constellation-line" x1="100" y1="100" x2="200" y2="150" />
+              <line class="constellation-line" x1="200" y1="150" x2="300" y2="120" />
+              <line class="constellation-line" x1="300" y1="120" x2="380" y2="180" />
+              <circle class="constellation-star" cx="100" cy="100" r="2" />
+              <circle class="constellation-star" cx="200" cy="150" r="3" />
+              <circle class="constellation-star" cx="300" cy="120" r="2" />
+              <circle class="constellation-star" cx="380" cy="180" r="4" />
+            </g>
+          </svg>
+        </div>
+      </div>
+      <div class="cosmic-dust">
+        <div class="dust-particle" v-for="n in 100" :key="`dust-${n}`"></div>
+      </div>
+      <div class="quantum-field">
+        <div class="quantum-dot" v-for="n in 50" :key="`quantum-${n}`"></div>
+      </div>
+    </div>
+    
     <!-- Mystical Overlay Effects -->
     <div class="mystical-overlay">
       <!-- Floating Magical Shapes -->
@@ -25,6 +56,57 @@
         <div class="energy-wave" v-for="n in 6" :key="`wave-${n}`"></div>
       </div>
     </div>
+
+    <!-- Welcome Popup -->
+    <div class="welcome-popup" v-if="showWelcomePopup" @click="closeWelcomePopup">
+      <div class="popup-overlay"></div>
+      <div class="popup-content" @click.stop>
+        <div class="popup-header">
+          <div class="hologram-effect">
+            <div class="hologram-text">WELCOME TO THE ECOSYSTEM</div>
+            <div class="hologram-scan"></div>
+          </div>
+        </div>
+        
+        <div class="popup-body">
+          <div class="matrix-rain">
+            <div class="rain-column" v-for="n in 20" :key="n">
+              <span v-for="char in matrixChars" :key="char">{{ char }}</span>
+            </div>
+          </div>
+          
+          <div class="welcome-message">
+            <h2 class="cosmic-title">
+              <span class="glitch-effect" data-text="TRI BUI">TRI BUI</span>
+            </h2>
+            <p class="subtitle">Ecosystem Builder • Strategic Innovator • Future Creator</p>
+            <div class="tech-specs">
+              <div class="spec-line">
+                <span class="label">STATUS:</span>
+                <span class="value typing-effect">ONLINE</span>
+              </div>
+              <div class="spec-line">
+                <span class="label">MODE:</span>
+                <span class="value typing-effect">INNOVATION</span>
+              </div>
+              <div class="spec-line">
+                <span class="label">MISSION:</span>
+                <span class="value typing-effect">TRANSFORMING FUTURES</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="popup-footer">
+          <button class="enter-btn" @click="closeWelcomePopup">
+            <span>ENTER THE ECOSYSTEM</span>
+            <div class="btn-glow"></div>
+          </button>
+        </div>
+        
+        <button class="close-btn" @click="closeWelcomePopup">×</button>
+      </div>
+    </div>
     
     <!-- Navigation Bar -->
     <NavBar />
@@ -33,7 +115,24 @@
     <MagneticCursor />
     
     <!-- Hero Section -->
-    <section class="section hero-section">
+    <section class="section hero-section galaxy-section">
+      <div class="visionary-overlay">
+        <div class="holographic-grid">
+          <div class="grid-line" v-for="n in 20" :key="`h-grid-${n}`"></div>
+          <div class="grid-line vertical" v-for="n in 20" :key="`v-grid-${n}`"></div>
+        </div>
+        <div class="data-streams">
+          <div class="data-stream" v-for="n in 6" :key="`stream-${n}`">
+            <div class="data-packet" v-for="p in 8" :key="`packet-${p}`"></div>
+          </div>
+        </div>
+        <div class="cosmic-portals">
+          <div class="portal" v-for="n in 3" :key="`portal-${n}`">
+            <div class="portal-ring" v-for="ring in 5" :key="ring"></div>
+            <div class="portal-core"></div>
+          </div>
+        </div>
+      </div>
       <div class="container">
         <div class="hero-content">
           <!-- Professional Background Pattern -->
@@ -53,10 +152,10 @@
               <div class="profile-glow"></div>
             </div>
             
-            <h1 class="hero-title professional-title cosmic-text">
-              <span class="title-main glitch-text" data-text="I don't just build startups.">I don't just build startups.</span>
+            <h1 class="hero-title professional-title cosmic-text galaxy-title">
+              <span class="title-main glitch-text shake-interval visionary-text" data-text="I don't just build startups.">I don't just build startups.</span>
               <br>
-              <span class="title-sub strong-emphasis typewriter-text">I build ecosystems.</span>
+              <span class="title-sub strong-emphasis typewriter-text galactic-emphasis">I build ecosystems.</span>
             </h1>
             <p class="hero-subtitle professional-subtitle">
               I'm a strategist and builder focused on creating everlasting impact through innovative platforms that reshape how the next generation thinks, builds, and conquers.
@@ -106,7 +205,7 @@
           <div class="journey-image-container">
             <img src="@/assets/tri2.png" alt="Educational Journey - From Hanoi to Global Impact" class="journey-image" />
             <div class="journey-overlay">
-              <span class="journey-caption">Hanoi → Minnesota → Singapore → Chicago (Blackstone-Revantage) → Virginia</span>
+              <span class="journey-caption">Hanoi → Minnesota → Singapore → Chicago → Virginia</span>
             </div>
           </div>
         </div>
@@ -115,7 +214,7 @@
           <div class="origin-grid">
             <div class="origin-item" ref="originItem1">
               <div class="origin-label">Launch vector</div>
-              <div class="origin-value">Hanoi ➜ Minnesota (Macalester) ➜ Singapore (NTU exchange) ➜ Chicago (Blackstone-Revantage) ➜ Virginia (Smithfield HQ)</div>
+              <div class="origin-value">Hanoi ➜ Minnesota (Macalester) ➜ Singapore (NTU exchange) ➜ Chicago ➜ Virginia (Smithfield HQ)</div>
             </div>
             <div class="origin-item" ref="originItem2">
               <div class="origin-label">Thrusters</div>
@@ -155,6 +254,68 @@
              </div>
            </div>
          </div>
+      </div>
+    </section>
+
+    <!-- INSANE BUSINESS TRANSFORMATION SECTION -->
+    <section class="section transformation-chaos-section">
+      <div class="transformation-container">
+        <!-- Chaotic Background Effects -->
+        <div class="chaos-bg">
+          <div class="lightning-bolts">
+            <div class="lightning" v-for="n in 12" :key="`lightning-${n}`"></div>
+          </div>
+          <div class="data-explosions">
+            <div class="explosion" v-for="n in 8" :key="`explosion-${n}`">
+              <div class="explosion-ring" v-for="ring in 5" :key="ring"></div>
+            </div>
+          </div>
+          <div class="fractal-patterns">
+            <div class="fractal" v-for="n in 6" :key="`fractal-${n}`">
+              <div class="fractal-branch" v-for="branch in 8" :key="branch"></div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Central Transformation Core -->
+        <div class="transformation-core">
+          <div class="core-title">
+            <span class="chaos-text" data-text="BUSINESS">BUSINESS</span>
+            <span class="chaos-text" data-text="TRANSFORMATION">TRANSFORMATION</span>
+            <span class="chaos-text" data-text="REVOLUTION">REVOLUTION</span>
+          </div>
+          
+          <div class="transformation-manifesto">
+            <div class="manifesto-line">
+              <span class="keyword">DISRUPT</span> → Traditional Models
+            </div>
+            <div class="manifesto-line">
+              <span class="keyword">REBUILD</span> → Sustainable Systems
+            </div>
+            <div class="manifesto-line">
+              <span class="keyword">ACCELERATE</span> → Future Growth
+            </div>
+          </div>
+        </div>
+        
+        <!-- Transformation Pillars -->
+        <div class="transformation-pillars">
+          <div class="pillar" v-for="(pillar, index) in transformationPillars" :key="pillar.id">
+            <div class="pillar-energy">
+              <div class="energy-core"></div>
+              <div class="energy-pulse" v-for="n in 3" :key="n"></div>
+            </div>
+            <div class="pillar-content">
+              <div class="pillar-icon">{{ pillar.icon }}</div>
+              <h3 class="pillar-title">{{ pillar.title }}</h3>
+              <p class="pillar-description">{{ pillar.description }}</p>
+              <div class="pillar-impact">{{ pillar.impact }}</div>
+            </div>
+            <div class="pillar-chaos-overlay">
+              <div class="chaos-particle" v-for="n in 15" :key="n"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -215,8 +376,8 @@
         
         <!-- Floating Code Matrix -->
         <div class="code-matrix">
-          <div class="code-stream" v-for="n in 12" :key="`stream-${n}`">
-            <div class="code-char" v-for="char in randomChars" :key="char.id">{{ char.value }}</div>
+          <div class="code-stream" v-for="n in 8" :key="`stream-${n}`">
+            <div class="code-char" v-for="char in randomChars.slice(0, 15)" :key="char.id">{{ char.value }}</div>
           </div>
         </div>
       </div>
@@ -654,6 +815,21 @@
         </div>
       </div>
     </footer>
+
+    <!-- Enhanced Starry Background with Multiple Particle Effects -->
+    <div class="starry-background">
+      <!-- Main stars -->
+      <div class="star" v-for="n in 80" :key="`star-${n}`" :style="generateStarStyle()"></div>
+      
+      <!-- Floating particles -->
+      <div class="floating-particle" v-for="n in 30" :key="`particle-${n}`" :style="generateParticleStyle()"></div>
+      
+      <!-- Nebula clouds -->
+      <div class="nebula-cloud" v-for="n in 5" :key="`nebula-${n}`" :style="generateNebulaStyle()"></div>
+      
+      <!-- Shooting stars -->
+      <div class="shooting-star" v-for="n in 3" :key="`shooting-${n}`" :style="generateShootingStarStyle()"></div>
+    </div>
   </div>
 </template>
 
@@ -879,10 +1055,79 @@ const businessMindset = ref([
     title: "Scalable Infrastructure",
     description: "Design systems and processes that can grow exponentially without proportional complexity.",
     example: "FinBud's microservices architecture supports 12K users with minimal operational overhead."
+  },
+  {
+    id: 7,
+    icon: "🔄",
+    title: "Business Transformation",
+    description: "Leading organizational change through digital innovation and process optimization.",
+    example: "Transformed traditional SME operations with Esmart Solution's data-driven approach."
+  },
+  {
+    id: 8,
+    icon: "🌱",
+    title: "Sustainable Startup Building",
+    description: "Creating ventures that balance profit with social impact and environmental responsibility.",
+    example: "CF Hub's mentorship model ensures 78% job placement rate while maintaining ethical practices."
+  },
+  {
+    id: 9,
+    icon: "👥",
+    title: "Team Leadership & Development",
+    description: "Building high-performing teams through mentorship, clear vision, and continuous learning.",
+    example: "Developed 25+ mentors across 3 continents, creating a distributed leadership network."
+  },
+  {
+    id: 10,
+    icon: "🎓",
+    title: "Sustainable Human Development",
+    description: "Investing in long-term talent development and creating pathways for continuous growth.",
+    example: "Pathwise alumni have 92% career advancement rate within 2 years of program completion."
   }
 ])
 
 const chaosWords = ref(['CHAOS', 'INNOVATION', 'DISRUPTION', 'REVOLUTION', 'TRANSFORMATION'])
+
+// Welcome popup state
+const showWelcomePopup = ref(true)
+const matrixChars = ['0', '1', 'T', 'R', 'I', 'B', 'U', 'I', '█', '▓', '░', '╔', '╗', '╚', '╝']
+
+// Transformation pillars data
+const transformationPillars = ref([
+  {
+    id: 1,
+    icon: '⚡',
+    title: 'Digital Disruption',
+    description: 'Shattering traditional business models with AI-driven innovation',
+    impact: '300% efficiency gains achieved'
+  },
+  {
+    id: 2,
+    icon: '🔥',
+    title: 'Ecosystem Revolution',
+    description: 'Building interconnected platforms that create exponential value',
+    impact: '1000+ stakeholders connected'
+  },
+  {
+    id: 3,
+    icon: '💎',
+    title: 'Strategic Metamorphosis',
+    description: 'Transforming companies into future-ready powerhouses',
+    impact: '$50M+ value unlocked'
+  },
+  {
+    id: 4,
+    icon: '🚀',
+    title: 'Growth Acceleration',
+    description: 'Scaling startups from 0 to unicorn status',
+    impact: '10x growth multiplier'
+  }
+])
+
+// Functions for popup
+const closeWelcomePopup = () => {
+  showWelcomePopup.value = false
+}
 
 // Define a type for the characters in the matrix effect
 interface MatrixChar {
@@ -966,13 +1211,72 @@ const blogPosts = ref([
 onMounted(() => {
   setupAnimations()
   setupAdvancedAnimations()
+  setTimeout(setupGalaxyEffects, 500) // Delay to ensure DOM is ready
   randomChars.value = generateRandomChars()
   
-  // Update random chars every 200ms for matrix effect
+  // Update random chars every 300ms for matrix effect (reduced frequency for better performance)
   setInterval(() => {
     randomChars.value = generateRandomChars()
-  }, 200)
+  }, 300)
+  
+  // Add mouse move effect for interactive particles
+  const handleMouseMove = (event: MouseEvent) => {
+    const particles = document.querySelectorAll('.floating-particle')
+    const mouseX = event.clientX / window.innerWidth
+    const mouseY = event.clientY / window.innerHeight
+    
+    particles.forEach((particle, index) => {
+      const element = particle as HTMLElement
+      const offsetX = (mouseX - 0.5) * (20 + index * 2)
+      const offsetY = (mouseY - 0.5) * (20 + index * 2)
+      element.style.transform = `translate3d(${offsetX}px, ${offsetY}px, 0) scale(${1 + mouseX * 0.2})`
+    })
+  }
+  
+  document.addEventListener('mousemove', handleMouseMove)
 })
+
+const setupGalaxyEffects = () => {
+  // Position stars randomly
+  const stars = document.querySelectorAll('.star')
+  stars.forEach((star: Element, index: number) => {
+    const element = star as HTMLElement
+    const x = Math.random() * 100
+    const y = Math.random() * 100
+    const size = Math.random() * 3 + 1
+    const delay = Math.random() * 3
+    
+    element.style.left = `${x}vw`
+    element.style.top = `${y}vh`
+    element.style.width = `${size}px`
+    element.style.height = `${size}px`
+    element.style.animationDelay = `${delay}s`
+  })
+
+  // Position dust particles randomly
+  const dustParticles = document.querySelectorAll('.dust-particle')
+  dustParticles.forEach((particle: Element, index: number) => {
+    const element = particle as HTMLElement
+    const x = Math.random() * 100
+    const delay = Math.random() * 15
+    
+    element.style.left = `${x}vw`
+    element.style.animationDelay = `${delay}s`
+  })
+
+  // Position quantum dots randomly
+  const quantumDots = document.querySelectorAll('.quantum-dot')
+  quantumDots.forEach((dot: Element, index: number) => {
+    const element = dot as HTMLElement
+    const x = Math.random() * 100
+    const y = Math.random() * 100
+    const delay = Math.random() * 2
+    
+    element.style.left = `${x}vw`
+    element.style.top = `${y}vh`
+    element.style.animationDelay = `${delay}s`
+  })
+}
 
 const setupAdvancedAnimations = () => {
   // Particles animation
@@ -1147,6 +1451,77 @@ const setupAnimations = () => {
     })
   }
 }
+
+// Function to generate random star styles with improved variety
+function generateStarStyle() {
+  const x = Math.random() * 100;
+  const y = Math.random() * 100;
+  const delay = Math.random() * 15;
+  const size = Math.random() * 4 + 1;
+  const brightness = Math.random() * 0.8 + 0.2;
+  const speed = Math.random() * 5 + 8;
+  return {
+    left: `${x}vw`,
+    top: `${y}vh`,
+    animationDelay: `-${delay}s`,
+    animationDuration: `${speed}s`,
+    width: `${size}px`,
+    height: `${size}px`,
+    opacity: brightness
+  };
+}
+
+// Function to generate floating particle styles with enhanced variety
+function generateParticleStyle() {
+  const x = Math.random() * 100;
+  const y = Math.random() * 100;
+  const delay = Math.random() * 20;
+  const duration = Math.random() * 15 + 10;
+  const size = Math.random() * 6 + 2;
+  const hue = Math.random() * 60 + 120; // Green to cyan range
+  return {
+    left: `${x}vw`,
+    top: `${y}vh`,
+    animationDelay: `-${delay}s`,
+    animationDuration: `${duration}s`,
+    width: `${size}px`,
+    height: `${size}px`,
+    filter: `hue-rotate(${hue}deg)`
+  };
+}
+
+// Function to generate nebula cloud styles
+function generateNebulaStyle() {
+  const x = Math.random() * 100;
+  const y = Math.random() * 100;
+  const delay = Math.random() * 20;
+  const size = Math.random() * 200 + 100;
+  return {
+    left: `${x}vw`,
+    top: `${y}vh`,
+    animationDelay: `-${delay}s`,
+    width: `${size}px`,
+    height: `${size}px`
+  };
+}
+
+// Function to generate shooting star styles with enhanced trails
+function generateShootingStarStyle() {
+  const x = Math.random() * 100;
+  const y = Math.random() * 40;
+  const delay = Math.random() * 25;
+  const duration = Math.random() * 3 + 6;
+  const brightness = Math.random() * 0.5 + 0.5;
+  const trailLength = Math.random() * 100 + 50;
+  return {
+    left: `${x}vw`,
+    top: `${y}vh`,
+    animationDelay: `-${delay}s`,
+    animationDuration: `${duration}s`,
+    opacity: brightness,
+    '--trail-length': `${trailLength}px`
+  };
+}
 </script>
 
 <style scoped>
@@ -1171,6 +1546,21 @@ const setupAnimations = () => {
   padding: 8rem 0;
   position: relative;
   z-index: 50;
+  transition: all 0.3s ease;
+  will-change: transform;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(135, 206, 235, 0.1);
+  border-bottom: 1px solid rgba(138, 43, 226, 0.1);
+}
+
+.section:hover {
+  transform: scale3d(1.01, 1.01, 1);
+  box-shadow: 
+    0 20px 40px rgba(138, 43, 226, 0.2),
+    0 0 60px rgba(135, 206, 235, 0.1),
+    inset 0 0 30px rgba(255, 255, 255, 0.05);
+  background: rgba(10, 10, 46, 0.15);
 }
 
 .section-header {
@@ -1184,6 +1574,56 @@ const setupAnimations = () => {
   margin-bottom: 1.5rem;
   letter-spacing: -0.02em;
   line-height: 1.1;
+  background: linear-gradient(45deg, #87ceeb 0%, #dda0dd 50%, #ffd700 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px rgba(135, 206, 235, 0.5);
+  animation: cosmic-glow 3s ease-in-out infinite;
+}
+
+@keyframes cosmic-glow {
+  0%, 100% { filter: brightness(1) drop-shadow(0 0 10px rgba(135, 206, 235, 0.3)); }
+  50% { filter: brightness(1.3) drop-shadow(0 0 25px rgba(221, 160, 221, 0.5)); }
+}
+
+/* Galaxy Title Styling */
+.galaxy-title {
+  color: #ffffff;
+  text-shadow: 
+    0 0 20px rgba(135, 206, 235, 0.6),
+    0 0 40px rgba(138, 43, 226, 0.4),
+    0 0 60px rgba(255, 215, 0, 0.3);
+}
+
+.visionary-text {
+  background: linear-gradient(45deg, #87ceeb 0%, #dda0dd 30%, #ffd700 60%, #87ceeb 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: visionary-flow 4s ease-in-out infinite;
+}
+
+@keyframes visionary-flow {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.galactic-emphasis {
+  background: linear-gradient(135deg, #ff00ff 0%, #00ffff 50%, #ffff00 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 
+    0 0 30px rgba(255, 0, 255, 0.5),
+    0 0 50px rgba(0, 255, 255, 0.3);
+  animation: galactic-pulse 2s ease-in-out infinite;
+}
+
+@keyframes galactic-pulse {
+  0%, 100% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.05); filter: brightness(1.3); }
 }
 
 .section-subtitle {
@@ -1194,15 +1634,327 @@ const setupAnimations = () => {
   margin: 0 auto;
 }
 
+/* ===== GALAXY BACKGROUND ===== */
+.galaxy-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+/* Cosmic Nebula */
+.cosmic-nebula {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.nebula-cloud {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, 
+    rgba(138, 43, 226, 0.3) 0%, 
+    rgba(75, 0, 130, 0.2) 30%, 
+    rgba(25, 25, 112, 0.1) 60%, 
+    transparent 100%);
+  animation: nebula-drift 20s ease-in-out infinite;
+}
+
+.nebula-cloud:nth-child(1) { width: 400px; height: 300px; top: 10%; left: 10%; animation-delay: 0s; }
+.nebula-cloud:nth-child(2) { width: 600px; height: 400px; top: 60%; right: 15%; animation-delay: 3s; }
+.nebula-cloud:nth-child(3) { width: 350px; height: 250px; top: 80%; left: 70%; animation-delay: 6s; }
+.nebula-cloud:nth-child(4) { width: 500px; height: 350px; top: 20%; right: 40%; animation-delay: 9s; }
+.nebula-cloud:nth-child(5) { width: 450px; height: 300px; top: 40%; left: 60%; animation-delay: 12s; }
+.nebula-cloud:nth-child(6) { width: 300px; height: 200px; top: 70%; left: 20%; animation-delay: 15s; }
+.nebula-cloud:nth-child(7) { width: 550px; height: 380px; top: 30%; right: 10%; animation-delay: 18s; }
+.nebula-cloud:nth-child(8) { width: 400px; height: 280px; bottom: 10%; left: 50%; animation-delay: 21s; }
+
+@keyframes nebula-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+  33% { transform: translate(20px, -15px) scale(1.1); opacity: 0.5; }
+  66% { transform: translate(-15px, 20px) scale(0.9); opacity: 0.4; }
+}
+
+/* Stellar Field */
+.stellar-field {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.star-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.star {
+  position: absolute;
+  background: radial-gradient(circle, #ffffff 0%, transparent 70%);
+  border-radius: 50%;
+  animation: stellar-twinkle 3s ease-in-out infinite;
+}
+
+.star:nth-child(odd) {
+  background: radial-gradient(circle, #87ceeb 0%, transparent 70%);
+}
+
+.star:nth-child(3n) {
+  background: radial-gradient(circle, #dda0dd 0%, transparent 70%);
+}
+
+.star:nth-child(5n) {
+  background: radial-gradient(circle, #ffd700 0%, transparent 70%);
+}
+
+@keyframes stellar-twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Constellation Lines */
+.constellation-lines {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.4;
+}
+
+.constellation-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.constellation-group {
+  animation: constellation-pulse 8s ease-in-out infinite;
+}
+
+.constellation-line {
+  stroke: #87ceeb;
+  stroke-width: 1;
+  opacity: 0.6;
+  animation: constellation-glow 4s ease-in-out infinite;
+}
+
+.constellation-star {
+  fill: #ffffff;
+  animation: star-pulse 2s ease-in-out infinite;
+}
+
+@keyframes constellation-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes constellation-glow {
+  0%, 100% { stroke-opacity: 0.3; }
+  50% { stroke-opacity: 0.8; stroke-width: 2; }
+}
+
+@keyframes star-pulse {
+  0%, 100% { fill-opacity: 0.6; r: 2; }
+  50% { fill-opacity: 1; r: 4; }
+}
+
+/* Cosmic Dust */
+.cosmic-dust {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.dust-particle {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  animation: dust-float 15s linear infinite;
+}
+
+@keyframes dust-float {
+  0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100px) translateX(50px); opacity: 0; }
+}
+
+/* Quantum Field */
+.quantum-field {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.quantum-dot {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: radial-gradient(circle, #00ffff 0%, transparent 70%);
+  border-radius: 50%;
+  animation: quantum-fluctuation 2s ease-in-out infinite;
+}
+
+@keyframes quantum-fluctuation {
+  0%, 100% { opacity: 0; transform: scale(1); }
+  50% { opacity: 1; transform: scale(3); }
+}
+
+/* Visionary Overlay */
+.visionary-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Holographic Grid */
+.holographic-grid {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0.1;
+}
+
+.holographic-grid .grid-line {
+  position: absolute;
+  background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.3), transparent);
+  height: 1px;
+  width: 100%;
+  animation: hologram-scan 4s linear infinite;
+}
+
+.holographic-grid .grid-line.vertical {
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(0deg, transparent, rgba(0, 255, 255, 0.3), transparent);
+}
+
+.holographic-grid .grid-line:nth-child(1) { top: 5%; animation-delay: 0s; }
+.holographic-grid .grid-line:nth-child(2) { top: 15%; animation-delay: 0.5s; }
+.holographic-grid .grid-line:nth-child(3) { top: 25%; animation-delay: 1s; }
+.holographic-grid .grid-line:nth-child(4) { top: 35%; animation-delay: 1.5s; }
+.holographic-grid .grid-line:nth-child(5) { top: 45%; animation-delay: 2s; }
+
+@keyframes hologram-scan {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.6; }
+}
+
+/* Data Streams */
+.data-streams {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.data-stream {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  animation: data-flow 3s linear infinite;
+}
+
+.data-stream:nth-child(1) { left: 10%; animation-delay: 0s; }
+.data-stream:nth-child(2) { left: 30%; animation-delay: 0.5s; }
+.data-stream:nth-child(3) { left: 50%; animation-delay: 1s; }
+.data-stream:nth-child(4) { left: 70%; animation-delay: 1.5s; }
+.data-stream:nth-child(5) { left: 85%; animation-delay: 2s; }
+.data-stream:nth-child(6) { right: 5%; animation-delay: 2.5s; }
+
+.data-packet {
+  width: 4px;
+  height: 8px;
+  background: linear-gradient(to bottom, #00ffff, #ff00ff);
+  margin-bottom: 20px;
+  border-radius: 2px;
+  animation: packet-travel 2s ease-in-out infinite;
+}
+
+@keyframes data-flow {
+  0% { transform: translateY(100vh); }
+  100% { transform: translateY(-100px); }
+}
+
+@keyframes packet-travel {
+  0%, 100% { opacity: 0.3; box-shadow: 0 0 5px #00ffff; }
+  50% { opacity: 1; box-shadow: 0 0 15px #ff00ff, 0 0 25px #00ffff; }
+}
+
+/* Cosmic Portals */
+.cosmic-portals {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.portal {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+}
+
+.portal:nth-child(1) { top: 20%; right: 15%; }
+.portal:nth-child(2) { bottom: 30%; left: 10%; }
+.portal:nth-child(3) { top: 60%; right: 40%; }
+
+.portal-ring {
+  position: absolute;
+  border: 1px solid rgba(138, 43, 226, 0.4);
+  border-radius: 50%;
+  animation: portal-expand 4s ease-out infinite;
+}
+
+.portal-ring:nth-child(1) { width: 30px; height: 30px; top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: 0s; }
+.portal-ring:nth-child(2) { width: 60px; height: 60px; top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: 0.8s; }
+.portal-ring:nth-child(3) { width: 90px; height: 90px; top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: 1.6s; }
+.portal-ring:nth-child(4) { width: 120px; height: 120px; top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: 2.4s; }
+.portal-ring:nth-child(5) { width: 150px; height: 150px; top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: 3.2s; }
+
+.portal-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  background: radial-gradient(circle, #ff00ff 0%, #8a2be2 50%, transparent 100%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: portal-core-pulse 2s ease-in-out infinite;
+}
+
+@keyframes portal-expand {
+  0% { opacity: 1; transform: translate(-50%, -50%) scale(0.5); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(2); }
+}
+
+@keyframes portal-core-pulse {
+  0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.5); }
+}
+
 /* HERO SECTION */
 .hero-section {
   padding: 12rem 0 8rem;
   text-align: center;
-  background: linear-gradient(135deg, #fafafa 0%, #ffffff 100%);
-  border-bottom: 1px solid #e5e5e5;
+  background: radial-gradient(ellipse at center, rgba(10, 10, 46, 0.95) 0%, rgba(22, 33, 62, 0.9) 25%, rgba(15, 52, 96, 0.85) 50%, rgba(0, 0, 0, 0.95) 100%);
+  border-bottom: 1px solid rgba(135, 206, 235, 0.3);
   position: relative;
   overflow: hidden;
   min-height: 100vh;
+}
+
+.galaxy-section {
+  background: radial-gradient(ellipse at center, rgba(10, 10, 46, 0.95) 0%, rgba(22, 33, 62, 0.9) 25%, rgba(15, 52, 96, 0.85) 50%, rgba(0, 0, 0, 0.95) 100%);
+  color: #ffffff;
+  position: relative;
 }
 
 /* PROFESSIONAL BACKGROUND */
@@ -4113,6 +4865,548 @@ const setupAnimations = () => {
   font-size: 0.75rem;
 }
 
+/* ===== WELCOME POPUP ===== */
+.welcome-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.98) 100%);
+  backdrop-filter: blur(10px);
+}
+
+.popup-content {
+  position: relative;
+  width: 90%;
+  max-width: 600px;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+  border: 2px solid #00ff88;
+  border-radius: 20px;
+  padding: 3rem;
+  box-shadow: 
+    0 0 100px rgba(0, 255, 136, 0.3),
+    inset 0 0 50px rgba(0, 255, 136, 0.1);
+  animation: popup-materialize 1s ease-out;
+  overflow: hidden;
+}
+
+@keyframes popup-materialize {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotateY(180deg);
+  }
+  50% {
+    transform: scale(1.1) rotateY(90deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotateY(0deg);
+  }
+}
+
+.hologram-effect {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.hologram-text {
+  font-family: 'Courier New', monospace;
+  font-size: 1.2rem;
+  color: #00ff88;
+  text-align: center;
+  letter-spacing: 3px;
+  animation: hologram-flicker 2s ease-in-out infinite;
+}
+
+@keyframes hologram-flicker {
+  0%, 100% { opacity: 1; text-shadow: 0 0 10px #00ff88; }
+  50% { opacity: 0.8; text-shadow: 0 0 20px #00ff88, 0 0 30px #00ff88; }
+}
+
+.hologram-scan {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00ff88, transparent);
+  animation: scan-line 3s linear infinite;
+}
+
+@keyframes scan-line {
+  0% { transform: translateY(-10px); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(50px); opacity: 0; }
+}
+
+.matrix-rain {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  opacity: 0.1;
+}
+
+.rain-column {
+  position: absolute;
+  top: -50px;
+  width: 20px;
+  height: 100%;
+  color: #00ff88;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  animation: matrix-fall linear infinite;
+}
+
+.rain-column:nth-child(1) { left: 5%; animation-duration: 3s; animation-delay: 0s; }
+.rain-column:nth-child(2) { left: 15%; animation-duration: 2.5s; animation-delay: 0.5s; }
+.rain-column:nth-child(3) { left: 25%; animation-duration: 3.5s; animation-delay: 1s; }
+.rain-column:nth-child(4) { left: 35%; animation-duration: 2s; animation-delay: 1.5s; }
+.rain-column:nth-child(5) { left: 45%; animation-duration: 4s; animation-delay: 0.2s; }
+.rain-column:nth-child(6) { left: 55%; animation-duration: 2.8s; animation-delay: 0.8s; }
+.rain-column:nth-child(7) { left: 65%; animation-duration: 3.2s; animation-delay: 1.2s; }
+.rain-column:nth-child(8) { left: 75%; animation-duration: 2.3s; animation-delay: 0.3s; }
+.rain-column:nth-child(9) { left: 85%; animation-duration: 3.8s; animation-delay: 1.8s; }
+.rain-column:nth-child(10) { left: 95%; animation-duration: 2.7s; animation-delay: 0.7s; }
+
+@keyframes matrix-fall {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+.welcome-message {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.cosmic-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.glitch-effect {
+  position: relative;
+  display: inline-block;
+  animation: glitch-shake 4s ease-in-out infinite;
+}
+
+.glitch-effect::before,
+.glitch-effect::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.glitch-effect::before {
+  color: #ff0040;
+  animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.glitch-effect::after {
+  color: #00ff88;
+  animation: glitch-anim-2 1s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-shake {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+}
+
+@keyframes glitch-anim-1 {
+  0% { clip-path: inset(40% 0 61% 0); }
+  20% { clip-path: inset(92% 0 1% 0); }
+  40% { clip-path: inset(43% 0 1% 0); }
+  60% { clip-path: inset(25% 0 58% 0); }
+  80% { clip-path: inset(54% 0 7% 0); }
+  100% { clip-path: inset(58% 0 43% 0); }
+}
+
+@keyframes glitch-anim-2 {
+  0% { clip-path: inset(25% 0 58% 0); }
+  20% { clip-path: inset(54% 0 7% 0); }
+  40% { clip-path: inset(58% 0 43% 0); }
+  60% { clip-path: inset(40% 0 61% 0); }
+  80% { clip-path: inset(92% 0 1% 0); }
+  100% { clip-path: inset(43% 0 1% 0); }
+}
+
+.subtitle {
+  color: #888;
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+}
+
+.tech-specs {
+  text-align: left;
+  margin: 2rem 0;
+}
+
+.spec-line {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  font-family: 'Courier New', monospace;
+}
+
+.label {
+  color: #00ff88;
+  font-weight: bold;
+}
+
+.value {
+  color: #fff;
+}
+
+.typing-effect {
+  animation: typing 2s steps(10) infinite;
+}
+
+@keyframes typing {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0.5; }
+}
+
+.enter-btn {
+  position: relative;
+  background: linear-gradient(45deg, #00ff88, #004e92);
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.enter-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(0, 255, 136, 0.5);
+}
+
+.btn-glow {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  animation: btn-shine 3s ease-in-out infinite;
+}
+
+@keyframes btn-shine {
+  0% { left: -100%; }
+  50% { left: 100%; }
+  100% { left: 100%; }
+}
+
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: 2px solid #ff0040;
+  color: #ff0040;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  background: #ff0040;
+  color: white;
+  transform: rotate(90deg);
+}
+
+/* ===== BUSINESS TRANSFORMATION SECTION ===== */
+.transformation-chaos-section {
+  background: linear-gradient(135deg, #000000 0%, #1a0000 50%, #000000 100%);
+  padding: 10rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.transformation-container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.chaos-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.lightning-bolts {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.lightning {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, #ff0040, #ffffff, #ff0040, transparent);
+  animation: lightning-strike 3s ease-in-out infinite;
+}
+
+.lightning:nth-child(1) { left: 10%; animation-delay: 0s; }
+.lightning:nth-child(2) { left: 30%; animation-delay: 0.5s; }
+.lightning:nth-child(3) { left: 50%; animation-delay: 1s; }
+.lightning:nth-child(4) { left: 70%; animation-delay: 1.5s; }
+.lightning:nth-child(5) { left: 90%; animation-delay: 2s; }
+
+@keyframes lightning-strike {
+  0%, 90%, 100% { opacity: 0; transform: scaleY(0); }
+  95% { opacity: 1; transform: scaleY(1); }
+}
+
+.data-explosions {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.explosion {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}
+
+.explosion-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #ff0040;
+  border-radius: 50%;
+  animation: explosion-expand 4s ease-out infinite;
+}
+
+.explosion-ring:nth-child(1) { animation-delay: 0s; }
+.explosion-ring:nth-child(2) { animation-delay: 0.8s; }
+.explosion-ring:nth-child(3) { animation-delay: 1.6s; }
+.explosion-ring:nth-child(4) { animation-delay: 2.4s; }
+.explosion-ring:nth-child(5) { animation-delay: 3.2s; }
+
+@keyframes explosion-expand {
+  0% { transform: scale(0); opacity: 1; }
+  100% { transform: scale(3); opacity: 0; }
+}
+
+.transformation-core {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.core-title {
+  font-size: 4rem;
+  font-weight: 900;
+  margin-bottom: 2rem;
+}
+
+.chaos-text {
+  display: block;
+  background: linear-gradient(45deg, #ff0040, #ffffff, #ff0040);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 30px #ff0040;
+  animation: chaos-pulse 2s ease-in-out infinite;
+}
+
+@keyframes chaos-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); filter: brightness(1.5); }
+}
+
+.transformation-manifesto {
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin-top: 2rem;
+}
+
+.manifesto-line {
+  margin: 1rem 0;
+  animation: manifesto-glow 3s ease-in-out infinite;
+}
+
+.keyword {
+  color: #ff0040;
+  font-weight: bold;
+  text-shadow: 0 0 10px #ff0040;
+}
+
+@keyframes manifesto-glow {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; text-shadow: 0 0 20px #ffffff; }
+}
+
+.transformation-pillars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+.pillar {
+  background: linear-gradient(135deg, #1a0000 0%, #330000 50%, #1a0000 100%);
+  border: 2px solid #ff0040;
+  border-radius: 20px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.pillar:hover {
+  transform: scale(1.05) rotateY(5deg);
+  box-shadow: 0 0 50px rgba(255, 0, 64, 0.5);
+}
+
+.pillar-energy {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 60px;
+  height: 60px;
+}
+
+.energy-core {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, #ff0040, #ffffff);
+  border-radius: 50%;
+  animation: energy-rotation 3s linear infinite;
+}
+
+@keyframes energy-rotation {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.energy-pulse {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #ff0040;
+  border-radius: 50%;
+  animation: energy-pulse-anim 2s ease-out infinite;
+}
+
+.energy-pulse:nth-child(2) { animation-delay: 0.7s; }
+.energy-pulse:nth-child(3) { animation-delay: 1.4s; }
+
+@keyframes energy-pulse-anim {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+.pillar-content {
+  position: relative;
+  z-index: 2;
+}
+
+.pillar-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.pillar-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.pillar-description {
+  color: #cccccc;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.pillar-impact {
+  color: #ff0040;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.pillar-chaos-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.chaos-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #ff0040;
+  border-radius: 50%;
+  animation: chaos-float 5s ease-in-out infinite;
+}
+
+.chaos-particle:nth-child(odd) {
+  background: #ffffff;
+}
+
+@keyframes chaos-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+  50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+}
+
+/* Position chaos particles randomly */
+.chaos-particle:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+.chaos-particle:nth-child(2) { top: 20%; left: 80%; animation-delay: 0.5s; }
+.chaos-particle:nth-child(3) { top: 80%; left: 20%; animation-delay: 1s; }
+.chaos-particle:nth-child(4) { top: 60%; left: 70%; animation-delay: 1.5s; }
+.chaos-particle:nth-child(5) { top: 30%; left: 50%; animation-delay: 2s; }
+
 /* ===== BUSINESS MINDSET SECTION ===== */
 .mindset-section {
   background: #fafafa;
@@ -4769,5 +6063,140 @@ const setupAnimations = () => {
   10% { opacity: 1; }
   90% { opacity: 1; }
   100% { transform: translateY(100vh); opacity: 0; }
+}
+
+/* Enhanced Starry Background */
+.starry-background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #000428, #004e92);
+  overflow: hidden;
+  z-index: -1;
+  will-change: transform;
+}
+
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  animation: moveStar 10s linear infinite;
+  will-change: transform;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+}
+
+.floating-particle {
+  position: absolute;
+  background: radial-gradient(circle, #00ff88, rgba(0, 255, 136, 0.3), transparent);
+  border-radius: 50%;
+  animation: floatParticle 20s ease-in-out infinite;
+  will-change: transform;
+  box-shadow: 0 0 8px rgba(0, 255, 136, 0.6);
+  transition: all 0.3s ease;
+}
+
+.nebula-cloud {
+  position: absolute;
+  background: radial-gradient(circle, rgba(255, 0, 150, 0.1), transparent);
+  border-radius: 50%;
+  animation: nebulaFloat 30s ease-in-out infinite;
+  will-change: transform;
+  filter: blur(2px);
+}
+
+.shooting-star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  animation: shootingStar 8s linear infinite;
+  will-change: transform;
+}
+
+.shooting-star::before {
+  content: '';
+  position: absolute;
+  width: var(--trail-length, 80px);
+  height: 2px;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.9), rgba(100, 200, 255, 0.6), transparent);
+  transform: translateX(calc(-1 * var(--trail-length, 80px)));
+  border-radius: 1px;
+  box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes moveStar {
+  from { 
+    transform: translate3d(0, -10vh, 0);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  to { 
+    transform: translate3d(0, 110vh, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes floatParticle {
+  0%, 100% { 
+    transform: translate3d(0, 0, 0) scale(0.8);
+    opacity: 0.6;
+  }
+  25% { 
+    transform: translate3d(20px, -30px, 0) scale(1.2);
+    opacity: 1;
+  }
+  50% { 
+    transform: translate3d(-15px, -60px, 0) scale(0.9);
+    opacity: 0.8;
+  }
+  75% { 
+    transform: translate3d(25px, -90px, 0) scale(1.1);
+    opacity: 0.9;
+  }
+}
+
+@keyframes nebulaFloat {
+  0%, 100% { 
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.3;
+  }
+  33% { 
+    transform: translate3d(50px, -20px, 0) scale(1.2);
+    opacity: 0.5;
+  }
+  66% { 
+    transform: translate3d(-30px, -40px, 0) scale(0.8);
+    opacity: 0.4;
+  }
+}
+
+@keyframes shootingStar {
+  0% { 
+    transform: translate3d(-100px, -100px, 0);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { 
+    transform: translate3d(100vw, 100vh, 0);
+    opacity: 0;
+  }
+}
+
+/* Shake Interval Animation */
+.shake-interval {
+  animation: shakeInterval 8s infinite;
+}
+
+@keyframes shakeInterval {
+  0%, 70% { transform: translateX(0); }
+  71% { transform: translateX(-2px); }
+  72% { transform: translateX(2px); }
+  73% { transform: translateX(-2px); }
+  74% { transform: translateX(2px); }
+  75% { transform: translateX(-1px); }
+  76% { transform: translateX(1px); }
+  77%, 100% { transform: translateX(0); }
 }
 </style> 

@@ -206,9 +206,41 @@ import { ref, onMounted } from 'vue'
 
 const isActive = ref(false)
 const power = ref(100)
+const robotMode = ref('STANDBY')
+
+const modes = ['STANDBY', 'SCANNING', 'PROCESSING', 'ASSISTANT', 'PATROL']
 
 const toggleRobot = () => {
   isActive.value = !isActive.value
+  if (isActive.value) {
+    animateRobotBehavior()
+  } else {
+    robotMode.value = 'STANDBY'
+  }
+}
+
+const animateRobotBehavior = () => {
+  setInterval(() => {
+    if (isActive.value) {
+      robotMode.value = modes[Math.floor(Math.random() * modes.length)]
+      
+      // Add random robot movements
+      const robot = document.querySelector('.css-robot')
+      if (robot) {
+        const randomMove = Math.random()
+        if (randomMove < 0.2) {
+          robot.classList.add('lean-left')
+          setTimeout(() => robot.classList.remove('lean-left'), 2000)
+        } else if (randomMove < 0.4) {
+          robot.classList.add('lean-right')
+          setTimeout(() => robot.classList.remove('lean-right'), 2000)
+        } else if (randomMove < 0.6) {
+          robot.classList.add('look-around')
+          setTimeout(() => robot.classList.remove('look-around'), 3000)
+        }
+      }
+    }
+  }, 4000)
 }
 
 // Auto attention-grabbing pulse
@@ -331,17 +363,23 @@ onMounted(() => {
   width: 400px;
   height: 500px;
   margin: 0 auto;
-  background: radial-gradient(circle at center, rgba(0, 30, 60, 0.3), rgba(0, 0, 0, 0.8));
-  border: 2px solid rgba(100, 200, 255, 0.2);
+  background: radial-gradient(circle at center, rgba(40, 0, 0, 0.3), rgba(0, 0, 0, 0.9));
+  border: 2px solid rgba(255, 0, 64, 0.3);
   border-radius: 20px;
   overflow: hidden;
   transition: all 0.5s ease;
+  box-shadow: 
+    0 0 30px rgba(255, 0, 64, 0.2),
+    inset 0 0 50px rgba(255, 255, 255, 0.05);
 }
 
 .robot-display.robot-active {
-  border-color: rgba(0, 255, 136, 0.5);
-  box-shadow: 0 0 50px rgba(0, 255, 136, 0.3);
-  background: radial-gradient(circle at center, rgba(0, 50, 100, 0.4), rgba(0, 20, 40, 0.9));
+  border-color: rgba(255, 0, 64, 0.7);
+  box-shadow: 
+    0 0 50px rgba(255, 0, 64, 0.5),
+    0 0 100px rgba(255, 0, 64, 0.3),
+    inset 0 0 30px rgba(255, 255, 255, 0.1);
+  background: radial-gradient(circle at center, rgba(60, 0, 0, 0.5), rgba(20, 0, 0, 0.95));
 }
 
 /* Holographic Grid */
@@ -356,7 +394,7 @@ onMounted(() => {
 
 .grid-line {
   position: absolute;
-  background: linear-gradient(90deg, transparent, rgba(100, 200, 255, 0.4), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), rgba(255, 0, 64, 0.4), rgba(255, 255, 255, 0.3), transparent);
   height: 1px;
   width: 100%;
   animation: grid-pulse 4s linear infinite;
@@ -365,7 +403,7 @@ onMounted(() => {
 .grid-line.vertical {
   width: 1px;
   height: 100%;
-  background: linear-gradient(0deg, transparent, rgba(100, 200, 255, 0.4), transparent);
+  background: linear-gradient(0deg, transparent, rgba(255, 255, 255, 0.3), rgba(255, 0, 64, 0.4), rgba(255, 255, 255, 0.3), transparent);
 }
 
 @keyframes grid-pulse {
@@ -385,17 +423,49 @@ onMounted(() => {
   position: absolute;
   width: 300px;
   height: 300px;
-  border: 2px solid rgba(100, 200, 255, 0.3);
+  border: 2px solid rgba(255, 0, 64, 0.4);
   border-radius: 50%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   animation: energy-expand 3s ease-out infinite;
+  box-shadow: 
+    0 0 20px rgba(255, 0, 64, 0.3),
+    inset 0 0 20px rgba(255, 255, 255, 0.1);
 }
 
 @keyframes energy-expand {
   0% { width: 50px; height: 50px; opacity: 1; }
   100% { width: 400px; height: 400px; opacity: 0; }
+}
+
+/* Robot Movement Animations */
+.css-robot.lean-left {
+  animation: leanLeft 2s ease-in-out;
+}
+
+.css-robot.lean-right {
+  animation: leanRight 2s ease-in-out;
+}
+
+.css-robot.look-around {
+  animation: lookAround 3s ease-in-out;
+}
+
+@keyframes leanLeft {
+  0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+  50% { transform: translate(-50%, -50%) rotate(-5deg) translateX(-10px); }
+}
+
+@keyframes leanRight {
+  0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+  50% { transform: translate(-50%, -50%) rotate(5deg) translateX(10px); }
+}
+
+@keyframes lookAround {
+  0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+  25% { transform: translate(-50%, -50%) rotate(-3deg); }
+  75% { transform: translate(-50%, -50%) rotate(3deg); }
 }
 
 /* CSS Robot */
@@ -448,35 +518,38 @@ onMounted(() => {
   position: absolute;
   width: 100px;
   height: 80px;
-  background: linear-gradient(135deg, #aaaaaa, #dddddd, #888888);
+  background: linear-gradient(135deg, #1a1a1a, #ffffff, #2a2a2a, #ff0040);
   border-radius: 20px;
-  border: 3px solid #666666;
+  border: 3px solid #ff0040;
   transform: translateZ(25px);
   box-shadow: 
-    inset 0 0 30px rgba(0, 0, 0, 0.3),
-    0 10px 30px rgba(0, 0, 0, 0.5),
-    0 0 50px rgba(100, 200, 255, 0.4);
+    inset 0 0 30px rgba(255, 0, 64, 0.3),
+    0 10px 30px rgba(0, 0, 0, 0.7),
+    0 0 50px rgba(255, 0, 64, 0.6),
+    0 0 100px rgba(255, 255, 255, 0.2);
 }
 
 .head-back {
   position: absolute;
   width: 95px;
   height: 75px;
-  background: linear-gradient(135deg, #666666, #888888);
+  background: linear-gradient(135deg, #000000, #2a2a2a, #ff0040);
   border-radius: 18px;
   transform: translateZ(-25px);
   left: 2.5px;
   top: 2.5px;
-  opacity: 0.8;
+  opacity: 0.9;
+  border: 2px solid #ff0040;
 }
 
 .head-left, .head-right {
   position: absolute;
   width: 50px;
   height: 80px;
-  background: linear-gradient(90deg, #777777, #999999);
+  background: linear-gradient(90deg, #1a1a1a, #ffffff, #2a2a2a);
   border-radius: 15px;
   top: 0;
+  border: 2px solid #ff0040;
 }
 
 .head-left {
