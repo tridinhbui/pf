@@ -29,25 +29,38 @@
         <!-- Robot Head -->
         <div class="robot-head">
           <div class="head-core"></div>
+          <div class="head-depth-layer"></div>
+          <div class="head-side-panel left-side"></div>
+          <div class="head-side-panel right-side"></div>
+          
           <div class="antenna">
+            <div class="antenna-base"></div>
+            <div class="antenna-segment"></div>
             <div class="antenna-tip"></div>
+            <div class="signal-pulse"></div>
           </div>
           
           <!-- Eyes -->
           <div class="eyes">
             <div class="eye left-eye">
+              <div class="eye-socket"></div>
               <div class="pupil"></div>
+              <div class="eye-reflection"></div>
               <div class="eye-glow"></div>
             </div>
             <div class="eye right-eye">
+              <div class="eye-socket"></div>
               <div class="pupil"></div>
+              <div class="eye-reflection"></div>
               <div class="eye-glow"></div>
             </div>
           </div>
           
           <!-- Mouth -->
           <div class="mouth">
+            <div class="mouth-cavity"></div>
             <div class="mouth-line" v-for="n in 3" :key="n"></div>
+            <div class="voice-wave" v-for="n in 5" :key="n"></div>
           </div>
         </div>
 
@@ -363,28 +376,127 @@ onMounted(() => {
   width: 80px;
   height: 70px;
   margin: 0 auto 10px;
+  transform-style: preserve-3d;
+  animation: head-3d-rotate 8s linear infinite;
+}
+
+@keyframes head-3d-rotate {
+  0% { transform: rotateY(0deg) rotateX(0deg); }
+  25% { transform: rotateY(15deg) rotateX(5deg); }
+  50% { transform: rotateY(0deg) rotateX(10deg); }
+  75% { transform: rotateY(-15deg) rotateX(5deg); }
+  100% { transform: rotateY(0deg) rotateX(0deg); }
 }
 
 .head-core {
   width: 80px;
   height: 60px;
-  background: linear-gradient(135deg, #666666, #888888, #666666);
+  background: linear-gradient(135deg, #888888, #aaaaaa, #666666);
   border-radius: 15px;
-  border: 2px solid #444444;
+  border: 2px solid #555555;
   position: relative;
-  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 
+    inset 0 0 20px rgba(0, 0, 0, 0.3),
+    0 5px 15px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(100, 200, 255, 0.2);
+  transform: translateZ(10px);
+}
+
+.head-depth-layer {
+  position: absolute;
+  width: 76px;
+  height: 56px;
+  background: linear-gradient(135deg, #666666, #888888);
+  border-radius: 13px;
+  top: 2px;
+  left: 2px;
+  transform: translateZ(-5px);
+  opacity: 0.7;
+}
+
+.head-side-panel {
+  position: absolute;
+  width: 15px;
+  height: 50px;
+  background: linear-gradient(90deg, #555555, #777777);
+  border-radius: 5px;
+  top: 5px;
+  border: 1px solid #444444;
+  transform: translateZ(8px);
+}
+
+.head-side-panel.left-side {
+  left: -10px;
+  transform: translateZ(8px) rotateY(-30deg);
+}
+
+.head-side-panel.right-side {
+  right: -10px;
+  transform: translateZ(8px) rotateY(30deg);
 }
 
 .antenna {
   position: absolute;
   top: -15px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateZ(15px);
   width: 4px;
   height: 20px;
-  background: #888888;
+  background: linear-gradient(0deg, #888888, #aaaaaa);
   border-radius: 2px;
   animation: antenna-pulse 3s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+
+.antenna-base {
+  width: 8px;
+  height: 6px;
+  background: radial-gradient(circle, #aaaaaa, #666666);
+  border-radius: 50%;
+  position: absolute;
+  bottom: -3px;
+  left: -2px;
+  transform: translateZ(2px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.antenna-segment {
+  width: 3px;
+  height: 8px;
+  background: linear-gradient(0deg, #999999, #bbbbbb);
+  border-radius: 1px;
+  position: absolute;
+  top: 6px;
+  left: 0.5px;
+  transform: translateZ(3px);
+  animation: segment-glow 2s ease-in-out infinite;
+}
+
+.antenna-segment:nth-child(3) {
+  top: 2px;
+  background: linear-gradient(0deg, #777777, #999999);
+}
+
+@keyframes segment-glow {
+  0%, 100% { box-shadow: 0 0 5px rgba(100, 200, 255, 0.3); }
+  50% { box-shadow: 0 0 15px rgba(100, 200, 255, 0.8); }
+}
+
+.signal-pulse {
+  position: absolute;
+  top: -5px;
+  left: -8px;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(100, 200, 255, 0.6);
+  border-radius: 50%;
+  animation: signal-expand 2s ease-out infinite;
+  transform: translateZ(5px);
+}
+
+@keyframes signal-expand {
+  0% { width: 5px; height: 5px; opacity: 1; left: -1px; top: -1px; }
+  100% { width: 30px; height: 30px; opacity: 0; left: -13px; top: -13px; }
 }
 
 .antenna-tip {

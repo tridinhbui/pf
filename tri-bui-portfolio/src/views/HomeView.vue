@@ -47,13 +47,19 @@
 
           <!-- Main Title -->
           <div class="hero-title-wrapper floating-element" ref="heroTitleRef">
+            <!-- Professional Profile Image -->
+            <div class="profile-image-container">
+              <img src="@/assets/tri1.png" alt="Tri Bui - Entrepreneur & Builder" class="profile-image" />
+              <div class="profile-glow"></div>
+            </div>
+            
             <h1 class="hero-title professional-title cosmic-text">
               <span class="title-main glitch-text" data-text="I don't just build startups.">I don't just build startups.</span>
               <br>
               <span class="title-sub strong-emphasis typewriter-text">I build ecosystems.</span>
             </h1>
             <p class="hero-subtitle professional-subtitle">
-              I'm a strategist and builder focused on empowering the next generation with platforms, tools, and meaningful mentorship.
+              I'm a strategist and builder focused on creating everlasting impact through innovative platforms that reshape how the next generation thinks, builds, and conquers.
             </p>
                     </div>
 
@@ -95,13 +101,21 @@
         <div class="section-header">
           <h2 class="section-title" ref="originTitleRef">Background</h2>
           <p class="section-subtitle">The foundation that shaped my entrepreneurial journey</p>
+          
+          <!-- Journey Image -->
+          <div class="journey-image-container">
+            <img src="@/assets/tri2.png" alt="Educational Journey - From Hanoi to Global Impact" class="journey-image" />
+            <div class="journey-overlay">
+              <span class="journey-caption">Hanoi → Minnesota → Singapore → Chicago (Blackstone-Revantage) → Virginia</span>
+            </div>
+          </div>
         </div>
         
         <div class="origin-content">
           <div class="origin-grid">
             <div class="origin-item" ref="originItem1">
               <div class="origin-label">Launch vector</div>
-              <div class="origin-value">Hanoi ➜ Singapore (NTU exchange) ➜ Minnesota (Macalester) ➜ Virginia (Smithfield HQ)</div>
+              <div class="origin-value">Hanoi ➜ Minnesota (Macalester) ➜ Singapore (NTU exchange) ➜ Chicago (Blackstone-Revantage) ➜ Virginia (Smithfield HQ)</div>
             </div>
             <div class="origin-item" ref="originItem2">
               <div class="origin-label">Thrusters</div>
@@ -164,6 +178,25 @@
         <div class="section-header">
           <h2 class="section-title" ref="constellationsTitleRef">Ventures</h2>
           <p class="section-subtitle">Companies and platforms I've founded to empower the next generation</p>
+          
+          <!-- Entrepreneurial Impact Image -->
+          <div class="ventures-image-container">
+            <img src="@/assets/tri3.png" alt="Entrepreneurial Ventures & Impact" class="ventures-image" />
+            <div class="ventures-stats">
+              <div class="stat-item">
+                <span class="stat-number">5</span>
+                <span class="stat-label">Ventures Founded</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">350+</span>
+                <span class="stat-label">Lives Impacted</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">12K+</span>
+                <span class="stat-label">Users Reached</span>
+              </div>
+            </div>
+          </div>
         </div>
         
                  <div class="constellations-grid" ref="constellationsRef">
@@ -285,12 +318,31 @@
       </div>
     </section>
 
+    <!-- Power Quote Section -->
+    <section class="section quote-power-section">
+      <div class="container">
+        <div class="power-quote-container" ref="powerQuoteRef">
+          <div class="quote-background-stars">
+            <div class="star" v-for="n in 50" :key="`quote-star-${n}`"></div>
+          </div>
+          <blockquote class="power-quote">
+            <span class="quote-highlight">"Finance and Technology"</span> are the disciplined foundations I've forged through relentless training, 
+            while <span class="quote-highlight">"Marketing"</span> flows as my natural-born instinct.
+          </blockquote>
+          <div class="quote-author">— Tri Bui</div>
+        </div>
+      </div>
+    </section>
+
     <!-- Business Mindset Section -->
     <section class="section mindset-section" id="mindset">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title" ref="mindsetTitleRef">Business & Entrepreneurship Mindset</h2>
+          <h2 class="section-title mindset-title-white" ref="mindsetTitleRef">Business & Entrepreneurship Mindset</h2>
           <p class="section-subtitle">Core principles that drive innovation and sustainable growth</p>
+          <div class="mindset-stars-background">
+            <div class="mindset-star" v-for="n in 30" :key="`mindset-star-${n}`"></div>
+          </div>
         </div>
         
         <div class="mindset-grid" ref="mindsetRef">
@@ -2376,6 +2428,456 @@ const setupAnimations = () => {
   margin: 0;
 }
 
+/* PROFILE IMAGE SECTION */
+.profile-image-container {
+  margin-bottom: 3rem;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+}
+
+.profile-image {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #64c8ff;
+  box-shadow: 
+    0 0 30px rgba(100, 200, 255, 0.5),
+    0 0 60px rgba(0, 255, 136, 0.3),
+    0 10px 40px rgba(0, 0, 0, 0.3);
+  transition: all 0.5s ease;
+  animation: profile-float 6s ease-in-out infinite;
+}
+
+.profile-image:hover {
+  transform: scale(1.1);
+  box-shadow: 
+    0 0 50px rgba(100, 200, 255, 0.8),
+    0 0 100px rgba(0, 255, 136, 0.6),
+    0 20px 60px rgba(0, 0, 0, 0.4);
+  border-color: #00ff88;
+}
+
+.profile-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(circle, rgba(100, 200, 255, 0.2) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: profile-glow-pulse 4s ease-in-out infinite;
+  z-index: -1;
+}
+
+@keyframes profile-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-10px) rotate(2deg); }
+  50% { transform: translateY(0) rotate(0deg); }
+  75% { transform: translateY(-5px) rotate(-2deg); }
+}
+
+@keyframes profile-glow-pulse {
+  0%, 100% { 
+    opacity: 0.6; 
+    transform: translate(-50%, -50%) scale(1); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: translate(-50%, -50%) scale(1.2); 
+  }
+}
+
+/* JOURNEY IMAGE SECTION */
+.journey-image-container {
+  margin: 3rem auto;
+  max-width: 600px;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.2),
+    0 0 40px rgba(100, 200, 255, 0.3);
+  transition: all 0.5s ease;
+}
+
+.journey-image-container:hover {
+  transform: translateY(-10px);
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.3),
+    0 0 60px rgba(100, 200, 255, 0.5);
+}
+
+.journey-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  transition: all 0.5s ease;
+}
+
+.journey-image-container:hover .journey-image {
+  transform: scale(1.05);
+}
+
+.journey-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  padding: 2rem;
+  transform: translateY(100%);
+  transition: transform 0.5s ease;
+}
+
+.journey-image-container:hover .journey-overlay {
+  transform: translateY(0);
+}
+
+.journey-caption {
+  color: #ffffff;
+  font-size: 1.125rem;
+  font-weight: var(--font-weight-semibold);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* VENTURES IMAGE SECTION */
+.ventures-image-container {
+  margin: 3rem auto;
+  max-width: 700px;
+  position: relative;
+  border-radius: 25px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0a0a1a, #000000);
+  box-shadow: 
+    0 15px 40px rgba(0, 0, 0, 0.3),
+    0 0 50px rgba(0, 255, 136, 0.3);
+}
+
+.ventures-image {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+  transition: all 0.5s ease;
+  filter: brightness(0.9) contrast(1.1);
+}
+
+.ventures-image-container:hover .ventures-image {
+  transform: scale(1.03);
+  filter: brightness(1.1) contrast(1.2);
+}
+
+.ventures-stats {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 1.5rem;
+  border-radius: 15px;
+  border: 1px solid rgba(100, 200, 255, 0.5);
+  backdrop-filter: blur(10px);
+  transform: translateX(100%);
+  transition: transform 0.5s ease;
+}
+
+.ventures-image-container:hover .ventures-stats {
+  transform: translateX(0);
+}
+
+.ventures-stats .stat-item {
+  text-align: center;
+  color: #ffffff;
+}
+
+.ventures-stats .stat-number {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-family-mono);
+  color: #64c8ff;
+  margin-bottom: 0.25rem;
+}
+
+.ventures-stats .stat-label {
+  font-size: 0.75rem;
+  color: #cccccc;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* POWER QUOTE SECTION */
+.quote-power-section {
+  background: radial-gradient(circle at center, #000000, #0a0a1a);
+  padding: 8rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.power-quote-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+.quote-background-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.quote-background-stars .star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #64c8ff;
+  border-radius: 50%;
+  animation: star-twinkle 3s ease-in-out infinite;
+}
+
+.quote-background-stars .star:nth-child(odd) {
+  background: #00ff88;
+  animation-duration: 4s;
+}
+
+.quote-background-stars .star:nth-child(3n) {
+  background: #ffffff;
+  animation-duration: 2s;
+}
+
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.5); }
+}
+
+.power-quote {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  color: #ffffff;
+  font-style: italic;
+  line-height: 1.4;
+  margin: 0 0 2rem;
+  text-shadow: 0 0 20px rgba(100, 200, 255, 0.5);
+  animation: quote-glow 6s ease-in-out infinite;
+}
+
+.quote-highlight {
+  color: #64c8ff;
+  font-weight: var(--font-weight-bold);
+  text-shadow: 0 0 30px rgba(100, 200, 255, 0.8);
+  animation: highlight-pulse 3s ease-in-out infinite;
+}
+
+.quote-author {
+  color: #00ff88;
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-semibold);
+  text-shadow: 0 0 15px rgba(0, 255, 136, 0.6);
+}
+
+@keyframes quote-glow {
+  0%, 100% { text-shadow: 0 0 20px rgba(100, 200, 255, 0.5); }
+  50% { text-shadow: 0 0 40px rgba(100, 200, 255, 0.8); }
+}
+
+@keyframes highlight-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Generate random positions for stars */
+.quote-background-stars .star:nth-child(1) { top: 20%; left: 10%; }
+.quote-background-stars .star:nth-child(2) { top: 30%; left: 80%; }
+.quote-background-stars .star:nth-child(3) { top: 60%; left: 15%; }
+.quote-background-stars .star:nth-child(4) { top: 15%; left: 70%; }
+.quote-background-stars .star:nth-child(5) { top: 80%; left: 25%; }
+.quote-background-stars .star:nth-child(6) { top: 45%; left: 90%; }
+.quote-background-stars .star:nth-child(7) { top: 70%; left: 60%; }
+.quote-background-stars .star:nth-child(8) { top: 25%; left: 40%; }
+.quote-background-stars .star:nth-child(9) { top: 85%; left: 75%; }
+.quote-background-stars .star:nth-child(10) { top: 10%; left: 50%; }
+.quote-background-stars .star:nth-child(11) { top: 55%; left: 5%; }
+.quote-background-stars .star:nth-child(12) { top: 35%; left: 95%; }
+.quote-background-stars .star:nth-child(13) { top: 75%; left: 35%; }
+.quote-background-stars .star:nth-child(14) { top: 40%; left: 20%; }
+.quote-background-stars .star:nth-child(15) { top: 90%; left: 85%; }
+.quote-background-stars .star:nth-child(16) { top: 5%; left: 30%; }
+.quote-background-stars .star:nth-child(17) { top: 65%; left: 65%; }
+.quote-background-stars .star:nth-child(18) { top: 50%; left: 80%; }
+.quote-background-stars .star:nth-child(19) { top: 20%; left: 60%; }
+.quote-background-stars .star:nth-child(20) { top: 95%; left: 45%; }
+
+/* MINDSET SECTION WHITE TITLE */
+.mindset-title-white {
+  color: #ffffff !important;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+  animation: title-float 4s ease-in-out infinite;
+}
+
+@keyframes title-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.mindset-stars-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.mindset-star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: #ffffff;
+  border-radius: 50%;
+  animation: mindset-star-dance 5s ease-in-out infinite;
+}
+
+.mindset-star:nth-child(odd) {
+  background: #64c8ff;
+  animation-duration: 6s;
+}
+
+.mindset-star:nth-child(3n) {
+  background: #00ff88;
+  animation-duration: 4s;
+}
+
+@keyframes mindset-star-dance {
+  0%, 100% { 
+    opacity: 0.5; 
+    transform: translateY(0) rotate(0deg) scale(1); 
+  }
+  25% { 
+    opacity: 1; 
+    transform: translateY(-20px) rotate(90deg) scale(1.5); 
+  }
+  50% { 
+    opacity: 0.8; 
+    transform: translateY(-10px) rotate(180deg) scale(1.2); 
+  }
+  75% { 
+    opacity: 1; 
+    transform: translateY(-30px) rotate(270deg) scale(1.8); 
+  }
+}
+
+/* Generate positions for mindset stars */
+.mindset-star:nth-child(1) { top: 10%; left: 5%; }
+.mindset-star:nth-child(2) { top: 25%; left: 85%; }
+.mindset-star:nth-child(3) { top: 40%; left: 10%; }
+.mindset-star:nth-child(4) { top: 55%; left: 90%; }
+.mindset-star:nth-child(5) { top: 70%; left: 15%; }
+.mindset-star:nth-child(6) { top: 15%; left: 75%; }
+.mindset-star:nth-child(7) { top: 85%; left: 20%; }
+.mindset-star:nth-child(8) { top: 30%; left: 60%; }
+.mindset-star:nth-child(9) { top: 60%; left: 80%; }
+.mindset-star:nth-child(10) { top: 80%; left: 40%; }
+
+/* ENHANCED CRAZY ANIMATIONS */
+.directive-card:hover {
+  transform: translateY(-20px) perspective(1000px) rotateX(25deg) rotateY(25deg) scale(1.15) translateZ(100px);
+  box-shadow: 
+    0 60px 120px rgba(100, 200, 255, 0.7),
+    0 40px 80px rgba(0, 255, 136, 0.6),
+    0 25px 50px rgba(0, 0, 0, 0.8),
+    inset 0 0 0 3px rgba(100, 200, 255, 1),
+    inset 0 3px 0 rgba(255, 255, 255, 0.4);
+  border-color: rgba(100, 200, 255, 1);
+  background: rgba(0, 10, 30, 0.98);
+  filter: brightness(1.4) contrast(1.3) saturate(1.5);
+  animation: crazy-wobble 0.5s ease-in-out;
+}
+
+@keyframes crazy-wobble {
+  0%, 100% { transform: translateY(-20px) perspective(1000px) rotateX(25deg) rotateY(25deg) scale(1.15) translateZ(100px); }
+  25% { transform: translateY(-25px) perspective(1000px) rotateX(30deg) rotateY(20deg) scale(1.18) translateZ(120px); }
+  50% { transform: translateY(-15px) perspective(1000px) rotateX(20deg) rotateY(30deg) scale(1.12) translateZ(80px); }
+  75% { transform: translateY(-30px) perspective(1000px) rotateX(35deg) rotateY(15deg) scale(1.2) translateZ(140px); }
+}
+
+.constellation-card:hover {
+  transform: translateY(-25px) perspective(1200px) rotateX(30deg) rotateY(30deg) scale(1.2) translateZ(120px);
+  box-shadow: 
+    0 70px 140px rgba(100, 200, 255, 0.8),
+    0 50px 100px rgba(0, 255, 136, 0.7),
+    0 30px 60px rgba(0, 0, 0, 0.9),
+    inset 0 0 0 4px rgba(0, 255, 136, 1);
+  animation: constellation-spin 0.8s ease-in-out;
+}
+
+@keyframes constellation-spin {
+  0% { transform: translateY(-25px) perspective(1200px) rotateX(30deg) rotateY(30deg) scale(1.2) translateZ(120px); }
+  50% { transform: translateY(-30px) perspective(1200px) rotateX(40deg) rotateY(40deg) scale(1.25) translateZ(150px) rotateZ(5deg); }
+  100% { transform: translateY(-25px) perspective(1200px) rotateX(30deg) rotateY(30deg) scale(1.2) translateZ(120px); }
+}
+
+.mindset-card:hover {
+  transform: translateY(-30px) perspective(1500px) rotateX(35deg) rotateY(35deg) scale(1.25) translateZ(150px);
+  box-shadow: 
+    0 80px 160px rgba(100, 200, 255, 0.9),
+    0 60px 120px rgba(0, 255, 136, 0.8),
+    0 40px 80px rgba(0, 0, 0, 1),
+    inset 0 0 0 5px rgba(255, 255, 255, 0.8);
+  animation: mindset-explosion 0.6s ease-in-out;
+}
+
+@keyframes mindset-explosion {
+  0%, 100% { transform: translateY(-30px) perspective(1500px) rotateX(35deg) rotateY(35deg) scale(1.25) translateZ(150px); }
+  50% { transform: translateY(-40px) perspective(1500px) rotateX(45deg) rotateY(45deg) scale(1.3) translateZ(200px) rotateZ(10deg); }
+}
+
+/* PROFILE IMAGE ENHANCEMENTS */
+.profile-image:hover {
+  transform: scale(1.2) rotateY(15deg) rotateX(10deg);
+  box-shadow: 
+    0 0 80px rgba(100, 200, 255, 1),
+    0 0 160px rgba(0, 255, 136, 0.8),
+    0 30px 80px rgba(0, 0, 0, 0.6);
+  border-color: #00ff88;
+  animation: profile-crazy-spin 1s ease-in-out;
+}
+
+@keyframes profile-crazy-spin {
+  0% { transform: scale(1.2) rotateY(15deg) rotateX(10deg); }
+  25% { transform: scale(1.25) rotateY(25deg) rotateX(15deg) rotateZ(5deg); }
+  50% { transform: scale(1.3) rotateY(35deg) rotateX(20deg) rotateZ(-5deg); }
+  75% { transform: scale(1.25) rotateY(25deg) rotateX(15deg) rotateZ(3deg); }
+  100% { transform: scale(1.2) rotateY(15deg) rotateX(10deg); }
+}
+
+/* CRAZY MOVING ELEMENTS */
+.floating-element {
+  animation: crazy-float 8s ease-in-out infinite;
+}
+
+@keyframes crazy-float {
+  0%, 100% { transform: translateY(0) translateX(0) rotate(0deg); }
+  10% { transform: translateY(-15px) translateX(5px) rotate(2deg); }
+  20% { transform: translateY(-10px) translateX(-3px) rotate(-1deg); }
+  30% { transform: translateY(-20px) translateX(8px) rotate(3deg); }
+  40% { transform: translateY(-5px) translateX(-6px) rotate(-2deg); }
+  50% { transform: translateY(-25px) translateX(10px) rotate(4deg); }
+  60% { transform: translateY(-8px) translateX(-8px) rotate(-3deg); }
+  70% { transform: translateY(-18px) translateX(12px) rotate(5deg); }
+  80% { transform: translateY(-12px) translateX(-10px) rotate(-4deg); }
+  90% { transform: translateY(-22px) translateX(6px) rotate(2deg); }
+}
+
 /* NEXBOT SECTION */
 .nexbot-section {
   margin: 6rem 0;
@@ -2384,6 +2886,14 @@ const setupAnimations = () => {
   margin-right: auto;
   position: relative;
   z-index: 5;
+  animation: nexbot-hover 10s ease-in-out infinite;
+}
+
+@keyframes nexbot-hover {
+  0%, 100% { transform: translateY(0) scale(1); }
+  25% { transform: translateY(-10px) scale(1.02); }
+  50% { transform: translateY(-5px) scale(1.01); }
+  75% { transform: translateY(-15px) scale(1.03); }
 }
 
 .nexbot-section::before {
@@ -2438,6 +2948,54 @@ const setupAnimations = () => {
   .nav-link {
     padding: 0.75rem 1.5rem;
     font-size: 0.75rem;
+  }
+  
+  /* Mobile Image Adjustments */
+  .profile-image {
+    width: 150px !important;
+    height: 150px !important;
+  }
+  
+  .profile-glow {
+    width: 170px !important;
+    height: 170px !important;
+  }
+  
+  .journey-image-container {
+    margin: 2rem auto !important;
+    max-width: 90% !important;
+  }
+  
+  .journey-image {
+    height: 250px !important;
+  }
+  
+  .journey-overlay {
+    padding: 1rem !important;
+  }
+  
+  .journey-caption {
+    font-size: 0.875rem !important;
+  }
+  
+  .ventures-image-container {
+    margin: 2rem auto !important;
+    max-width: 90% !important;
+  }
+  
+  .ventures-image {
+    height: 300px !important;
+  }
+  
+  .ventures-stats {
+    position: static !important;
+    transform: none !important;
+    margin-top: 1rem !important;
+    background: rgba(0, 0, 0, 0.9) !important;
+  }
+  
+  .ventures-stats .stat-number {
+    font-size: 1.25rem !important;
   }
   
   .origin-item,
