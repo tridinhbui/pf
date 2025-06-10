@@ -62,19 +62,33 @@
           </div>
         </div>
 
-        <!-- Quick Actions -->
+        <!-- Quick Actions Carousel -->
         <div class="quick-actions-container">
-          <div class="quick-actions-scroll">
-            <div class="quick-actions-grid">
+          <div class="quick-actions-carousel" ref="carouselRef">
+            <div class="quick-actions-row">
               <button 
-                v-for="action in quickActions" 
-                :key="action.query"
-                class="quick-action"
-                @click="sendQuickMessage(action.query)"
+                v-for="action in quickActionsRow1" 
+                :key="action.id"
+                class="quick-action-btn"
+                @click="sendQuickMessage(action.text)"
               >
                 {{ action.text }}
               </button>
             </div>
+            <div class="quick-actions-row">
+              <button 
+                v-for="action in quickActionsRow2" 
+                :key="action.id"
+                class="quick-action-btn"
+                @click="sendQuickMessage(action.text)"
+              >
+                {{ action.text }}
+              </button>
+            </div>
+          </div>
+          <div class="carousel-dots">
+            <div class="dot" :class="{ active: currentRow === 0 }" @click="switchRow(0)"></div>
+            <div class="dot" :class="{ active: currentRow === 1 }" @click="switchRow(1)"></div>
           </div>
         </div>
 
@@ -124,86 +138,112 @@ interface Message {
 interface QuickAction {
   id: number;
   text: string;
-  query: string;
 }
 
 const isOpen = ref(false)
 const currentMessage = ref('')
 const isTyping = ref(false)
 const messagesContainer = ref<HTMLElement>()
+const carouselRef = ref<HTMLElement>()
+const currentRow = ref(0)
 
 const messages = ref<Message[]>([
   {
     id: 1,
-    text: "Chào bạn! Tôi là trợ lý AI của Trí. Tôi có thể giúp gì cho bạn về các lĩnh vực như tài chính, công nghệ, và khởi nghiệp không?",
+    text: "Hello! I'm Tri's AI Assistant. I can help you learn about his experience in finance, technology, and entrepreneurship. How can I assist you today?",
     sender: 'bot',
     time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
   }
 ])
 
-const quickActions = ref<QuickAction[]>([
-  { id: 1, text: "Tell me about his experience.", query: "experience" },
-  { id: 2, text: "What are his technical skills?", query: "technical skills" },
-  { id: 3, text: "Describe his AI/ML projects.", query: "projects" },
-  { id: 4, text: "What did he do at Blackstone?", query: "blackstone" },
-  { id: 5, text: "What's his primary programming language?", query: "python" },
-  { id: 6, text: "How can I contact him?", query: "contact" },
+const quickActionsRow1 = ref<QuickAction[]>([
+  { id: 1, text: "Tell me about Tri's finance experience" },
+  { id: 2, text: "What are his top AI/ML projects?" },
+  { id: 3, text: "How can I contact Tri?" },
+  { id: 4, text: "What's his entrepreneurship philosophy?" }
 ])
 
-const knowledgeBase = {
-  // Greetings
-  "hello": "Hello! I'm Tri's AI assistant. How can I help you today? You can ask me about his experience, technical skills, or projects.",
-  "hi": "Hi there! I'm an AI assistant representing Tri. Feel free to ask me anything about his professional background.",
-  "hey": "Hey! I'm here to answer your questions about Tri Bui. What would you like to know?",
+const quickActionsRow2 = ref<QuickAction[]>([
+  { id: 5, text: "What are his technical skills?" },
+  { id: 6, text: "Tell me about his education" },
+  { id: 7, text: "What makes him unique?" },
+  { id: 8, text: "Schedule a meeting with Tri" }
+])
 
-  // Professional Experience & Finance
-  "experience": "Tri has a background in corporate finance and investment analysis, with experience at Smithfield Foods and Blackstone (Revantage). He's skilled in financial modeling, valuation, and data analysis. Would you like to know more about a specific role?",
-  "finance": "Tri's finance skills include multi-million dollar CAPEX modeling, asset valuation, and risk analysis using Python for Monte Carlo simulations. He's proficient with tools like Excel, Power BI, and SAP.",
-  "blackstone": "At Blackstone (Revantage), Tri valuated a portfolio of 15 Commercial Real Estate assets worth over $350M. He also developed a Python-based Monte Carlo simulation to stress-test rent rolls, identifying and mitigating potential downside risk.",
-  
-  // Technical & AI/ML Skills
-  "technical skills": "Tri is a full-stack developer with deep expertise in AI/ML engineering. His core competencies include Python, JavaScript (Vue.js), and system architecture. He is experienced in building end-to-end AI models. What specific area interests you?",
-  "ai": "Tri has hands-on experience in AI/ML, particularly with Large Language Models (LLMs) and predictive modeling. He has fine-tuned models like Llama-2, implemented RAG pipelines for accuracy, and deployed models on cloud services like AWS. Are you interested in his 'FinBud AI' project?",
-  "ml": "His Machine Learning experience includes building time-series forecasting models (Prophet), NLP tasks, and using libraries like scikit-learn, pandas, and NumPy for data analysis and modeling. He's also familiar with MLOps principles for model lifecycle management.",
-  "projects": "A key project is 'FinBud AI', a personal finance assistant. It uses a fine-tuned LLM and a RAG pipeline to provide actionable insights. The backend is a serverless API on AWS Lambda. He's also built various other full-stack applications.",
-  "python": "Python is one of Tri's main languages. He uses it for financial modeling (pandas, NumPy), machine learning (scikit-learn, PyTorch), and building backend services.",
-  
-  // Personal & Contact
-  "contact": "You can reach out to Tri via the contact form on this website or connect with him on LinkedIn. The links are in the footer.",
-  "about": "Tri Bui is a professional with a unique blend of finance and technology expertise. He is passionate about using AI and software development to solve complex problems. This portfolio was designed and coded by him from scratch!",
-  
-  // Default/Fallback
-  "default": "That's an interesting question. I don't have a specific answer for that right now, but I'm constantly learning. Try asking me about Tri's experience, AI projects, or technical skills."
-};
+const botResponses: { [key: string]: string | string[] } = {
+  default: "Thank you for your question. I'll ask Tri and get back to you as soon as possible. In the meantime, do you have any other questions about his experience, projects, or skills?",
+  greeting: "Hello! How can I help you today?",
+  experience: [
+    "Tri has extensive experience in corporate finance and investment analysis. At Smithfield Foods, he's responsible for modeling CAPEX projects and optimizing debt structure for over $1 billion in assets.",
+    "At Blackstone, Tri built a Monte Carlo model in Python for rent stress-testing, helping identify and mitigate $1.5 million in potential downside risk.",
+    "His experience also includes risk analysis at Deloitte and due diligence for Climate Tech startups at Caprae Private Equity."
+  ],
+  projects: "Tri has founded and developed several technology projects, most notably:\\n- **FinBud AI:** A personal finance AI assistant with over 12,000 beta users. This project uses NLP models to understand user requests and time-series forecasting algorithms to provide financial advice.\\n- **DetectAuto (PoC):** Implemented computer vision proofs of concept for quality control at Daikin, helping reduce product defect rates by 12%.",
+  skills: "Tri has a diverse skill set:\\n- **Languages:** Python, JavaScript/TypeScript, SQL, R\\n- **Frameworks:** Vue.js, React, Node.js, TensorFlow, PyTorch\\n- **Infrastructure:** AWS (Lambda, S3, EC2), Docker, CI/CD\\n- **AI/ML:** Natural Language Processing (NLP), Time-Series Forecasting, LLM Fine-tuning, Computer Vision (Object Detection)\\n- **Databases:** Experience with PostgreSQL, MongoDB, and vector databases",
+  philosophy: "Tri's philosophy is building sustainable ecosystems rather than individual products. He believes in 'learn fast, teach faster,' 'build systems, not barriers,' and always 'lift others as you climb.'",
+  contact: "You can reach Tri via email at tbui@macalester.edu or connect via LinkedIn: linkedin.com/in/tribuidinh",
+  schedule: "To schedule a meeting, you can email Tri directly with your preferred time. He'll respond as soon as possible.",
+  education: "Tri graduated from Macalester College with a dual degree in Computer Science and Quantitative Economics. He was a $230K Kofi Annan Scholar and made Dean's List for all 6 semesters. He also completed an exchange program at NTU Singapore.",
+  unique: "What makes Tri unique is his ability to bridge three worlds: technology, finance, and entrepreneurship. He's not just building products, but entire ecosystems that create lasting impact for the next generation."
+}
 
 const getBotResponse = (userMessage: string): string => {
   const lowerCaseMessage = userMessage.toLowerCase();
-  let bestMatch = 'default';
-  let highestMatchCount = 0;
-
-  // Simple keyword matching logic
-  for (const key in knowledgeBase) {
-    if (key !== 'default') {
-      const keywords = key.split(' ');
-      let currentMatchCount = 0;
-      keywords.forEach(keyword => {
-        if (lowerCaseMessage.includes(keyword)) {
-          currentMatchCount++;
-        }
-      });
-      if (currentMatchCount > highestMatchCount) {
-        highestMatchCount = currentMatchCount;
-        bestMatch = key;
-      }
-    }
+  if (lowerCaseMessage.includes('experience') || lowerCaseMessage.includes('finance') || lowerCaseMessage.includes('work')) {
+    const responses = botResponses.experience as string[];
+    return responses.join('\\n\\n');
   }
+  if (lowerCaseMessage.includes('project') || lowerCaseMessage.includes('ai') || lowerCaseMessage.includes('ml') || lowerCaseMessage.includes('technology')) {
+    return botResponses.projects as string;
+  }
+  if (lowerCaseMessage.includes('skill') || lowerCaseMessage.includes('technical') || lowerCaseMessage.includes('programming')) {
+    return botResponses.skills as string;
+  }
+  if (lowerCaseMessage.includes('philosophy') || lowerCaseMessage.includes('entrepreneurship') || lowerCaseMessage.includes('unique') || lowerCaseMessage.includes('different')) {
+    return botResponses.philosophy as string;
+  }
+  if (lowerCaseMessage.includes('contact') || lowerCaseMessage.includes('email') || lowerCaseMessage.includes('reach')) {
+    return botResponses.contact as string;
+  }
+  if (lowerCaseMessage.includes('meeting') || lowerCaseMessage.includes('schedule') || lowerCaseMessage.includes('appointment')) {
+    return botResponses.schedule as string;
+  }
+  if (lowerCaseMessage.includes('education') || lowerCaseMessage.includes('college') || lowerCaseMessage.includes('school')) {
+    return botResponses.education as string;
+  }
+  if (lowerCaseMessage.includes('hello') || lowerCaseMessage.includes('hi') || lowerCaseMessage.includes('hey')) {
+    return botResponses.greeting as string;
+  }
+  return botResponses.default as string;
+}
 
-  // A few hardcoded checks for better accuracy
-  if (lowerCaseMessage.includes('hello') || lowerCaseMessage.includes('hi') || lowerCaseMessage.includes('hey')) bestMatch = 'hello';
-  if (lowerCaseMessage.includes('blackstone')) bestMatch = 'blackstone';
-  if (lowerCaseMessage.includes('ai') || lowerCaseMessage.includes('ml')) bestMatch = 'ai';
+const switchRow = (rowIndex: number) => {
+  currentRow.value = rowIndex;
+  if (carouselRef.value) {
+    carouselRef.value.style.transform = `translateY(-${rowIndex * 50}%)`;
+  }
+}
 
-  return knowledgeBase[bestMatch];
+const speakText = (text: string) => {
+  if ('speechSynthesis' in window) {
+    const utterance = new SpeechSynthesisUtterance(text.replace(/<[^>]*>/g, ''));
+    utterance.rate = 1.5; // Increased speed
+    utterance.pitch = 1;
+    utterance.volume = 0.8;
+    
+    // Try to use a more natural voice
+    const voices = speechSynthesis.getVoices();
+    const preferredVoice = voices.find(voice => 
+      voice.name.includes('Google') || 
+      voice.name.includes('Microsoft') ||
+      voice.lang.startsWith('en')
+    );
+    if (preferredVoice) {
+      utterance.voice = preferredVoice;
+    }
+    
+    speechSynthesis.speak(utterance);
+  }
 }
 
 const toggleChat = () => {
@@ -214,49 +254,63 @@ watch(() => props.autoOpen, (newValue) => {
   if (newValue) {
     setTimeout(() => {
       isOpen.value = true;
-    }, 500)
+      // Auto-speak welcome message
+      setTimeout(() => {
+        speakText(messages.value[0].text);
+      }, 500);
+    }, 3000)
   }
 });
 
+// Auto-rotate carousel every 5 seconds
+setInterval(() => {
+  currentRow.value = (currentRow.value + 1) % 2;
+  switchRow(currentRow.value);
+}, 5000);
+
 const sendMessage = async () => {
   if (!currentMessage.value.trim() || isTyping.value) return
-  
+
+  // Add user message
   const userMessage: Message = {
     id: Date.now(),
     text: currentMessage.value,
     sender: 'user',
     time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
   }
-  
   messages.value.push(userMessage)
-  const messageToSend = currentMessage.value;
+  
+  const messageText = currentMessage.value
   currentMessage.value = ''
   
+  // Show typing indicator
+  isTyping.value = true
   await nextTick()
   scrollToBottom()
-  
-  // Simulate bot response
-  isTyping.value = true
+
+  // Simulate bot response delay
   setTimeout(() => {
-    const botResponseText = getBotResponse(messageToSend);
-    const botResponse: Message = {
-      id: Date.now(),
-      text: botResponseText,
+    const botResponse = getBotResponse(messageText)
+    const botMessage: Message = {
+      id: Date.now() + 1,
+      text: botResponse,
       sender: 'bot',
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
     
-    messages.value.push(botResponse)
+    messages.value.push(botMessage)
     isTyping.value = false
     
     nextTick(() => {
       scrollToBottom()
+      // Auto-speak bot response
+      speakText(botResponse)
     })
-  }, 1500)
+  }, 1000 + Math.random() * 1000)
 }
 
-const sendQuickMessage = (text: string) => {
-  currentMessage.value = text
+const sendQuickMessage = (message: string) => {
+  currentMessage.value = message
   sendMessage()
 }
 
@@ -267,11 +321,7 @@ const scrollToBottom = () => {
 }
 
 onMounted(() => {
-  if (props.autoOpen) {
-    setTimeout(() => {
-      isOpen.value = true;
-    }, 500)
-  }
+  scrollToBottom()
 })
 </script>
 
@@ -515,59 +565,64 @@ onMounted(() => {
   }
 }
 
-/* Quick Actions */
+/* Quick Actions Container */
 .quick-actions-container {
-  padding: 0 1rem;
-  margin-bottom: 1rem;
-}
-
-.quick-actions-scroll {
+  padding: 10px 20px;
+  border-top: 1px solid #e5e5e5;
   display: flex;
-  overflow-x: auto;
-  padding-bottom: 1rem; /* for scrollbar */
-  scrollbar-width: thin;
-  scrollbar-color: #4f4f4f #2c2c2c;
-  -webkit-overflow-scrolling: touch;
-}
-
-.quick-actions-scroll::-webkit-scrollbar {
-  height: 5px;
-}
-
-.quick-actions-scroll::-webkit-scrollbar-track {
-  background: #2c2c2c;
-  border-radius: 10px;
-}
-
-.quick-actions-scroll::-webkit-scrollbar-thumb {
-  background-color: #4f4f4f;
-  border-radius: 10px;
-}
-
-.quick-actions-grid {
-  display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
-  height: 90px; /* Two rows of ~40px buttons + gap */
-  gap: 0.5rem;
+  flex-shrink: 0;
 }
 
-.quick-action {
-  padding: 0.5rem 1rem;
-  background-color: #3a3a3a;
-  color: #e0e0e0;
-  border: 1px solid #555;
-  border-radius: 20px;
+/* Quick Actions Carousel */
+.quick-actions-carousel {
+  height: 80px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.quick-actions-row {
+  display: flex;
+  gap: 8px;
+  height: 40px;
+  align-items: center;
+}
+
+.quick-action-btn {
+  padding: 8px 12px;
+  background-color: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 16px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 0.85rem;
-  text-align: center;
-  white-space: nowrap; /* Prevent line breaks */
+  font-size: 13px;
+  color: #495057;
+  transition: all 0.2s ease;
 }
 
-.quick-action:hover {
-  background-color: #4a4a4a;
-  border-color: #777;
+.quick-action-btn:hover {
+  background-color: #f1f3f5;
+  border-color: #adb5bd;
+}
+
+/* Carousel Dots */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background-color: #ced4da;
+  border-radius: 50%;
+  margin: 0 4px;
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: #000000;
 }
 
 /* Chat Input */

@@ -141,6 +141,7 @@
 
           <!-- Launch Navigation -->
           <div class="hero-nav" ref="heroNavRef">
+            <a href="#technical" class="nav-link shimmer-effect">Technical</a>
             <a href="#background" class="nav-link shimmer-effect">Background</a>
             <a href="#ventures" class="nav-link shimmer-effect">Ventures</a>
             <a href="#triangle" class="nav-link shimmer-effect">Triangle</a>
@@ -198,7 +199,162 @@
             </div>
             <div class="origin-item" ref="originItem4">
               <div class="origin-label">Current orbit</div>
-              <div class="origin-value">Corporate Finance Analyst, <strong>Smithfield Foods</strong> – modelling CAPEX, optimizing $1B debt stack, and steering scenario sims.</div>
+              <div class="origin-value">Corporate Finance Analyst, <strong>Smithfield Foods</strong> – modelling CAPEX, optimizing debt structure, and steering scenario sims.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Deep Dive Section - Moved to Top -->
+    <section class="section technical-section solid-background" id="technical">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Technical Deep Dive</h2>
+          <p class="section-subtitle">Comprehensive overview of my software development and AI/ML expertise</p>
+          
+          <!-- Technical Profile Image -->
+          <div class="technical-image-container">
+            <img src="@/assets/tri2.png" alt="Technical Expertise & AI/ML Development" class="technical-image" />
+            <div class="technical-overlay">
+              <span class="technical-caption">Bridging Finance, Technology & AI Innovation</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="technical-content">
+          <!-- Core Technical Stack -->
+          <div class="tech-stack-section">
+            <h3 class="subsection-title">Core Technology Stack</h3>
+            <div class="tech-categories">
+              <div class="tech-category">
+                <h4>Programming Languages</h4>
+                <div class="tech-items">
+                  <span class="tech-item">Python</span>
+                  <span class="tech-item">JavaScript/TypeScript</span>
+                  <span class="tech-item">SQL</span>
+                  <span class="tech-item">R</span>
+                  <span class="tech-item">Java</span>
+                </div>
+              </div>
+              
+              <div class="tech-category">
+                <h4>Frameworks & Libraries</h4>
+                <div class="tech-items">
+                  <span class="tech-item">Vue.js</span>
+                  <span class="tech-item">React</span>
+                  <span class="tech-item">Node.js</span>
+                  <span class="tech-item">TensorFlow</span>
+                  <span class="tech-item">PyTorch</span>
+                  <span class="tech-item">FastAPI</span>
+                  <span class="tech-item">Express.js</span>
+                </div>
+              </div>
+              
+              <div class="tech-category">
+                <h4>AI/ML Specializations</h4>
+                <div class="tech-items">
+                  <span class="tech-item">Natural Language Processing (NLP)</span>
+                  <span class="tech-item">Time-Series Forecasting</span>
+                  <span class="tech-item">LLM Fine-tuning</span>
+                  <span class="tech-item">Computer Vision</span>
+                  <span class="tech-item">Object Detection</span>
+                  <span class="tech-item">Sentiment Analysis</span>
+                </div>
+              </div>
+              
+              <div class="tech-category">
+                <h4>Cloud & Infrastructure</h4>
+                <div class="tech-items">
+                  <span class="tech-item">AWS (Lambda, S3, EC2)</span>
+                  <span class="tech-item">Docker</span>
+                  <span class="tech-item">CI/CD Pipelines</span>
+                  <span class="tech-item">Kubernetes</span>
+                  <span class="tech-item">Terraform</span>
+                </div>
+              </div>
+              
+              <div class="tech-category">
+                <h4>Databases & Data</h4>
+                <div class="tech-items">
+                  <span class="tech-item">PostgreSQL</span>
+                  <span class="tech-item">MongoDB</span>
+                  <span class="tech-item">Vector Databases</span>
+                  <span class="tech-item">Redis</span>
+                  <span class="tech-item">Apache Spark</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- AI/ML Projects Showcase -->
+          <div class="ai-projects-section">
+            <h3 class="subsection-title">AI/ML Project Highlights</h3>
+            <div class="ai-projects-grid">
+              <div class="ai-project-card">
+                <h4>FinBud AI - Personal Finance Assistant</h4>
+                <p class="project-description">
+                  Developed an intelligent personal finance assistant using advanced NLP models to understand user queries 
+                  and time-series forecasting algorithms to provide personalized financial advice. Achieved 12,000+ beta users.
+                </p>
+                <div class="project-tech">
+                  <span class="tech-badge">Python</span>
+                  <span class="tech-badge">TensorFlow</span>
+                  <span class="tech-badge">NLP</span>
+                  <span class="tech-badge">Time-Series</span>
+                </div>
+              </div>
+              
+              <div class="ai-project-card">
+                <h4>DetectAuto - Computer Vision Quality Control</h4>
+                <p class="project-description">
+                  Implemented computer vision proof of concept for automated quality control at Daikin. 
+                  Reduced product defect rates by 12% and established CI/CD pipeline for automated model retraining.
+                </p>
+                <div class="project-tech">
+                  <span class="tech-badge">Python</span>
+                  <span class="tech-badge">OpenCV</span>
+                  <span class="tech-badge">PyTorch</span>
+                  <span class="tech-badge">Computer Vision</span>
+                </div>
+              </div>
+              
+              <div class="ai-project-card">
+                <h4>Monte Carlo Risk Assessment Model</h4>
+                <p class="project-description">
+                  Built sophisticated Monte Carlo simulation model for rent stress-testing at Blackstone, 
+                  identifying and mitigating $1.5M in potential downside risk through advanced statistical modeling.
+                </p>
+                <div class="project-tech">
+                  <span class="tech-badge">Python</span>
+                  <span class="tech-badge">NumPy</span>
+                  <span class="tech-badge">Pandas</span>
+                  <span class="tech-badge">Monte Carlo</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Technical Achievements -->
+          <div class="tech-achievements-section">
+            <h3 class="subsection-title">Technical Achievements</h3>
+            <div class="achievements-grid">
+              <div class="achievement-item">
+                <div class="achievement-metric">12K+</div>
+                <div class="achievement-label">FinBud AI Users</div>
+              </div>
+              <div class="achievement-item">
+                <div class="achievement-metric">12%</div>
+                <div class="achievement-label">Defect Rate Reduction</div>
+              </div>
+              <div class="achievement-item">
+                <div class="achievement-metric">$1.5M</div>
+                <div class="achievement-label">Risk Mitigation</div>
+              </div>
+              <div class="achievement-item">
+                <div class="achievement-metric">5+</div>
+                <div class="achievement-label">AI/ML Projects</div>
+              </div>
             </div>
           </div>
         </div>
@@ -790,41 +946,6 @@
       <!-- Shooting stars -->
       <div class="shooting-star" v-for="n in 1" :key="`shooting-${n}`" :style="generateShootingStarStyle()"></div>
     </div>
-
-    <!-- Technical Deep Dive Section -->
-    <section class="section tech-deep-dive-section" id="tech">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">Technical Deep Dive</h2>
-          <p class="section-subtitle">A closer look at my engineering skills and AI/ML project experience</p>
-        </div>
-        <div class="tech-grid">
-          <!-- Core Competencies -->
-          <div class="tech-card core-card">
-            <h3 class="tech-card-title">Core Competencies</h3>
-            <ul class="competency-list">
-              <li><span class="competency-area">AI/ML Engineering:</span> End-to-end model development, from data preprocessing and feature engineering to deployment and MLOps.</li>
-              <li><span class="competency-area">Full-Stack Development:</span> Building scalable web applications with modern frontend frameworks and robust backend services.</li>
-              <li><span class="competency-area">Financial Modeling:</span> Translating complex financial scenarios into quantitative models to drive strategic decisions.</li>
-              <li><span class="competency-area">System Architecture:</span> Designing and implementing microservices-based architectures for scalability and resilience.</li>
-            </ul>
-          </div>
-          <!-- AI Project Case Study -->
-          <div class="tech-card project-card">
-            <h3 class="tech-card-title">AI Project Highlight: FinBud AI</h3>
-            <p class="project-description">
-              FinBud AI is a personal finance assistant leveraging LLMs to provide users with actionable insights. This project involved:
-            </p>
-            <ul class="project-details">
-              <li>Fine-tuning a Llama-2 model on a custom dataset of financial documents for domain-specific NLP tasks.</li>
-              <li>Implementing a RAG (Retrieval-Augmented Generation) pipeline to reduce hallucinations and provide source-traceable answers.</li>
-              <li>Developing a time-series forecasting model using Prophet to predict user spending patterns.</li>
-              <li>Deploying the inference API on AWS Lambda for a scalable, serverless backend.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
   </div>
 </template>
 
@@ -980,15 +1101,9 @@ const accolades = ref([
 
 const orbits = ref([
   {
-    org: "Smithfield Foods",
-    year: "Current",
-    contribution: "Corporate Finance Analyst responsible for multi-million dollar CAPEX modeling and strategic financial analysis to support executive decision-making.",
-    tech: "Excel, Power BI, SAP"
-  },
-  {
     org: "Blackstone → Revantage",
     year: "2024", 
-    contribution: "Valuated 15 CRE assets ($350M). Built a Monte Carlo rent stress-test model in Python that identified and mitigated potential downside risk.",
+    contribution: "Valuated 15 CRE assets ($350M). Built a Monte Carlo rent stress-test model in Python that identified and mitigated $1.5M in potential downside risk.",
     tech: "Python (pandas, NumPy, scikit-learn), Argus, Power BI"
   },
   {
@@ -1751,8 +1866,14 @@ const showChatbot = ref(false)
 /* Galaxy Footer Effects */
 .galaxy-footer {
   position: relative;
-  background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+  background: 
+    radial-gradient(ellipse at top left, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at top right, rgba(75, 0, 130, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom left, rgba(25, 25, 112, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba(72, 61, 139, 0.1) 0%, transparent 50%),
+    linear-gradient(135deg, #000000 0%, #0a0a0a 25%, #1a0a2e 50%, #16213e 75%, #000000 100%);
   overflow: hidden;
+  min-height: 60vh;
 }
 
 .galaxy-footer::before {
@@ -1763,13 +1884,19 @@ const showChatbot = ref(false)
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-    radial-gradient(circle at 40% 20%, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    radial-gradient(circle at 60% 80%, rgba(255, 255, 255, 0.08) 2px, transparent 2px),
-    radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-    radial-gradient(circle at 90% 70%, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 200px 200px, 150px 150px, 300px 300px, 180px 180px, 220px 220px;
-  animation: galaxy-drift 60s linear infinite;
+    radial-gradient(circle at 15% 30%, rgba(255, 255, 255, 0.8) 1px, transparent 1px),
+    radial-gradient(circle at 25% 60%, rgba(255, 255, 255, 0.6) 1px, transparent 1px),
+    radial-gradient(circle at 35% 25%, rgba(255, 255, 255, 0.4) 2px, transparent 2px),
+    radial-gradient(circle at 45% 75%, rgba(255, 255, 255, 0.7) 1px, transparent 1px),
+    radial-gradient(circle at 55% 40%, rgba(255, 255, 255, 0.5) 1px, transparent 1px),
+    radial-gradient(circle at 65% 80%, rgba(255, 255, 255, 0.9) 2px, transparent 2px),
+    radial-gradient(circle at 75% 20%, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+    radial-gradient(circle at 85% 55%, rgba(255, 255, 255, 0.6) 1px, transparent 1px),
+    radial-gradient(circle at 95% 35%, rgba(255, 255, 255, 0.4) 1px, transparent 1px),
+    radial-gradient(circle at 10% 85%, rgba(255, 255, 255, 0.5) 1px, transparent 1px);
+  background-size: 150px 150px, 200px 200px, 300px 300px, 180px 180px, 250px 250px,
+                  350px 350px, 120px 120px, 280px 280px, 160px 160px, 220px 220px;
+  animation: galaxy-drift 80s linear infinite;
   pointer-events: none;
 }
 
@@ -1835,8 +1962,7 @@ const showChatbot = ref(false)
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(5px);
+  background-color: #ffffff;
 }
 
 .elegant-overlay {
@@ -2994,8 +3120,8 @@ const showChatbot = ref(false)
 }
 
 .constellation-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
   border-color: #000000;
 }
 
@@ -3980,20 +4106,12 @@ const showChatbot = ref(false)
 }
 
 .constellation-card:hover {
-  transform: translateY(-25px) perspective(1200px) rotateX(30deg) rotateY(30deg) scale(1.2) translateZ(120px);
-  box-shadow: 
-    0 70px 140px rgba(0, 0, 0, 0.4),
-    0 50px 100px rgba(0, 0, 0, 0.3),
-    0 30px 60px rgba(0, 0, 0, 0.9),
-    inset 0 0 0 4px rgba(0, 0, 0, 0.5);
-  animation: constellation-spin 0.8s ease-in-out;
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  border-color: #000000;
 }
 
-@keyframes constellation-spin {
-  0% { transform: translateY(-25px) perspective(1200px) rotateX(30deg) rotateY(30deg) scale(1.2) translateZ(120px); }
-  50% { transform: translateY(-30px) perspective(1200px) rotateX(40deg) rotateY(40deg) scale(1.25) translateZ(150px) rotateZ(5deg); }
-  100% { transform: translateY(-25px) perspective(1200px) rotateX(30deg) rotateY(30deg) scale(1.2) translateZ(120px); }
-}
+
 
 /* Simplified mindset card hover - already defined above */
 
@@ -5157,6 +5275,264 @@ const showChatbot = ref(false)
   color: #000000;
   margin-right: 0.75rem;
   font-size: 0.75rem;
+}
+
+/* ===== TECHNICAL SECTION ===== */
+.technical-section {
+  background: #ffffff;
+  padding: 6rem 0;
+}
+
+.technical-image-container {
+  position: relative;
+  max-width: 400px;
+  margin: 3rem auto;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.technical-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.technical-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: #ffffff;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.technical-caption {
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.technical-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.subsection-title {
+  font-size: 2rem;
+  font-weight: var(--font-weight-bold);
+  color: #000000;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.tech-stack-section {
+  margin-bottom: 5rem;
+}
+
+.tech-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+.tech-category {
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+  border: 2px solid #e9ecef;
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.tech-category:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  border-color: #000000;
+  background: linear-gradient(145deg, #ffffff 0%, #f0f8ff 100%);
+}
+
+.tech-category::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #007bff, #6610f2, #e83e8c, #fd7e14);
+  border-radius: 1.5rem 1.5rem 0 0;
+}
+
+.tech-category h4 {
+  font-size: 1.4rem;
+  font-weight: var(--font-weight-bold);
+  color: #000000;
+  margin-bottom: 2rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.tech-category h4::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: #000000;
+}
+
+.tech-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.tech-item {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border: 2px solid #dee2e6;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #495057;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.tech-item:hover {
+  background: linear-gradient(135deg, #000000 0%, #333333 100%);
+  color: #ffffff;
+  border-color: #000000;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.ai-projects-section {
+  margin-bottom: 5rem;
+}
+
+.ai-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.ai-project-card {
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+  border: 2px solid #e9ecef;
+  border-radius: 1.5rem;
+  padding: 3rem;
+  transition: all 0.4s ease;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.ai-project-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border-color: #000000;
+  background: linear-gradient(145deg, #ffffff 0%, #f0f8ff 100%);
+}
+
+.ai-project-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #28a745, #007bff, #6f42c1);
+  border-radius: 1.5rem 1.5rem 0 0;
+}
+
+.ai-project-card h4 {
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-bold);
+  color: #000000;
+  margin-bottom: 1rem;
+}
+
+.project-description {
+  color: #666666;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tech-badge {
+  background: #000000;
+  color: #ffffff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.tech-achievements-section {
+  margin-bottom: 3rem;
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+}
+
+.achievement-item {
+  text-align: center;
+  background: linear-gradient(145deg, #000000 0%, #333333 100%);
+  border: 2px solid #333333;
+  border-radius: 1.5rem;
+  padding: 3rem 2rem;
+  transition: all 0.4s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.achievement-item:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+  border-color: #ffffff;
+}
+
+.achievement-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #ffd700, #ff6b6b, #4ecdc4, #45b7d1);
+  border-radius: 1.5rem 1.5rem 0 0;
+}
+
+.achievement-metric {
+  font-size: 3rem;
+  font-weight: var(--font-weight-bold);
+  color: #ffffff;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.3);
+}
+
+.achievement-label {
+  font-size: 0.9rem;
+  color: #cccccc;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
 /* ===== WELCOME POPUP ===== */
@@ -6564,73 +6940,5 @@ const showChatbot = ref(false)
   75% { transform: translateX(-1px); }
   76% { transform: translateX(1px); }
   77%, 100% { transform: translateX(0); }
-}
-
-/* Tech Deep Dive Section */
-.tech-deep-dive-section {
-  background-color: #f8f9fa; /* A light, techy grey */
-  color: #212529;
-}
-
-.tech-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
-  margin-top: 4rem;
-}
-
-.tech-card {
-  background-color: #ffffff;
-  border: 1px solid #dee2e6;
-  border-radius: 12px;
-  padding: 2.5rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.tech-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-}
-
-.tech-card-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid #e9ecef;
-}
-
-.competency-list, .project-details {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.competency-list li, .project-details li {
-  line-height: 1.6;
-  position: relative;
-  padding-left: 25px;
-}
-
-.competency-list li::before, .project-details li::before {
-  content: '✓'; /* Checkmark icon */
-  position: absolute;
-  left: 0;
-  top: 4px;
-  color: #007bff; /* A nice blue for tech */
-  font-weight: bold;
-}
-
-.competency-area {
-  font-weight: 600;
-  color: #343a40;
-}
-
-.project-description {
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
 }
 </style> 
