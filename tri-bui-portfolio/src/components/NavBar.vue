@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar" :class="{ 'navbar-scrolled': isScrolled }">
+  <nav class="navbar" :class="{ 'navbar-scrolled': isScrolled, 'navbar-hidden': props.hideNavbar }" v-show="!props.hideNavbar">
     <!-- Galaxy Background -->
     <div class="galaxy-background">
       <div class="galaxy-stars">
@@ -28,7 +28,7 @@
         <a href="#ventures" class="nav-link">Ventures</a>
         <a href="#triangle" class="nav-link">Triangle</a>
         <a href="#mindset" class="nav-link">Mindset</a>
-        <a href="#blog" class="nav-link">Blog</a>
+        <router-link to="/blog" class="nav-link">Blog</router-link>
         <a href="#contact" class="nav-link">Contact</a>
       </div>
 
@@ -44,6 +44,10 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
+
+const props = defineProps<{
+  hideNavbar?: boolean
+}>()
 
 const isScrolled = ref(false)
 const isMenuOpen = ref(false)
@@ -98,10 +102,10 @@ onUnmounted(() => {
 }
 
 .navbar-scrolled {
-  background: rgba(0, 0, 0, 0.95);
+  background: rgba(0, 0, 0, 0.98);
   backdrop-filter: blur(20px);
-  border-bottom-color: rgba(100, 200, 255, 0.3);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  border-bottom-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
 }
 
 /* Galaxy Background */

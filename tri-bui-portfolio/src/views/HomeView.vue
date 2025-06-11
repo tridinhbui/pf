@@ -29,6 +29,29 @@
 
     <!-- Welcome Popup -->
     <div class="welcome-popup-container" v-if="showWelcomePopup">
+      <!-- Shooting Stars -->
+      <div class="shooting-stars">
+        <div class="shooting-star" v-for="n in 5" :key="`star-${n}`"></div>
+      </div>
+      
+      <!-- Galaxy Particles -->
+      <div class="galaxy-particles">
+        <div class="particle" v-for="n in 50" :key="`particle-${n}`"></div>
+      </div>
+      
+      <!-- Spaceship -->
+      <div class="spaceship"></div>
+      
+      <!-- Space Robot -->
+      <div class="space-robot">
+        <div class="robot-head">
+          <div class="robot-eyes"></div>
+        </div>
+        <div class="robot-body">
+          <div class="robot-arms"></div>
+        </div>
+      </div>
+      
       <div class="popup-overlay elegant-overlay"></div>
       <div class="popup-content elegant-content">
         <div class="popup-header elegant-header">
@@ -54,22 +77,28 @@
               </div>
               <div class="credential-item">
                 <span class="credential-label">Focus</span>
-                <span class="credential-value">Building sustainable ecosystems for the next generation</span>
+                <span class="credential-value">Building ecosystems</span>
               </div>
             </div>
           </div>
         </div>
         
         <div class="popup-footer elegant-footer">
-          <button class="elegant-enter-btn" @click="closeWelcomePopup">
-            <span>Enter Portfolio</span>
+          <button class="elegant-enter-btn debug-button" @click="closeWelcomePopup">
+            <span>ENTER PORTFOLIO</span>
           </button>
+          <!-- Backup button for debugging -->
+          <div class="backup-button-container">
+            <button class="backup-enter-btn" @click="closeWelcomePopup">
+              ENTER PORTFOLIO
+            </button>
+          </div>
         </div>
       </div>
     </div>
     
     <!-- Navigation Bar -->
-    <NavBar />
+    <NavBar :hideNavbar="showWelcomePopup" />
     
     <!-- Magnetic Cursor -->
     <MagneticCursor />
@@ -134,8 +163,8 @@
             </p>
                     </div>
 
-          <!-- NEXBOT Robot Section -->
-          <div class="nexbot-section" ref="nexbotRef">
+          <!-- AI Robot Assistant -->
+          <div class="robot-section" ref="robotRef">
             <SplineRobot />
           </div>
 
@@ -146,7 +175,7 @@
             <a href="#ventures" class="nav-link shimmer-effect">Ventures</a>
             <a href="#triangle" class="nav-link shimmer-effect">Triangle</a>
             <a href="#mindset" class="nav-link shimmer-effect">Mindset</a>
-            <a href="#blog" class="nav-link shimmer-effect">Blog</a>
+            <router-link to="/blog" class="nav-link shimmer-effect">Blog</router-link>
             <a href="#contact" class="nav-link shimmer-effect">Contact</a>
           </div>
         </div>
@@ -981,7 +1010,7 @@ const statusRef = ref<HTMLElement>()
 const heroTitleRef = ref<HTMLElement>()
 
 const heroNavRef = ref<HTMLElement>()
-const nexbotRef = ref<HTMLElement>()
+const robotRef = ref<HTMLElement>()
 const splineRef = ref<HTMLElement>()
 const particlesRef = ref<HTMLElement>()
 const originTitleRef = ref<HTMLElement>()
@@ -1509,9 +1538,9 @@ const setupAnimations = () => {
     }, "-=0.2")
   }
   
-  // NEXBOT animation
-  if (nexbotRef.value) {
-    heroTl.from(nexbotRef.value, {
+  // Robot animation
+  if (robotRef.value) {
+    heroTl.from(robotRef.value, {
       opacity: 0,
       scale: 0.8,
       y: 50,
@@ -1962,7 +1991,328 @@ const showChatbot = ref(false)
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #ffffff;
+  background: radial-gradient(ellipse at center, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+  overflow-y: auto;
+  padding: 2rem 0;
+  position: relative;
+}
+
+.welcome-popup-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, #ffffff, transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 90px 40px, #ffffff, transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+    radial-gradient(2px 2px at 160px 30px, #ffffff, transparent),
+    radial-gradient(1px 1px at 200px 90px, rgba(255,255,255,0.9), transparent),
+    radial-gradient(2px 2px at 240px 20px, #ffffff, transparent),
+    radial-gradient(1px 1px at 280px 60px, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 320px 100px, #ffffff, transparent),
+    radial-gradient(2px 2px at 360px 40px, rgba(255,255,255,0.8), transparent);
+  background-repeat: repeat;
+  background-size: 400px 400px;
+  animation: twinkle 4s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.welcome-popup-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(1px 1px at 50px 100px, #ffffff, transparent),
+    radial-gradient(1px 1px at 150px 50px, rgba(255,255,255,0.5), transparent),
+    radial-gradient(2px 2px at 250px 120px, #ffffff, transparent),
+    radial-gradient(1px 1px at 350px 80px, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 450px 40px, #ffffff, transparent),
+    radial-gradient(2px 2px at 100px 200px, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 300px 180px, #ffffff, transparent),
+    radial-gradient(1px 1px at 400px 160px, rgba(255,255,255,0.8), transparent);
+  background-repeat: repeat;
+  background-size: 500px 300px;
+  animation: twinkle 6s ease-in-out infinite alternate-reverse;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+  100% { opacity: 0.4; transform: scale(0.9); }
+}
+
+/* Shooting Stars */
+.shooting-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.shooting-star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #ffffff;
+  animation: shooting 3s linear infinite;
+}
+
+.shooting-star:nth-child(1) {
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+  animation-duration: 2s;
+}
+
+.shooting-star:nth-child(2) {
+  top: 30%;
+  left: 80%;
+  animation-delay: 1s;
+  animation-duration: 2.5s;
+}
+
+.shooting-star:nth-child(3) {
+  top: 60%;
+  left: 20%;
+  animation-delay: 2s;
+  animation-duration: 3s;
+}
+
+.shooting-star:nth-child(4) {
+  top: 80%;
+  left: 70%;
+  animation-delay: 1.5s;
+  animation-duration: 2.2s;
+}
+
+.shooting-star:nth-child(5) {
+  top: 50%;
+  left: 90%;
+  animation-delay: 0.5s;
+  animation-duration: 2.8s;
+}
+
+@keyframes shooting {
+  0% {
+    transform: translateX(0) translateY(0);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-300px) translateY(300px);
+    opacity: 0;
+  }
+}
+
+/* Galaxy Particles */
+.galaxy-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.particle {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  animation: float 6s ease-in-out infinite;
+}
+
+.particle:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+.particle:nth-child(2) { top: 20%; left: 15%; animation-delay: 0.5s; }
+.particle:nth-child(3) { top: 30%; left: 25%; animation-delay: 1s; }
+.particle:nth-child(4) { top: 40%; left: 35%; animation-delay: 1.5s; }
+.particle:nth-child(5) { top: 50%; left: 45%; animation-delay: 2s; }
+.particle:nth-child(6) { top: 60%; left: 55%; animation-delay: 2.5s; }
+.particle:nth-child(7) { top: 70%; left: 65%; animation-delay: 3s; }
+.particle:nth-child(8) { top: 80%; left: 75%; animation-delay: 3.5s; }
+.particle:nth-child(9) { top: 90%; left: 85%; animation-delay: 4s; }
+.particle:nth-child(10) { top: 15%; left: 95%; animation-delay: 4.5s; }
+
+.particle:nth-child(odd) {
+  background: rgba(135, 206, 250, 0.6);
+}
+
+.particle:nth-child(3n) {
+  background: rgba(255, 182, 193, 0.5);
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-20px) translateX(10px);
+    opacity: 1;
+  }
+}
+
+/* Spaceship */
+.spaceship {
+  position: absolute;
+  width: 60px;
+  height: 30px;
+  background: linear-gradient(45deg, #c0c0c0, #ffffff);
+  border-radius: 30px 10px 30px 10px;
+  z-index: 3;
+  animation: spaceship-travel 15s linear infinite;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.spaceship::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -10px;
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 15px solid #ff6b6b;
+  transform: translateY(-50%);
+  animation: engine-glow 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes spaceship-travel {
+  0% {
+    top: 80%;
+    left: -100px;
+    transform: rotate(-10deg);
+  }
+  25% {
+    top: 40%;
+    left: 25%;
+    transform: rotate(5deg);
+  }
+  50% {
+    top: 20%;
+    left: 50%;
+    transform: rotate(-5deg);
+  }
+  75% {
+    top: 60%;
+    left: 75%;
+    transform: rotate(10deg);
+  }
+  100% {
+    top: 30%;
+    left: 110%;
+    transform: rotate(-5deg);
+  }
+}
+
+@keyframes engine-glow {
+  0% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+/* Space Robot */
+.space-robot {
+  position: absolute;
+  width: 40px;
+  height: 50px;
+  z-index: 3;
+  animation: robot-float 12s ease-in-out infinite;
+}
+
+.robot-body {
+  width: 30px;
+  height: 35px;
+  background: linear-gradient(135deg, #4a90e2, #50c8ff);
+  border-radius: 8px;
+  position: relative;
+  box-shadow: 0 0 15px rgba(74, 144, 226, 0.6);
+}
+
+.robot-head {
+  width: 25px;
+  height: 20px;
+  background: linear-gradient(135deg, #5dade2, #85c1e9);
+  border-radius: 50% 50% 20% 20%;
+  position: absolute;
+  top: -15px;
+  left: 2.5px;
+  box-shadow: 0 0 10px rgba(93, 173, 226, 0.8);
+}
+
+.robot-eyes {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 4px;
+  height: 4px;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 8px 0 0 #ffffff, 0 0 5px #ffffff, 8px 0 5px #ffffff;
+  animation: robot-blink 3s ease-in-out infinite;
+}
+
+.robot-arms {
+  position: absolute;
+  top: 8px;
+  left: -8px;
+  width: 6px;
+  height: 15px;
+  background: #4a90e2;
+  border-radius: 3px;
+  box-shadow: 38px 0 0 #4a90e2;
+}
+
+@keyframes robot-float {
+  0% {
+    top: 70%;
+    left: 110%;
+    transform: translateY(0);
+  }
+  25% {
+    top: 50%;
+    left: 75%;
+    transform: translateY(-10px);
+  }
+  50% {
+    top: 30%;
+    left: 40%;
+    transform: translateY(-5px);
+  }
+  75% {
+    top: 60%;
+    left: 20%;
+    transform: translateY(-15px);
+  }
+  100% {
+    top: 80%;
+    left: -50px;
+    transform: translateY(0);
+  }
+}
+
+@keyframes robot-blink {
+  0%, 90%, 100% { opacity: 1; }
+  95% { opacity: 0; }
 }
 
 .elegant-overlay {
@@ -1975,15 +2325,23 @@ const showChatbot = ref(false)
 }
 
 .elegant-content {
-  position: relative;
-  background: #ffffff;
-  border: 1px solid #000000;
-  max-width: 600px;
-  width: 90%;
-  text-align: center;
-  padding: 3rem;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-  animation: elegant-entrance 0.6s ease-out;
+  position: relative !important;
+  background: rgba(0, 0, 0, 0.9) !important;
+  border: 2px solid #ffffff !important;
+  max-width: 700px !important;
+  width: 95% !important;
+  text-align: center !important;
+  padding: 2rem !important;
+  box-shadow: 0 20px 60px rgba(255, 255, 255, 0.3), inset 0 0 50px rgba(255, 255, 255, 0.1) !important;
+  animation: elegant-entrance 0.6s ease-out !important;
+  max-height: 90vh !important;
+  overflow-y: auto !important;
+  margin: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  z-index: 10 !important;
+  backdrop-filter: blur(10px) !important;
+  border-radius: 15px !important;
 }
 
 @keyframes elegant-entrance {
@@ -2000,31 +2358,35 @@ const showChatbot = ref(false)
 .elegant-header {
   padding: 3rem 3rem 2rem;
   text-align: center;
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: 1px solid #444444;
 }
 
 .welcome-divider {
   width: 60px;
-  height: 1px;
-  background: #000000;
+  height: 2px;
+  background: linear-gradient(90deg, #ffffff, #cccccc, #ffffff);
   margin: 0 auto 2rem;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
 .elegant-title {
   font-size: 2.5rem;
   font-weight: var(--font-weight-bold);
-  color: #000000;
+  color: #ffffff;
   margin: 0 0 1rem;
   letter-spacing: -0.02em;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+  filter: brightness(1.1);
 }
 
 .elegant-subtitle {
   font-size: 1rem;
-  color: #666666;
+  color: #e0e0e0;
   font-weight: 400;
   letter-spacing: 0.05em;
   margin: 0;
   line-height: 1.6;
+  text-shadow: 0 0 10px rgba(224, 224, 224, 0.6);
 }
 
 .elegant-body {
@@ -2033,11 +2395,13 @@ const showChatbot = ref(false)
 
 .welcome-text {
   font-size: 1.1rem;
-  color: #333333;
+  color: #ffffff;
   line-height: 1.7;
   margin-bottom: 2.5rem;
   text-align: center;
   font-weight: 400;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+  filter: brightness(1.05);
 }
 
 .credentials {
@@ -2051,7 +2415,7 @@ const showChatbot = ref(false)
   flex-direction: column;
   gap: 0.5rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid #444444;
 }
 
 .credential-item:last-child {
@@ -2061,42 +2425,82 @@ const showChatbot = ref(false)
 
 .credential-label {
   font-size: 0.85rem;
-  color: #888888;
+  color: #bbbbbb;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  text-shadow: 0 0 8px rgba(187, 187, 187, 0.5);
 }
 
 .credential-value {
   font-size: 1rem;
-  color: #333333;
+  color: #ffffff;
   font-weight: 400;
   line-height: 1.5;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+  filter: brightness(1.05);
 }
 
 .elegant-footer {
-  padding: 2rem 3rem 3rem;
-  text-align: center;
-  border-top: 1px solid #e5e5e5;
+  padding: 2rem 1rem 2rem !important;
+  text-align: center !important;
+  border-top: 1px solid #444444 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  background: #000000 !important;
+  position: relative !important;
+  z-index: 999 !important;
+  margin-top: auto !important;
+  flex-shrink: 0 !important;
 }
 
 .elegant-enter-btn {
-  background: #000000;
-  color: #ffffff;
-  border: none;
-  padding: 1rem 2.5rem;
-  font-size: 0.95rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
+  background: #ffffff !important;
+  color: #000000 !important;
+  border: 3px solid #ffffff !important;
+  padding: 1.5rem 4rem !important;
+  font-size: 1.2rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  text-transform: uppercase !important;
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.8) !important;
+  filter: brightness(1.3) !important;
+  border-radius: 12px !important;
+  display: block !important;
+  margin: 0 auto !important;
+  min-width: 250px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  z-index: 1000 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 .elegant-enter-btn:hover {
-  background: #333333;
-  transform: translateY(-1px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  background: #f0f0f0;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 0 50px rgba(255, 255, 255, 1);
+  filter: brightness(1.3);
+}
+
+.elegant-enter-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.elegant-enter-btn:hover::before {
+  left: 100%;
 }
 
 .elegant-close-btn {
@@ -2106,7 +2510,7 @@ const showChatbot = ref(false)
   background: none;
   border: none;
   font-size: 1.5rem;
-  color: #666666;
+  color: #bbbbbb;
   cursor: pointer;
   transition: all 0.3s ease;
   width: 40px;
@@ -2114,11 +2518,168 @@ const showChatbot = ref(false)
   display: flex;
   align-items: center;
   justify-content: center;
+  text-shadow: 0 0 10px rgba(187, 187, 187, 0.5);
 }
 
 .elegant-close-btn:hover {
-  color: #000000;
+  color: #ffffff;
   transform: scale(1.1);
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+}
+
+/* Backup Button Styles for Debugging */
+.backup-button-container {
+  margin-top: 20px !important;
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.backup-enter-btn {
+  background: #ffffff !important;
+  color: #000000 !important;
+  border: 3px solid #ffffff !important;
+  padding: 20px 50px !important;
+  font-size: 18px !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  border-radius: 15px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 2px !important;
+  box-shadow: 0 0 50px rgba(255, 255, 255, 0.8) !important;
+  z-index: 9999 !important;
+  position: relative !important;
+  display: block !important;
+  margin: 0 auto !important;
+  min-width: 300px !important;
+  height: 60px !important;
+  line-height: 1 !important;
+  transition: all 0.3s ease !important;
+}
+
+.backup-enter-btn:hover {
+  background: #f0f0f0 !important;
+  transform: scale(1.1) translateY(-3px) !important;
+  box-shadow: 0 0 70px rgba(255, 255, 255, 1) !important;
+  filter: brightness(1.1) !important;
+}
+
+.debug-button {
+  display: none !important;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .welcome-popup-container {
+    padding: 1rem 0 !important;
+  }
+  
+  .elegant-content {
+    max-width: 95% !important;
+    width: 95% !important;
+    padding: 1.5rem !important;
+    max-height: 95vh !important;
+    margin: 0.5rem auto !important;
+  }
+  
+  .elegant-header {
+    padding: 2rem 1rem 1.5rem !important;
+  }
+  
+  .elegant-title {
+    font-size: 2rem !important;
+  }
+  
+  .elegant-subtitle {
+    font-size: 0.9rem !important;
+  }
+  
+  .welcome-text {
+    font-size: 1rem !important;
+  }
+  
+  .credential-item {
+    padding-bottom: 1rem !important;
+  }
+  
+  .credential-label {
+    font-size: 0.8rem !important;
+  }
+  
+  .credential-value {
+    font-size: 0.9rem !important;
+  }
+  
+  .backup-enter-btn {
+    min-width: 250px !important;
+    padding: 15px 30px !important;
+    font-size: 16px !important;
+    height: 50px !important;
+  }
+  
+  .elegant-footer {
+    padding: 1.5rem 1rem 1.5rem !important;
+  }
+  
+  /* Mobile spaceship and robot adjustments */
+  .spaceship {
+    width: 40px !important;
+    height: 20px !important;
+  }
+  
+  .space-robot {
+    width: 30px !important;
+    height: 35px !important;
+  }
+  
+  .robot-body {
+    width: 20px !important;
+    height: 25px !important;
+  }
+  
+  .robot-head {
+    width: 18px !important;
+    height: 15px !important;
+    left: 1px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .elegant-content {
+    max-width: 98% !important;
+    padding: 1rem !important;
+  }
+  
+  .elegant-title {
+    font-size: 1.8rem !important;
+  }
+  
+  .backup-enter-btn {
+    min-width: 200px !important;
+    padding: 12px 25px !important;
+    font-size: 14px !important;
+    height: 45px !important;
+  }
+  
+  .credential-value {
+    font-size: 0.85rem !important;
+    line-height: 1.4 !important;
+  }
+}
+
+@media (max-height: 600px) {
+  .elegant-content {
+    max-height: 98vh !important;
+  }
+  
+  .elegant-header {
+    padding: 1.5rem 1rem 1rem !important;
+  }
+  
+  .elegant-footer {
+    padding: 1rem !important;
+  }
 }
 
 .section-header {
@@ -4136,46 +4697,14 @@ const showChatbot = ref(false)
 
 /* SIMPLIFIED FLOATING ELEMENTS - Removed excessive animations */
 
-/* NEXBOT SECTION */
-.nexbot-section {
-  margin: 6rem 0;
-  max-width: 800px;
+/* ROBOT SECTION */
+.robot-section {
+  margin: 4rem 0;
+  max-width: 600px;
   margin-left: auto;
   margin-right: auto;
   position: relative;
   z-index: 5;
-  animation: nexbot-hover 10s ease-in-out infinite;
-}
-
-@keyframes nexbot-hover {
-  0%, 100% { transform: translateY(0) scale(1); }
-  25% { transform: translateY(-10px) scale(1.02); }
-  50% { transform: translateY(-5px) scale(1.01); }
-  75% { transform: translateY(-15px) scale(1.03); }
-}
-
-.nexbot-section::before {
-  content: '';
-  position: absolute;
-  top: -20px;
-  left: -20px;
-  right: -20px;
-  bottom: -20px;
-  background: linear-gradient(45deg, transparent, rgba(0, 0, 0, 0.05), transparent);
-  border-radius: 30px;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-.nexbot-section:hover::before {
-  opacity: 1;
-  animation: nexbot-aura 3s ease-in-out infinite;
-}
-
-@keyframes nexbot-aura {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
 }
 
 /* RESPONSIVE */
