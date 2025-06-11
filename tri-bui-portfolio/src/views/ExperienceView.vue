@@ -23,7 +23,7 @@
             <p class="text-xl text-gray-300">Đang đảm nhận những vị trí then chốt trong tài chính và khởi nghiệp</p>
           </div>
 
-          <div class="grid md:grid-cols-2 gap-8">
+          <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
             <!-- Smithfield -->
             <div class="bg-gradient-to-br from-blue-900/20 to-blue-800/20 p-8 rounded-2xl card-hover">
               <div class="flex items-center mb-6">
@@ -104,6 +104,48 @@
                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                   </svg>
                   Gọi vốn và xây dựng quan hệ đối tác chiến lược
+                </li>
+              </ul>
+            </div>
+
+            <!-- NextGen Investor -->
+            <div class="bg-gradient-to-br from-orange-900/20 to-orange-800/20 p-8 rounded-2xl card-hover">
+              <div class="flex items-center mb-6">
+                <div class="w-16 h-16 bg-orange-600/20 rounded-full flex items-center justify-center mr-4">
+                  <svg class="w-8 h-8 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-2xl font-bold text-orange-400">Co-Founder</h3>
+                  <p class="text-lg text-gray-300">NextGen Investor</p>
+                  <p class="text-sm text-gray-400">2024 - Hiện tại</p>
+                </div>
+              </div>
+              <ul class="space-y-3 text-gray-300">
+                <li class="flex items-start">
+                  <svg class="w-4 h-4 text-orange-400 mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  Giảng dạy kiến thức tài chính và kinh tế thực tiễn
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-4 h-4 text-orange-400 mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  Chuyên sâu về chiến lược đầu tư và quản lý danh mục
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-4 h-4 text-orange-400 mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  Phát triển chương trình đào tạo tài chính cho Gen Z
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-4 h-4 text-orange-400 mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7-293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  Xây dựng cộng đồng nhà đầu tư trẻ Việt Nam
                 </li>
               </ul>
             </div>

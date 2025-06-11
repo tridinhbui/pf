@@ -16,20 +16,20 @@
     <div class="nav-container">
       <!-- Logo/Brand -->
       <div class="nav-brand">
-        <a href="#" class="brand-link">
+        <router-link to="/" class="brand-link">
           <span class="brand-text">TRI</span>
           <span class="brand-accent">BUI</span>
-        </a>
+        </router-link>
       </div>
 
       <!-- Desktop Menu -->
       <div class="nav-menu" :class="{ 'nav-menu-open': isMenuOpen }">
-        <a href="#background" class="nav-link">Origin</a>
-        <a href="#ventures" class="nav-link">Ventures</a>
-        <a href="#triangle" class="nav-link">Triangle</a>
-        <a href="#mindset" class="nav-link">Mindset</a>
+        <router-link to="/#background" class="nav-link">Origin</router-link>
+        <router-link to="/#ventures" class="nav-link">Ventures</router-link>
+        <router-link to="/#triangle" class="nav-link">Triangle</router-link>
+        <router-link to="/#mindset" class="nav-link">Mindset</router-link>
         <router-link to="/blog" class="nav-link">Blog</router-link>
-        <a href="#contact" class="nav-link">Contact</a>
+        <router-link to="/#contact" class="nav-link">Contact</router-link>
       </div>
 
       <!-- Mobile Menu Button -->

@@ -1,20 +1,40 @@
 <template>
   <div class="chatbot-container">
-    <!-- Chat Button -->
+    <!-- Robot Face Chat Button -->
     <button 
-      class="chat-button"
+      class="chat-button robot-face-btn"
       @click="toggleChat"
       :class="{ 'active': isOpen }"
     >
-      <div class="button-icon">
-        <svg v-if="!isOpen" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-        </svg>
-        <svg v-else viewBox="0 0 24 24" fill="none" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-        </svg>
+      <div class="robot-face">
+        <div class="robot-head">
+          <div class="robot-antenna left"></div>
+          <div class="robot-antenna right"></div>
+          <div class="robot-face-shell">
+            <div class="robot-eyes">
+              <div class="robot-eye left">
+                <div class="eye-pupil"></div>
+                <div class="eye-glow"></div>
+              </div>
+              <div class="robot-eye right">
+                <div class="eye-pupil"></div>
+                <div class="eye-glow"></div>
+              </div>
+            </div>
+            <div class="robot-mouth">
+              <div class="mouth-line" v-for="n in 3" :key="n"></div>
+            </div>
+            <div class="robot-cheek-vents">
+              <div class="vent left"></div>
+              <div class="vent right"></div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="pulse-ring"></div>
+      <div class="floating-particles">
+        <div class="particle" v-for="n in 8" :key="n"></div>
+      </div>
     </button>
 
     <!-- Chat Interface -->
@@ -29,6 +49,17 @@
           <div class="bot-info">
             <h3>Tri AI Assistant</h3>
             <p>Online • Usually replies instantly</p>
+          </div>
+          <div class="chat-controls">
+            <button 
+              @click="toggleChatMute" 
+              class="chat-mute-btn" 
+              :class="{ 'muted': isChatMuted }"
+              :title="isChatMuted ? 'Unmute Chat Audio' : 'Mute Chat Audio'"
+            >
+              <span v-if="!isChatMuted">🔊</span>
+              <span v-else>🔇</span>
+            </button>
           </div>
         </div>
 
@@ -146,6 +177,8 @@ const isTyping = ref(false)
 const messagesContainer = ref<HTMLElement>()
 const carouselRef = ref<HTMLElement>()
 const currentRow = ref(0)
+const isChatMuted = ref(false)
+const isCurrentlySpeaking = ref(false)
 
 const messages = ref<Message[]>([
   {
@@ -225,25 +258,39 @@ const switchRow = (rowIndex: number) => {
 }
 
 const speakText = (text: string) => {
-  if ('speechSynthesis' in window) {
-    const utterance = new SpeechSynthesisUtterance(text.replace(/<[^>]*>/g, ''));
-    utterance.rate = 1.5; // Increased speed
-    utterance.pitch = 1;
-    utterance.volume = 0.8;
-    
-    // Try to use a more natural voice
-    const voices = speechSynthesis.getVoices();
-    const preferredVoice = voices.find(voice => 
-      voice.name.includes('Google') || 
-      voice.name.includes('Microsoft') ||
-      voice.lang.startsWith('en')
-    );
-    if (preferredVoice) {
-      utterance.voice = preferredVoice;
-    }
-    
-    speechSynthesis.speak(utterance);
+  if (!('speechSynthesis' in window) || isChatMuted.value || isCurrentlySpeaking.value) return
+  
+  // Remove HTML tags and decode HTML entities
+  const plainText = text.replace(/<[^>]*>/g, '').replace(/&[^;]+;/g, ' ').replace(/\\n/g, ' ')
+  
+  isCurrentlySpeaking.value = true
+  const utterance = new SpeechSynthesisUtterance(plainText)
+  
+  // Configure voice settings - slower and clearer
+  utterance.rate = 0.7 // Slower for better understanding
+  utterance.pitch = 1.0
+  utterance.volume = 0.7
+  
+  // Try to use a more natural voice
+  const voices = speechSynthesis.getVoices();
+  const preferredVoice = voices.find(voice => 
+    voice.name.includes('Google') || 
+    voice.name.includes('Microsoft') ||
+    voice.lang.startsWith('en')
+  );
+  if (preferredVoice) {
+    utterance.voice = preferredVoice;
   }
+  
+  utterance.onend = () => {
+    isCurrentlySpeaking.value = false
+  }
+  
+  utterance.onerror = () => {
+    isCurrentlySpeaking.value = false
+  }
+  
+  speechSynthesis.speak(utterance);
 }
 
 const toggleChat = () => {
@@ -254,10 +301,12 @@ watch(() => props.autoOpen, (newValue) => {
   if (newValue) {
     setTimeout(() => {
       isOpen.value = true;
-      // Auto-speak welcome message
-      setTimeout(() => {
-        speakText(messages.value[0].text);
-      }, 500);
+      // Auto-speak welcome message if not muted
+      if (!isChatMuted.value) {
+        setTimeout(() => {
+          speakText(messages.value[0].text);
+        }, 500);
+      }
     }, 3000)
   }
 });
@@ -303,8 +352,10 @@ const sendMessage = async () => {
     
     nextTick(() => {
       scrollToBottom()
-      // Auto-speak bot response
-      speakText(botResponse)
+      // Auto-speak bot response if not muted
+      if (!isChatMuted.value) {
+        speakText(botResponse)
+      }
     })
   }, 1000 + Math.random() * 1000)
 }
@@ -317,6 +368,14 @@ const sendQuickMessage = (message: string) => {
 const scrollToBottom = () => {
   if (messagesContainer.value) {
     messagesContainer.value.scrollTop = messagesContainer.value.scrollHeight
+  }
+}
+
+const toggleChatMute = () => {
+  isChatMuted.value = !isChatMuted.value
+  if (isChatMuted.value && isCurrentlySpeaking.value) {
+    speechSynthesis.cancel()
+    isCurrentlySpeaking.value = false
   }
 }
 
@@ -424,10 +483,43 @@ onMounted(() => {
 .chat-header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 16px 20px;
   background-color: #f9f9f9;
   border-bottom: 1px solid #e5e5e5;
   flex-shrink: 0;
+}
+
+.chat-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.chat-mute-btn {
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: #333333;
+  padding: 0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+}
+
+.chat-mute-btn:hover {
+  background: rgba(0, 0, 0, 0.2);
+  border-color: rgba(0, 0, 0, 0.4);
+}
+
+.chat-mute-btn.muted {
+  background: rgba(255, 68, 68, 0.2);
+  border-color: #ff4444;
+  color: #ff4444;
 }
 
 .bot-avatar {
@@ -679,6 +771,281 @@ onMounted(() => {
 .send-button:disabled {
   background-color: #ced4da;
   cursor: not-allowed;
+}
+
+/* Robot Face Button Styling */
+.robot-face-btn {
+  width: 70px !important;
+  height: 70px !important;
+  animation: robot-float 3s ease-in-out infinite,
+             robot-drift 8s ease-in-out infinite;
+}
+
+.robot-face {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.robot-head {
+  width: 45px;
+  height: 45px;
+  position: relative;
+  animation: robot-head-tilt 4s ease-in-out infinite alternate;
+}
+
+.robot-antenna {
+  position: absolute;
+  width: 2px;
+  height: 8px;
+  background: #ffffff;
+  border-radius: 2px;
+  top: -6px;
+  animation: antenna-sway 2s ease-in-out infinite;
+}
+
+.robot-antenna.left {
+  left: 12px;
+  animation-delay: 0s;
+}
+
+.robot-antenna.right {
+  right: 12px;
+  animation-delay: 1s;
+}
+
+.robot-antenna::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background: #00ff88;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #00ff88;
+  animation: antenna-pulse 2s ease-in-out infinite;
+}
+
+.robot-face-shell {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+  border-radius: 12px;
+  border: 1px solid #444;
+  position: relative;
+  box-shadow: 
+    inset 0 2px 4px rgba(255, 255, 255, 0.1),
+    0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.robot-eyes {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 8px 4px;
+  position: relative;
+}
+
+.robot-eye {
+  width: 10px;
+  height: 10px;
+  background: #00ff88;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 0 8px #00ff88;
+  animation: robot-blink 3s ease-in-out infinite;
+}
+
+.eye-pupil {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #000;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: pupil-move 5s ease-in-out infinite;
+}
+
+.eye-glow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(0, 255, 136, 0.8) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: eye-glow-pulse 2s ease-in-out infinite;
+}
+
+.robot-mouth {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  align-items: center;
+}
+
+.mouth-line {
+  width: 12px;
+  height: 1px;
+  background: #00ff88;
+  opacity: 0.8;
+  animation: mouth-talk 1.5s ease-in-out infinite;
+}
+
+.mouth-line:nth-child(2) {
+  width: 8px;
+  animation-delay: 0.2s;
+}
+
+.mouth-line:nth-child(3) {
+  width: 6px;
+  animation-delay: 0.4s;
+}
+
+.robot-cheek-vents {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2px;
+}
+
+.vent {
+  width: 6px;
+  height: 8px;
+  background: linear-gradient(to bottom, #444 0%, #222 100%);
+  border-radius: 1px;
+  position: relative;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.vent::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background: #666;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.floating-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #00ff88;
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: particle-float 4s ease-in-out infinite;
+}
+
+.particle:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+.particle:nth-child(2) { top: 80%; left: 90%; animation-delay: 0.5s; }
+.particle:nth-child(3) { top: 60%; left: 20%; animation-delay: 1s; }
+.particle:nth-child(4) { top: 30%; left: 85%; animation-delay: 1.5s; }
+.particle:nth-child(5) { top: 90%; left: 15%; animation-delay: 2s; }
+.particle:nth-child(6) { top: 15%; left: 75%; animation-delay: 2.5s; }
+.particle:nth-child(7) { top: 70%; left: 80%; animation-delay: 3s; }
+.particle:nth-child(8) { top: 40%; left: 5%; animation-delay: 3.5s; }
+
+/* Robot Animations */
+@keyframes robot-float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(2deg); }
+}
+
+@keyframes robot-drift {
+  0%, 100% { transform: translateX(0px); }
+  25% { transform: translateX(3px); }
+  75% { transform: translateX(-3px); }
+}
+
+@keyframes robot-head-tilt {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(5deg); }
+}
+
+@keyframes antenna-sway {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(15deg); }
+}
+
+@keyframes antenna-pulse {
+  0%, 100% { opacity: 1; transform: translateX(-50%) scale(1); }
+  50% { opacity: 0.6; transform: translateX(-50%) scale(1.2); }
+}
+
+@keyframes robot-blink {
+  0%, 90%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.1); }
+}
+
+@keyframes pupil-move {
+  0%, 100% { transform: translate(-50%, -50%); }
+  25% { transform: translate(-70%, -50%); }
+  50% { transform: translate(-50%, -70%); }
+  75% { transform: translate(-30%, -50%); }
+}
+
+@keyframes eye-glow-pulse {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+@keyframes mouth-talk {
+  0%, 100% { opacity: 0.8; transform: scaleX(1); }
+  50% { opacity: 1; transform: scaleX(1.2); }
+}
+
+@keyframes particle-float {
+  0%, 100% { 
+    opacity: 0.7; 
+    transform: translateY(0px) translateX(0px); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: translateY(-15px) translateX(10px); 
+  }
+}
+
+.robot-face-btn:hover .robot-head {
+  animation-duration: 1s;
+}
+
+.robot-face-btn:hover .robot-eye {
+  box-shadow: 0 0 15px #00ff88;
+}
+
+.robot-face-btn:hover .particle {
+  animation-duration: 2s;
+}
+
+.robot-face-btn.active .robot-face-shell {
+  background: linear-gradient(145deg, #00ff88, #00cc66);
+}
+
+.robot-face-btn.active .robot-eye {
+  background: #ffffff;
+  box-shadow: 0 0 15px #ffffff;
 }
 
 </style>
