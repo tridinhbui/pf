@@ -24,10 +24,8 @@
 
       <!-- Desktop Menu -->
       <div class="nav-menu" :class="{ 'nav-menu-open': isMenuOpen }">
-        <router-link to="/#background" class="nav-link">Origin</router-link>
         <router-link to="/#ventures" class="nav-link">Ventures</router-link>
-        <router-link to="/#triangle" class="nav-link">Triangle</router-link>
-        <router-link to="/#mindset" class="nav-link">Mindset</router-link>
+        <router-link to="/#transformation-chaos-section" class="nav-link">Mindset</router-link>
         <router-link to="/blog" class="nav-link">Blog</router-link>
         <router-link to="/#contact" class="nav-link">Contact</router-link>
       </div>

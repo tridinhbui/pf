@@ -1,5 +1,8 @@
 <template>
   <div class="blog-view">
+    <!-- Navigation -->
+    <NavBar />
+    
     <!-- Hero Section -->
     <section class="blog-hero">
       <div class="container">
@@ -54,7 +57,7 @@
               <span class="meta-read-time">8 min read</span>
               <span class="meta-category">FinTech</span>
             </div>
-            <button class="read-article-btn">Read Full Article</button>
+            <router-link to="/blog/article/1" class="read-article-btn">Read Full Article</router-link>
           </div>
           <div class="featured-image">
             <div class="image-placeholder">
@@ -118,7 +121,7 @@
                 <span class="meta-date">{{ article.date }}</span>
                 <span class="meta-read-time">{{ article.readTime }}</span>
               </div>
-              <button class="read-more-btn">Read More</button>
+              <router-link :to="`/blog/article/${article.id}`" class="read-more-btn">Read More</router-link>
             </div>
           </article>
         </div>
@@ -151,6 +154,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import NavBar from '@/components/NavBar.vue'
 
 const email = ref('')
 const selectedFilter = ref('All')
@@ -297,7 +301,7 @@ const subscribe = () => {
 
 /* Hero Section */
 .blog-hero {
-  padding: 8rem 0 4rem;
+  padding: 10rem 0 4rem;
   background: #ffffff;
   position: relative;
 }
@@ -580,6 +584,7 @@ const subscribe = () => {
 }
 
 .read-article-btn {
+  display: inline-block;
   background: linear-gradient(135deg, #667eea, #764ba2);
   color: white;
   border: none;
@@ -589,11 +594,13 @@ const subscribe = () => {
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+  text-decoration: none;
 }
 
 .read-article-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+  color: white;
 }
 
 /* Featured Image */
@@ -725,9 +732,9 @@ const subscribe = () => {
 }
 
 .filter-btn {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #cccccc;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  color: #666666;
   padding: 0.75rem 1.5rem;
   border-radius: 25px;
   cursor: pointer;
@@ -736,8 +743,8 @@ const subscribe = () => {
 
 .filter-btn.active,
 .filter-btn:hover {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  border-color: transparent;
+  background: #000000;
+  border-color: #000000;
   color: white;
 }
 
@@ -813,19 +820,22 @@ const subscribe = () => {
 }
 
 .read-more-btn {
+  display: inline-block;
   background: transparent;
-  border: 1px solid rgba(102, 126, 234, 0.5);
-  color: #667eea;
+  border: 1px solid #000000;
+  color: #000000;
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
+  text-decoration: none;
+  font-weight: 500;
 }
 
 .read-more-btn:hover {
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: #000000;
   color: white;
-  border-color: transparent;
+  border-color: #000000;
 }
 
 /* Newsletter Section */

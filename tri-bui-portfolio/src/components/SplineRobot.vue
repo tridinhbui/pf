@@ -4,39 +4,39 @@
     <div class="universe-background">
       <div class="stars-layer">
         <div class="star" v-for="n in 50" :key="n"></div>
-      </div>
+        </div>
       <div class="nebula-clouds">
         <div class="nebula" v-for="n in 3" :key="n"></div>
-      </div>
+          </div>
       <div class="cosmic-particles">
         <div class="cosmic-particle" v-for="n in 15" :key="n"></div>
+        </div>
       </div>
-    </div>
-
+      
     <!-- Simplified Control Panel -->
     <div class="robot-header">
       <div class="robot-status">
         <div class="status-badge online">
           <div class="status-dot"></div>
           <span>ONLINE</span>
-        </div>
-        <div class="robot-name">OPTIMUS AI</div>
       </div>
-      
+        <div class="robot-name">OPTIMUS AI</div>
+    </div>
+
       <div class="system-stats">
         <div class="stat-item">
           <span class="stat-label">PWR</span>
           <div class="stat-bar">
             <div class="stat-fill" :style="{ width: power + '%' }"></div>
           </div>
-        </div>
+              </div>
         <div class="stat-item">
           <span class="stat-label">SYS</span>
           <div class="stat-bar">
             <div class="stat-fill" :style="{ width: systemHealth + '%' }"></div>
-          </div>
-        </div>
-      </div>
+                    </div>
+                  </div>
+                </div>
       
       <!-- Mute Button -->
       <div class="robot-controls">
@@ -49,9 +49,9 @@
           <span v-if="!isMuted">🔊</span>
           <span v-else>🔇</span>
         </button>
-      </div>
-    </div>
-
+                </div>
+              </div>
+              
     <!-- Tesla Optimus Style Robot -->
     <div class="robot-display">
       <div class="robot-scene active">
@@ -74,20 +74,20 @@
                 <div class="eye-scanner right">
                   <div class="scanner-beam"></div>
                   <div class="eye-lens"></div>
-                </div>
               </div>
-              
+            </div>
+
               <!-- Head Details -->
               <div class="head-grilles">
                 <div class="grille" v-for="n in 4" :key="n"></div>
+                </div>
               </div>
-            </div>
-            
+              
             <!-- Neck Joint */
             <div class="neck-joint">
               <div class="neck-servo"></div>
-            </div>
-          </div>
+                </div>
+                </div>
 
           <!-- Robot Torso - Humanoid Design -->
           <div class="optimus-torso">
@@ -96,8 +96,8 @@
                 <div class="central-core">
                   <div class="core-ring"></div>
                   <div class="core-center"></div>
-                </div>
-                
+              </div>
+              
                 <!-- Status Lights -->
                 <div class="status-panel">
                   <div class="status-light" v-for="n in 6" :key="n" :class="{ 'active': n <= activeStatusLights }"></div>
@@ -106,22 +106,22 @@
                 <!-- Chest Vents -->
                 <div class="chest-vents">
                   <div class="vent-line" v-for="n in 8" :key="n"></div>
-                </div>
-              </div>
-              
+        </div>
+      </div>
+
               <!-- Shoulder Joints -->
               <div class="shoulder-joints">
                 <div class="shoulder left">
                   <div class="shoulder-plate"></div>
                   <div class="shoulder-servo"></div>
-                </div>
+          </div>
                 <div class="shoulder right">
                   <div class="shoulder-plate"></div>
                   <div class="shoulder-servo"></div>
                 </div>
               </div>
-            </div>
-          </div>
+                </div>
+              </div>
 
           <!-- Robot Arms - Mechanical Design -->
           <div class="optimus-arms">
@@ -135,7 +135,7 @@
               <div class="elbow-joint">
                 <div class="joint-housing"></div>
                 <div class="joint-servo"></div>
-              </div>
+                </div>
               <div class="forearm">
                 <div class="forearm-chassis"></div>
                 <div class="wrist-joint"></div>
@@ -145,17 +145,17 @@
                 <div class="fingers">
                   <div class="finger" v-for="n in 4" :key="n"></div>
                   <div class="thumb"></div>
-                </div>
-              </div>
             </div>
-            
+          </div>
+        </div>
+
             <div class="arm right-arm">
               <div class="upper-arm">
                 <div class="arm-chassis"></div>
                 <div class="arm-actuators">
                   <div class="actuator" v-for="n in 3" :key="n"></div>
+          </div>
                 </div>
-              </div>
               <div class="elbow-joint">
                 <div class="joint-housing"></div>
                 <div class="joint-servo"></div>
@@ -163,31 +163,31 @@
               <div class="forearm">
                 <div class="forearm-chassis"></div>
                 <div class="wrist-joint"></div>
-              </div>
+            </div>
               <div class="hand">
                 <div class="palm"></div>
                 <div class="fingers">
                   <div class="finger" v-for="n in 4" :key="n"></div>
                   <div class="thumb"></div>
-                </div>
+          </div>
+        </div>
               </div>
             </div>
-          </div>
-
+            
           <!-- Energy Field Effects -->
           <div class="energy-field">
             <div class="field-ring" v-for="n in 3" :key="n"></div>
-          </div>
-          
+        </div>
+
           <!-- Floating Data Streams -->
           <div class="data-streams">
             <div class="data-stream" v-for="n in 6" :key="n">
               <div class="data-chunk" v-for="m in 4" :key="m"></div>
-            </div>
           </div>
-        </div>
-      </div>
-      
+                </div>
+              </div>
+            </div>
+            
       <!-- AI Information Display -->
               <div class="robot-info">
         <div class="info-display">
@@ -210,19 +210,19 @@
             >
               🗣️
             </button>
-          </div>
+              </div>
           <div class="threat-level">
             <span class="threat-label">THREAT LEVEL:</span>
             <span class="threat-value" :class="threatClass">{{ threatLevel }}</span>
-          </div>
-        </div>
-        
+      </div>
+    </div>
+
         <div class="capabilities">
           <span v-for="skill in skills" :key="skill" class="skill-tag">{{ skill }}</span>
         </div>
+        </div>
       </div>
     </div>
-  </div>
   </div>
 </template>
 

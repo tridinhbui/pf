@@ -91,7 +91,7 @@
           <div class="backup-button-container">
             <button class="backup-enter-btn" @click="closeWelcomePopup">
               ENTER PORTFOLIO
-            </button>
+          </button>
           </div>
         </div>
       </div>
@@ -154,9 +154,9 @@
             </div>
             
             <h1 class="hero-title professional-title cosmic-text galaxy-title">
-              <span class="title-main">I don't just build startups.</span>
+              <span class="title-intro">I don't just build startups.</span>
               <br>
-              <span class="title-sub typewriter-text">I build ecosystems.</span>
+              <span class="title-main typewriter-text">I build ecosystems.</span>
             </h1>
             <p class="hero-subtitle professional-subtitle">
               I'm a strategist and builder focused on creating everlasting impact through innovative platforms that reshape how the next generation thinks, builds, and conquers.
@@ -170,13 +170,68 @@
 
           <!-- Launch Navigation -->
           <div class="hero-nav" ref="heroNavRef">
-            <a href="#technical" class="nav-link shimmer-effect">Technical</a>
-            <a href="#background" class="nav-link shimmer-effect">Background</a>
             <a href="#ventures" class="nav-link shimmer-effect">Ventures</a>
-            <a href="#triangle" class="nav-link shimmer-effect">Triangle</a>
-            <a href="#mindset" class="nav-link shimmer-effect">Mindset</a>
+            <a href="#transformation-chaos-section" class="nav-link shimmer-effect">Mindset</a>
             <router-link to="/blog" class="nav-link shimmer-effect">Blog</router-link>
             <a href="#contact" class="nav-link shimmer-effect">Contact</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Constellations Section - Moved up near robot -->
+    <section class="section constellations-section transparent-background" id="ventures">
+      <!-- Section Cosmic Elements -->
+      <div class="section-cosmos">
+        <div class="cosmic-nebula"></div>
+        <div class="planet planet-3">
+          <div class="planet-glow"></div>
+          <div class="asteroid-belt">
+            <div class="asteroid" v-for="n in 8" :key="n"></div>
+          </div>
+        </div>
+        <div class="space-station">
+          <div class="station-module" v-for="n in 4" :key="n"></div>
+        </div>
+      </div>
+      
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title" ref="constellationsTitleRef">Ventures</h2>
+          <p class="section-subtitle">Companies and platforms I've founded to empower the next generation</p>
+          
+          <!-- Entrepreneurial Impact Image -->
+          <div class="ventures-image-container">
+            <img src="@/assets/tri3.png" alt="Entrepreneurial Ventures & Impact" class="ventures-image" />
+            <div class="ventures-stats">
+              <div class="stat-item">
+                <span class="stat-number">5</span>
+                <span class="stat-label">Ventures Founded</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">350+</span>
+                <span class="stat-label">Lives Impacted</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number">12K+</span>
+                <span class="stat-label">Users Reached</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="constellations-grid" ref="constellationsRef">
+          <div class="constellation-card" v-for="venture in ventures" :key="venture.name">
+            <div class="card-header">
+              <h3 class="venture-name">{{ venture.name }}</h3>
+              <div class="venture-meta">
+                <span class="venture-year">{{ venture.year }}</span>
+                <span class="venture-role">{{ venture.role }}</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="impact-metric">{{ venture.impact }}</div>
+            </div>
           </div>
         </div>
       </div>
@@ -200,8 +255,8 @@
       
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title" ref="originTitleRef">Background</h2>
-          <p class="section-subtitle">The foundation that shaped my entrepreneurial journey</p>
+          <h2 class="section-title" ref="originTitleRef">Background & Awards</h2>
+          <p class="section-subtitle">The foundation that shaped my entrepreneurial journey and recognition achieved</p>
           
           <!-- Journey Image -->
           <div class="journey-image-container">
@@ -213,10 +268,14 @@
         </div>
         
         <div class="origin-content">
+          <div class="two-column-layout">
+            <!-- Left Column - Background -->
+            <div class="background-column">
+              <h3 class="subsection-title">Background</h3>
           <div class="origin-grid">
             <div class="origin-item" ref="originItem1">
               <div class="origin-label">Launch vector</div>
-              <div class="origin-value">Hanoi ➜ Minnesota (Macalester) ➜ Singapore (NTU exchange) ➜ Chicago ➜ Virginia (Smithfield HQ)</div>
+                  <div class="origin-value">Hanoi ➜ Minnesota (Macalester) ➜ Singapore (NTU exchange) ➜ Chicago (Revantage, Blackstone Inc) ➜ Virginia (Smithfield Inc HQ)</div>
             </div>
             <div class="origin-item" ref="originItem2">
               <div class="origin-label">Thrusters</div>
@@ -224,11 +283,27 @@
             </div>
             <div class="origin-item" ref="originItem3">
               <div class="origin-label">Fuel</div>
-              <div class="origin-value"><strong>$230K Kofi Annan Scholarship</strong> · Dean's List 6/6 semesters</div>
+                  <div class="origin-value"><strong>$230K Kofi Annan Scholarship</strong> · Dean's List  semesters</div>
             </div>
             <div class="origin-item" ref="originItem4">
               <div class="origin-label">Current orbit</div>
-              <div class="origin-value">Corporate Finance Analyst, <strong>Smithfield Foods</strong> – modelling CAPEX, optimizing debt structure, and steering scenario sims.</div>
+                  <div class="origin-value">Corporate Finance Analyst, <strong>Smithfield Foods Inc</strong> – modelling CAPEX, optimizing debt structure, and steering scenario sims.</div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Right Column - Awards -->
+            <div class="awards-column">
+              <h3 class="subsection-title">Awards & Recognition</h3>
+              <div class="accolades-timeline" ref="accoladesRef">
+                <div class="timeline-item magnetic-target" v-for="accolade in accolades" :key="accolade.title">
+                  <div class="timeline-year">{{ accolade.year }}</div>
+                  <div class="timeline-content">
+                    <h3 class="accolade-title">{{ accolade.title }}</h3>
+                    <div class="accolade-achievement">{{ accolade.achievement }}</div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -239,24 +314,17 @@
     <section class="section technical-section solid-background" id="technical">
       <div class="container">
         <div class="section-header">
-          <h2 class="section-title">Technical Deep Dive</h2>
-          <p class="section-subtitle">Comprehensive overview of my software development and AI/ML expertise</p>
-          
-          <!-- Technical Profile Image -->
-          <div class="technical-image-container">
-            <img src="@/assets/tri2.png" alt="Technical Expertise & AI/ML Development" class="technical-image" />
-            <div class="technical-overlay">
-              <span class="technical-caption">Bridging Finance, Technology & AI Innovation</span>
-            </div>
-          </div>
+          <h2 class="section-title">Core Technology Stack</h2>
+          <p class="section-subtitle">Comprehensive overview of my software development expertise</p>
         </div>
         
         <div class="technical-content">
-          <!-- Core Technical Stack -->
-          <div class="tech-stack-section">
+          <div class="tech-single-column">
             <h3 class="subsection-title">Core Technology Stack</h3>
-            <div class="tech-categories">
-              <div class="tech-category">
+            <div class="tech-table-container">
+              <table class="tech-table">
+                <tr>
+                  <td class="tech-cell">
                 <h4>Programming Languages</h4>
                 <div class="tech-items">
                   <span class="tech-item">Python</span>
@@ -264,10 +332,14 @@
                   <span class="tech-item">SQL</span>
                   <span class="tech-item">R</span>
                   <span class="tech-item">Java</span>
+                      <span class="tech-item">C++</span>
+                      <span class="tech-item">Go</span>
+                      <span class="tech-item">Rust</span>
+                      <span class="tech-item">Swift</span>
+                      <span class="tech-item">Kotlin</span>
                 </div>
-              </div>
-              
-              <div class="tech-category">
+                  </td>
+                  <td class="tech-cell">
                 <h4>Frameworks & Libraries</h4>
                 <div class="tech-items">
                   <span class="tech-item">Vue.js</span>
@@ -278,9 +350,10 @@
                   <span class="tech-item">FastAPI</span>
                   <span class="tech-item">Express.js</span>
                 </div>
-              </div>
-              
-              <div class="tech-category">
+                  </td>
+                </tr>
+                <tr>
+                  <td class="tech-cell">
                 <h4>AI/ML Specializations</h4>
                 <div class="tech-items">
                   <span class="tech-item">Natural Language Processing (NLP)</span>
@@ -290,9 +363,8 @@
                   <span class="tech-item">Object Detection</span>
                   <span class="tech-item">Sentiment Analysis</span>
                 </div>
-              </div>
-              
-              <div class="tech-category">
+                  </td>
+                  <td class="tech-cell">
                 <h4>Cloud & Infrastructure</h4>
                 <div class="tech-items">
                   <span class="tech-item">AWS (Lambda, S3, EC2)</span>
@@ -301,89 +373,9 @@
                   <span class="tech-item">Kubernetes</span>
                   <span class="tech-item">Terraform</span>
                 </div>
-              </div>
-              
-              <div class="tech-category">
-                <h4>Databases & Data</h4>
-                <div class="tech-items">
-                  <span class="tech-item">PostgreSQL</span>
-                  <span class="tech-item">MongoDB</span>
-                  <span class="tech-item">Vector Databases</span>
-                  <span class="tech-item">Redis</span>
-                  <span class="tech-item">Apache Spark</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- AI/ML Projects Showcase -->
-          <div class="ai-projects-section">
-            <h3 class="subsection-title">AI/ML Project Highlights</h3>
-            <div class="ai-projects-grid">
-              <div class="ai-project-card">
-                <h4>FinBud AI - Personal Finance Assistant</h4>
-                <p class="project-description">
-                  Developed an intelligent personal finance assistant using advanced NLP models to understand user queries 
-                  and time-series forecasting algorithms to provide personalized financial advice. Achieved 12,000+ beta users.
-                </p>
-                <div class="project-tech">
-                  <span class="tech-badge">Python</span>
-                  <span class="tech-badge">TensorFlow</span>
-                  <span class="tech-badge">NLP</span>
-                  <span class="tech-badge">Time-Series</span>
-                </div>
-              </div>
-              
-              <div class="ai-project-card">
-                <h4>DetectAuto - Computer Vision Quality Control</h4>
-                <p class="project-description">
-                  Implemented computer vision proof of concept for automated quality control at Daikin. 
-                  Reduced product defect rates by 12% and established CI/CD pipeline for automated model retraining.
-                </p>
-                <div class="project-tech">
-                  <span class="tech-badge">Python</span>
-                  <span class="tech-badge">OpenCV</span>
-                  <span class="tech-badge">PyTorch</span>
-                  <span class="tech-badge">Computer Vision</span>
-                </div>
-              </div>
-              
-              <div class="ai-project-card">
-                <h4>Monte Carlo Risk Assessment Model</h4>
-                <p class="project-description">
-                  Built sophisticated Monte Carlo simulation model for rent stress-testing at Blackstone, 
-                  identifying and mitigating $1.5M in potential downside risk through advanced statistical modeling.
-                </p>
-                <div class="project-tech">
-                  <span class="tech-badge">Python</span>
-                  <span class="tech-badge">NumPy</span>
-                  <span class="tech-badge">Pandas</span>
-                  <span class="tech-badge">Monte Carlo</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Technical Achievements -->
-          <div class="tech-achievements-section">
-            <h3 class="subsection-title">Technical Achievements</h3>
-            <div class="achievements-grid">
-              <div class="achievement-item">
-                <div class="achievement-metric">12K+</div>
-                <div class="achievement-label">FinBud AI Users</div>
-              </div>
-              <div class="achievement-item">
-                <div class="achievement-metric">12%</div>
-                <div class="achievement-label">Defect Rate Reduction</div>
-              </div>
-              <div class="achievement-item">
-                <div class="achievement-metric">$1.5M</div>
-                <div class="achievement-label">Risk Mitigation</div>
-              </div>
-              <div class="achievement-item">
-                <div class="achievement-metric">5+</div>
-                <div class="achievement-label">AI/ML Projects</div>
-              </div>
+                  </td>
+                </tr>
+              </table>
             </div>
           </div>
         </div>
@@ -415,7 +407,7 @@
     </section>
 
     <!-- INSANE BUSINESS TRANSFORMATION SECTION -->
-    <section class="section transformation-chaos-section black-background">
+    <section class="section transformation-chaos-section black-background" id="transformation-chaos-section">
       <div class="transformation-container">
         <!-- Chaotic Background Effects -->
         <div class="chaos-bg">
@@ -437,9 +429,8 @@
         <!-- Central Transformation Core -->
         <div class="transformation-core">
           <div class="core-title">
-            <span class="chaos-text" data-text="BUSINESS">BUSINESS</span>
-            <span class="chaos-text" data-text="TRANSFORMATION">TRANSFORMATION</span>
-            <span class="chaos-text" data-text="REVOLUTION">REVOLUTION</span>
+            <span class="chaos-text" data-text="MY">MY</span>
+            <span class="chaos-text" data-text="CHARACTERISTIC">CHARACTERISTIC</span>
           </div>
           
           <div class="transformation-manifesto">
@@ -455,26 +446,17 @@
           </div>
         </div>
         
-        <!-- Transformation Pillars -->
-        <div class="transformation-pillars">
-          <div class="pillar" v-for="(pillar, index) in transformationPillars" :key="pillar.id">
-            <div class="pillar-energy">
-              <div class="energy-core"></div>
-              <div class="energy-pulse" v-for="n in 3" :key="n"></div>
+        <!-- Personal Characteristics -->
+        <div class="characteristics-grid">
+          <div class="characteristic-card" v-for="trait in personalTraits" :key="trait.id">
+            <div class="trait-icon">
+              <component :is="trait.icon" class="icon" />
             </div>
-            <div class="pillar-content">
-              <div class="pillar-icon">
-                <component :is="pillar.icon" class="icon" />
+            <h3 class="trait-title">{{ trait.title }}</h3>
+            <p class="trait-description">{{ trait.description }}</p>
               </div>
-              <h3 class="pillar-title">{{ pillar.title }}</h3>
-              <p class="pillar-description">{{ pillar.description }}</p>
-              <div class="pillar-impact">{{ pillar.impact }}</div>
             </div>
-            <div class="pillar-chaos-overlay">
-              <div class="chaos-particle" v-for="n in 8" :key="n"></div>
-            </div>
-          </div>
-        </div>
+
       </div>
     </section>
 
@@ -530,63 +512,7 @@
       </div>
     </section>
 
-    <!-- Constellations Section -->
-    <section class="section constellations-section transparent-background" id="ventures">
-      <!-- Section Cosmic Elements -->
-      <div class="section-cosmos">
-        <div class="cosmic-nebula"></div>
-        <div class="planet planet-3">
-          <div class="planet-glow"></div>
-          <div class="asteroid-belt">
-            <div class="asteroid" v-for="n in 8" :key="n"></div>
-          </div>
-        </div>
-        <div class="space-station">
-          <div class="station-module" v-for="n in 4" :key="n"></div>
-        </div>
-      </div>
-      
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title" ref="constellationsTitleRef">Ventures</h2>
-          <p class="section-subtitle">Companies and platforms I've founded to empower the next generation</p>
-          
-          <!-- Entrepreneurial Impact Image -->
-          <div class="ventures-image-container">
-            <img src="@/assets/tri3.png" alt="Entrepreneurial Ventures & Impact" class="ventures-image" />
-            <div class="ventures-stats">
-              <div class="stat-item">
-                <span class="stat-number">5</span>
-                <span class="stat-label">Ventures Founded</span>
-              </div>
-              <div class="stat-item">
-                <span class="stat-number">350+</span>
-                <span class="stat-label">Lives Impacted</span>
-              </div>
-              <div class="stat-item">
-                <span class="stat-number">12K+</span>
-                <span class="stat-label">Users Reached</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-                 <div class="constellations-grid" ref="constellationsRef">
-           <div class="constellation-card" v-for="venture in ventures" :key="venture.name">
-             <div class="card-header">
-               <h3 class="venture-name">{{ venture.name }}</h3>
-               <div class="venture-meta">
-                 <span class="venture-year">{{ venture.year }}</span>
-                 <span class="venture-role">{{ venture.role }}</span>
-               </div>
-             </div>
-             <div class="card-body">
-               <div class="impact-metric">{{ venture.impact }}</div>
-             </div>
-           </div>
-         </div>
-      </div>
-    </section>
+
 
     <!-- Entrepreneurship Triangle Section -->
     <section class="section triangle-section solid-background" id="triangle">
@@ -646,39 +572,7 @@
             </div>
           </div>
           
-          <!-- Skills Breakdown -->
-          <div class="skills-breakdown">
-            <div class="skill-category tech-skills">
-              <h3>Technology & AI/ML</h3>
-              <ul>
-                <li><strong>Languages:</strong> Python, JavaScript/TypeScript, SQL, R</li>
-                <li><strong>Frameworks:</strong> Vue.js, React, Node.js, TensorFlow, PyTorch</li>
-                <li><strong>Infrastructure:</strong> AWS (Lambda, S3, EC2), Docker, CI/CD</li>
-                <li><strong>AI/ML:</strong> NLP, Time-Series Forecasting, LLM Fine-tuning, Computer Vision (Object Detection)</li>
-                <li><strong>Databases:</strong> PostgreSQL, MongoDB, Vector Databases</li>
-              </ul>
-            </div>
-            
-            <div class="skill-category finance-skills">
-              <h3>Financial Expertise</h3>
-              <ul>
-                <li>CAPEX Modeling & Analysis</li>
-                <li>Monte Carlo Simulations</li>
-                <li>Private Equity Valuation</li>
-                <li>Risk Management</li>
-              </ul>
-            </div>
-            
-            <div class="skill-category marketing-skills">
-              <h3>Growth & Marketing</h3>
-              <ul>
-                <li>User Acquisition Strategy</li>
-                <li>Product-Market Fit</li>
-                <li>Mentorship & Education</li>
-                <li>Community Building</li>
-              </ul>
-            </div>
-          </div>
+
         </div>
       </div>
     </section>
@@ -699,34 +593,7 @@
       </div>
     </section>
 
-    <!-- Business Mindset Section -->
-    <section class="section mindset-section solid-background" id="mindset">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title mindset-title-standout" ref="mindsetTitleRef">Business & Entrepreneurship Mindset</h2>
-          <p class="section-subtitle">Core principles that drive innovation and sustainable growth</p>
-          <div class="mindset-stars-background">
-            <div class="mindset-star" v-for="n in 15" :key="`mindset-star-${n}`"></div>
-          </div>
-        </div>
-        
-        <div class="mindset-grid" ref="mindsetRef">
-          <div class="mindset-card" v-for="mindset in businessMindset" :key="mindset.id">
-            <div class="mindset-icon">
-              <component :is="mindset.icon" :size="32" />
-            </div>
-            <div class="mindset-content">
-              <h3 class="mindset-title">{{ mindset.title }}</h3>
-              <p class="mindset-description">{{ mindset.description }}</p>
-              <div class="mindset-example">
-                <strong>Applied:</strong> {{ mindset.example }}
-              </div>
-            </div>
-            <div class="card-glow"></div>
-          </div>
-        </div>
-      </div>
-    </section>
+
 
     <!-- Blog Section -->
     <section class="section blog-section transparent-background" id="blog">
@@ -736,7 +603,8 @@
           <p class="section-subtitle">Sharing knowledge on entrepreneurship, technology, and building the future</p>
         </div>
         
-        <div class="blog-grid" ref="blogRef">
+        <div class="blog-scroll-container" ref="blogRef">
+          <div class="blog-grid">
           <div class="blog-card" v-for="post in blogPosts" :key="post.id">
             <div class="blog-meta">
               <span class="blog-category">{{ post.category }}</span>
@@ -754,6 +622,7 @@
               <a href="#" class="read-more">Read More →</a>
             </div>
             <div class="card-glow"></div>
+            </div>
           </div>
         </div>
         
@@ -766,32 +635,7 @@
       </div>
     </section>
 
-    <!-- Accolades Section -->
-    <section class="section accolades-section solid-background" id="awards">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title" ref="accoladesTitleRef">Awards & Recognition</h2>
-          <p class="section-subtitle">Recognition for entrepreneurial impact and academic excellence</p>
-        </div>
-        
-        <div class="accolades-timeline" ref="accoladesRef">
-          <div class="timeline-item magnetic-target" v-for="accolade in accolades" :key="accolade.title">
-            <div class="timeline-year">{{ accolade.year }}</div>
-            <div class="timeline-content">
-              <h3 class="accolade-title">{{ accolade.title }}</h3>
-              <div class="accolade-achievement">{{ accolade.achievement }}</div>
-            </div>
-          </div>
-        </div>
 
-        <div class="trophy-link">
-          <a href="/trophies" class="elegant-link magnetic-target">
-            <span>Full trophy cabinet</span>
-            <span class="link-arrow">→</span>
-          </a>
-        </div>
-      </div>
-    </section>
 
     <!-- Professional Orbits Section -->
     <section class="section orbits-section transparent-background" id="experience">
@@ -801,8 +645,15 @@
           <p class="section-subtitle">Corporate roles building expertise in finance, strategy, and technology</p>
         </div>
         
-        <div class="orbits-grid" ref="orbitsRef">
-          <div class="orbit-card magnetic-target" v-for="orbit in orbits" :key="orbit.org">
+        <div class="experience-slideshow" ref="orbitsRef">
+          <div class="slideshow-container" 
+               @touchstart="handleTouchStart" 
+               @touchend="handleTouchEnd"
+               @mouseenter="stopAutoSlide"
+               @mouseleave="startAutoSlide">
+            <div class="slides-wrapper" :style="{ transform: `translateX(-${currentSlide * 100}%)` }">
+              <div class="experience-slide" v-for="(orbit, index) in orbits" :key="orbit.org">
+                <div class="orbit-card">
             <div class="orbit-header">
               <h3 class="orbit-org">{{ orbit.org }}</h3>
               <span class="orbit-year">{{ orbit.year }}</span>
@@ -817,48 +668,48 @@
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- Future Trajectory Section -->
-    <section class="section trajectory-section solid-background" id="trajectory">
-      <div class="container">
-        <div class="section-header">
-          <h2 class="section-title" ref="trajectoryTitleRef">What's Next</h2>
-          <p class="section-subtitle">Upcoming ventures and initiatives in development</p>
+            
+            <!-- Navigation -->
+            <div class="slideshow-nav">
+              <button class="nav-btn prev" @click="prevSlide" :disabled="currentSlide === 0">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+              </button>
+              <button class="nav-btn next" @click="nextSlide" :disabled="currentSlide === orbits.length - 1">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </button>
         </div>
         
-        <div class="trajectory-grid" ref="trajectoryRef">
-          <div class="trajectory-card magnetic-target" v-for="item in trajectory" :key="item.num">
-            <div class="trajectory-icon">
-              <component :is="item.icon" class="icon" />
-              <span class="trajectory-number">{{ item.num }}</span>
+            <!-- Indicators -->
+            <div class="slideshow-indicators">
+              <button 
+                v-for="(orbit, index) in orbits" 
+                :key="index"
+                class="indicator"
+                :class="{ active: currentSlide === index }"
+                @click="goToSlide(index)"
+              ></button>
             </div>
-            <div class="trajectory-content">
-              <h3 class="trajectory-title">{{ item.title }}</h3>
-              <p class="trajectory-description">{{ item.description }}</p>
             </div>
-          </div>
-        </div>
-
-        <div class="roadmap-link">
-          <a href="/stellarchart" class="elegant-link magnetic-target">
-            <span>Detailed roadmap</span>
-            <span class="link-arrow">→</span>
-          </a>
         </div>
       </div>
     </section>
 
+
+
     <!-- Contact Section -->
     <section class="section contact-section transparent-background" id="contact">
       <div class="container">
-        <div class="contact-content">
+        <div class="section-header">
           <h2 class="section-title" ref="contactTitleRef">Get In Touch</h2>
+          <p class="section-subtitle">Ready to build something amazing together? Let's connect and create meaningful impact.</p>
+        </div>
           
+        <div class="contact-content">
           <div class="contact-cta">
-            <p class="contact-description">
-              Ready to build something amazing together? Let's connect and explore opportunities to create meaningful impact.
-            </p>
             <div class="contact-buttons">
               <a href="mailto:tbui@macalester.edu" class="contact-btn primary">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -1005,6 +856,71 @@ const handleScroll = () => {
   showBackToTop.value = window.scrollY > 300
 }
 
+// Slideshow functionality
+const currentSlide = ref(0)
+let slideInterval: number | null = null
+
+const nextSlide = () => {
+  if (currentSlide.value < orbits.value.length - 1) {
+    currentSlide.value++
+  } else {
+    currentSlide.value = 0
+  }
+}
+
+const prevSlide = () => {
+  if (currentSlide.value > 0) {
+    currentSlide.value--
+  } else {
+    currentSlide.value = orbits.value.length - 1
+  }
+}
+
+const goToSlide = (index: number) => {
+  currentSlide.value = index
+}
+
+const startAutoSlide = () => {
+  slideInterval = setInterval(() => {
+    nextSlide()
+  }, 4000) // Auto slide every 4 seconds
+}
+
+const stopAutoSlide = () => {
+  if (slideInterval) {
+    clearInterval(slideInterval)
+    slideInterval = null
+  }
+}
+
+// Touch/Swipe functionality
+let startX = 0
+let endX = 0
+
+const handleTouchStart = (e: TouchEvent) => {
+  startX = e.touches[0].clientX
+}
+
+const handleTouchEnd = (e: TouchEvent) => {
+  endX = e.changedTouches[0].clientX
+  handleSwipe()
+}
+
+const handleSwipe = () => {
+  const threshold = 50
+  const diff = startX - endX
+  
+  if (Math.abs(diff) > threshold) {
+    if (diff > 0) {
+      // Swipe left - next slide
+      nextSlide()
+    } else {
+      // Swipe right - previous slide
+      prevSlide()
+    }
+  }
+}
+
 // Refs for animations
 const statusRef = ref<HTMLElement>()
 const heroTitleRef = ref<HTMLElement>()
@@ -1054,11 +970,6 @@ const directives = ref([
     num: "03",
     title: "Ambition → with empathy", 
     manifestation: "Bootstrapped Esmart Solution, profit‑sharing 20 % w/ partner SMEs"
-  },
-  {
-    num: "04",
-    title: "Lift others → while you climb",
-    manifestation: "Pathwise alumni placed at Amazon, Deloitte, Credit Suisse"
   }
 ])
 
@@ -1067,7 +978,7 @@ const ventures = ref([
     name: "Pathwise",
     year: "2024",
     role: "Co-founder since 2024",
-    impact: "A mentorship platform helping students land top tech & consulting jobs through 1-on-1 coaching and guided curriculum. 118 mentees with 71% internship success rate."
+    impact: "A mentorship platform helping students land top tech & consulting jobs through 1-on-1 coaching and guided curriculum."
   },
   {
     name: "CF Hub", 
@@ -1079,28 +990,29 @@ const ventures = ref([
     name: "YoungPreneur Academy",
     year: "2024", 
     role: "Founder since 2024",
-    impact: "Entrepreneurship education program that trained 220 students, produced 46 national competition finalists, and secured $35K in prize pools."
+    impact: "Entrepreneurship education program providing comprehensive training and mentorship for aspiring student entrepreneurs."
+  },
+  {
+    name: "NextGen Investor",
+    year: "2024",
+    role: "Co-Founder",
+    impact: "Financial education platform empowering the next generation of investors with practical knowledge and mentorship networks."
   },
   {
     name: "FinBud AI",
     year: "2023",
     role: "Since 2023",
-    impact: "Personal finance AI assistant with 12K beta users, 87% Day-30 retention, and average 3.7 daily chat sessions per user."
+    impact: "Personal finance AI assistant leveraging advanced NLP and time-series forecasting for personalized financial guidance."
   },
   {
     name: "Esmart Solution",
     year: "2022",
     role: "Since 2022", 
-    impact: "Digital transformation consultancy for SMEs, serving 34 businesses with average 42% year-over-year online revenue growth."
+    impact: "Digital transformation consultancy for SMEs, providing comprehensive digital solutions and strategic consulting services."
   }
 ])
 
 const accolades = ref([
-  {
-    year: "2024",
-    title: "TEC National Startup Competition",
-    achievement: "🏆 Grand Champion - Unanimous decision from all 14 judges"
-  },
   {
     year: "2023", 
     title: "NestQuant Quantitative Finance Tournament",
@@ -1136,6 +1048,18 @@ const orbits = ref([
     tech: "Python (pandas, NumPy, scikit-learn), Argus, Power BI"
   },
   {
+    org: "DetectAuto",
+    year: "2024",
+    contribution: "Led AI development for automotive defect detection system, implementing computer vision models that achieved 94% accuracy in identifying paint defects and assembly issues.",
+    tech: "Python, PyTorch, OpenCV, YOLO, AWS EC2, Docker"
+  },
+  {
+    org: "NewHomes (Real Estate)",
+    year: "2023-24",
+    contribution: "Developed predictive analytics platform for real estate pricing and market trends, helping clients optimize investment decisions with data-driven insights.",
+    tech: "Python, scikit-learn, Pandas, PostgreSQL, REST APIs"
+  },
+  {
     org: "Deloitte SEA",
     year: "2023",
     contribution: "Led COSO/ Basel III gap‑analysis for 2 banks · cut op‑risk events 20%",
@@ -1148,7 +1072,7 @@ const orbits = ref([
     tech: "PitchBook, VCIO, DCF in Excel"
   },
   {
-    org: "Daikin NA / DetectAuto / Newwave",
+    org: "Newwave Technologies",
     year: "2021‑22",
     contribution: "Deployed computer vision PoCs for quality control, reducing defect rates by 12%. Set up CI/CD pipelines for automated model retraining and deployment.", 
     tech: "Python, TensorFlow, OpenCV, AWS Lambda, Docker"
@@ -1182,7 +1106,7 @@ const businessMindset = ref([
     icon: "Target",
     title: "Customer-Centric Innovation",
     description: "Every solution starts with understanding real customer pain points and market needs.",
-    example: "Built FinBud AI after discovering 87% of Gen Z struggle with financial literacy and planning."
+    example: "Built FinBud AI to address the growing need for accessible financial education among Gen Z."
   },
   {
     id: 2,
@@ -1217,7 +1141,7 @@ const businessMindset = ref([
     icon: "Rocket",
     title: "Scalable Infrastructure",
     description: "Design systems and processes that can grow exponentially without proportional complexity.",
-    example: "FinBud's microservices architecture supports 12K users with minimal operational overhead."
+    example: "FinBud's microservices architecture scales efficiently with minimal operational overhead."
   },
   {
     id: 7,
@@ -1277,13 +1201,28 @@ const transformationPillars = ref([
     title: 'Strategic Metamorphosis',
     description: 'Transforming companies into future-ready powerhouses',
     impact: '$50M+ value unlocked'
+  }
+])
+
+// Personal characteristics data
+const personalTraits = ref([
+  {
+    id: 1,
+    icon: 'Brain',
+    title: 'Analytical Thinker',
+    description: 'Breaking down complex problems into actionable insights through systematic analysis and strategic frameworks.'
   },
   {
-    id: 4,
+    id: 2,
     icon: 'Rocket',
-    title: 'Growth Acceleration',
-    description: 'Scaling startups from 0 to unicorn status',
-    impact: '10x growth multiplier'
+    title: 'Growth Catalyst',
+    description: 'Accelerating progress by identifying opportunities, building connections, and creating scalable impact.'
+  },
+  {
+    id: 3,
+    icon: 'Users',
+    title: 'Ecosystem Builder',
+    description: 'Connecting people, ideas, and resources to create collaborative networks that drive collective success.'
   }
 ])
 
@@ -1292,6 +1231,10 @@ const closeWelcomePopup = () => {
   showWelcomePopup.value = false
   // Enable scrolling
   document.body.style.overflow = ''
+  // Scroll down a bit to show navbar and fit hero content nicely
+  setTimeout(() => {
+    window.scrollTo({ top: 120, behavior: 'smooth' })
+  }, 500)
 }
 
 // Define a type for the characters in the matrix effect
@@ -1402,6 +1345,9 @@ onMounted(() => {
   
   // Add scroll event listener for back-to-top button
   window.addEventListener('scroll', handleScroll)
+
+  // Start auto slideshow
+  startAutoSlide()
 
   // Automatically open chatbot after a delay
   setTimeout(() => {
@@ -1584,12 +1530,12 @@ const setupAnimations = () => {
           if (item.value) {
             ScrollTrigger.create({
               trigger: item.value,
-              start: "top 85%",
+              start: "top 90%",
               animation: gsap.from(item.value, {
                 opacity: 0,
                 x: -30,
-                duration: 0.6,
-                delay: index * 0.1,
+                duration: 0.4,
+                delay: index * 0.05,
                 ease: "power3.out"
               })
             })
@@ -3215,6 +3161,13 @@ const showChatbot = ref(false)
   text-align: center;
 }
 
+.professional-title .title-intro {
+  display: block;
+  font-weight: var(--font-weight-regular);
+  color: #666666;
+  font-size: 0.9em;
+}
+
 .professional-title .title-main {
   display: block;
   font-weight: var(--font-weight-medium);
@@ -3357,6 +3310,104 @@ const showChatbot = ref(false)
   color: #212529;
 }
 
+/* Two Column Layout for Background & Awards */
+.two-column-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+  .two-column-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+.background-column,
+.awards-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.subsection-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 30px;
+  text-align: center;
+  position: relative;
+}
+
+.subsection-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(45deg, #64b5f6, #42a5f5);
+  border-radius: 2px;
+}
+
+/* Single Column Layout for Technical Content */
+.tech-single-column {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Tech Table Styles */
+.tech-table-container {
+  margin-top: 40px;
+}
+
+.tech-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 20px;
+}
+
+.tech-cell {
+  background: #ffffff;
+  border: 1px solid #e9ecef;
+  border-radius: 12px;
+  padding: 30px;
+  vertical-align: top;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tech-cell:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.tech-cell h4 {
+  color: #2c3e50;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  text-align: center;
+  border-bottom: 2px solid #64b5f6;
+  padding-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .tech-table {
+    border-spacing: 10px;
+  }
+  
+  .tech-cell {
+    padding: 20px;
+  }
+  
+  .tech-cell h4 {
+    font-size: 16px;
+  }
+}
+
 /* DIRECTIVES SECTION */
 .directives-section {
   background: #ffffff;
@@ -3379,12 +3430,7 @@ const showChatbot = ref(false)
   overflow: hidden;
 }
 
-.directive-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-color: #000000;
-  background: #ffffff;
-}
+/* Removed hover effects as requested */
 
 /* MORPHING CARDS */
 .morphing-card {
@@ -3844,6 +3890,99 @@ const showChatbot = ref(false)
   background: #fafafa;
 }
 
+/* Experience Slideshow */
+.experience-slideshow {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.slideshow-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.slides-wrapper {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.experience-slide {
+  min-width: 100%;
+  padding: 0;
+}
+
+.slideshow-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 20px;
+  pointer-events: none;
+}
+
+.nav-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  pointer-events: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.nav-btn:hover:not(:disabled) {
+  background: #ffffff;
+  transform: scale(1.1);
+}
+
+.nav-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.nav-btn svg {
+  width: 24px;
+  height: 24px;
+  color: #333;
+}
+
+.slideshow-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px 0;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  background: #dee2e6;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator.active {
+  background: #495057;
+  transform: scale(1.2);
+}
+
+.indicator:hover {
+  background: #6c757d;
+}
+
 .orbits-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -3852,17 +3991,43 @@ const showChatbot = ref(false)
 
 .orbit-card {
   background: #ffffff;
-  border: 1px solid #e9ecef;
-  border-radius: 1rem;
-  padding: 2.5rem;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 2px solid #e9ecef;
+  border-radius: 24px;
+  padding: 3rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.1),
+    0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.orbit-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(0, 0, 0, 0.02) 0%, 
+    rgba(0, 0, 0, 0.05) 50%, 
+    rgba(0, 0, 0, 0.03) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 22px;
+}
+
+.orbit-card:hover::before {
+  opacity: 1;
 }
 
 .orbit-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.2),
+    0 8px 20px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
   border-color: #000000;
 }
 
@@ -3870,48 +4035,68 @@ const showChatbot = ref(false)
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 2;
 }
 
 .orbit-org {
-  font-size: 1.25rem;
-  font-weight: var(--font-weight-bold);
-  color: #212529;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #000000;
+  transition: all 0.3s ease;
+}
+
+.orbit-card:hover .orbit-org {
+  color: #333333;
 }
 
 .orbit-year {
-  background: #f8f9fa;
-  padding: 0.25rem 0.75rem;
-  border-radius: 0.5rem;
-  font-size: 0.75rem;
-  font-weight: var(--font-weight-bold);
-  font-family: var(--font-family-mono);
-  color: #495057;
+  background: #000000;
+  padding: 0.4rem 1rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 2;
 }
 
 .orbit-contribution {
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
-  color: #495057;
+  margin-bottom: 2rem;
+  line-height: 1.7;
+  color: #4a5568;
+  font-size: 1.05rem;
+  position: relative;
+  z-index: 2;
 }
 
 .orbit-tech {
   background: #f8f9fa;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  border-left: 3px solid #000000;
+  padding: 1.2rem;
+  border-radius: 16px;
+  border-left: 4px solid #000000;
+  position: relative;
+  z-index: 2;
 }
 
 .tech-label {
-  font-weight: var(--font-weight-semibold);
-  color: #212529;
-  margin-right: 0.5rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-right: 0.75rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .tech-list {
-  color: #495057;
-  font-family: var(--font-family-mono);
-  font-size: 0.875rem;
+  color: #4a5568;
+  font-family: 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  font-weight: 500;
 }
 
 /* TRAJECTORY SECTION */
@@ -4644,26 +4829,12 @@ const showChatbot = ref(false)
 .mindset-star:nth-child(9) { top: 60%; left: 80%; }
 .mindset-star:nth-child(10) { top: 80%; left: 40%; }
 
-/* ENHANCED CRAZY ANIMATIONS */
+/* SIMPLIFIED HOVER ANIMATIONS */
 .directive-card:hover {
-  transform: translateY(-20px) perspective(1000px) rotateX(25deg) rotateY(25deg) scale(1.15) translateZ(100px);
-  box-shadow: 
-    0 60px 120px rgba(0, 0, 0, 0.4),
-    0 40px 80px rgba(0, 0, 0, 0.3),
-    0 25px 50px rgba(0, 0, 0, 0.8),
-    inset 0 0 0 3px rgba(0, 0, 0, 0.5),
-    inset 0 3px 0 rgba(255, 255, 255, 0.4);
-  border-color: rgba(0, 0, 0, 1);
-  background: rgba(245, 245, 245, 0.98);
-  filter: brightness(1.4) contrast(1.3) saturate(1.5);
-  animation: crazy-wobble 0.5s ease-in-out;
-}
-
-@keyframes crazy-wobble {
-  0%, 100% { transform: translateY(-20px) perspective(1000px) rotateX(25deg) rotateY(25deg) scale(1.15) translateZ(100px); }
-  25% { transform: translateY(-25px) perspective(1000px) rotateX(30deg) rotateY(20deg) scale(1.18) translateZ(120px); }
-  50% { transform: translateY(-15px) perspective(1000px) rotateX(20deg) rotateY(30deg) scale(1.12) translateZ(80px); }
-  75% { transform: translateY(-30px) perspective(1000px) rotateX(35deg) rotateY(15deg) scale(1.2) translateZ(140px); }
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  border-color: #000000;
+  background: #ffffff;
 }
 
 .constellation-card:hover {
@@ -6432,7 +6603,59 @@ const showChatbot = ref(false)
   position: relative;
   z-index: 10;
   text-align: center;
-  margin-bottom: 5rem;
+  margin-bottom: 3rem;
+}
+
+/* Personal Characteristics */
+.characteristics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 4rem auto 0;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+.characteristic-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.characteristic-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+}
+
+.trait-icon {
+  margin-bottom: 1.5rem;
+}
+
+.trait-icon .icon {
+  width: 3rem;
+  height: 3rem;
+  color: #ffffff;
+}
+
+.trait-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.trait-description {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .core-title {
@@ -6748,11 +6971,45 @@ const showChatbot = ref(false)
   padding: 8rem 0;
 }
 
-.blog-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
+.blog-scroll-container {
+  overflow-x: auto;
+  padding: 0 0 2rem 0;
   margin-bottom: 4rem;
+  scroll-behavior: smooth;
+}
+
+.blog-scroll-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.blog-scroll-container::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.blog-scroll-container::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+}
+
+.blog-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.blog-grid {
+  display: flex;
+  gap: 2rem;
+  width: max-content;
+  animation: blogAutoScroll 30s linear infinite;
+}
+
+@keyframes blogAutoScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-400px * 3)); }
+}
+
+.blog-grid:hover {
+  animation-play-state: paused;
 }
 
 .blog-card {
@@ -6766,6 +7023,8 @@ const showChatbot = ref(false)
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  min-width: 380px;
+  flex-shrink: 0;
 }
 
 .blog-card:hover {
