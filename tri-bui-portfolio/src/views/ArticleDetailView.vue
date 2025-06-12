@@ -183,7 +183,7 @@ const articles = [
     id: 2,
     title: 'The Rise of Autonomous Financial Advisors',
     excerpt: 'Exploring how AI-powered platforms are democratizing financial planning and investment advice.',
-    category: 'AI-ML',
+    category: 'AI/ML',
     date: 'March 5, 2024',
     readTime: '9 min read',
     icon: '⚙',
@@ -480,7 +480,7 @@ onMounted(() => {
 }
 
 .category-fintech { background: linear-gradient(135deg, #667eea, #764ba2); }
-.category-ai-ml { background: linear-gradient(135deg, #f093fb, #f5576c); }
+.category-ai/ml { background: linear-gradient(135deg, #f093fb, #f5576c); }
 .category-entrepreneurship { background: linear-gradient(135deg, #4facfe, #00f2fe); }
 .category-strategy { background: linear-gradient(135deg, #43e97b, #38f9d7); }
 

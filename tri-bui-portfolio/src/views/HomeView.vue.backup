@@ -159,7 +159,7 @@
               <span class="title-main typewriter-text">I build ecosystems.</span>
             </h1>
             <p class="hero-subtitle professional-subtitle">
-              I'm a strategist and builder focused on creating everlasting impact through innovative platforms that reshape how people think, build, and conquer.
+              I'm a strategist and builder focused on creating everlasting impact through innovative platforms that reshape how the next generation thinks, builds, and conquers.
             </p>
                     </div>
 
@@ -198,22 +198,22 @@
       <div class="container">
         <div class="section-header">
           <h2 class="section-title" ref="constellationsTitleRef">Ventures</h2>
-          <p class="section-subtitle">Companies and platforms I've founded to empower entrepreneurs and professionals</p>
+          <p class="section-subtitle">Companies and platforms I've founded to empower the next generation</p>
           
           <!-- Entrepreneurial Impact Image -->
           <div class="ventures-image-container">
             <img src="@/assets/tri3.png" alt="Entrepreneurial Ventures & Impact" class="ventures-image" />
             <div class="ventures-stats">
               <div class="stat-item">
-                <span class="stat-number glowing-number">6</span>
+                <span class="stat-number">5</span>
                 <span class="stat-label">Ventures Founded</span>
               </div>
               <div class="stat-item">
-                <span class="stat-number glowing-number">350+</span>
+                <span class="stat-number">350+</span>
                 <span class="stat-label">Lives Impacted</span>
               </div>
               <div class="stat-item">
-                <span class="stat-number glowing-number">12K+</span>
+                <span class="stat-number">12K+</span>
                 <span class="stat-label">Users Reached</span>
               </div>
             </div>
@@ -355,9 +355,7 @@
         <div class="technical-content">
           <div class="tech-single-column">
             <h3 class="subsection-title">Core Technology Stack</h3>
-            
-            <!-- Desktop Table View -->
-            <div class="tech-table-container desktop-only">
+            <div class="tech-table-container">
               <table class="tech-table">
                 <tbody>
                   <tr>
@@ -413,40 +411,6 @@
                   </tr>
                 </tbody>
               </table>
-            </div>
-            
-            <!-- Mobile Tabs View -->
-            <div class="tech-tabs-container mobile-only">
-              <div class="tech-tabs-nav">
-                <button 
-                  v-for="category in techCategories" 
-                  :key="category.id"
-                  @click="setActiveTab(category.id)"
-                  :class="['tab-button', { active: activeTab === category.id }]"
-                >
-                  {{ category.title }}
-                </button>
-              </div>
-              
-              <div class="tech-tabs-content">
-                <div 
-                  v-for="category in techCategories" 
-                  :key="category.id"
-                  v-show="activeTab === category.id"
-                  class="tab-panel"
-                >
-                  <h4 class="tab-title">{{ category.title }}</h4>
-                  <div class="tech-items">
-                    <span 
-                      v-for="item in category.items" 
-                      :key="item" 
-                      class="tech-item"
-                    >
-                      {{ item }}
-                    </span>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -636,7 +600,7 @@
             <!-- Center - Entrepreneurship -->
             <div class="center-point" data-core="entrepreneurship">
               <div class="center-label">ENTREPRENEURSHIP</div>
-              <div class="center-description">Building ecosystems that empower ambitious individuals</div>
+              <div class="center-description">Building ecosystems that empower the next generation</div>
               <div class="energy-pulse"></div>
             </div>
             
@@ -947,7 +911,7 @@ const ventures = ref([
     name: "NextGen Investor",
     year: "2024",
     role: "Co-Founder",
-    impact: "Financial education platform empowering aspiring investors with practical knowledge and mentorship networks."
+    impact: "Financial education platform empowering the next generation of investors with practical knowledge and mentorship networks."
   },
   {
     name: "FinBud AI",
@@ -1015,18 +979,6 @@ const orbits = ref([
     year: "2024",
     contribution: "Led AI development for automotive defect detection system, implementing computer vision models that achieved 94% accuracy in identifying paint defects and assembly issues.",
     tech: "Python, PyTorch, OpenCV, YOLO, AWS EC2, Docker"
-  },
-  {
-    org: "NewWave",
-    year: "2023",
-    contribution: "Developed next-generation fintech platform with blockchain integration, delivering seamless digital payment solutions and reducing transaction costs by 35%.",
-    tech: "React, Node.js, Solidity, Web3.js, PostgreSQL"
-  },
-  {
-    org: "NewHomes",
-    year: "2022",
-    contribution: "Built comprehensive real estate management system with predictive analytics, increasing property valuation accuracy by 28% and streamlining portfolio management.",
-    tech: "Vue.js, Python, TensorFlow, AWS Lambda, MongoDB"
   }
 ])
 
@@ -1203,7 +1155,7 @@ const blogPosts = ref([
     category: "Technology",
     date: "Dec 10, 2024",
     title: "The Rise of AI-First Fintech",
-    excerpt: "How artificial intelligence is revolutionizing personal finance and what it means for modern financial services.",
+    excerpt: "How artificial intelligence is revolutionizing personal finance and what it means for the next generation of financial services.",
     tags: ["AI", "Fintech", "Innovation"],
     readTime: 6
   },
@@ -1259,9 +1211,394 @@ onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
   // Stop auto scroll when component unmounts
   stopAutoScroll();
-  // Remove resize event listener
-  window.removeEventListener('resize', checkCarouselArrows);
 })
+
+// Old setupAnimations function removed
+  ScrollTrigger.getAll().forEach(trigger => trigger.kill())
+  
+  console.log('Setting up animations...') // Debug log
+  
+  // Hero animation timeline (no changes needed for hero)
+  const heroTl = gsap.timeline()
+  
+  if (statusRef.value) {
+    heroTl.from(statusRef.value, {
+      opacity: 0,
+      y: 30,
+      duration: 0.8,
+      ease: "power3.out"
+    })
+  }
+  
+  if (heroTitleRef.value) {
+    heroTl.from(heroTitleRef.value, {
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: "power3.out"
+    }, "-=0.5")
+  }
+  
+  if (heroNavRef.value) {
+    heroTl.from(heroNavRef.value.children, {
+      opacity: 0,
+      y: 20,
+      duration: 0.6,
+      stagger: 0.1,
+      ease: "power3.out"
+    }, "-=0.2")
+  }
+  
+  // Robot animation
+  if (robotRef.value) {
+    heroTl.from(robotRef.value, {
+      opacity: 0,
+      scale: 0.8,
+      y: 50,
+      duration: 1.2,
+      ease: "back.out(1.7)"
+    }, "-=0.8")
+  }
+
+  // Enhanced section animations with varied effects
+  const enhancedSections = [
+    { 
+      ref: constellationsTitleRef, 
+      selector: '.constellations-grid',
+      titleAnimation: 'slideDown',
+      contentAnimation: 'popIn'
+    },
+    { 
+      ref: orbitsTitleRef, 
+      selector: '.professional-carousel',
+      titleAnimation: 'fadeIn',
+      contentAnimation: 'slideLeft'
+    },
+    { 
+      ref: originTitleRef, 
+      items: [originItem1, originItem2, originItem3, originItem4],
+      titleAnimation: 'slideUp',
+      contentAnimation: 'slideRight'
+    },
+    { 
+      ref: directivesTitleRef, 
+      selector: '.directives-grid',
+      titleAnimation: 'popIn',
+      contentAnimation: 'fadeUp'
+    },
+    { 
+      ref: triangleTitleRef, 
+      selector: '.triangle-container',
+      titleAnimation: 'slideLeft',
+      contentAnimation: 'rotateIn'
+    },
+    { 
+      ref: mindsetTitleRef, 
+      selector: '.mindset-grid',
+      titleAnimation: 'fadeIn',
+      contentAnimation: 'scaleIn'
+    },
+    { 
+      ref: blogTitleRef, 
+      selector: '.blog-grid',
+      titleAnimation: 'slideRight',
+      contentAnimation: 'slideUp'
+    },
+    { 
+      ref: accoladesTitleRef, 
+      selector: '.accolades-timeline',
+      titleAnimation: 'popIn',
+      contentAnimation: 'slideDown'
+    },
+    { 
+      ref: trajectoryTitleRef, 
+      selector: '.trajectory-grid',
+      titleAnimation: 'slideUp',
+      contentAnimation: 'popIn'
+    },
+    { 
+      ref: contactTitleRef, 
+      selector: '.contact-grid',
+      titleAnimation: 'scaleIn',
+      contentAnimation: 'fadeIn'
+    }
+  ]
+
+  // Animation variants
+  const getAnimationConfig = (type: string, isTitle = false) => {
+    const configs: Record<string, any> = {
+      fadeIn: {
+        opacity: 0,
+        duration: 0.8,
+        ease: "power2.out"
+      },
+      slideUp: {
+        opacity: 0,
+        y: 50,
+        duration: 0.8,
+        ease: "power3.out"
+      },
+      slideDown: {
+        opacity: 0,
+        y: -50,
+        duration: 0.8,
+        ease: "power3.out"
+      },
+      slideLeft: {
+        opacity: 0,
+        x: -60,
+        duration: 0.8,
+        ease: "power3.out"
+      },
+      slideRight: {
+        opacity: 0,
+        x: 60,
+        duration: 0.8,
+        ease: "power3.out"
+      },
+      popIn: {
+        opacity: 0,
+        scale: 0.5,
+        duration: 0.8,
+        ease: "back.out(1.7)"
+      },
+      scaleIn: {
+        opacity: 0,
+        scale: 0.8,
+        duration: 0.8,
+        ease: "power2.out"
+      },
+      rotateIn: {
+        opacity: 0,
+        rotation: -45,
+        scale: 0.8,
+        duration: 1,
+        ease: "back.out(1.7)"
+      },
+      fadeUp: {
+        opacity: 0,
+        y: 30,
+        duration: 0.7,
+        ease: "power2.out"
+      }
+    }
+    return configs[type] || configs.fadeIn
+  }
+
+  enhancedSections.forEach((section, sectionIndex) => {
+    if (section.ref && section.ref.value) {
+      console.log(`Setting up animation for section ${sectionIndex}:`, section.ref.value) // Debug
+      
+      // Animate section title with varied effects
+      ScrollTrigger.create({
+        trigger: section.ref.value,
+        start: "top 90%", // More generous trigger
+        end: "bottom 10%",
+        toggleActions: "play none none reverse",
+        animation: gsap.from(section.ref.value, {
+          ...getAnimationConfig(section.titleAnimation, true),
+          delay: 0.1
+        }),
+        onToggle: (self) => console.log(`Title animation triggered: ${self.isActive}`) // Debug
+      })
+
+      // Animate content with different effects
+      if (section.items) {
+        // For origin items with alternating effects
+        const itemAnimations = ['slideRight', 'fadeUp', 'slideLeft', 'popIn']
+        section.items.forEach((item, index) => {
+          if (item && item.value) {
+            const animationType = itemAnimations[index % itemAnimations.length]
+            ScrollTrigger.create({
+              trigger: item.value,
+              start: "top 90%",
+              toggleActions: "play none none reverse",
+              animation: gsap.from(item.value, {
+                ...getAnimationConfig(animationType),
+                delay: index * 0.15
+              })
+            })
+          }
+        })
+      } else if (section.selector) {
+        // For other sections with varied content animations
+        const content = section.ref.value.parentElement?.querySelector(section.selector)
+        if (content && content.children && content.children.length > 0) {
+          console.log(`Found content with ${content.children.length} children`) // Debug
+          
+          // Apply different animations to different children
+          const childAnimations = ['popIn', 'slideUp', 'fadeIn', 'scaleIn', 'slideLeft', 'slideRight']
+          
+          Array.from(content.children).forEach((child, index) => {
+            const animationType = childAnimations[index % childAnimations.length]
+            ScrollTrigger.create({
+              trigger: child,
+              start: "top 90%",
+              toggleActions: "play none none reverse",
+              animation: gsap.from(child, {
+                ...getAnimationConfig(animationType),
+                delay: index * 0.1
+              })
+            })
+          })
+        } else {
+          console.log(`No content found for selector: ${section.selector}`) // Debug
+        }
+      }
+    } else {
+      console.log(`Section ref not found for section ${sectionIndex}`) // Debug
+    }
+  })
+
+  // Technical section animations
+  const technicalSection = document.querySelector('.technical-section')
+  if (technicalSection) {
+    console.log('Technical section found:', technicalSection) // Debug
+    
+    // Technical section title
+    const techTitle = technicalSection.querySelector('.section-title')
+    if (techTitle) {
+      ScrollTrigger.create({
+        trigger: techTitle,
+        start: "top 90%",
+        toggleActions: "play none none reverse",
+        animation: gsap.from(techTitle, {
+          opacity: 0,
+          y: -30,
+          duration: 0.8,
+          ease: "power3.out"
+        }),
+        onToggle: (self) => console.log('Tech title animated:', self.isActive) // Debug
+      })
+    }
+  } else {
+    console.log('Technical section not found') // Debug
+  }
+
+    // Technical image with rotate effect
+    const techImage = technicalSection?.querySelector('.technical-image-container')
+    if (techImage) {
+      ScrollTrigger.create({
+        trigger: techImage,
+        start: "top 90%",
+        toggleActions: "play none none reverse",
+        animation: gsap.from(techImage, {
+          opacity: 0,
+          rotation: 15,
+          scale: 0.8,
+          duration: 1.2,
+          ease: "back.out(1.7)"
+        })
+      })
+    }
+
+    // Tech table with wave effect
+    const techCells = technicalSection?.querySelectorAll('.tech-cell')
+    if (techCells) {
+      techCells.forEach((cell, index) => {
+        ScrollTrigger.create({
+          trigger: cell,
+          start: "top 90%",
+          toggleActions: "play none none reverse",
+          animation: gsap.from(cell, {
+            opacity: 0,
+            y: 40,
+            duration: 0.8,
+            delay: index * 0.2,
+            ease: "power3.out"
+          })
+        })
+      })
+    }
+
+    // Tech items within cells with stagger
+    const techItems = technicalSection?.querySelectorAll('.tech-item')
+    if (techItems) {
+      techItems.forEach((item, index) => {
+        ScrollTrigger.create({
+          trigger: item,
+          start: "top 95%",
+          toggleActions: "play none none reverse",
+          animation: gsap.from(item, {
+            opacity: 0,
+            scale: 0.7,
+            duration: 0.5,
+            delay: index * 0.05,
+            ease: "back.out(1.7)"
+          })
+        })
+      })
+    }
+  }
+
+  // Professional Experience carousel with special animation
+  const professionalCarousel = document.querySelector('.professional-carousel')
+  if (professionalCarousel) {
+    const carouselCards = professionalCarousel.querySelectorAll('.orbit-card')
+    carouselCards.forEach((card, index) => {
+      ScrollTrigger.create({
+        trigger: card,
+        start: "top 85%",
+        animation: gsap.from(card, {
+          opacity: 0,
+          x: index % 2 === 0 ? -100 : 100,
+          rotation: index % 2 === 0 ? -10 : 10,
+          duration: 1,
+          delay: index * 0.2,
+          ease: "back.out(1.7)"
+        })
+      })
+    })
+  }
+
+  // Ventures images with special effects
+  const venturesImage = document.querySelector('.ventures-image-container')
+  if (venturesImage) {
+    ScrollTrigger.create({
+      trigger: venturesImage,
+      start: "top 80%",
+      animation: gsap.from(venturesImage, {
+        opacity: 0,
+        scale: 0.6,
+        rotation: -10,
+        duration: 1.5,
+        ease: "elastic.out(1, 0.5)"
+      })
+    })
+
+    // Ventures stats with pop animation
+    const venturesStats = document.querySelectorAll('.stat-item')
+    venturesStats.forEach((stat, index) => {
+      ScrollTrigger.create({
+        trigger: stat,
+        start: "top 85%",
+        animation: gsap.from(stat, {
+          opacity: 0,
+          scale: 0.3,
+          y: 30,
+          duration: 0.8,
+          delay: index * 0.2,
+          ease: "back.out(1.7)"
+        })
+      })
+    })
+  }
+
+  // Special quote animation
+  if (quoteRef.value) {
+    ScrollTrigger.create({
+      trigger: quoteRef.value,
+      start: "top 80%",
+      animation: gsap.from(quoteRef.value, {
+        opacity: 0,
+        scale: 0.8,
+        rotation: 5,
+        duration: 1.2,
+        ease: "elastic.out(1, 0.5)"
+      })
+    })
+  }
+}
 
 // Function to generate random star styles with improved variety
 function generateStarStyle() {
@@ -1343,35 +1680,6 @@ const isScrolledToEnd = ref(false);
 let currentIndex = 0;
 let autoScrollInterval: any = null;
 
-// Tech stack mobile tabs
-const activeTab = ref(0);
-const techCategories = ref([
-  {
-    id: 0,
-    title: 'Programming Languages',
-    items: ['Python', 'JavaScript/TypeScript', 'SQL', 'R', 'Java', 'C++', 'Golang', 'Swift', 'Rust']
-  },
-  {
-    id: 1,
-    title: 'Frameworks & Libraries',
-    items: ['Vue.js', 'React', 'Node.js', 'TensorFlow', 'PyTorch', 'FastAPI', 'Express.js']
-  },
-  {
-    id: 2,
-    title: 'AI/ML Specializations',
-    items: ['Natural Language Processing (NLP)', 'Time-Series Forecasting', 'LLM Fine-tuning', 'Computer Vision', 'Object Detection', 'Sentiment Analysis']
-  },
-  {
-    id: 3,
-    title: 'Cloud & Infrastructure',
-    items: ['AWS (Lambda, S3, EC2)', 'Docker', 'CI/CD Pipelines', 'Kubernetes', 'Terraform']
-  }
-]);
-
-const setActiveTab = (tabId: number) => {
-  activeTab.value = tabId;
-};
-
 // Auto scroll for professional experience
 const startAutoScroll = () => {
   if (autoScrollInterval) clearInterval(autoScrollInterval);
@@ -1380,8 +1688,7 @@ const startAutoScroll = () => {
     if (!carouselTrack.value) return;
     
     const totalCards = orbits.value.length;
-    const isMobile = window.innerWidth <= 768;
-    const cardsInView = isMobile ? 1 : 3; // Show 1 card on mobile, 3 on desktop
+    const cardsInView = 3;
     const maxIndex = totalCards - cardsInView;
     
     if (currentIndex >= maxIndex) {
@@ -1425,8 +1732,7 @@ const scrollCarousel = (direction: number) => {
   if (cards.length === 0) return;
 
   const totalCards = orbits.value.length;
-  const isMobile = window.innerWidth <= 768;
-  const cardsInView = isMobile ? 1 : 3; // Show 1 card on mobile, 3 on desktop
+  const cardsInView = 3;
   const maxIndex = totalCards - cardsInView;
 
   let newIndex = currentIndex + direction;
@@ -1456,9 +1762,7 @@ const scrollCarousel = (direction: number) => {
 };
 
 const checkCarouselArrows = () => {
-  const isMobile = window.innerWidth <= 768;
-  const cardsInView = isMobile ? 1 : 3;
-  if (orbits.value.length <= cardsInView) {
+  if (orbits.value.length <= 3) {
     isScrolledToEnd.value = true;
   }
 };
@@ -1466,79 +1770,80 @@ const checkCarouselArrows = () => {
 onMounted(() => {
   checkCarouselArrows();
   
-  // Setup FAST scroll animations immediately
+  // Setup simple scroll animations
   setTimeout(() => {
-    setupUltraFastAnimations();
-  }, 1500); // Much faster setup
+    setupSimpleScrollAnimations();
+  }, 500);
   
   // Start auto scroll for professional experience
   setTimeout(() => {
     startAutoScroll();
   }, 2000); // Start auto scroll after 2 seconds
-  
-  // Handle window resize for responsive carousel
-  window.addEventListener('resize', () => {
-    checkCarouselArrows();
-    // Reset carousel position on resize
-    currentIndex = 0;
-    if (carouselTrack.value) {
-      gsap.set(carouselTrack.value, { x: 0 });
-    }
-    isScrolledToStart.value = true;
-    isScrolledToEnd.value = false;
-  });
 });
 
-// Ultra-fast CSS-based scroll animations using Intersection Observer
-const setupUltraFastAnimations = () => {
-  console.log('Setting up ULTRA FAST CSS animations...');
+// Simple scroll animations that work reliably
+const setupSimpleScrollAnimations = () => {
+  console.log('Setting up simple animations...');
   
-  // Create intersection observer for instant animations
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animate-in');
-        observer.unobserve(entry.target); // Only animate once
-      }
-    });
-     }, {
-     threshold: 0.05, // Trigger when 5% visible - even faster
-     rootMargin: '100px' // Start 100px before element comes into view
-   });
+  // Clear existing triggers
+  ScrollTrigger.getAll().forEach(trigger => trigger.kill());
   
-  // Add all elements that need animation
-  const elementsToAnimate = document.querySelectorAll(`
-    .section-title,
-    .constellation-card,
-    .orbit-card,
-    .directive-card,
-    .origin-item,
-    .timeline-item,
-    .tech-cell,
-    .tech-item,
-    .stat-item,
-    .technical-image-container,
-    .ventures-image-container
-  `);
+  // Simple section animations
+  const sections = document.querySelectorAll('.section-title');
+  sections.forEach((section, index) => {
+    if (section) {
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top 85%",
+        animation: gsap.from(section, {
+          opacity: 0,
+          y: 50,
+          duration: 0.8,
+          ease: "power3.out"
+        }),
+        onToggle: (self) => console.log(`Section ${index} animated:`, self.isActive)
+      });
+    }
+  });
   
-        elementsToAnimate.forEach((element, index) => {
-     // Add animation delay based on index
-     (element as HTMLElement).style.setProperty('--animation-delay', `${(index % 3) * 0.05}s`);
-     
-     // Check if element is already visible and animate immediately
-     const rect = element.getBoundingClientRect();
-     if (rect.top < window.innerHeight && rect.bottom > 0) {
-       // Element is already visible, animate immediately
-       setTimeout(() => {
-         element.classList.add('animate-in');
-       }, index * 20); // Stagger the immediate animations
-     } else {
-       // Element not visible, observe for later
-       observer.observe(element);
-     }
-   });
-   
-   console.log(`ULTRA FAST animations setup for ${elementsToAnimate.length} elements`);
+  // Card animations
+  const cards = document.querySelectorAll('.constellation-card, .orbit-card, .directive-card');
+  cards.forEach((card, index) => {
+    if (card) {
+      ScrollTrigger.create({
+        trigger: card,
+        start: "top 85%",
+        animation: gsap.from(card, {
+          opacity: 0,
+          y: 30,
+          scale: 0.9,
+          duration: 0.6,
+          delay: (index % 3) * 0.1,
+          ease: "back.out(1.7)"
+        })
+      });
+    }
+  });
+  
+  // Tech items
+  const techItems = document.querySelectorAll('.tech-item');
+  techItems.forEach((item, index) => {
+    if (item) {
+      ScrollTrigger.create({
+        trigger: item,
+        start: "top 90%",
+        animation: gsap.from(item, {
+          opacity: 0,
+          scale: 0.8,
+          duration: 0.4,
+          delay: index * 0.05,
+          ease: "back.out(1.7)"
+        })
+      });
+    }
+  });
+  
+  console.log('Simple animations setup complete');
 };
 
 const setupAdvancedAnimations = () => {
@@ -1586,29 +1891,6 @@ html {
 .stat-item {
   will-change: transform, opacity;
   transition: all 0.3s ease;
-}
-
-/* Ultra-fast CSS animations */
-.section-title,
-.constellation-card,
-.orbit-card,
-.directive-card,
-.origin-item,
-.timeline-item,
-.tech-cell,
-.tech-item,
-.stat-item,
-.technical-image-container,
-.ventures-image-container {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.2s ease-out;
-  transition-delay: var(--animation-delay, 0s);
-}
-
-.animate-in {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
 }
 
 .portfolio.no-scroll {
@@ -4303,31 +4585,6 @@ html {
   margin-bottom: 0.25rem;
 }
 
-/* Simple glowing numbers with black background */
-.glowing-number {
-  position: relative;
-  color: #ffffff !important;
-  background: rgba(0, 0, 0, 0.8);
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.5rem;
-  font-weight: 700 !important;
-  letter-spacing: 0.5px;
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
-  box-shadow: 
-    0 0 10px rgba(255, 255, 255, 0.3),
-    inset 0 0 10px rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-/* Desktop/Mobile visibility controls */
-.desktop-only {
-  display: block;
-}
-
-.mobile-only {
-  display: none;
-}
-
 .ventures-stats .stat-label {
   font-size: 0.75rem;
   color: #cccccc;
@@ -6805,240 +7062,6 @@ html {
   .blog-card {
     padding: 1.5rem;
   }
-  
-  /* Professional Experience Mobile */
-  .professional-carousel-wrapper {
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    margin: 1rem 0;
-  }
-  
-  .carousel-arrow {
-    position: static;
-    margin: 0;
-    width: 50px;
-    height: 50px;
-    flex-shrink: 0;
-    background: #f8f9fa;
-    border: 2px solid #dee2e6;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    font-size: 1.2rem;
-  }
-  
-  .carousel-arrow:hover:not(:disabled) {
-    background: #e9ecef;
-    border-color: #000000;
-    transform: scale(1.05);
-  }
-  
-  .left-arrow {
-    margin-right: 0.5rem;
-  }
-  
-  .right-arrow {
-    margin-left: 0.5rem;
-  }
-  
-  .professional-carousel {
-    flex: 1;
-    min-width: 0;
-    overflow: hidden;
-  }
-  
-  .carousel-track {
-    gap: 1rem;
-  }
-  
-  .orbit-card {
-    flex: 0 0 calc(100% - 1rem) !important;
-    min-width: calc(100% - 1rem) !important;
-    padding: 1.5rem;
-    margin: 0;
-  }
-  
-  .orbit-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-  
-  .orbit-org {
-    font-size: 1.1rem;
-  }
-  
-  .orbit-year {
-    align-self: flex-end;
-  }
-  
-  .orbit-contribution {
-    font-size: 0.9rem;
-  }
-  
-  .orbit-tech {
-    padding: 0.75rem;
-  }
-  
-  .tech-list {
-    font-size: 0.8rem;
-  }
-  
-  /* Core Technology Stack Mobile */
-  .desktop-only {
-    display: none;
-  }
-  
-  .mobile-only {
-    display: block;
-  }
-  
-  .tech-tabs-container {
-    margin-top: 2rem;
-  }
-  
-  .tech-tabs-nav {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .tab-button {
-    background: #f8f9fa;
-    border: 2px solid #dee2e6;
-    border-radius: 0.75rem;
-    padding: 0.75rem 0.5rem;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #495057;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-align: center;
-    line-height: 1.2;
-  }
-  
-  .tab-button.active {
-    background: #000000;
-    color: #ffffff;
-    border-color: #000000;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  }
-  
-  .tab-button:hover:not(.active) {
-    background: #e9ecef;
-    border-color: #adb5bd;
-    transform: translateY(-1px);
-  }
-  
-  .tech-tabs-content {
-    background: #ffffff;
-    border: 2px solid #e9ecef;
-    border-radius: 1rem;
-    padding: 1.5rem;
-    min-height: 200px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  }
-  
-  .tab-panel {
-    animation: fadeIn 0.3s ease-in-out;
-  }
-  
-  .tab-title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: #000000;
-    margin-bottom: 1rem;
-    border-bottom: 2px solid #f8f9fa;
-    padding-bottom: 0.5rem;
-  }
-  
-  .tech-items {
-    gap: 0.5rem;
-  }
-  
-  .tech-item {
-    padding: 0.5rem 1rem;
-    font-size: 0.85rem;
-  }
-  
-  .technical-image-container {
-  max-width: 100%;
-  margin: 2rem auto;
-}
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-}
-
-/* Tablet responsive */
-@media (max-width: 1024px) and (min-width: 769px) {
-  .orbit-card {
-    flex: 0 0 calc(50% - 1rem) !important;
-    min-width: calc(50% - 1rem) !important;
-  }
-}
-
-@media (max-width: 480px) {
-  /* Extra small mobile fixes */
-  .professional-carousel-wrapper {
-    margin: 0.5rem 0;
-    gap: 0.25rem;
-  }
-  
-  .carousel-arrow {
-    width: 45px;
-    height: 45px;
-    font-size: 1.1rem;
-  }
-  
-  .left-arrow {
-    margin-right: 0.25rem;
-  }
-  
-  .right-arrow {
-    margin-left: 0.25rem;
-  }
-  
-  .orbit-card {
-    padding: 1rem !important;
-    flex: 0 0 calc(100% - 0.5rem) !important;
-    min-width: calc(100% - 0.5rem) !important;
-  }
-  
-  .orbit-org {
-    font-size: 1rem;
-  }
-  
-  .orbit-contribution {
-    font-size: 0.85rem;
-    margin-bottom: 1rem;
-  }
-  
-  .orbit-tech {
-    padding: 0.75rem;
-  }
-  
-  .tech-list {
-    font-size: 0.75rem;
-  }
-  
-  .tech-category {
-    padding: 1rem;
-  }
-  
-  .tech-category h4 {
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-  }
-  
-  .tech-item {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
-  }
 }
 
 /* Reduce motion for cosmic effects */
@@ -7601,8 +7624,7 @@ html {
 }
 
 .orbit-card {
-  flex: 0 0 calc((100% / 3) - (4rem / 3));
-  min-width: calc((100% / 3) - (4rem / 3));
+  flex: 0 0 calc(50% - 1rem);
   padding: 2rem;
   background: #ffffff;
   border: 1px solid #e9ecef;
@@ -7610,6 +7632,7 @@ html {
   transition: all 0.3s ease;
   cursor: pointer;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-right: 2rem;
 }
 
 .orbit-card:hover {
@@ -7685,7 +7708,10 @@ html {
   transition: transform 0.5s ease-in-out;
 }
 
-/* This duplicate rule is removed - handled above */
+.orbit-card {
+  flex: 0 0 calc((100% / 3) - (4rem / 3));
+  min-width: calc((100% / 3) - (4rem / 3));
+}
 
 .carousel-arrow {
   background: #fff;

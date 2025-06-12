@@ -24,10 +24,10 @@
 
       <!-- Desktop Menu -->
       <div class="nav-menu" :class="{ 'nav-menu-open': isMenuOpen }">
-        <router-link to="/#ventures" class="nav-link">Ventures</router-link>
-        <router-link to="/#transformation-chaos-section" class="nav-link">Mindset</router-link>
+        <a href="#" @click.prevent="scrollToSection('ventures')" class="nav-link">Ventures</a>
+        <a href="#" @click.prevent="scrollToSection('transformation-chaos-section')" class="nav-link">Mindset</a>
         <router-link to="/blog" class="nav-link">Blog</router-link>
-        <router-link to="/#contact" class="nav-link">Contact</router-link>
+        <a href="#" @click.prevent="scrollToSection('contact')" class="nav-link">Contact</a>
       </div>
 
       <!-- Mobile Menu Button -->
@@ -37,21 +37,60 @@
         <span class="hamburger-line" :class="{ 'active': isMenuOpen }"></span>
       </div>
     </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-overlay" :class="{ 'overlay-active': isMenuOpen }" @click="toggleMenu"></div>
   </nav>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
+import { useRouter } from 'vue-router'
 
 const props = defineProps<{
   hideNavbar?: boolean
 }>()
 
+const router = useRouter()
 const isScrolled = ref(false)
 const isMenuOpen = ref(false)
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value
+}
+
+const scrollToSection = (sectionId: string) => {
+  // Close mobile menu if open
+  isMenuOpen.value = false
+  
+  // If not on home page, navigate to home first
+  if (router.currentRoute.value.path !== '/') {
+    router.push('/').then(() => {
+      // Wait for navigation to complete, then scroll
+      setTimeout(() => {
+        performScroll(sectionId)
+      }, 100)
+    })
+  } else {
+    // Already on home page, just scroll
+    performScroll(sectionId)
+  }
+}
+
+const performScroll = (sectionId: string) => {
+  const element = document.getElementById(sectionId)
+  if (element) {
+    const navbar = document.querySelector('.navbar') as HTMLElement
+    const navbarHeight = navbar ? navbar.offsetHeight : 80
+    
+    const elementPosition = element.offsetTop
+    const offsetPosition = elementPosition - navbarHeight - 20 // Extra 20px padding
+    
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    })
+  }
 }
 
 const handleScroll = () => {
@@ -310,6 +349,26 @@ onUnmounted(() => {
   box-shadow: 0 0 15px rgba(100, 200, 255, 0.8);
 }
 
+/* Mobile Overlay */
+.mobile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+.overlay-active {
+  opacity: 1;
+  visibility: visible;
+}
+
 /* Mobile Styles */
 @media (max-width: 768px) {
   .nav-container {
@@ -334,6 +393,7 @@ onUnmounted(() => {
     gap: 2rem;
     transition: right 0.3s ease;
     border-left: 1px solid rgba(100, 200, 255, 0.3);
+    z-index: 1001;
   }
   
   .nav-menu-open {

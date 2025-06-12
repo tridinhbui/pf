@@ -211,13 +211,13 @@ const botResponses: { [key: string]: string | string[] } = {
     "At Blackstone, Tri built a Monte Carlo model in Python for rent stress-testing, helping identify and mitigate $1.5 million in potential downside risk.",
     "His experience also includes risk analysis at Deloitte and due diligence for Climate Tech startups at Caprae Private Equity."
   ],
-  projects: "Tri has founded and developed several technology projects, most notably:\\n- **FinBud AI:** A personal finance AI assistant using NLP models to understand user requests and time-series forecasting algorithms to provide financial advice.\\n- **NextGen Investor:** Co-founded a financial education platform empowering the next generation of investors with practical knowledge and mentorship networks.",
+  projects: "Tri has founded and developed several technology projects, most notably:\\n- **FinBud AI:** A personal finance AI assistant using NLP models to understand user requests and time-series forecasting algorithms to provide financial advice.\\n- **NextGen Investor:** Co-founded a financial education platform empowering aspiring investors with practical knowledge and mentorship networks.",
   skills: "Tri has a diverse skill set:\\n- **Languages:** Python, JavaScript/TypeScript, SQL, R\\n- **Frameworks:** Vue.js, React, Node.js, TensorFlow, PyTorch\\n- **Infrastructure:** AWS (Lambda, S3, EC2), Docker, CI/CD\\n- **AI/ML:** Natural Language Processing (NLP), Time-Series Forecasting, LLM Fine-tuning, Computer Vision (Object Detection)\\n- **Databases:** Experience with PostgreSQL, MongoDB, and vector databases",
   philosophy: "Tri's philosophy is building sustainable ecosystems rather than individual products. He believes in 'learn fast, teach faster,' 'build systems, not barriers,' and always 'lift others as you climb.'",
   contact: "You can reach Tri via email at tbui@macalester.edu or connect via LinkedIn: linkedin.com/in/tribuidinh",
   schedule: "To schedule a meeting, you can email Tri directly with your preferred time. He'll respond as soon as possible.",
   education: "Tri graduated from Macalester College with a dual degree in Computer Science and Quantitative Economics. He was a $230K Kofi Annan Scholar and made Dean's List for all 6 semesters. He also completed an exchange program at NTU Singapore.",
-  unique: "What makes Tri unique is his ability to bridge three worlds: technology, finance, and entrepreneurship. He's not just building products, but entire ecosystems that create lasting impact for the next generation."
+  unique: "What makes Tri unique is his ability to bridge three worlds: technology, finance, and entrepreneurship. He's not just building products, but entire ecosystems that create lasting impact for ambitious professionals."
 }
 
 const getBotResponse = (userMessage: string): string => {
@@ -270,18 +270,18 @@ const speakText = (text: string) => {
   utterance.rate = 0.7 // Slower for better understanding
   utterance.pitch = 1.0
   utterance.volume = 0.7
-  
-  // Try to use a more natural voice
-  const voices = speechSynthesis.getVoices();
-  const preferredVoice = voices.find(voice => 
-    voice.name.includes('Google') || 
-    voice.name.includes('Microsoft') ||
-    voice.lang.startsWith('en')
-  );
-  if (preferredVoice) {
-    utterance.voice = preferredVoice;
-  }
-  
+    
+    // Try to use a more natural voice
+    const voices = speechSynthesis.getVoices();
+    const preferredVoice = voices.find(voice => 
+      voice.name.includes('Google') || 
+      voice.name.includes('Microsoft') ||
+      voice.lang.startsWith('en')
+    );
+    if (preferredVoice) {
+      utterance.voice = preferredVoice;
+    }
+    
   utterance.onend = () => {
     isCurrentlySpeaking.value = false
   }
@@ -290,7 +290,7 @@ const speakText = (text: string) => {
     isCurrentlySpeaking.value = false
   }
   
-  speechSynthesis.speak(utterance);
+    speechSynthesis.speak(utterance);
 }
 
 const toggleChat = () => {
@@ -303,9 +303,9 @@ watch(() => props.autoOpen, (newValue) => {
       isOpen.value = true;
       // Auto-speak welcome message if not muted
       if (!isChatMuted.value) {
-        setTimeout(() => {
-          speakText(messages.value[0].text);
-        }, 500);
+      setTimeout(() => {
+        speakText(messages.value[0].text);
+      }, 500);
       }
     }, 3000)
   }
@@ -354,7 +354,7 @@ const sendMessage = async () => {
       scrollToBottom()
       // Auto-speak bot response if not muted
       if (!isChatMuted.value) {
-        speakText(botResponse)
+      speakText(botResponse)
       }
     })
   }, 1000 + Math.random() * 1000)
