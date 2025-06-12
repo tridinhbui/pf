@@ -236,7 +236,7 @@ onUnmounted(() => {
 
 /* Brand */
 .nav-brand {
-  z-index: 1001;
+  z-index: 2002;
 }
 
 .brand-link {
@@ -321,7 +321,8 @@ onUnmounted(() => {
   gap: 4px;
   cursor: pointer;
   padding: 8px;
-  z-index: 1001;
+  z-index: 2002;
+  position: relative;
 }
 
 .hamburger-line {
@@ -361,7 +362,7 @@ onUnmounted(() => {
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
-  z-index: 999;
+  z-index: 1999;
 }
 
 .overlay-active {
@@ -393,7 +394,7 @@ onUnmounted(() => {
     gap: 2rem;
     transition: right 0.3s ease;
     border-left: 1px solid rgba(100, 200, 255, 0.3);
-    z-index: 1001;
+    z-index: 2001;
   }
   
   .nav-menu-open {

@@ -1,13 +1,11 @@
 <template>
   <div class="article-detail">
-    <!-- Article Hero -->
-    <section class="article-hero">
+    <!-- Article Header -->
+    <section class="article-header">
       <div class="container">
-        <div class="hero-content">
-          <div class="article-meta">
-            <span class="article-category" :class="`category-${article?.category?.toLowerCase()}`">
-              {{ article?.category }}
-            </span>
+        <div class="article-meta">
+          <div class="meta-info">
+            <span class="article-category">{{ article?.category }}</span>
             <span class="article-date">{{ article?.date }}</span>
             <span class="read-time">{{ article?.readTime }}</span>
           </div>
@@ -15,13 +13,15 @@
           <p class="article-excerpt">{{ article?.excerpt }}</p>
           
           <!-- Author Info -->
-          <div class="author-info">
-            <div class="author-avatar">
-              <div class="avatar-placeholder">TB</div>
-            </div>
-            <div class="author-details">
-              <h3 class="author-name">Tri Bui</h3>
-              <p class="author-title">Co-Founder at NextGen Investor • Finance Analyst at Smithfield</p>
+          <div class="author-section">
+            <div class="author-info">
+              <div class="author-avatar">
+                <div class="avatar-placeholder">TB</div>
+              </div>
+              <div class="author-details">
+                <h3 class="author-name">Tri Bui</h3>
+                <p class="author-title">Co-Founder at NextGen Investor • Finance Analyst at Smithfield</p>
+              </div>
             </div>
           </div>
         </div>
@@ -32,6 +32,7 @@
     <section class="article-content">
       <div class="container">
         <div class="content-wrapper">
+          <!-- Article Body -->
           <div class="article-body">
             <div v-if="article" v-html="article.content"></div>
             <div v-else class="loading-state">
@@ -79,7 +80,7 @@
                 <h3>Related Articles</h3>
                 <div class="related-articles">
                   <div v-for="related in relatedArticles" :key="related.id" class="related-item">
-                    <router-link :to="`/blog/article/${related.id}`" class="related-link">
+                    <router-link :to="'/blog/article/' + related.id" class="related-link">
                       <div class="related-icon">{{ related.icon }}</div>
                       <div class="related-content">
                         <h4 class="related-title">{{ related.title }}</h4>
@@ -237,11 +238,11 @@ const articles = [
         <li>220+ students trained across multiple cohorts</li>
         <li>71% internship success rate within 6 months of completion</li>
         <li>15+ student-founded startups launched</li>
-        <li>Average 23% increase in business knowledge scores</li>
+        <li>95% student satisfaction rate</li>
       </ul>
       
       <h2 id="conclusion">Lessons Learned</h2>
-      <p>Scaling an EdTech platform requires more than just great content—it requires building an ecosystem of support, mentorship, and real opportunities. The investment in building these relationships pays dividends in student outcomes.</p>
+      <p>The key to successful EdTech isn't just great content—it's creating real pathways to opportunity. Students don't just want to learn; they want to apply their knowledge and see tangible results in their careers.</p>
     `
   },
   {
@@ -373,31 +374,30 @@ const article = computed(() => {
 })
 
 const relatedArticles = computed(() => {
-  if (!article.value) return []
-  return articles
-    .filter(a => a.id !== article.value!.id && a.category === article.value!.category)
-    .slice(0, 3)
+  return articles.filter(a => a.id !== article.value?.id).slice(0, 3)
 })
 
 const previousArticle = computed(() => {
-  if (!article.value) return null
-  const currentIndex = articles.findIndex(a => a.id === article.value!.id)
+  const currentId = article.value?.id
+  if (!currentId) return null
+  const currentIndex = articles.findIndex(a => a.id === currentId)
   return currentIndex > 0 ? articles[currentIndex - 1] : null
 })
 
 const nextArticle = computed(() => {
-  if (!article.value) return null
-  const currentIndex = articles.findIndex(a => a.id === article.value!.id)
+  const currentId = article.value?.id
+  if (!currentId) return null
+  const currentIndex = articles.findIndex(a => a.id === currentId)
   return currentIndex < articles.length - 1 ? articles[currentIndex + 1] : null
 })
 
 const shareArticle = (platform: string) => {
   const url = window.location.href
-  const title = article.value?.title || ''
+  const title = article.value?.title || 'Check out this article'
   
   let shareUrl = ''
   
-  switch (platform) {
+  switch(platform) {
     case 'twitter':
       shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`
       break
@@ -407,28 +407,29 @@ const shareArticle = (platform: string) => {
   }
   
   if (shareUrl) {
-    window.open(shareUrl, '_blank')
+    window.open(shareUrl, '_blank', 'width=600,height=400')
   }
 }
 
 const copyArticleLink = async () => {
   try {
     await navigator.clipboard.writeText(window.location.href)
-    alert('Article link copied to clipboard!')
+    alert('Link copied to clipboard!')
   } catch (err) {
     console.error('Failed to copy link:', err)
   }
 }
 
-const navigateToArticle = (id: number) => {
-  router.push(`/blog/article/${id}`)
-}
-
 const subscribe = () => {
   if (email.value) {
-    alert('Thank you for subscribing! You will receive weekly insights in your inbox.')
+    alert(`Thank you for subscribing with email: ${email.value}`)
     email.value = ''
   }
+}
+
+const navigateToArticle = (id: number) => {
+  const path = '/blog/article/' + id
+  router.push(path)
 }
 
 onMounted(() => {
@@ -441,7 +442,6 @@ onMounted(() => {
 .article-detail {
   min-height: 100vh;
   background: #ffffff;
-  color: #000000;
 }
 
 .container {
@@ -450,66 +450,66 @@ onMounted(() => {
   padding: 0 2rem;
 }
 
-/* Article Hero */
-.article-hero {
+/* Article Header */
+.article-header {
   padding: 8rem 0 4rem;
-  background: #f8f9fa;
-  border-bottom: 1px solid #e9ecef;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
 }
 
-.hero-content {
+.article-meta {
   max-width: 800px;
   margin: 0 auto;
   text-align: center;
 }
 
-.article-meta {
+.meta-info {
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  align-items: center;
+  gap: 2rem;
   margin-bottom: 2rem;
   flex-wrap: wrap;
 }
 
 .article-category {
+  background: #000000;
+  color: #ffffff;
   padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 0.875rem;
   font-weight: 600;
-  color: white;
 }
 
-.category-fintech { background: linear-gradient(135deg, #667eea, #764ba2); }
-.category-ai/ml { background: linear-gradient(135deg, #f093fb, #f5576c); }
-.category-entrepreneurship { background: linear-gradient(135deg, #4facfe, #00f2fe); }
-.category-strategy { background: linear-gradient(135deg, #43e97b, #38f9d7); }
-
-.article-date, .read-time {
+.article-date,
+.read-time {
   color: #666666;
   font-size: 0.875rem;
 }
 
 .article-title {
   font-size: 3rem;
-  font-weight: 800;
-  margin-bottom: 1.5rem;
+  font-weight: 700;
   line-height: 1.2;
+  margin-bottom: 1.5rem;
   color: #000000;
 }
 
 .article-excerpt {
   font-size: 1.25rem;
-  line-height: 1.8;
-  color: #555555;
-  margin-bottom: 2rem;
+  color: #666666;
+  line-height: 1.6;
+  margin-bottom: 3rem;
+}
+
+.author-section {
+  display: flex;
+  justify-content: center;
 }
 
 .author-info {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 1rem;
-  margin-top: 3rem;
 }
 
 .author-avatar {
@@ -522,13 +522,13 @@ onMounted(() => {
 .avatar-placeholder {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: #000000;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 
 .author-details {
@@ -536,8 +536,8 @@ onMounted(() => {
 }
 
 .author-name {
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: 1.125rem;
+  font-weight: 600;
   margin-bottom: 0.25rem;
   color: #000000;
 }
@@ -556,47 +556,45 @@ onMounted(() => {
   display: grid;
   grid-template-columns: 1fr 300px;
   gap: 4rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  align-items: start;
 }
 
 .article-body {
+  max-width: none;
   line-height: 1.8;
   font-size: 1.125rem;
+  color: #333333;
 }
 
-.article-body :deep(h2) {
+.article-body h2 {
   font-size: 2rem;
   font-weight: 700;
   margin: 3rem 0 1.5rem;
   color: #000000;
-  border-bottom: 2px solid #e9ecef;
-  padding-bottom: 0.5rem;
 }
 
-.article-body :deep(h3) {
+.article-body h3 {
   font-size: 1.5rem;
   font-weight: 600;
   margin: 2rem 0 1rem;
+  color: #000000;
+}
+
+.article-body p {
+  margin-bottom: 1.5rem;
   color: #333333;
 }
 
-.article-body :deep(p) {
+.article-body ul {
   margin-bottom: 1.5rem;
-  color: #444444;
-}
-
-.article-body :deep(ul) {
-  margin: 1.5rem 0;
   padding-left: 2rem;
 }
 
-.article-body :deep(li) {
+.article-body li {
   margin-bottom: 0.75rem;
-  color: #444444;
 }
 
-.article-body :deep(strong) {
+.article-body strong {
   color: #000000;
   font-weight: 700;
 }
