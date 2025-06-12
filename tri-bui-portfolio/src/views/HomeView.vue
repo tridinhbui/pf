@@ -163,10 +163,7 @@
             </p>
                     </div>
 
-          <!-- AI Robot Assistant -->
-          <div class="robot-section" ref="robotRef">
-            <SplineRobot />
-          </div>
+
 
           <!-- Launch Navigation -->
           <div class="hero-nav" ref="heroNavRef">
@@ -237,6 +234,21 @@
       </div>
     </section>
 
+    <!-- AI Robot Assistant Section -->
+    <section class="section robot-showcase-section transparent-background">
+      <div class="container">
+        <div class="robot-showcase-content">
+          <div class="robot-section" ref="robotRef">
+            <SplineRobot />
+          </div>
+          <div class="robot-description">
+            <h3 class="robot-title">Meet Your AI Assistant</h3>
+            <p class="robot-subtitle">Powered by advanced AI to enhance your portfolio experience</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Origin Story Section -->
     <section class="section origin-section transparent-background" id="background">
       <!-- Section Planets -->
@@ -275,7 +287,7 @@
           <div class="origin-grid">
             <div class="origin-item" ref="originItem1">
               <div class="origin-label">Launch vector</div>
-                  <div class="origin-value">Hanoi ➜ Minnesota (Macalester) ➜ Singapore (NTU exchange) ➜ Chicago (Revantage, Blackstone Inc) ➜ Virginia (Smithfield Inc HQ)</div>
+              <div class="origin-value">Hanoi ➜ Minnesota (Macalester) ➜ Singapore (NTU exchange) ➜ Chicago ➜ Virginia (Smithfield HQ)</div>
             </div>
             <div class="origin-item" ref="originItem2">
               <div class="origin-label">Thrusters</div>
@@ -287,7 +299,7 @@
             </div>
             <div class="origin-item" ref="originItem4">
               <div class="origin-label">Current orbit</div>
-                  <div class="origin-value">Corporate Finance Analyst, <strong>Smithfield Foods Inc</strong> – modelling CAPEX, optimizing debt structure, and steering scenario sims.</div>
+              <div class="origin-value">Corporate Finance Analyst, <strong>Smithfield Foods</strong> – modelling CAPEX, optimizing debt structure, and steering scenario sims.</div>
                 </div>
               </div>
             </div>
@@ -316,6 +328,14 @@
         <div class="section-header">
           <h2 class="section-title">Core Technology Stack</h2>
           <p class="section-subtitle">Comprehensive overview of my software development expertise</p>
+          
+          <!-- Technical Profile Image -->
+          <div class="technical-image-container">
+            <img src="@/assets/tri2.png" alt="Technical Expertise & AI/ML Development" class="technical-image" />
+            <div class="technical-overlay">
+              <span class="technical-caption">Bridging Finance, Technology & AI Innovation</span>
+            </div>
+          </div>
         </div>
         
         <div class="technical-content">
@@ -323,58 +343,55 @@
             <h3 class="subsection-title">Core Technology Stack</h3>
             <div class="tech-table-container">
               <table class="tech-table">
-                <tr>
-                  <td class="tech-cell">
-                <h4>Programming Languages</h4>
-                <div class="tech-items">
-                  <span class="tech-item">Python</span>
-                  <span class="tech-item">JavaScript/TypeScript</span>
-                  <span class="tech-item">SQL</span>
-                  <span class="tech-item">R</span>
-                  <span class="tech-item">Java</span>
-                      <span class="tech-item">C++</span>
-                      <span class="tech-item">Go</span>
-                      <span class="tech-item">Rust</span>
-                      <span class="tech-item">Swift</span>
-                      <span class="tech-item">Kotlin</span>
-                </div>
-                  </td>
-                  <td class="tech-cell">
-                <h4>Frameworks & Libraries</h4>
-                <div class="tech-items">
-                  <span class="tech-item">Vue.js</span>
-                  <span class="tech-item">React</span>
-                  <span class="tech-item">Node.js</span>
-                  <span class="tech-item">TensorFlow</span>
-                  <span class="tech-item">PyTorch</span>
-                  <span class="tech-item">FastAPI</span>
-                  <span class="tech-item">Express.js</span>
-                </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="tech-cell">
-                <h4>AI/ML Specializations</h4>
-                <div class="tech-items">
-                  <span class="tech-item">Natural Language Processing (NLP)</span>
-                  <span class="tech-item">Time-Series Forecasting</span>
-                  <span class="tech-item">LLM Fine-tuning</span>
-                  <span class="tech-item">Computer Vision</span>
-                  <span class="tech-item">Object Detection</span>
-                  <span class="tech-item">Sentiment Analysis</span>
-                </div>
-                  </td>
-                  <td class="tech-cell">
-                <h4>Cloud & Infrastructure</h4>
-                <div class="tech-items">
-                  <span class="tech-item">AWS (Lambda, S3, EC2)</span>
-                  <span class="tech-item">Docker</span>
-                  <span class="tech-item">CI/CD Pipelines</span>
-                  <span class="tech-item">Kubernetes</span>
-                  <span class="tech-item">Terraform</span>
-                </div>
-                  </td>
-                </tr>
+                <tbody>
+                  <tr>
+                    <td class="tech-cell">
+                      <h4>Programming Languages</h4>
+                      <div class="tech-items">
+                        <span class="tech-item">Python</span>
+                        <span class="tech-item">JavaScript/TypeScript</span>
+                        <span class="tech-item">SQL</span>
+                        <span class="tech-item">R</span>
+                        <span class="tech-item">Java</span>
+                      </div>
+                    </td>
+                    <td class="tech-cell">
+                      <h4>Frameworks & Libraries</h4>
+                      <div class="tech-items">
+                        <span class="tech-item">Vue.js</span>
+                        <span class="tech-item">React</span>
+                        <span class="tech-item">Node.js</span>
+                        <span class="tech-item">TensorFlow</span>
+                        <span class="tech-item">PyTorch</span>
+                        <span class="tech-item">FastAPI</span>
+                        <span class="tech-item">Express.js</span>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="tech-cell">
+                      <h4>AI/ML Specializations</h4>
+                      <div class="tech-items">
+                        <span class="tech-item">Natural Language Processing (NLP)</span>
+                        <span class="tech-item">Time-Series Forecasting</span>
+                        <span class="tech-item">LLM Fine-tuning</span>
+                        <span class="tech-item">Computer Vision</span>
+                        <span class="tech-item">Object Detection</span>
+                        <span class="tech-item">Sentiment Analysis</span>
+                      </div>
+                    </td>
+                    <td class="tech-cell">
+                      <h4>Cloud & Infrastructure</h4>
+                      <div class="tech-items">
+                        <span class="tech-item">AWS (Lambda, S3, EC2)</span>
+                        <span class="tech-item">Docker</span>
+                        <span class="tech-item">CI/CD Pipelines</span>
+                        <span class="tech-item">Kubernetes</span>
+                        <span class="tech-item">Terraform</span>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
               </table>
             </div>
           </div>
@@ -446,17 +463,26 @@
           </div>
         </div>
         
-        <!-- Personal Characteristics -->
-        <div class="characteristics-grid">
-          <div class="characteristic-card" v-for="trait in personalTraits" :key="trait.id">
-            <div class="trait-icon">
-              <component :is="trait.icon" class="icon" />
+        <!-- Transformation Pillars -->
+        <div class="transformation-pillars">
+          <div class="pillar" v-for="(pillar, index) in transformationPillars" :key="pillar.id">
+            <div class="pillar-energy">
+              <div class="energy-core"></div>
+              <div class="energy-pulse" v-for="n in 3" :key="n"></div>
             </div>
-            <h3 class="trait-title">{{ trait.title }}</h3>
-            <p class="trait-description">{{ trait.description }}</p>
+            <div class="pillar-content">
+              <div class="pillar-icon">
+                <component :is="pillar.icon" class="icon" />
               </div>
+              <h3 class="pillar-title">{{ pillar.title }}</h3>
+              <p class="pillar-description">{{ pillar.description }}</p>
+              <div class="pillar-impact">{{ pillar.impact }}</div>
             </div>
-
+            <div class="pillar-chaos-overlay">
+              <div class="chaos-particle" v-for="n in 8" :key="n"></div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -603,8 +629,7 @@
           <p class="section-subtitle">Sharing knowledge on entrepreneurship, technology, and building the future</p>
         </div>
         
-        <div class="blog-scroll-container" ref="blogRef">
-          <div class="blog-grid">
+        <div class="blog-grid" ref="blogRef">
           <div class="blog-card" v-for="post in blogPosts" :key="post.id">
             <div class="blog-meta">
               <span class="blog-category">{{ post.category }}</span>
@@ -622,7 +647,6 @@
               <a href="#" class="read-more">Read More →</a>
             </div>
             <div class="card-glow"></div>
-            </div>
           </div>
         </div>
         
@@ -645,15 +669,8 @@
           <p class="section-subtitle">Corporate roles building expertise in finance, strategy, and technology</p>
         </div>
         
-        <div class="experience-slideshow" ref="orbitsRef">
-          <div class="slideshow-container" 
-               @touchstart="handleTouchStart" 
-               @touchend="handleTouchEnd"
-               @mouseenter="stopAutoSlide"
-               @mouseleave="startAutoSlide">
-            <div class="slides-wrapper" :style="{ transform: `translateX(-${currentSlide * 100}%)` }">
-              <div class="experience-slide" v-for="(orbit, index) in orbits" :key="orbit.org">
-                <div class="orbit-card">
+        <div class="orbits-grid" ref="orbitsRef">
+          <div class="orbit-card magnetic-target" v-for="orbit in orbits" :key="orbit.org">
             <div class="orbit-header">
               <h3 class="orbit-org">{{ orbit.org }}</h3>
               <span class="orbit-year">{{ orbit.year }}</span>
@@ -668,34 +685,6 @@
           </div>
         </div>
       </div>
-            
-            <!-- Navigation -->
-            <div class="slideshow-nav">
-              <button class="nav-btn prev" @click="prevSlide" :disabled="currentSlide === 0">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-                </svg>
-              </button>
-              <button class="nav-btn next" @click="nextSlide" :disabled="currentSlide === orbits.length - 1">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                </svg>
-              </button>
-        </div>
-        
-            <!-- Indicators -->
-            <div class="slideshow-indicators">
-              <button 
-                v-for="(orbit, index) in orbits" 
-                :key="index"
-                class="indicator"
-                :class="{ active: currentSlide === index }"
-                @click="goToSlide(index)"
-              ></button>
-            </div>
-            </div>
-        </div>
-      </div>
     </section>
 
 
@@ -703,13 +692,13 @@
     <!-- Contact Section -->
     <section class="section contact-section transparent-background" id="contact">
       <div class="container">
-        <div class="section-header">
-          <h2 class="section-title" ref="contactTitleRef">Get In Touch</h2>
-          <p class="section-subtitle">Ready to build something amazing together? Let's connect and create meaningful impact.</p>
-        </div>
-          
         <div class="contact-content">
+          <h2 class="section-title" ref="contactTitleRef">Get In Touch</h2>
+          
           <div class="contact-cta">
+            <p class="contact-description">
+              Ready to build something amazing together? Let's connect and explore opportunities to create meaningful impact.
+            </p>
             <div class="contact-buttons">
               <a href="mailto:tbui@macalester.edu" class="contact-btn primary">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -856,71 +845,6 @@ const handleScroll = () => {
   showBackToTop.value = window.scrollY > 300
 }
 
-// Slideshow functionality
-const currentSlide = ref(0)
-let slideInterval: number | null = null
-
-const nextSlide = () => {
-  if (currentSlide.value < orbits.value.length - 1) {
-    currentSlide.value++
-  } else {
-    currentSlide.value = 0
-  }
-}
-
-const prevSlide = () => {
-  if (currentSlide.value > 0) {
-    currentSlide.value--
-  } else {
-    currentSlide.value = orbits.value.length - 1
-  }
-}
-
-const goToSlide = (index: number) => {
-  currentSlide.value = index
-}
-
-const startAutoSlide = () => {
-  slideInterval = setInterval(() => {
-    nextSlide()
-  }, 4000) // Auto slide every 4 seconds
-}
-
-const stopAutoSlide = () => {
-  if (slideInterval) {
-    clearInterval(slideInterval)
-    slideInterval = null
-  }
-}
-
-// Touch/Swipe functionality
-let startX = 0
-let endX = 0
-
-const handleTouchStart = (e: TouchEvent) => {
-  startX = e.touches[0].clientX
-}
-
-const handleTouchEnd = (e: TouchEvent) => {
-  endX = e.changedTouches[0].clientX
-  handleSwipe()
-}
-
-const handleSwipe = () => {
-  const threshold = 50
-  const diff = startX - endX
-  
-  if (Math.abs(diff) > threshold) {
-    if (diff > 0) {
-      // Swipe left - next slide
-      nextSlide()
-    } else {
-      // Swipe right - previous slide
-      prevSlide()
-    }
-  }
-}
-
 // Refs for animations
 const statusRef = ref<HTMLElement>()
 const heroTitleRef = ref<HTMLElement>()
@@ -978,19 +902,19 @@ const ventures = ref([
     name: "Pathwise",
     year: "2024",
     role: "Co-founder since 2024",
-    impact: "A mentorship platform helping students land top tech & consulting jobs through 1-on-1 coaching and guided curriculum."
+    impact: "A mentorship platform helping students land top tech & consulting jobs through 1-on-1 coaching and guided curriculum. 118 mentees with 71% internship success rate."
   },
   {
     name: "CF Hub", 
     year: "2025",
     role: "Co-founder since 2025",
-    impact: "A finance bootcamp and network for Gen Z to master investment, financial modeling, and market intuition. Generated significant impact in financial literacy."
+    impact: "A mentorship platform connecting aspiring finance professionals with senior industry leaders through 1-on-1 coaching for finance & business careers. Facilitating career acceleration and knowledge transfer."
   },
   {
     name: "YoungPreneur Academy",
     year: "2024", 
     role: "Founder since 2024",
-    impact: "Entrepreneurship education program providing comprehensive training and mentorship for aspiring student entrepreneurs."
+    impact: "Entrepreneurship education program that trained 220 students, produced 46 national competition finalists, and secured $35K in prize pools."
   },
   {
     name: "NextGen Investor",
@@ -1008,7 +932,7 @@ const ventures = ref([
     name: "Esmart Solution",
     year: "2022",
     role: "Since 2022", 
-    impact: "Digital transformation consultancy for SMEs, providing comprehensive digital solutions and strategic consulting services."
+    impact: "Digital transformation consultancy for SMEs, serving 34 businesses with average 42% year-over-year online revenue growth."
   }
 ])
 
@@ -1030,13 +954,23 @@ const accolades = ref([
   },
   {
     year: "2021",
-    title: "MacStartup Grant",
-    achievement: "💡 $7,000 funding for student entrepreneurship initiatives"
+    title: "MacNest & LiveIt Entrepreneurship Grants",
+    achievement: "💡 $15,000 consolidated funding for student entrepreneurship initiatives"
   },
   {
     year: "2017",
     title: "World Mathematics Team Championship",
     achievement: "🥇 Gold Medal - International mathematics competition"
+  },
+  {
+    year: "2016-2017",
+    title: "National Mathematics Olympiad",
+    achievement: "🥈 Silver Medal - Vietnamese National Mathematics Competition"
+  },
+  {
+    year: "2015",
+    title: "Regional Mathematics Competition",
+    achievement: "🥇 First Place - Hanoi Regional Mathematics Competition"
   }
 ])
 
@@ -1201,28 +1135,13 @@ const transformationPillars = ref([
     title: 'Strategic Metamorphosis',
     description: 'Transforming companies into future-ready powerhouses',
     impact: '$50M+ value unlocked'
-  }
-])
-
-// Personal characteristics data
-const personalTraits = ref([
-  {
-    id: 1,
-    icon: 'Brain',
-    title: 'Analytical Thinker',
-    description: 'Breaking down complex problems into actionable insights through systematic analysis and strategic frameworks.'
   },
   {
-    id: 2,
-    icon: 'Rocket',
-    title: 'Growth Catalyst',
-    description: 'Accelerating progress by identifying opportunities, building connections, and creating scalable impact.'
-  },
-  {
-    id: 3,
-    icon: 'Users',
-    title: 'Ecosystem Builder',
-    description: 'Connecting people, ideas, and resources to create collaborative networks that drive collective success.'
+    id: 4,
+    icon: 'Heart',
+    title: 'Character-Driven Leadership',
+    description: 'Leading with authenticity, resilience, and unwavering integrity in every decision',
+    impact: 'Inspiring next-gen leaders'
   }
 ])
 
@@ -1345,9 +1264,6 @@ onMounted(() => {
   
   // Add scroll event listener for back-to-top button
   window.addEventListener('scroll', handleScroll)
-
-  // Start auto slideshow
-  startAutoSlide()
 
   // Automatically open chatbot after a delay
   setTimeout(() => {
@@ -1530,12 +1446,12 @@ const setupAnimations = () => {
           if (item.value) {
             ScrollTrigger.create({
               trigger: item.value,
-              start: "top 90%",
+              start: "top 85%",
               animation: gsap.from(item.value, {
                 opacity: 0,
                 x: -30,
-                duration: 0.4,
-                delay: index * 0.05,
+                duration: 0.6,
+                delay: index * 0.1,
                 ease: "power3.out"
               })
             })
@@ -3408,26 +3324,30 @@ const showChatbot = ref(false)
   }
 }
 
-/* DIRECTIVES SECTION */
+/* DIRECTIVES SECTION - ENHANCED DESIGN */
 .directives-section {
   background: #ffffff;
+  padding: 8rem 0;
 }
 
 .directives-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .directive-card {
-  background: #fafafa;
-  border: 1px solid #e9ecef;
-  border-radius: 1rem;
-  padding: 2.5rem;
-  transition: all 0.3s ease;
+  background: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 1.5rem;
+  padding: 3rem;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* Removed hover effects as requested */
@@ -3457,10 +3377,11 @@ const showChatbot = ref(false)
 }
 
 .morphing-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
   background: #ffffff;
   border-color: #000000;
+  border-width: 3px;
 }
 
 /* FLOATING NUMBERS */
@@ -3678,14 +3599,21 @@ const showChatbot = ref(false)
 }
 
 .directive-number {
-  font-size: 3rem;
-  font-weight: var(--font-weight-bold);
+  font-size: 4rem;
+  font-weight: 800;
   font-family: var(--font-family-mono);
-  color: #e9ecef;
+  color: #000000;
   position: absolute;
-  top: 1rem;
-  right: 1.5rem;
+  top: 1.5rem;
+  right: 2rem;
   line-height: 1;
+  opacity: 0.1;
+  transition: all 0.4s ease;
+}
+
+.directive-card:hover .directive-number {
+  opacity: 0.2;
+  transform: scale(1.1);
 }
 
 .directive-content {
@@ -3694,15 +3622,21 @@ const showChatbot = ref(false)
 }
 
 .directive-title {
-  font-size: 1.25rem;
-  font-weight: var(--font-weight-bold);
-  margin-bottom: 1rem;
-  color: #212529;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #000000;
+  background: linear-gradient(135deg, #000000, #333333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .directive-description {
-  color: #495057;
-  line-height: 1.6;
+  color: #444444;
+  line-height: 1.7;
+  font-size: 1rem;
+  font-weight: 400;
 }
 
 /* CONSTELLATIONS SECTION */
@@ -3890,99 +3824,6 @@ const showChatbot = ref(false)
   background: #fafafa;
 }
 
-/* Experience Slideshow */
-.experience-slideshow {
-  max-width: 800px;
-  margin: 0 auto;
-  position: relative;
-}
-
-.slideshow-container {
-  position: relative;
-  overflow: hidden;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.slides-wrapper {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-}
-
-.experience-slide {
-  min-width: 100%;
-  padding: 0;
-}
-
-.slideshow-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  padding: 0 20px;
-  pointer-events: none;
-}
-
-.nav-btn {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.9);
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  pointer-events: auto;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.nav-btn:hover:not(:disabled) {
-  background: #ffffff;
-  transform: scale(1.1);
-}
-
-.nav-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.nav-btn svg {
-  width: 24px;
-  height: 24px;
-  color: #333;
-}
-
-.slideshow-indicators {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  padding: 20px 0;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-}
-
-.indicator {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: none;
-  background: #dee2e6;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.indicator.active {
-  background: #495057;
-  transform: scale(1.2);
-}
-
-.indicator:hover {
-  background: #6c757d;
-}
-
 .orbits-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -3991,43 +3832,17 @@ const showChatbot = ref(false)
 
 .orbit-card {
   background: #ffffff;
-  border: 2px solid #e9ecef;
-  border-radius: 24px;
-  padding: 3rem;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  box-shadow: 
-    0 10px 30px rgba(0, 0, 0, 0.1),
-    0 4px 12px rgba(0, 0, 0, 0.05);
-}
-
-.orbit-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, 
-    rgba(0, 0, 0, 0.02) 0%, 
-    rgba(0, 0, 0, 0.05) 50%, 
-    rgba(0, 0, 0, 0.03) 100%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  border-radius: 22px;
-}
-
-.orbit-card:hover::before {
-  opacity: 1;
+  border: 1px solid #e9ecef;
+  border-radius: 1rem;
+  padding: 2.5rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .orbit-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 
-    0 20px 50px rgba(0, 0, 0, 0.2),
-    0 8px 20px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   border-color: #000000;
 }
 
@@ -4035,68 +3850,48 @@ const showChatbot = ref(false)
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
-  position: relative;
-  z-index: 2;
+  margin-bottom: 1.5rem;
 }
 
 .orbit-org {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #000000;
-  transition: all 0.3s ease;
-}
-
-.orbit-card:hover .orbit-org {
-  color: #333333;
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-bold);
+  color: #212529;
 }
 
 .orbit-year {
-  background: #000000;
-  padding: 0.4rem 1rem;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  font-family: 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
-  color: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  position: relative;
-  z-index: 2;
+  background: #f8f9fa;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-bold);
+  font-family: var(--font-family-mono);
+  color: #495057;
 }
 
 .orbit-contribution {
-  margin-bottom: 2rem;
-  line-height: 1.7;
-  color: #4a5568;
-  font-size: 1.05rem;
-  position: relative;
-  z-index: 2;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  color: #495057;
 }
 
 .orbit-tech {
   background: #f8f9fa;
-  padding: 1.2rem;
-  border-radius: 16px;
-  border-left: 4px solid #000000;
-  position: relative;
-  z-index: 2;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border-left: 3px solid #000000;
 }
 
 .tech-label {
-  font-weight: 600;
-  color: #2d3748;
-  margin-right: 0.75rem;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  font-weight: var(--font-weight-semibold);
+  color: #212529;
+  margin-right: 0.5rem;
 }
 
 .tech-list {
-  color: #4a5568;
-  font-family: 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
-  font-size: 0.9rem;
-  line-height: 1.5;
-  font-weight: 500;
+  color: #495057;
+  font-family: var(--font-family-mono);
+  font-size: 0.875rem;
 }
 
 /* TRAJECTORY SECTION */
@@ -4829,12 +4624,26 @@ const showChatbot = ref(false)
 .mindset-star:nth-child(9) { top: 60%; left: 80%; }
 .mindset-star:nth-child(10) { top: 80%; left: 40%; }
 
-/* SIMPLIFIED HOVER ANIMATIONS */
+/* ENHANCED CRAZY ANIMATIONS */
 .directive-card:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  border-color: #000000;
-  background: #ffffff;
+  transform: translateY(-20px) perspective(1000px) rotateX(25deg) rotateY(25deg) scale(1.15) translateZ(100px);
+  box-shadow: 
+    0 60px 120px rgba(0, 0, 0, 0.4),
+    0 40px 80px rgba(0, 0, 0, 0.3),
+    0 25px 50px rgba(0, 0, 0, 0.8),
+    inset 0 0 0 3px rgba(0, 0, 0, 0.5),
+    inset 0 3px 0 rgba(255, 255, 255, 0.4);
+  border-color: rgba(0, 0, 0, 1);
+  background: rgba(245, 245, 245, 0.98);
+  filter: brightness(1.4) contrast(1.3) saturate(1.5);
+  animation: crazy-wobble 0.5s ease-in-out;
+}
+
+@keyframes crazy-wobble {
+  0%, 100% { transform: translateY(-20px) perspective(1000px) rotateX(25deg) rotateY(25deg) scale(1.15) translateZ(100px); }
+  25% { transform: translateY(-25px) perspective(1000px) rotateX(30deg) rotateY(20deg) scale(1.18) translateZ(120px); }
+  50% { transform: translateY(-15px) perspective(1000px) rotateX(20deg) rotateY(30deg) scale(1.12) translateZ(80px); }
+  75% { transform: translateY(-30px) perspective(1000px) rotateX(35deg) rotateY(15deg) scale(1.2) translateZ(140px); }
 }
 
 .constellation-card:hover {
@@ -4868,14 +4677,44 @@ const showChatbot = ref(false)
 
 /* SIMPLIFIED FLOATING ELEMENTS - Removed excessive animations */
 
-/* ROBOT SECTION */
+/* ROBOT SHOWCASE SECTION */
+.robot-showcase-section {
+  padding: 6rem 0;
+  position: relative;
+}
+
+.robot-showcase-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  text-align: center;
+}
+
 .robot-section {
-  margin: 4rem 0;
   max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
   position: relative;
   z-index: 5;
+}
+
+.robot-description {
+  max-width: 500px;
+}
+
+.robot-title {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #000000, #333333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+}
+
+.robot-subtitle {
+  font-size: 1.1rem;
+  color: #666666;
+  line-height: 1.6;
 }
 
 /* RESPONSIVE */
@@ -6603,59 +6442,7 @@ const showChatbot = ref(false)
   position: relative;
   z-index: 10;
   text-align: center;
-  margin-bottom: 3rem;
-}
-
-/* Personal Characteristics */
-.characteristics-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  max-width: 1000px;
-  margin: 4rem auto 0;
-  padding: 0 2rem;
-  position: relative;
-  z-index: 10;
-}
-
-.characteristic-card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  padding: 2rem;
-  text-align: center;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-}
-
-.characteristic-card:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
-}
-
-.trait-icon {
-  margin-bottom: 1.5rem;
-}
-
-.trait-icon .icon {
-  width: 3rem;
-  height: 3rem;
-  color: #ffffff;
-}
-
-.trait-title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: #ffffff;
-}
-
-.trait-description {
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 5rem;
 }
 
 .core-title {
@@ -6971,45 +6758,11 @@ const showChatbot = ref(false)
   padding: 8rem 0;
 }
 
-.blog-scroll-container {
-  overflow-x: auto;
-  padding: 0 0 2rem 0;
-  margin-bottom: 4rem;
-  scroll-behavior: smooth;
-}
-
-.blog-scroll-container::-webkit-scrollbar {
-  height: 8px;
-}
-
-.blog-scroll-container::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-}
-
-.blog-scroll-container::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 4px;
-}
-
-.blog-scroll-container::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.5);
-}
-
 .blog-grid {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2rem;
-  width: max-content;
-  animation: blogAutoScroll 30s linear infinite;
-}
-
-@keyframes blogAutoScroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(calc(-400px * 3)); }
-}
-
-.blog-grid:hover {
-  animation-play-state: paused;
+  margin-bottom: 4rem;
 }
 
 .blog-card {
@@ -7023,8 +6776,6 @@ const showChatbot = ref(false)
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  min-width: 380px;
-  flex-shrink: 0;
 }
 
 .blog-card:hover {
